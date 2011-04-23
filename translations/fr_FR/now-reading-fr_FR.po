@@ -1,0 +1,510 @@
+# Rob Miller <r@robm.me.uk>, 2006.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: now-reading\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2006-12-23 02:42-0000\n"
+"Last-Translator: Rob Miller <r@robm.me.uk>\n"
+"Language-Team: French <gnomefr@traduc.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\apache\\xampp\\htdocs\\blog\\wp-content\\plugins\\now-reading\n"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/add.php:12
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/edit.php:11
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/options.php:9
+msgid "Cheatin&#8217; uh?"
+msgstr "Triche... huh?"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:17
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:214
+msgid "Error adding book!"
+msgstr "Erreur d'ajout de livre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:25
+msgid "Book added."
+msgstr "Livre ajouté"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:27
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:206
+msgid "Manage books"
+msgstr "Gérer les livres"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:34
+msgid "Edit this book"
+msgstr "Modifier ce livre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:28
+msgid "View Library"
+msgstr "Voir la bibliothèque"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:29
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:207
+msgid "View Site"
+msgstr "Voir le site"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:45
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:77
+msgid "Oops!"
+msgstr "Oups !"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:46
+msgid "I couldn't fetch the latest version of Now Reading, because you don't have cURL installed!"
+msgstr "Impossible de récupérer la dernière version de 'Now Reading', car vous n'avez pas installé cURL !"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:47
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:79
+msgid "To solve this problem, please switch your <strong>HTTP Library</strong> setting to <strong>Snoopy</strong>, which works on virtually all server setups."
+msgstr "Pour résoudre ce problème, merci de régler votre paramètre <strong>HTTP Library</strong> sur <strong>Snoopy</strong>, qui fonctionne théoriquement sur toutes les configurations de serveurs"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:48
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:80
+#, php-format
+msgid "You can change your options <a href='%s'>here</a>."
+msgstr "Vous pouvez modifier vos options <a href='%s'>ici</a>."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:52
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:160
+#, php-format
+msgid "CAUTION: A newer version of Now Reading exists! Please download it <a href='%s'>here</a>."
+msgstr "Attention ! Une nouvelle version de 'Now Reading' est disponible ! Vous pouvez la télécharger <a href='%s'>ici</a>."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:59
+msgid "Search Results"
+msgstr "Résultats de la recherche"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:78
+msgid "I couldn't fetch the results for your search, because you don't have cURL installed!"
+msgstr "Impossible de récupérer les résultats de la recherche, car vous n'avez pas installé cURL !"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:86
+#, php-format
+msgid "Sorry, but amazon%s did not return any results for the ISBN number <code>%s</code>."
+msgstr "Désolé, mais amazon%s n'a retourné aucun résultat pour le numéro ISBN <code>%s</code>."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:88
+#, php-format
+msgid "Sorry, but amazon%s did not return any results for the book &ldquo;%s&rdquo;"
+msgstr "Désolé, mais amazon%s n'a retourné aucun résultat pour le livre &ldquo;%s&rdquo;"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:91
+#, php-format
+msgid "You searched for the ISBN <code>%s<code>. amazon%s returned these results:"
+msgstr "Vous avez cherché le code ISBN <code>%s</code>. amazon%s a retourné les résultats suivants :"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:93
+#, php-format
+msgid "You searched for the book &ldquo;%s&rdquo;. amazon%s returned these results:"
+msgstr "Vous avez cherché le livre &ldquo;%s&rdquo;. amazon%s a retourné les résultats suivants :"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:117
+msgid "No author"
+msgstr "Aucun auteur"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:119
+msgid "Use This Result"
+msgstr "Utiliser ce résultat"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:128
+msgid "Not found what you like? You have a couple of options."
+msgstr "Pas trouvé ce que vous cherchiez ? Vous avez quelques alternatives."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:130
+msgid "If you like, you can add a book manually"
+msgstr "Si vous le voulez, vous pouvez ajouter le livre manuellement"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:132
+msgid "Add a book manually"
+msgstr "Ajouter un livre manuellement"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:142
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:241
+msgid "Title"
+msgstr "Titre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:145
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:244
+msgid "Author"
+msgstr "Auteur"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:148
+msgid "Link to image"
+msgstr "Lien vers l'image"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:149
+msgid "Remember, leeching images from other people's servers is nasty. Upload your own images or use Amazon's."
+msgstr "Souvenez-vous : utiliser les images hébergées sur un autre serveur est une vilaine chose. Uploadez-les sur votre serveur, ou utilisez celles d'Amazon."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:152
+msgid "Add Book"
+msgstr "Ajouter le livre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:156
+msgid "Or, you can try searching again with some different search terms"
+msgstr "Ou, vous pouvez essayer une nouvelle recherche avec des termes différents"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:166
+msgid "Search again"
+msgstr "Chercher de nouveau"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:173
+msgid "Add a new book"
+msgstr "Ajouter un nouveau livre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:225
+msgid "Enter some information about the book that you'd like to add, and I'll try to fetch the information directly from Amazon."
+msgstr "Ajouter des informations sur le livre que vous voulez ajouter, et j'essaierai de récupérer les informations directement depuis Amazon."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:227
+#, php-format
+msgid "Now Reading is currently set to search the <strong>amazon%s</strong> domain; you can change this setting and others in the <a href='%s'>options page</a>."
+msgstr "'Now reading' est paramétré pour aller chercher sur le domaine <strong>amazon%s</strong>. Vous pouvez changer ce paramètre, ainsi que d'autres en allant sur la <a href='%s'>page des options</a>."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:239
+msgid "or"
+msgstr "ou"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:244
+msgid "optional"
+msgstr "optionnel"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:344
+msgid "Search"
+msgstr "Recherche"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-admin.php:10
+msgid "Hide"
+msgstr "Masquer"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:341
+msgid "Edit"
+msgstr "Édition"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:90
+msgid "Edit Book"
+msgstr "Édition livre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:402
+msgid "Book"
+msgstr "Livre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:429
+msgid "Status"
+msgstr "Statut"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:425
+msgid "Added"
+msgstr "Ajouté"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:427
+msgid "Started"
+msgstr "Démarré"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:429
+msgid "Finished"
+msgstr "Terminé"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:144
+msgid "Image"
+msgstr "Image"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:221
+msgid "Add another field"
+msgstr "Ajouter un autre champ"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:152
+msgid "Key"
+msgstr "Clé"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:153
+msgid "Value"
+msgstr "Valeur"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:263
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:457
+msgid "Delete"
+msgstr "Supprimer"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:249
+msgid "A comma-separated list of keywords that describe the book."
+msgstr "Une liste de mots-clés décrivant le livre séparés par des virgules."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:186
+msgid "Link to post"
+msgstr "Lien vers un article"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:296
+msgid "If you wish, you can link this book to a blog entry by entering that entry's ID here. The entry will be linked to from the book's library page."
+msgstr "Si vous voulez, vous pouvez lier ce livre à un article en entrant son identifiant ici. Cet article sera lié depuis la page de la bibliothèque pour ce livre."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:432
+msgid "Actions"
+msgstr "Actions"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:434
+msgid "View library entry"
+msgstr "Voir l'entrée de la bibliothèque"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:263
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:457
+msgid "Are you sure you wish to delete this book permanently?"
+msgstr "Êtes-vous sûr de vouloir supprimer totalement ce livre ?"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:280
+msgid "Review"
+msgstr "Critique"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:269
+msgid "Rating"
+msgstr "Note"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:224
+msgid "Increase size"
+msgstr "Augmenter la taille"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:226
+msgid "Decrease size"
+msgstr "Diminuer la taille"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:284
+msgid "Save"
+msgstr "Enregistrer"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:322
+msgid "Pages"
+msgstr "Pages"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:365
+msgid "Search books"
+msgstr "Recherche livre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:352
+msgid "Show all books"
+msgstr "Montrer tous les livres"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:356
+msgid "View library"
+msgstr "Voir la bibliothèque"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:398
+msgid "Book Cover"
+msgstr "Couverture du livre"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:435
+msgid "Edit details/write review"
+msgstr "Modifier les informations / écrire une critique"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:435
+msgid "Not yet rated"
+msgstr "Pas encore noté"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:435
+msgid "Current rating"
+msgstr "Note actuelle"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:440
+msgid "Top"
+msgstr "Haut"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:440
+msgid "Bottom"
+msgstr "Bas"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:474
+msgid "Update"
+msgstr "Mise à jour"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:482
+#, php-format
+msgid "No books to display. To add some books, head over <a href='%s'>here</a>"
+msgstr "Aucun livre à afficher. Pour ajouter des livres, allez <a href='%s'>ici</a>"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:91
+msgid "Date format string"
+msgstr "Format de la date"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:95
+#, php-format
+msgid "How to format the book's <code>added</code>, <code>started</code> and <code>finished</code> dates. Acceptable variables can be found <a href='%s'>here</a>."
+msgstr "Permet de formater les dates pour les champs <code>ajouté</code>, <code>démarré</code> et <code>terminé</code>. Les valeurs acceptées peuvent être trouvées <a href='%s'>ici</a>."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:101
+msgid "Your Amazon Associates ID"
+msgstr "Votre identifiant de partenaire Amazon"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:104
+msgid "If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag - as the default template does - then you can earn commission if your visitors then purchase products."
+msgstr "Si vous choisissez de lier la page de votre livre à Amazon en utilisant le tag <code>book_url()</code> - comme le modêle de base le permet - vous pouvez récupérer une commission si vos visiteurs achêtent le produit par la suite."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:115
+msgid "Amazon domain to use"
+msgstr "Domaine Amazon à utiliser"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:123
+msgid "If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag, you can specify which country-specific Amazon site to link to. Now Reading will also use this domain when searching."
+msgstr "Si vous choisissez de lier la page produit du livre sur le site d'Amazon.com en utilisant le tag <code>book_url()</code>, vous pouvez spécifier vers quel site spécifique d'Amazon on doit se diriger. 'Now Reading' utilisera également ce domaine pour la recherche."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:129
+msgid "NB: If you have country-specific books in your catalogue and then change your domain setting, some old links might stop working."
+msgstr "NB : Si vous avez des livre spécifiques à un pays dans votre catalogue et que vous changez le domaine, certains anciens liens pourront cesser de fonctionner."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:134
+msgid "Image size to use"
+msgstr "Taille de l'image à utiliser"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:137
+msgid "Small"
+msgstr "Petite"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:138
+msgid "Medium"
+msgstr "Médium"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:139
+msgid "Large"
+msgstr "Grande"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:142
+msgid "NB: This change will only be applied to books you add from this point onwards."
+msgstr "NB : Cette modification ne prendra effet que pour les livres rajoutés à partir de maintenant."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:116
+msgid "Admin menu layout"
+msgstr "Présentation du menu d'administration"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:118
+msgid "Single"
+msgstr "Simple"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:121
+msgid "Multiple"
+msgstr "Multiple"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:124
+msgid "When set to 'Single', Now Reading will add a top-level menu with submenus containing the 'Add a Book', 'Manage Books' and 'Options' screens."
+msgstr "Si on met cette option sur 'Simple', 'Now Reading' ajoutera un menu de haut niveau aux sous-menus qui contiendra les écrans 'Ajouter un livre', 'Gérer les livres' et 'Options'."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:127
+msgid "When set to 'Multiple', Now Reading will insert those menus under 'Write', 'Manage' and 'Options' respectively."
+msgstr "Si on met cette option sur 'Multiple', 'Now Reading' insêrera ces menus sous 'Ecrire', 'Gérer' et 'Options', respectivement."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:147
+msgid "Use <code>mod_rewrite</code> enhanced library?"
+msgstr "Utiliser la bibliothêque avancée <code>mod_rewrite</code> ?"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:151
+msgid "If you have an Apache webserver with <code>mod_rewrite</code>, you can enable this option to have your library use prettier URLs. Compare:"
+msgstr "Si vous avez un serveur Web Apache sur lequel est activé <code>mod_rewrite</code>, vous pouvez activer cette option pour utiliser les URLs 'sympathiques'. Comparer :"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:158
+#, php-format
+msgid "If you choose this option, be sure you have a custom permalink structure set up at your <a href='%s'>Options &rarr; Permalinks</a> page."
+msgstr "Si vous choisissez cette option, soyez bien sÃ»r d'avoir une structure de permalien personnalisée dans vitre page <a href='%s'>Option &arr; Permaliens</a>."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:166
+msgid "HTTP Library"
+msgstr "Bibliothêque HTTP"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:173
+#, php-format
+msgid "Don't worry if you don't understand this; unless you're having problems searching for books, the default setting of %s will be fine."
+msgstr "Ne vous inquiétez pas si vous ne comprenez pas ceci ; à moins d'avoir des soucis lors de la recherche de livre, l'option par défaut de %s devrait fonctionner."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:178
+msgid "Debug mode"
+msgstr "Mode debug"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:182
+msgid "With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs."
+msgstr "Si cette option est choisie, 'Now Reading' affichera des informations qui pourront vous être utile lors du débogage, ou pour rapporter des bugs."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:191
+msgid "Update Options"
+msgstr "Options de mise à jour"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:779
+msgid "Yet to read"
+msgstr "À lire"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:780
+msgid "Currently reading"
+msgstr "En cours de lecture"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:28
+msgid "International"
+msgstr "International"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:29
+msgid "United Kingdom"
+msgstr "Royaume-Uni"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:30
+msgid "France"
+msgstr "France"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:31
+msgid "Germany"
+msgstr "Allemagne"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:32
+msgid "Japan"
+msgstr "Japon"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:33
+msgid "Canada"
+msgstr "Canada"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:341
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:523
+msgid "cURL is not installed correctly."
+msgstr "cURL n'est pas correctement installée."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:368
+#, php-format
+msgid "For some reason, I couldn't search for your book on amazon%s."
+msgstr "Pour une raison inconnue, il n'a pas été possible de chercher votre livre sur amazon%s."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:369
+msgid "Amazon's Web Services may be down, or there may be a problem with your server configuration."
+msgstr "Les services Web d'Amazon peuvent être en panne, ou il peut y avoir un problême avec les paramêtres de votre serveur."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:373
+msgid "Try changing your HTTP Library setting to <strong>cURL</strong>."
+msgstr "Essayez de changer vos paramêtres Bibliothêque HTTP vers <strong>cURL</strong>"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:489
+#, php-format
+msgid "Oops! The template file %s could not be found in either the Now Reading template directory or your theme's Now Reading directory."
+msgstr "Oups ! Le fichier de modêle %s n'a pas pu être trouvé, ni dans le répertoire de modêles de 'Now Reading', ni dans votre répertoire 'Now Reading'."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:57
+msgid "Not yet started."
+msgstr "Pas encore démarré"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:73
+msgid "Not yet finished."
+msgstr "Pas terminé"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:214
+#, php-format
+msgid "an average of %s book%s each %s"
+msgstr "En moyenne, %s livre%s à %s"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:219
+msgid "Unrated"
+msgstr "Pas encore noté"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:230
+msgid "This book has not yet been reviewed."
+msgstr "Ce livre n'a pas encore eu de critique"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:266
+msgid "Search Library"
+msgstr "Rechercher dans la bibliothêque"
+
