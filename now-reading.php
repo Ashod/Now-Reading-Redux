@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Now Reading Reloaded
-Version: 5.1.3.2
+Plugin Name: Now Reading Redux
+Version: 6.0.2.0
 Plugin URI: http://heliologue.com/projects/now-reading-for-wordpress-27
 Description: Allows you to display the books you're reading, have read recently and plan to read, with cover art fetched automatically from Amazon.
-Author: Ben Gunnink
+Author: Ben Gunnink, Ashod Nakashian
 Author URI: http://heliologue.com
 */
 
-define('NOW_READING_VERSION', '5.1.3.2');
+define('NOW_READING_VERSION', '6.0.2.0');
 define('NOW_READING_DB', 50);
 define('NOW_READING_OPTIONS', 10);
 define('NOW_READING_REWRITE', 9);
@@ -22,7 +22,7 @@ define('NR_MENU_MULTIPLE', 4);
  * Load our l18n domain.
  */
 $locale = get_locale();
-$path = "wp-content/plugins/now-reading-reloaded/translations/$locale";
+$path = "wp-content/plugins/now-reading-redux/translations/$locale";
 load_plugin_textdomain(NRTD, $path);
 
 /**
@@ -84,7 +84,7 @@ function nr_check_api_key() {
 
         function nr_key_warning() {
             echo "
-			<div id='nr_key_warning' class='updated fade'><p><strong>".__('Now Reading Reloaded has detected a problem.')."</strong> ".sprintf(__('You are missing one of both of your Amazon Web Services Access Key ID or Secret Access Key. Enter them <a href="%s">here</a>.'), "admin.php?page=nr_options")."</p></div>
+			<div id='nr_key_warning' class='updated fade'><p><strong>".__('Now Reading Redux has detected a problem.')."</strong> ".sprintf(__('You are missing one of both of your Amazon Web Services Access Key ID or Secret Access Key. Enter them <a href="%s">here</a>.'), "admin.php?page=nr_options")."</p></div>
 			";
         }
         add_action('admin_notices', 'nr_key_warning');
@@ -235,7 +235,7 @@ function nr_install() {
     $versions = array('db' => NOW_READING_DB, 'options' => NOW_READING_OPTIONS, 'rewrite' => NOW_READING_REWRITE);
     update_option('nowReadingVersions', $versions);
 }
-register_activation_hook('now-reading-reloaded/now-reading.php', 'nr_install');
+register_activation_hook('now-reading-redux/now-reading.php', 'nr_install');
 
 /**
  * Checks to see if the library/book permalink query vars are set and, if so, loads the appropriate templates.
@@ -365,7 +365,7 @@ add_action('template_redirect', 'library_init');
  */
 function nr_load_template( $filename ) {
     $filename = basename($filename);
-    $template = TEMPLATEPATH ."/now-reading-reloaded/$filename";
+    $template = TEMPLATEPATH ."/now-reading-redux/$filename";
 
 	/*  check `now-reading` for backwards compatibility */
     if ( !file_exists($template) )

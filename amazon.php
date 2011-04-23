@@ -211,7 +211,7 @@ function query_amazon( $query ) {
                 continue;
             $image = $item->$size->URL->CDATA();
             if ( empty($image) )
-                $image = get_option('siteurl') . '/wp-content/plugins/now-reading-reloaded/no-image.png';
+                $image = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/no-image.png';
 
             $results[] = apply_filters('raw_amazon_results', compact('author', 'title', 'image', 'asin'));
         }

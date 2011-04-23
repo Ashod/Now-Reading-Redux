@@ -9,7 +9,7 @@
  */
 function nr_add_head() {
 
-    wp_enqueue_script('nowreading', '/' . PLUGINDIR . '/now-reading-reloaded/js/manage.js', array('jquery'));
+    wp_enqueue_script('nowreading', '/' . PLUGINDIR . '/now-reading-redux/js/manage.js', array('jquery'));
 
 }
 add_action('admin_print_scripts', 'nr_add_head');
