@@ -1,14 +1,14 @@
 <?php
 /**
- * NowReadingReloaded class for admin actions
+ * NowReadingRedux class for admin actions
  *
- * This class contains all functions and actions required for Now Reading Reloaded to work in the admin of WordPress
+ * This class contains all functions and actions required for Now Reading Redux to work in the admin of WordPress
  *
- * @package now-reading-reloaded
+ * @package now-reading-redux
  * @subpackage admin
  * @since 6.0.0.0
  */
-class NowReadingReloadedAdmin extends NowReadingReloaded {
+class NowReadingReduxAdmin extends NowReadingRedux {
 
     /**
      * Plugin Version
@@ -48,7 +48,7 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
      * @since 6.0.0.0
      * @return none
      */
-    function NowReadingReloadedAdmin () {
+    function NowReadingReduxAdmin () {
         $this->__construct();
     }
 
@@ -59,20 +59,20 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
      * @since 3.0.0.0
      */
     function __construct () {
-        NowReadingReloaded::__construct ();
+        NowReadingRedux::__construct ();
 
         if ( version_compare ( $this->get_option ( 'version' ) , $this->version , '!=' ) && $this->get_option ( 'version' ) !== false )
             $this->check_upgrade ();
 
         // Full path and plugin basename of the main plugin file
-        $this->plugin_file = dirname ( dirname ( __FILE__ ) ) . '/now-reading-reloaded.php';
+        $this->plugin_file = dirname ( dirname ( __FILE__ ) ) . '/now-reading-redux.php';
         $this->plugin_basename = plugin_basename ( $this->plugin_file );
 
         // Activation hook
         register_activation_hook ( $this->plugin_file , array ( &$this , 'init' ) );
 
         // Load localizations if available
-        load_plugin_textdomain ( 'now-reading-reloaded' , false , 'now-reading-reloaded/translations' );
+        load_plugin_textdomain ( 'now-reading-redux' , false , 'now-reading-redux/translations' );
 
         // Whitelist options
         add_action ( 'admin_init' , array ( &$this , 'register_settings' ) );
@@ -89,7 +89,7 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
     }
 
     /**
-     * Whitelist the Now Reading Reloaded options
+     * Whitelist the Now Reading Redux options
      *
      * @since 6.0.0.0
      * @return none
@@ -215,7 +215,7 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
         add_submenu_page('add_book', 'Manage Books', 'Manage Books', $nr_level, 'manage_books', 'nr_manage');
 
         if ( current_user_can ( 'manage_options' ) ) {
-            $this->options_page_hookname = add_options_page ( __( 'Now Reading' , 'now-reading-reloaded' ) , __( 'Now Reading' , 'now-reading-reloaded' ) , 'manage_options' , 'now-reading-reloaded' , array ( &$this , 'admin_page' ) );
+            $this->options_page_hookname = add_options_page ( __( 'Now Reading' , 'now-reading-redux' ) , __( 'Now Reading' , 'now-reading-redux' ) , 'manage_options' , 'now-reading-redux' , array ( &$this , 'admin_page' ) );
         }
     }
 
@@ -228,7 +228,7 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
      * @since 6.0.0.0
      */
     function filter_plugin_actions ( $links ) {
-        $settings_link = '<a href="options-general.php?page=now-reading-reloaded">' . __( 'Options' ) . '</a>';
+        $settings_link = '<a href="options-general.php?page=now-reading-redux">' . __( 'Options' ) . '</a>';
         array_unshift ( $links, $settings_link );
         return $links;
     }
@@ -269,70 +269,70 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
         global $wpdb;
         ?>
 <div class="wrap">
-    <h2><?php _e( 'Now Reading Reloaded' ); ?></h2>
+    <h2><?php _e( 'Now Reading Redux' ); ?></h2>
     <form action="options.php" method="post">
                 <?php settings_fields('nowReadingOptions'); ?>
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">
-                            <?php _e('Amazon Web Services Access Key ID', 'now-reading-reloaded')?>
+                            <?php _e('Amazon Web Services Access Key ID', 'now-reading-redux')?>
                 </th>
                 <td>
                     <input type="text" size="50" name="nowReadingOptions[AWSAccessKeyId]" value="<?php echo $this->get_option('AWSAccessKeyId'); ?>" />
                     <p>
                         <span class="description">
-                                    <?php _e('Required to add books from Amazon.  It\'s free to sign up. Register <a href="https://aws-portal.amazon.com/gp/aws/developer/registration/index.html">here</a>', 'now-reading-reloaded')?>
+                                    <?php _e('Required to add books from Amazon.  It\'s free to sign up. Register <a href="https://aws-portal.amazon.com/gp/aws/developer/registration/index.html">here</a>', 'now-reading-redux')?>
                         </span>
                     </p>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">
-                            <?php _e('Amazon Web Services Secret Access Key', 'now-reading-reloaded')?>
+                            <?php _e('Amazon Web Services Secret Access Key', 'now-reading-redux')?>
                 </th>
                 <td>
                     <input type="text" size="50" name="nowReadingOptions[SecretAccessKey]" value="<?php echo $this->get_option('SecretAccessKey'); ?>" />
                     <p>
                         <span class="description">
-                                    <?php _e('Required to add books from Amazon.  It\'s free to sign up. Register <a href="https://aws-portal.amazon.com/gp/aws/developer/registration/index.html">here</a>', 'now-reading-reloaded')?>
+                                    <?php _e('Required to add books from Amazon.  It\'s free to sign up. Register <a href="https://aws-portal.amazon.com/gp/aws/developer/registration/index.html">here</a>', 'now-reading-redux')?>
                         </span>
                     </p>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">
-                            <?php _e('Date format string', 'now-reading-reloaded')?>
+                            <?php _e('Date format string', 'now-reading-redux')?>
                 </th>
                 <td>
                     <input type="text" size="50" name="nowReadingOptions[formatDate]" value="<?php echo $this->get_option('formatDate'); ?>" />
                     <p>
                         <span class="description">
-                                    <?php _e('How to format the book\'s <code>added</code>, <code>started</code> and <code>finished</code> dates. Acceptable variables can be found <a href="http://php.net/date">here</a>', 'now-reading-reloaded')?>
+                                    <?php _e('How to format the book\'s <code>added</code>, <code>started</code> and <code>finished</code> dates. Acceptable variables can be found <a href="http://php.net/date">here</a>', 'now-reading-redux')?>
                         </span>
                     </p>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">
-                            <?php _e('Your Amazon Associates ID', 'now-reading-reloaded')?>
+                            <?php _e('Your Amazon Associates ID', 'now-reading-redux')?>
                 </th>
                 <td>
                     <input type="text" size="50" name="nowReadingOptions[associate]" value="<?php echo $this->get_option('associate'); ?>" />
                     <p>
                         <span class="description">
-                                    <?php _e('If you choose to link to your book\'s product page on Amazon.com using the <code>book_url()</code> template tag - as the default template does - then you can earn commission if your visitors then purchase products.', 'now-reading-reloaded')?>
+                                    <?php _e('If you choose to link to your book\'s product page on Amazon.com using the <code>book_url()</code> template tag - as the default template does - then you can earn commission if your visitors then purchase products.', 'now-reading-redux')?>
                         </span>
                     </p>
                     <p>
                         <span class="description">
-                                    <?php sprintf(__('If you don\'t have an Amazon Associates ID, you can either <a href=\'%s\'>get one</a>, or consider entering mine - <strong>%s</strong> - if you\'re feeling generous.', 'now-reading-reloaded'), "http://associates.amazon.com", "amodcon-20")?>
+                                    <?php sprintf(__('If you don\'t have an Amazon Associates ID, you can either <a href=\'%s\'>get one</a>, or consider entering mine - <strong>%s</strong> - if you\'re feeling generous.', 'now-reading-redux'), "http://associates.amazon.com", "amodcon-20")?>
                         </span>
                     </p>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">
-                            <?php _e('Amazon Domain to Use', 'now-reading-reloaded')?>
+                            <?php _e('Amazon Domain to Use', 'now-reading-redux')?>
                 </th>
                 <td>
                     <select name="nowReadingOptions[domain]">
@@ -344,36 +344,36 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
                     </select>
                     <p>
                         <span class="description">
-                                    <?php _e('If you choose to link to your book\'s product page on Amazon.com using the <code>book_url()</code> template tag, you can specify which country-specific Amazon site to link to. Now Reading will also use this domain when searching.', 'now-reading-reloaded'); ?>
+                                    <?php _e('If you choose to link to your book\'s product page on Amazon.com using the <code>book_url()</code> template tag, you can specify which country-specific Amazon site to link to. Now Reading will also use this domain when searching.', 'now-reading-redux'); ?>
                         </span>
                     </p>
                     <p>
                         <span class="description">
-                                    <?php _e('NB: If you have country-specific books in your catalogue and then change your domain setting, some old links might stop working.', 'now-reading-reloaded'); ?>
+                                    <?php _e('NB: If you have country-specific books in your catalogue and then change your domain setting, some old links might stop working.', 'now-reading-redux'); ?>
                         </span>
                     </p>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">
-                            <?php _e('Image size to Use', 'now-reading-reloaded')?>
+                            <?php _e('Image size to Use', 'now-reading-redux')?>
                 </th>
                 <td>
                     <select name="nowReadingOptions[imageSize]">
-                        <option value="Small" <?php selected ( 'Small' , $this->get_option ( 'imageSize' ) ); ?>><?php _e('Small','now-reading-reloaded'); ?></option>
-                        <option value="Medium" <?php selected ( 'Medium' , $this->get_option ( 'imageSize' ) ); ?>><?php _e('Medium','now-reading-reloaded'); ?></option>
-                        <option value="Large" <?php selected ( 'Large' , $this->get_option ( 'imageSize' ) ); ?>><?php _e('Large','now-reading-reloaded'); ?></option>
+                        <option value="Small" <?php selected ( 'Small' , $this->get_option ( 'imageSize' ) ); ?>><?php _e('Small','now-reading-redux'); ?></option>
+                        <option value="Medium" <?php selected ( 'Medium' , $this->get_option ( 'imageSize' ) ); ?>><?php _e('Medium','now-reading-redux'); ?></option>
+                        <option value="Large" <?php selected ( 'Large' , $this->get_option ( 'imageSize' ) ); ?>><?php _e('Large','now-reading-redux'); ?></option>
                     </select>
                     <p>
                         <span class="description">
-                                    <?php _e('NB: This change will only be applied to books you add from this point onwards.', 'now-reading-reloaded'); ?>
+                                    <?php _e('NB: This change will only be applied to books you add from this point onwards.', 'now-reading-redux'); ?>
                         </span>
                     </p>
                 </td>
             </tr>
             <tr valign="top">
                     <th scope="row">
-                        <label for="nowReadingOptions[booksPerPage]"><?php _e('Books per page', 'now-reading-reloaded'); ?></label>
+                        <label for="nowReadingOptions[booksPerPage]"><?php _e('Books per page', 'now-reading-redux'); ?></label>
                     </th>
                     <td>
                          <input type="text" name="nowReadingOptions[booksPerPage]" value="<?php echo $this->get_option('booksPerPage'); ?>" />
@@ -381,12 +381,12 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Use <code>mod_rewrite</code> enhanced library?', 'now-reading-reloaded'); ?>
+                    <?php _e('Use <code>mod_rewrite</code> enhanced library?', 'now-reading-redux'); ?>
                 </th>
                 <td>
                     <input type="checkbox" name="nowReadingOptions[useModRewrite]" id="nowReadingOptions[useModRewrite]"  <?php checked ( 'on' , $this->get_option ( 'useModRewrite' ) ); ?> />
                     <p>
-                            <?php _e("If you have an Apache webserver with <code>mod_rewrite</code>, you can enable this option to have your library use prettier URLs. Compare:", 'now-reading-reloaded'); ?>
+                            <?php _e("If you have an Apache webserver with <code>mod_rewrite</code>, you can enable this option to have your library use prettier URLs. Compare:", 'now-reading-redux'); ?>
                     </p>
                     <p>
                             <code>/index.php?now_reading_single=true&now_reading_author=albert-camus&now_reading_title=the-stranger</code>
@@ -395,7 +395,7 @@ class NowReadingReloadedAdmin extends NowReadingReloaded {
                             <code>/library/albert-camus/the-stranger/</code>
                     </p>
                     <p>
-                            <?php sprintf(__("If you choose this option, be sure you have a custom permalink structure set up at your <a href='%s'>Options &rarr; Permalinks</a> page.", 'now-reading-reloaded'), 'options-permalink.php'); ?>
+                            <?php sprintf(__("If you choose this option, be sure you have a custom permalink structure set up at your <a href='%s'>Options &rarr; Permalinks</a> page.", 'now-reading-redux'), 'options-permalink.php'); ?>
                     </p>
                     <p>
                     <?php _e("Permalink base") . ': ' . get_option('home') . '/' ; ?>

@@ -93,7 +93,7 @@ if ( !function_exists('now_reading_add') ) {
                         extract($result);
                         $data = serialize($result);
                         echo '
-						<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-reloaded/admin/add.php" style="border:1px solid #ccc; padding:5px; margin:5px;">
+						<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/add.php" style="border:1px solid #ccc; padding:5px; margin:5px;">
 						';
 
                         if ( function_exists('wp_nonce_field') )
@@ -158,7 +158,7 @@ if ( !function_exists('now_reading_add') ) {
 			
 			<h3>' . __("Add a book manually", NRTD) . '</h3>
 			
-			<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-reloaded/admin/add.php">
+			<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/add.php">
 			
 			';
 

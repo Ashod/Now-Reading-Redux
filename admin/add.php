@@ -50,7 +50,7 @@ if ( !empty($_POST['amazon_data']) ) {
     if ( !empty($_POST['custom_image']) )
         $b_image = $wpdb->escape($_POST['custom_image']);
     else
-        $b_image = get_option('siteurl') . '/' . PLUGINDIR . '/now-reading-reloaded/no-image.png';
+        $b_image = get_option('siteurl') . '/' . PLUGINDIR . '/now-reading-redux/no-image.png';
     $b_asin = '';
     $b_added = date('Y-m-d H:i:s');
     $b_status = 'unread';

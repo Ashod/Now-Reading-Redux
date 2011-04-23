@@ -69,7 +69,7 @@ function nr_manage() {
 			<div class="wrap">
 				<h2>' . __("Edit Book", NRTD) . '</h2>
 				
-				<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-reloaded/admin/edit.php">
+				<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php">
 			';
 
             if ( function_exists('wp_nonce_field') )
@@ -214,7 +214,7 @@ function nr_manage() {
 									<tbody id="book-meta-table-0" class="book-meta-table">
 										';
             foreach ( (array) $meta as $key => $val ) {
-                $url = get_option('siteurl') . "/wp-content/plugins/now-reading-reloaded/admin/edit.php?action=deletemeta&id={$existing->id}&key=" . urlencode($key);
+                $url = get_option('siteurl') . "/wp-content/plugins/now-reading-redux/admin/edit.php?action=deletemeta&id={$existing->id}&key=" . urlencode($key);
                 if ( function_exists('wp_nonce_url') )
                     $url = wp_nonce_url($url, 'now-reading-delete-meta_' . $existing->id . $key);
 
@@ -382,7 +382,7 @@ function nr_manage() {
 				
 				<br style="clear:both;" />
 				
-				<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-reloaded/admin/edit.php">
+				<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php">
 			';
 
             if ( function_exists('wp_nonce_field') )
@@ -432,7 +432,7 @@ function nr_manage() {
 
                 $alt = ( $i % 2 == 0 ) ? ' alternate' : '';
 
-                $delete = get_option('siteurl') . '/wp-content/plugins/now-reading-reloaded/admin/edit.php?action=delete&id=' . $book->id;
+                $delete = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php?action=delete&id=' . $book->id;
 				$delete = wp_nonce_url($delete, 'now-reading-delete-book_' .$book->id);
 				
 
