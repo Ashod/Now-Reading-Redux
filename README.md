@@ -25,6 +25,9 @@ For the original Now Reading Reloaded readme, please find see readme.txt.
 
 ### Changelog ###
 
+#### 6.0.2.0 ####
+* Added sorting support to the Book Manager table.
+
 #### 6.0.0.0 ####
 * Initial import of Now Reading Reloaded 5.1.3.2
 * Added this README file and renamed the old one to readme.old.
