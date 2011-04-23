@@ -21,7 +21,7 @@ With it, you can manage a library of your current books, as well as historical a
 
 ## Notes ##
 
-For the original Now Reading Reloaded readme, please find see readme.txt.
+For the original Now Reading Reloaded readme, please find see readme.old.
 
 ### Changelog ###
 
