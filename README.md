@@ -1,8 +1,8 @@
 # Now Reading Redux #
-Contributors: Ashod
-Tags: wordpress, books, widget, amazon
-Requires at least: 2.7.0
-Tested up to: 3.1
+Contributors: Ashod  
+Tags: wordpress, books, widget, amazon  
+Requires at least: 2.7.0  
+Tested up to: 3.1  
 Stable tag: 6.0.0.0
 
 Allows you to display the books you're reading, have read recently and plan to read, with cover art fetched automatically from Amazon.
