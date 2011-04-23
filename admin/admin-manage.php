@@ -306,6 +306,16 @@ function nr_manage() {
             else
                 $page = intval($_GET['p']);
 
+            if ( empty($_GET['o']) )
+                $order = 'desc';
+            else
+                $order = urlencode($_GET['o']);
+
+			if ( empty($_GET['s']) )
+                $orderby = 'started';
+            else
+                $orderby = urlencode($_GET['s']);
+
             $perpage = $options['booksPerPage'];
 
             $offset = ($page * $perpage) - $perpage;
@@ -319,7 +329,7 @@ function nr_manage() {
                 $reader = '';
             }
 
-            $books = get_books("num=-1&status=all&orderby=status&order=desc{$search}{$pageq}{$reader}"); //get only current reader's books -> &reader=$reader_id
+            $books = get_books("num=-1&status=all&orderby={$orderby}&order={$order}{$search}{$pageq}{$reader}"); //get only current reader's books -> &reader=$reader_id
             $count = count($books);
 
             $numpages = ceil(total_books(0, 0, $userdata->ID) / $perpage);
@@ -328,19 +338,19 @@ function nr_manage() {
 
             if ( $page > 1 ) {
                 $previous = $page - 1;
-                $pages .= " <a class='page-numbers prev' href='{$nr_url->urls['manage']}&p=$previous'>&laquo;</a>";
+                $pages .= " <a class='page-numbers prev' href='{$nr_url->urls['manage']}&p=$previous&s=$orderby&o=$order'>&laquo;</a>";
             }
 
             for ( $i = 1; $i <= $numpages; $i++) {
                 if ( $page == $i )
                     $pages .= "<span class='page-numbers current'>$i</span>";
                 else
-                    $pages .= " <a class='page-numbers' href='{$nr_url->urls['manage']}&p=$i'>$i</a>";
+                    $pages .= " <a class='page-numbers' href='{$nr_url->urls['manage']}&p=$i&s=$orderby&o=$order'>$i</a>";
             }
 
             if ( $numpages > $page ) {
                 $next = $page + 1;
-                $pages .= " <a class='page-numbers next' href='{$nr_url->urls['manage']}&p=$next'>&raquo;</a>";
+                $pages .= " <a class='page-numbers next' href='{$nr_url->urls['manage']}&p=$next&s=$orderby&o=$order'>&raquo;</a>";
             }
 
             echo '
@@ -387,17 +397,29 @@ function nr_manage() {
 
             $i = 0;
 
+			if ( $order == 'asc' )
+				$new_order = 'desc';
+			else
+				$new_order = 'asc';
+			
+			$book_link = "{$nr_url->urls['manage']}&p=$page&s=book&o=$new_order";
+			$author_link = "{$nr_url->urls['manage']}&p=$page&s=author&o=$new_order";
+			$added_link = "{$nr_url->urls['manage']}&p=$page&s=added&o=$new_order";
+			$started_link = "{$nr_url->urls['manage']}&p=$page&s=started&o=$new_order";
+			$finished_link = "{$nr_url->urls['manage']}&p=$page&s=finished&o=$new_order";
+			$status_link = "{$nr_url->urls['manage']}&p=$page&s=status&o=$new_order";
+			
             echo '
 				<table class="widefat post fixed" cellspacing="0">
 					<thead>
 						<tr>
 							<th></th>
-							<th class="manage-column column-title">Book</th>
-							<th class="manage-column column-author">Author</th>
-							<th>Added</th>
-							<th>Started</th>
-							<th>Finished</th>
-							<th>Status</th>
+							<th class="manage-column column-title"><a class="manage_books" href="'. $book_link .'">Book</a></th>
+							<th class="manage-column column-author"><a class="manage_books" href="'. $author_link .'">Author</a></th>
+							<th><a class="manage_books" href="'. $status_link .'">Status</a></th>
+							<th><a class="manage_books" href="'. $started_link .'">Started</a></th>
+							<th><a class="manage_books" href="'. $finished_link .'">Finished</a></th>
+							<th><a class="manage_books" href="'. $added_link .'">Added</a></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -438,7 +460,7 @@ function nr_manage() {
 						</td>
 						
 						<td>
-						' . $book->added . '
+							' . $book->status . '
 						</td>
 						
 						<td>
@@ -450,7 +472,7 @@ function nr_manage() {
 						</td>
 						
 						<td>
-							' . $book->status . '
+						' . $book->added . '
 						</td>
 					</tr>
 				';
