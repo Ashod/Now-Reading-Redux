@@ -17,7 +17,7 @@ With it, you can manage a library of your current books, as well as historical a
 
 1. Upload `now-reading-redux` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Make any changes the to provided template files and store them in your theme directory (see the "Template Files" section)
+1. Make any changes to the provided template files and store them in your theme directory (see the "Template Files" section)
 
 ## Notes ##
 

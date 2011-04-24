@@ -1,4 +1,5 @@
+* Option to ignore time in timestamps.
 * Pull book details from Amazon and set as props.
-* Combobox to see books by Status in the management page.
 * Show the library by year/month.
 * Replace book page by post.
+* Combobox to see books by Status in the management page.
