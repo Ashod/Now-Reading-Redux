@@ -58,6 +58,13 @@ function nr_manage() {
     $action = $_GET['action'];
     nr_reset_vars(array('action'));
 
+	$options = get_option('nowReadingOptions');
+	$dateTimeFormat = 'Y-m-d H:i:s';
+	if ($options['ignoreTime'])
+	{
+		$dateTimeFormat = 'Y-m-d';
+	}			
+	
     switch ( $action ) {
         case 'editsingle':
             $id = intval($_GET['id']);
@@ -133,6 +140,11 @@ function nr_manage() {
 									<option value="' . $status . '"' . $selected . '>' . $name . '</option>
 								';
             }
+			
+			$added = ( nr_empty_date($existing->added) ) ? '' : date($dateTimeFormat, strtotime($existing->added));
+			$started = ( nr_empty_date($existing->started) ) ? '' : date($dateTimeFormat, strtotime($existing->started));
+			$finished = ( nr_empty_date($existing->finished) ) ? '' : date($dateTimeFormat, strtotime($existing->finished));
+			
             echo '
 						</select>
 					</td>
@@ -143,7 +155,7 @@ function nr_manage() {
 						<label for="added[]">' . __("Added", NRTD) . '</label>
 					</th>
 					<td>
-						<input type="text" id="added-0" name="added[]" value="' . htmlentities($existing->added, ENT_QUOTES, "UTF-8") . '" />
+						<input type="text" id="added-0" name="added[]" value="' . htmlentities($added, ENT_QUOTES, "UTF-8") . '" />
 					</td>
 				</tr>	
 				
@@ -152,7 +164,7 @@ function nr_manage() {
 						<label for="started[]">' . __("Started", NRTD) . '</label>
 					</th>
 					<td>
-						<input type="text" id="started-0" name="started[]" value="' . htmlentities($existing->started, ENT_QUOTES, "UTF-8") . '" />
+						<input type="text" id="started-0" name="started[]" value="' . htmlentities($started, ENT_QUOTES, "UTF-8") . '" />
 					</td>
 				</tr>	
 				
@@ -161,7 +173,7 @@ function nr_manage() {
 						<label for="finished[]">' . __("Finished", NRTD) . '</label>
 					</th>
 					<td>
-						<input type="text" id="finished-0" name="finished[]" value="' . htmlentities($existing->finished, ENT_QUOTES, "UTF-8") . '" />
+						<input type="text" id="finished-0" name="finished[]" value="' . htmlentities($finished, ENT_QUOTES, "UTF-8") . '" />
 					</td>
 				</tr>
 				
@@ -464,15 +476,15 @@ function nr_manage() {
 						</td>
 						
 						<td>
-						' . $book->started . '
+						' . ( ( nr_empty_date($book->started) ) ? '' : date($dateTimeFormat, strtotime($book->started)) ) . '
 						</td>
 						
 						<td>
-						' . $book->finished . '
+						' .( ( nr_empty_date($book->finished) ) ? '' : date($dateTimeFormat, strtotime($book->finished)) ) . '
 						</td>
 						
 						<td>
-						' . $book->added . '
+						' . ( ( nr_empty_date($book->added) ) ? '' : date($dateTimeFormat, strtotime($book->added)) ) . '
 						</td>
 					</tr>
 				';

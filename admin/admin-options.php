@@ -91,6 +91,15 @@ function nr_options() {
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row">' . __('No time in timestamps', NRTD) . '</th>
+				<td>
+					<input type="checkbox" name="ignore_time" id="ignore_time"' . ( ($options['ignoreTime']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("When checked <code>added</code>, <code>started</code> and <code>finished</code> dates will be displayed with day precision only, however when time is set, it will be saved.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row">' . __('Your Amazon Associates ID', NRTD) . ':</th>
 				<td>
 					<input type="text" name="associate" value="' . htmlentities($options['associate'], ENT_QUOTES, "UTF-8") . '" />

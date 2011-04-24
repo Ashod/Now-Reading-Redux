@@ -170,6 +170,7 @@ function nr_install() {
 
     $defaultOptions = array(
         'formatDate'	=> 'jS F Y',
+		'ignoreTime'	=> false,
         'associate'		=> 'amodcon-20',
         'domain'		=> '.com',
         'imageSize'		=> 'Medium',

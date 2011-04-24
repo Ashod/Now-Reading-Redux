@@ -37,7 +37,7 @@ function nr_format_date( $date ) {
 }
 
 /**
- * Returns true if the date is a valid one; false if it hasn't.
+ * Returns true if the date is a valid one; false if it isn't.
  * @param string The date to check.
  */
 function nr_empty_date( $date ) {

@@ -20,6 +20,7 @@ if ( !empty($_POST['update']) ) {
     $options['SecretAccessKey']         = trim($_POST['SecretAccessKey']);
     $options['formatDate']		= trim($_POST['format_date']);
     $options['associate']		= trim($_POST['associate']);
+    $options['ignoreTime']		= trim($_POST['ignore_time']);
     $options['domain']			= trim($_POST['domain']);
     $options['debugMode']		= trim($_POST['debug_mode']);
     $options['useModRewrite']           = trim($_POST['use_mod_rewrite']);
