@@ -13,11 +13,18 @@ Now Reading Redux is a resurrection of the [Now Reading Reloaded project by Ben 
 
 With it, you can manage a library of your current books, as well as historical and planned books.
 
+## Upgrade ##
+
+1. Just to be safe than sorry, backup your database.
+1. Delete any existing versions of `now-reading` or `now-reading-reloaded`.
+1. Install `now-reading-redux` as described below.
+1. Your library will be restored as was previously.
+
 ## Installation ##
 
-1. Upload `now-reading-redux` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Make any changes to the provided template files and store them in your theme directory (see the "Template Files" section)
+1. Upload `now-reading-redux` to the `/wp-content/plugins/` directory.
+1. Activate the plugin through the 'Plugins' menu in WordPress.
+1. Optionally, make any changes to the provided template files and store them in your theme directory (see the "Template Files" section.)
 
 ## Notes ##
 
@@ -27,6 +34,9 @@ For the original Now Reading Reloaded readme, please find see readme.old.
 
 #### 6.0.4.0 ####
 * New option to ignore time in timestamps.
+
+#### 6.0.3.0 ####
+* Started and Finished timestamps are automatically set when changing the status from 'yet to read' to 'currently reading' and from 'currently reading' to 'finished', respectively, only when the user leaves these fields blank. NRR no longer overwrites the user's set values.
 
 #### 6.0.2.0 ####
 * Added sorting support to the Book Manager table.
