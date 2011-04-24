@@ -3,7 +3,7 @@ Contributors: Ashod
 Tags: wordpress, books, widget, amazon  
 Requires at least: 2.7.0  
 Tested up to: 3.1  
-Stable tag: 6.0.0.0
+Stable tag: 6.0.4.0
 
 Allows you to display the books you're reading, have read recently and plan to read, with cover art fetched automatically from Amazon.
 
@@ -24,6 +24,9 @@ With it, you can manage a library of your current books, as well as historical a
 For the original Now Reading Reloaded readme, please find see readme.old.
 
 ### Changelog ###
+
+#### 6.0.4.0 ####
+* New option to ignore time in timestamps.
 
 #### 6.0.2.0 ####
 * Added sorting support to the Book Manager table.

@@ -6,7 +6,7 @@
  *
  * @package now-reading-redux
  * @subpackage admin
- * @since 6.0.0.0
+ * @since 6.0.4.0
  */
 class NowReadingReduxAdmin extends NowReadingRedux {
 
@@ -16,7 +16,7 @@ class NowReadingReduxAdmin extends NowReadingRedux {
      * @since 6.0.0.0
      * @var int
      */
-    var $version = '6.0.0.0-dev';
+    var $version = '6.0.4.0';
 
     /**
      * Full file system path to the main plugin file
@@ -96,7 +96,6 @@ class NowReadingReduxAdmin extends NowReadingRedux {
      */
     function register_settings () {
         register_setting ( 'nowReadingOptions' , 'nowReadingOptions' , array ( &$this , 'update' ) );
-        //register_setting ( 'nowReadingOptions' , 'associate' );
     }
 
     /**
@@ -123,6 +122,7 @@ class NowReadingReduxAdmin extends NowReadingRedux {
                 //'SecretAccessKey'		=>	null,
                 'formatDate'			=>	'jS F Y',
                 'associate'			=>	'amodcon-20',
+				'ignoreTime'		=> false,
                 'debugMode'			=>	'false',
                 'useModRewrite'			=>	'true',
                 'proxyHost'			=>	null,
