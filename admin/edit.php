@@ -80,14 +80,14 @@ switch ( $action ) {
 			WHERE b_id = $id
                 ");
 
-            // If the book is currently "unread" but is being changed to "reading", we need to add a b_started value.
-            if ( $current_status == 'unread' && $status == 'reading' )
+            // If the book is currently "unread" but is being changed to "reading", and the user didn't set a started date, we need to add a b_started value.
+            if ( $current_status == 'unread' && $status == 'reading' && empty($started))
                 $started = 'b_started = "' . date('Y-m-d H:i:s') . '",';
             else
                 $started = "b_started = '$started',";
 
-            // If the book is currently "reading" but is being changed to "read", we need to add a b_finished value.
-            if ( $current_status == 'reading' && $status == 'read' )
+            // If the book is currently "reading" but is being changed to "read", and the user didn't set a finished date, we need to add a b_finished value.
+            if ( $current_status == 'reading' && $status == 'read' && empty($finished))
                 $finished = 'b_finished = "' . date('Y-m-d H:i:s') . '",';
             else
                 $finished = "b_finished = '$finished',";
