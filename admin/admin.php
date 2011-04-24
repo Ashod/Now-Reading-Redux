@@ -65,7 +65,7 @@ class NowReadingReduxAdmin extends NowReadingRedux {
             $this->check_upgrade ();
 
         // Full path and plugin basename of the main plugin file
-        $this->plugin_file = dirname ( dirname ( __FILE__ ) ) . '/now-reading-redux.php';
+        $this->plugin_file = dirname ( dirname ( __FILE__ ) ) . '/now-reading.php';
         $this->plugin_basename = plugin_basename ( $this->plugin_file );
 
         // Activation hook
