@@ -16,10 +16,10 @@ function query_amazon( $query ) {
 
 	if (!function_exists('hmac'))
 	  {
-	   function hmac($key, $data, $hashfunc='sha256') 
+	   function hmac($key, $data, $hashfunc='sha256')
 		{
 		 $blocksize=64;
-		
+
 		 if (strlen($key) > $blocksize) $key=pack('H*', $hashfunc($key));
 		 $key=str_pad($key, $blocksize, chr(0x00));
 		 $ipad=str_repeat(chr(0x36), $blocksize);
@@ -28,7 +28,7 @@ function query_amazon( $query ) {
 		 return $hmac;
 		}
 	  }
-  
+
     global $item, $items;
 
     $options = get_option('nowReadingOptions');
@@ -59,6 +59,10 @@ function query_amazon( $query ) {
     $AWSAccessKeyId = trim($options['AWSAccessKeyId']);
     $SecretAccessKey = trim($options['SecretAccessKey']);
 
+	$metaDataX = getMetadataFromIsbn($isbn, $AWSAccessKeyId, $SecretAccessKey, urlencode($options['associate']));
+	//echo htmlentities($metaDataX);
+	//return false;
+
     # // some paramters
     $method = "GET";
     $host = "ecs.amazonaws".$options['domain'];
@@ -76,27 +80,26 @@ function query_amazon( $query ) {
     $params["SearchIndex"] = "Books";
     $params["ResponseGroup"] = "Request,Large,Images";
     $params["AWSAccessKeyId"] = $AWSAccessKeyId;
-	
-	
+
 	// Sort paramters
     ksort($params);
-   
-   // re-build the request 
-   $request = array(); 
-    foreach ($params as $parameter=>$value) 
-     { 
-      $parameter = str_replace("_", ".", $parameter); 
-      $parameter = str_replace("%7E", "~", rawurlencode($parameter)); 
-      $value = str_replace("%7E", "~", rawurlencode($value)); 
-      $request[] = $parameter . "=" . $value; 
-     } 
+
+   // re-build the request
+   $request = array();
+    foreach ($params as $parameter=>$value)
+     {
+      $parameter = str_replace("_", ".", $parameter);
+      $parameter = str_replace("%7E", "~", rawurlencode($parameter));
+      $value = str_replace("%7E", "~", rawurlencode($value));
+      $request[] = $parameter . "=" . $value;
+     }
    $request = implode("&", $request);
 
    $signatureString = $method . chr(10) . $host . chr(10) . $uri . chr(10) . $request;
-  
-   $signature = urlencode(base64_encode(hmac($SecretAccessKey, $signatureString)));   
- 
-   $request = "http://" . $host . $uri . "?" . $request . "&Signature=" . $signature; 
+
+   $signature = urlencode(base64_encode(hmac($SecretAccessKey, $signatureString)));
+
+   $request = "http://" . $host . $uri . "?" . $request . "&Signature=" . $signature;
 
 
     // Fetch the XML using either Snoopy or cURL, depending on our options.
@@ -129,7 +132,7 @@ function query_amazon( $query ) {
         require_once ABSPATH . WPINC . '/class-snoopy.php';
 
         $snoopy = new snoopy;
-        $snoopy->agent = 'Now Reading ' . NOW_READING_VERSION;
+        $snoopy->agent = 'Now Reading Redux' . NOW_READING_VERSION;
 
         if ( !empty($options['proxyHost']) )
             $snoopy->proxy_host = $options['proxyHost'];
@@ -148,7 +151,7 @@ function query_amazon( $query ) {
 			<p><strong>' . __("Oops!") . '</strong></p>
 			<p>' . sprintf(__("For some reason, I couldn't search for your book on amazon%s.", NRTD), $options['domain']) . '</p>
 			<p>' . __("Amazon's Web Services may be down, or there may be a problem with your server configuration.") . '</p>
-								
+
 					';
         if ( $options['httpLib'] )
             echo '<p>' . __("Try changing your HTTP Library setting to <strong>cURL</strong>.", NRTD) . '</p>';
@@ -164,66 +167,116 @@ function query_amazon( $query ) {
     $xml = $impl->load_string($xmlString);
 
     if ( $options['debugMode'] )
-        robm_dump("raw XML:", htmlentities(str_replace(">", ">\n", str_replace("<", "\n<", $xmlString))));
+        robm_dump("raw XML:", htmlentities(str_replace(">", ">\n", $xmlString)));
 
     $items = $xml->ItemSearchResponse->Items->children();
+    if (count($items) == 0) {
+		return false;
+	}
 
-    if ( count($items) > 0 ) {
+	$results = array();
 
-        $results = array();
+	foreach ( $items as $item ) {
+		$attr = $item->ItemAttributes;
 
-        foreach ( $items as $item ) {
-            $attr = $item->ItemAttributes;
+		if ( !$attr )
+			continue;
 
-            if ( !$attr )
-                continue;
+		$author = '';
+		if ( is_array($attr->Author) ) {
+			foreach ( $attr->Author as $a ) {
+				if (is_object($a)) {
+					$author .= $a->CDATA() . ', ';
+				}
+			}
+			$author	= substr($author, 0, -2);
+		} else {
+			if (is_object($attr->Author)) {
+				$author	= $attr->Author->CDATA();
+			}
+		}
 
-            $author = '';
-            if ( is_array($attr->Author) ) {
-                foreach ( $attr->Author as $a ) {
-                    if (is_object($a)) {
-                        $author .= $a->CDATA() . ', ';
-                    }
-                }
-                $author	= substr($author, 0, -2);
-            } else {
-                if (is_object($attr->Author)) {
-                    $author	= $attr->Author->CDATA();
-                }
-            }
+		if ( empty($author) )
+			$author = apply_filters('default_book_author', 'Unknown');
 
-            if ( empty($author) )
-                $author = apply_filters('default_book_author', 'Unknown');
+		$title = $attr->Title->CDATA();
+		if ( empty($title) )
+			continue;
 
-            $title = $attr->Title->CDATA();
-            if ( empty($title) )
-                continue;
+		$asin = $item->ASIN->CDATA();
+		if ( empty($asin) )
+			continue;
 
-            $asin = $item->ASIN->CDATA();
-            if ( empty($asin) )
-                continue;
+		if ( $options['debugMode'] )
+			robm_dump("book:", $author, $title, $asin);
 
-            if ( $options['debugMode'] )
-                robm_dump("book:", $author, $title, $asin);
+		$size = "{$options['imageSize']}Image";
+		if (empty($item->$size))
+			continue;
 
-            $size = "{$options['imageSize']}Image";
-            if (empty($item->$size))
-                continue;
-            $image = $item->$size->URL->CDATA();
-            if ( empty($image) )
-                $image = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/no-image.png';
+		$image = $item->$size->URL->CDATA();
+		if ( empty($image) )
+			$image = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/no-image.png';
 
-            $results[] = apply_filters('raw_amazon_results', compact('author', 'title', 'image', 'asin'));
-        }
+		$results[] = apply_filters('raw_amazon_results', compact('author', 'title', 'image', 'asin'));
+	}
 
-        $results = apply_filters('returned_books', $results);
-    } else {
-
-        return false;
-
-    }
+	$results = apply_filters('returned_books', $results);
 
     return $results;
 }
+
+  function getMetadataFromIsbn($isbn, $awsAccessKeyID, $awsSecretKey, $awsAssociateTag) {
+
+    $host = 'ecs.amazonaws.com';
+    $path = '/onca/xml';
+
+    $args = array(
+      'AssociateTag' => $awsAssociateTag,
+      'AWSAccessKeyId' => $awsAccessKeyID,
+      'IdType' => 'ISBN',
+      'ItemId' => $isbn,
+      'Operation' => 'ItemLookup',
+      'ResponseGroup' => 'Medium',
+      'SearchIndex' => 'Books',
+      'Service' => 'AWSECommerceService',
+      'Timestamp' => gmdate('Y-m-d\TH:i:s\Z'),
+      'Version'=> '2009-01-06'
+    );
+
+    ksort($args);
+    $parts = array();
+    foreach(array_keys($args) as $key) {
+      $parts[] = $key . "=" . $args[$key];
+    }
+
+    // Construct the string to sign
+    $stringToSign = "GET\n" . $host . "\n" . $path . "\n" . implode("&", $parts);
+    $stringToSign = str_replace('+', '%20', $stringToSign);
+    $stringToSign = str_replace(':', '%3A', $stringToSign);
+    $stringToSign = str_replace(';', urlencode(';'), $stringToSign);
+
+    // Sign the request
+    $signature = hash_hmac("sha256", $stringToSign, $awsSecretKey, TRUE);
+
+    // Base64 encode the signature and make it URL safe
+    $signature = base64_encode($signature);
+    $signature = str_replace('+', '%2B', $signature);
+    $signature = str_replace('=', '%3D', $signature);
+
+    // Construct the URL
+    $url = 'http://' . $host . $path . '?' . implode("&", $parts) . "&Signature=" . $signature;
+    $rawData = file_get_contents($url);
+
+    if ( $options['debugMode'] )
+        robm_dump("raw XML:", htmlentities(str_replace(">", ">\n", $rawData)));
+
+    $metadata = simplexml_load_string($rawData);
+    if (isset($metadata->ItemLookupResponse->Items->Request->Errors)) {
+      return $metadata;//$metadata->ItemLookupResponse->Items->Request->Errors;
+    } else {
+      return $metadata;//$metadata->ItemLookupResponse->Items->Item;
+    }
+  }
 
 ?>
