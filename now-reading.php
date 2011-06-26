@@ -38,6 +38,17 @@ $nr_statuses = apply_filters('nr_statuses', array(
 ));
 
 /**
+ * Array of the post-options that books can have.
+ * @global array $GLOBALS['nr_post_options']
+ * @name $nr_post_options
+ */
+$nr_post_options = apply_filters('nr_post_options', array(
+    'link'	=> __('Add Link to Post', NRTD),
+    'trans'	=> __('Transclude Post Content', NRTD),
+    'redirect'	=> __('Redirect to Post', NRTD)
+));
+
+/**
  * Array of the domains we can use for Amazon.
  * @global array $GLOBALS['nr_domains']
  * @name $nr_domains
@@ -102,7 +113,7 @@ function nr_install() {
 
     if ( version_compare('2.0', $wp_version) == 1 && strpos($wp_version, 'wordpress-mu') === false ) {
         echo '
-		<p>(Now Reading only works with WordPress 2.0 and above, sorry!)</p>
+		<p>(Now Reading Redux only works with WordPress 2.0 and above, sorry!)</p>
 		';
         return;
     }
@@ -128,6 +139,7 @@ function nr_install() {
 	b_rating tinyint(4) default '0',
 	b_review text,
 	b_post bigint(20) default '0',
+	b_post_op tinyint(4) default '0',
 	b_reader tinyint(4) NOT NULL default '1',
 	PRIMARY KEY  (b_id),
 	INDEX permalink (b_nice_author, b_nice_title),
