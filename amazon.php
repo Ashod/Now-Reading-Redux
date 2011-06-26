@@ -12,22 +12,22 @@
  */
 function query_amazon( $query ) {
 
-	require_once dirname(__FILE__) . '/sha256.inc.php';
+    require_once dirname(__FILE__) . '/sha256.inc.php';
 
-	if (!function_exists('hmac'))
-	  {
-	   function hmac($key, $data, $hashfunc='sha256')
-		{
-		 $blocksize=64;
+    if (!function_exists('hmac'))
+      {
+       function hmac($key, $data, $hashfunc='sha256')
+        {
+         $blocksize=64;
 
-		 if (strlen($key) > $blocksize) $key=pack('H*', $hashfunc($key));
-		 $key=str_pad($key, $blocksize, chr(0x00));
-		 $ipad=str_repeat(chr(0x36), $blocksize);
-		 $opad=str_repeat(chr(0x5c), $blocksize);
-		 $hmac = pack('H*', $hashfunc(($key^$opad) . pack('H*', $hashfunc(($key^$ipad) . $data))));
-		 return $hmac;
-		}
-	  }
+         if (strlen($key) > $blocksize) $key=pack('H*', $hashfunc($key));
+         $key=str_pad($key, $blocksize, chr(0x00));
+         $ipad=str_repeat(chr(0x36), $blocksize);
+         $opad=str_repeat(chr(0x5c), $blocksize);
+         $hmac = pack('H*', $hashfunc(($key^$opad) . pack('H*', $hashfunc(($key^$ipad) . $data))));
+         return $hmac;
+        }
+      }
 
     global $item, $items;
 
@@ -59,10 +59,6 @@ function query_amazon( $query ) {
     $AWSAccessKeyId = trim($options['AWSAccessKeyId']);
     $SecretAccessKey = trim($options['SecretAccessKey']);
 
-	$metaDataX = getMetadataFromIsbn($isbn, $AWSAccessKeyId, $SecretAccessKey, urlencode($options['associate']));
-	//echo htmlentities($metaDataX);
-	//return false;
-
     # // some paramters
     $method = "GET";
     $host = "ecs.amazonaws".$options['domain'];
@@ -78,10 +74,10 @@ function query_amazon( $query ) {
     $params["Power"] = $query;
     $params["Operation"] = "ItemSearch";
     $params["SearchIndex"] = "Books";
-    $params["ResponseGroup"] = "Request,Large,Images";
+    $params["ResponseGroup"] = "Request,Large,Images,AlternateVersions";
     $params["AWSAccessKeyId"] = $AWSAccessKeyId;
 
-	// Sort paramters
+    // Sort paramters
     ksort($params);
 
    // re-build the request
@@ -100,7 +96,6 @@ function query_amazon( $query ) {
    $signature = urlencode(base64_encode(hmac($SecretAccessKey, $signatureString)));
 
    $request = "http://" . $host . $uri . "?" . $request . "&Signature=" . $signature;
-
 
     // Fetch the XML using either Snoopy or cURL, depending on our options.
     if ( $options['httpLib'] == 'curl' ) {
@@ -147,17 +142,17 @@ function query_amazon( $query ) {
     if ( empty($xmlString) ) {
         do_action('nr_search_error', $query);
         echo '
-		<div id="message" class="error fade">
-			<p><strong>' . __("Oops!") . '</strong></p>
-			<p>' . sprintf(__("For some reason, I couldn't search for your book on amazon%s.", NRTD), $options['domain']) . '</p>
-			<p>' . __("Amazon's Web Services may be down, or there may be a problem with your server configuration.") . '</p>
+        <div id="message" class="error fade">
+            <p><strong>' . __("Oops!") . '</strong></p>
+            <p>' . sprintf(__("For some reason, I couldn't search for your book on amazon%s.", NRTD), $options['domain']) . '</p>
+            <p>' . __("Amazon's Web Services may be down, or there may be a problem with your server configuration.") . '</p>
 
-					';
+                    ';
         if ( $options['httpLib'] )
             echo '<p>' . __("Try changing your HTTP Library setting to <strong>cURL</strong>.", NRTD) . '</p>';
         echo '
-		</div>
-		';
+        </div>
+        ';
         return false;
     }
 
@@ -167,61 +162,142 @@ function query_amazon( $query ) {
     $xml = $impl->load_string($xmlString);
 
     if ( $options['debugMode'] )
-        robm_dump("raw XML:", htmlentities(str_replace(">", ">\n", $xmlString)));
+        robm_dump("Amazon Search XML:", htmlentities(str_replace(">", ">\n", $xmlString)));
 
     $items = $xml->ItemSearchResponse->Items->children();
-    if (count($items) == 0) {
-		return false;
-	}
+    if (count($items) == 0)
+    {
+        return false;
+    }
 
-	$results = array();
+    $results = array();
+    foreach ($items as $item)
+    {
+        $attr = $item->ItemAttributes;
+        if (!$attr)
+        {
+            continue;
+        }
 
-	foreach ( $items as $item ) {
-		$attr = $item->ItemAttributes;
+        $asin = $item->ASIN->CDATA();
+        if (empty($asin))
+        {
+            continue;
+        }
 
-		if ( !$attr )
-			continue;
+        // Get full meta-data given the current ISBN. Used to get all editions.
+        $metaData = getMetadataFromIsbn($asin, $AWSAccessKeyId, $SecretAccessKey, urlencode($options['associate']));
+        if ($options['debugMode'])
+        {
+            robm_dump("Amazon Lookup XML:", htmlentities(str_replace(">", ">\n", $metaData)));
+        }
 
-		$author = '';
-		if ( is_array($attr->Author) ) {
-			foreach ( $attr->Author as $a ) {
-				if (is_object($a)) {
-					$author .= $a->CDATA() . ', ';
-				}
+        $metaDataParser = new IsterXmlSimpleXMLImpl;
+        $metaDataXml = $metaDataParser->load_string($metaData);
+
+        if (isset($metadata->ItemLookupResponse->Items->Request->Errors))
+        {
+            continue;//$metadata->ItemLookupResponse->Items->Request->Errors;
+        }
+
+        $editions = $metaDataXml->ItemLookupResponse->Items->children();
+        if (count($editions) == 0)
+        {
+            continue;
+        }
+
+        // For each edition, add an entry.
+        foreach ($editions as $edition)
+        {
+			if (!isset($edition->ASIN))
+			{
+			    continue;
 			}
-			$author	= substr($author, 0, -2);
-		} else {
-			if (is_object($attr->Author)) {
-				$author	= $attr->Author->CDATA();
+
+            $asin = $edition->ASIN->CDATA();
+            if (empty($asin))
+            {
+                continue;
+            }
+
+            $title = $edition->ItemAttributes->Title->CDATA();
+            if (empty($title))
+            {
+                continue;
+            }
+
+            $author = '';
+            if (is_array($edition->ItemAttributes->Author))
+            {
+                foreach ($edition->ItemAttributes->Author as $a)
+                {
+                    if (is_object($a))
+                    {
+                        $author .= $a->CDATA() . ', ';
+                    }
+                }
+
+                $author = substr($author, 0, -2);
+            }
+            else
+            {
+                if (is_object($edition->ItemAttributes->Author))
+                {
+                    $author = $edition->ItemAttributes->Author->CDATA();
+                }
+            }
+
+            if (empty($author))
+            {
+                $author = apply_filters('default_book_author', 'Unknown');
+            }
+
+            $size = "{$options['imageSize']}Image";
+            if (empty($item->$size))
+            {
+                continue;
+            }
+
+            $image = $item->$size->URL->CDATA();
+            if (empty($image))
+            {
+                $image = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/no-image.png';
+            }
+
+            $binding = '';
+			if (isset($edition->ItemAttributes->Binding))
+			{
+				$binding = $edition->ItemAttributes->Binding->CDATA();
 			}
-		}
 
-		if ( empty($author) )
-			$author = apply_filters('default_book_author', 'Unknown');
+			$ed = '';
+			if (isset($edition->ItemAttributes->Edition))
+			{
+				$ed = $edition->ItemAttributes->Edition->CDATA();
+			}
 
-		$title = $attr->Title->CDATA();
-		if ( empty($title) )
-			continue;
+            $date = '';
+			if (isset($edition->ItemAttributes->PublicationDate))
+			{
+				$date = $edition->ItemAttributes->PublicationDate->CDATA();
+			}
 
-		$asin = $item->ASIN->CDATA();
-		if ( empty($asin) )
-			continue;
+			$publisher = '';
+			if (isset($edition->ItemAttributes->Publisher))
+			{
+				$publisher = $edition->ItemAttributes->Publisher->CDATA();
+			}
 
-		if ( $options['debugMode'] )
-			robm_dump("book:", $author, $title, $asin);
+            if ($options['debugMode'])
+            {
+                robm_dump("book:", $author, $title, $binding, $ed, $date, $publisher, $asin);
+            }
 
-		$size = "{$options['imageSize']}Image";
-		if (empty($item->$size))
-			continue;
+            $results[] = apply_filters('raw_amazon_results', compact('author', 'title', 'binding', 'ed', 'date', 'publisher', 'image', 'asin'));
+        }
+    }
 
-		$image = $item->$size->URL->CDATA();
-		if ( empty($image) )
-			$image = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/no-image.png';
-
-		$results[] = apply_filters('raw_amazon_results', compact('author', 'title', 'image', 'asin'));
-	}
-
-	$results = apply_filters('returned_books', $results);
+    $results = apply_filters('returned_books', $results);
 
     return $results;
 }
@@ -237,7 +313,7 @@ function query_amazon( $query ) {
       'IdType' => 'ISBN',
       'ItemId' => $isbn,
       'Operation' => 'ItemLookup',
-      'ResponseGroup' => 'Medium',
+      'ResponseGroup' => 'Large',
       'SearchIndex' => 'Books',
       'Service' => 'AWSECommerceService',
       'Timestamp' => gmdate('Y-m-d\TH:i:s\Z'),
@@ -271,12 +347,7 @@ function query_amazon( $query ) {
     if ( $options['debugMode'] )
         robm_dump("raw XML:", htmlentities(str_replace(">", ">\n", $rawData)));
 
-    $metadata = simplexml_load_string($rawData);
-    if (isset($metadata->ItemLookupResponse->Items->Request->Errors)) {
-      return $metadata;//$metadata->ItemLookupResponse->Items->Request->Errors;
-    } else {
-      return $metadata;//$metadata->ItemLookupResponse->Items->Item;
-    }
+    return $rawData;
   }
 
 ?>
