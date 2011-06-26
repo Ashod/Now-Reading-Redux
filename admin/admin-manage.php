@@ -9,7 +9,7 @@
  */
 function nr_manage() {
 
-    global $wpdb, $nr_statuses, $userdata;
+    global $wpdb, $nr_statuses, $nr_post_options, $userdata;
 
     $options = get_option('nowReadingOptions');
     get_currentuserinfo();
@@ -63,8 +63,8 @@ function nr_manage() {
 	if ($options['ignoreTime'])
 	{
 		$dateTimeFormat = 'Y-m-d';
-	}			
-	
+	}
+
     switch ( $action ) {
         case 'editsingle':
             $id = intval($_GET['id']);
@@ -75,7 +75,7 @@ function nr_manage() {
             echo '
 			<div class="wrap">
 				<h2>' . __("Edit Book", NRTD) . '</h2>
-				
+
 				<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php">
 			';
 
@@ -88,17 +88,17 @@ function nr_manage() {
 				<div class="book-image">
 					<img style="float:left; margin-right: 10px;" id="book-image-0" alt="Book Cover" src="' . $existing->image . '" />
 				</div>
-				
+
 				<h3>' . __("Book", NRTD) . ' ' . $existing->id . ':<br /> <cite>' . $existing->title . '</cite><br /> by ' . $existing->author . '</h3>
-				
+
 				<table class="form-table" cellspacing="2" cellpadding="5">
-				
+
 				<input type="hidden" name="action" value="update" />
 				<input type="hidden" name="count" value="1" />
 				<input type="hidden" name="id[]" value="' . $existing->id . '" />
-				
+
 				<tbody>
-				
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="title-0">' . __("Title", NRTD) . '</label>
@@ -107,7 +107,7 @@ function nr_manage() {
 						<input type="text" class="main" id="title-0" name="title[]" value="' . $existing->title . '" />
 					</td>
 				</tr>
-				
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="author-0">' . __("Author", NRTD) . '</label>
@@ -140,16 +140,17 @@ function nr_manage() {
 									<option value="' . $status . '"' . $selected . '>' . $name . '</option>
 								';
             }
-			
-			$added = ( nr_empty_date($existing->added) ) ? '' : date($dateTimeFormat, strtotime($existing->added));
-			$started = ( nr_empty_date($existing->started) ) ? '' : date($dateTimeFormat, strtotime($existing->started));
-			$finished = ( nr_empty_date($existing->finished) ) ? '' : date($dateTimeFormat, strtotime($existing->finished));
-			
+
             echo '
 						</select>
 					</td>
-				</tr>
+				</tr>';
 
+			$added = ( nr_empty_date($existing->added) ) ? '' : date($dateTimeFormat, strtotime($existing->added));
+			$started = ( nr_empty_date($existing->started) ) ? '' : date($dateTimeFormat, strtotime($existing->started));
+			$finished = ( nr_empty_date($existing->finished) ) ? '' : date($dateTimeFormat, strtotime($existing->finished));
+
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="added[]">' . __("Added", NRTD) . '</label>
@@ -157,8 +158,8 @@ function nr_manage() {
 					<td>
 						<input type="text" id="added-0" name="added[]" value="' . htmlentities($added, ENT_QUOTES, "UTF-8") . '" />
 					</td>
-				</tr>	
-				
+				</tr>
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="started[]">' . __("Started", NRTD) . '</label>
@@ -166,8 +167,8 @@ function nr_manage() {
 					<td>
 						<input type="text" id="started-0" name="started[]" value="' . htmlentities($started, ENT_QUOTES, "UTF-8") . '" />
 					</td>
-				</tr>	
-				
+				</tr>
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="finished[]">' . __("Finished", NRTD) . '</label>
@@ -176,7 +177,7 @@ function nr_manage() {
 						<input type="text" id="finished-0" name="finished[]" value="' . htmlentities($finished, ENT_QUOTES, "UTF-8") . '" />
 					</td>
 				</tr>
-				
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="image-0">' . __("Image", NRTD) . '</label>
@@ -185,10 +186,10 @@ function nr_manage() {
 						<input type="text" class="main" id="image-0" name="image[]" value="' . htmlentities($existing->image) . '" />
 					</td>
 				</tr>
-				
-				
-				
-				
+
+
+
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="tags[]">' . __("Tags", NRTD) . '</label>
@@ -198,7 +199,7 @@ function nr_manage() {
 						<small>' . __("A comma-separated list of keywords that describe the book.", NRTD) . '</small>
 					</td>
 				</tr>
-				
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="posts[]">' . __("Link to post", NRTD) . '</label>
@@ -207,8 +208,31 @@ function nr_manage() {
 						<input type="text" name="posts[]" value="' . intval($existing->post) . '" /><br />
 						<small>' . __("If you wish, you can link this book to a blog entry by entering that entry's ID here. The entry will be linked to from the book's library page.", NRTD) . '</small>
 					</td>
-				</tr>
-				
+				</tr>';
+
+				echo '
+				<tr class="form-field">
+					<th valign="top" scope="row">
+						<label for="post_op">' . __("Post Option", NRTD) . '</label>
+					</th>
+					<td>
+						<select name="post_op[]" id="post_op">
+							';
+            foreach ( (array) $nr_post_options as $post_op => $name ) {
+                $selected = '';
+                if ( $existing->post_op == $post_op )
+                    $selected = ' selected="selected"';
+
+                echo '
+									<option value="' . $post_op . '"' . $selected . '>' . $name . '</option>
+								';
+            }
+            echo '
+						</select>
+					</td>
+				</tr>';
+
+				echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						Meta Data
@@ -248,7 +272,7 @@ function nr_manage() {
 
 					</td>
 				</tr>
-				
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="rating[]"><label for="rating">' . __("Rating", NRTD) . '</label></label>
@@ -266,7 +290,7 @@ function nr_manage() {
 						</select>
 					</td>
 				</tr>
-				
+
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="review-0">' . __("Review", NRTD) . '</label>
@@ -280,18 +304,18 @@ function nr_manage() {
 							</small>
 					</td>
 				</tr>
-				
+
 				</tbody>
 				</table>
-					
+
 				<p class="submit">
 					<input class="button" type="submit" value="' . __("Save", NRTD) . '" />
 				</p>
-				
+
 				</form>
-				
+
 			</div>
-			
+
 
 			';
             $list = false;
@@ -367,13 +391,13 @@ function nr_manage() {
 
             echo '
 			<div class="wrap">
-			
+
 				<h2>Now Reading</h2>
-				
+
 					<form method="get" action="" onsubmit="location.href += \'&q=\' + document.getElementById(\'q\').value; return false;">
 						<p class="search-box"><label class="hidden" for="q">' . __("Search Books", NRTD) . ':</label> <input type="text" name="q" id="q" value="' . htmlentities($_GET['q']) . '" /> <input class="button" type="submit" value="' . __('Search Books', NRTD) . '" /></p>
 					</form>
-					
+
 						<ul>
 			';
             if ( !empty($_GET['q']) ) {
@@ -391,9 +415,9 @@ function nr_manage() {
 						</div>
 					</div>
 
-				
+
 				<br style="clear:both;" />
-				
+
 				<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php">
 			';
 
@@ -413,14 +437,14 @@ function nr_manage() {
 				$new_order = 'desc';
 			else
 				$new_order = 'asc';
-			
+
 			$book_link = "{$nr_url->urls['manage']}&p=$page&s=book&o=$new_order";
 			$author_link = "{$nr_url->urls['manage']}&p=$page&s=author&o=$new_order";
 			$added_link = "{$nr_url->urls['manage']}&p=$page&s=added&o=$new_order";
 			$started_link = "{$nr_url->urls['manage']}&p=$page&s=started&o=$new_order";
 			$finished_link = "{$nr_url->urls['manage']}&p=$page&s=finished&o=$new_order";
 			$status_link = "{$nr_url->urls['manage']}&p=$page&s=status&o=$new_order";
-			
+
             echo '
 				<table class="widefat post fixed" cellspacing="0">
 					<thead>
@@ -446,43 +470,43 @@ function nr_manage() {
 
                 $delete = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php?action=delete&id=' . $book->id;
 				$delete = wp_nonce_url($delete, 'now-reading-delete-book_' .$book->id);
-				
+
 
                 echo '
 					<tr class="manage-book' . $alt . '">
-						
+
 						<input type="hidden" name="id[]" value="' . $book->id . '" />
 						<input type="hidden" name="title[]" value="' . $book->title . '" />
 						<input type="hidden" name="author[]" value="' . $book->author . '" />
-						
+
 						<td>
 							<img style="max-width:100px;" id="book-image-' . $i . '" class="small" alt="' . __('Book Cover', NRTD) . '" src="' . $book->image . '" />
 						</td>
-						
+
 						<td class="post-title column-title">
 							<strong>' . stripslashes($book->title) . '</strong>
 							<div class="row-actions">
-								<a href="' . book_permalink(0, $book->id) . '">' . __('View', NRTD) . '</a> | 
+								<a href="' . book_permalink(0, $book->id) . '">' . __('View', NRTD) . '</a> |
 									<a href="' . $nr_url->urls['manage'] . '&amp;action=editsingle&amp;id=' . $book->id . '">' . __('Edit', NRTD) . '</a> | <a href="' . $delete . '" onclick="return confirm(\'' . __("Are you sure you wish to delete this book permanently?", NRTD) . '\')">' . __("Delete", NRTD) . '</a>
 							</div>
 						</td>
-						
+
 						<td>
 							' . $book->author . '
 						</td>
-						
+
 						<td>
 							' . $book->status . '
 						</td>
-						
+
 						<td>
 						' . ( ( nr_empty_date($book->started) ) ? '' : date($dateTimeFormat, strtotime($book->started)) ) . '
 						</td>
-						
+
 						<td>
 						' .( ( nr_empty_date($book->finished) ) ? '' : date($dateTimeFormat, strtotime($book->finished)) ) . '
 						</td>
-						
+
 						<td>
 						' . ( ( nr_empty_date($book->added) ) ? '' : date($dateTimeFormat, strtotime($book->added)) ) . '
 						</td>

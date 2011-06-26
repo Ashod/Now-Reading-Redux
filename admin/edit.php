@@ -1,7 +1,7 @@
 <?php
 /**
  * Handles the editing of existing books.
- * @package now-reading
+ * @package now-reading-redux
  */
 
 require '../../../../wp-config.php';
@@ -58,8 +58,15 @@ switch ( $action ) {
             $started		= ( nr_empty_date($_POST['started'][$i]) )	? '' : $wpdb->escape(date('Y-m-d H:i:s', strtotime($_POST['started'][$i])));
             $finished		= ( nr_empty_date($_POST['finished'][$i]) )	? '' : $wpdb->escape(date('Y-m-d H:i:s', strtotime($_POST['finished'][$i])));
 
-            if ( !empty($_POST['posts'][$i]) )
+            if (!empty($_POST['posts'][$i]))
+            {
                 $post = 'b_post = "' . intval($_POST['posts'][$i]) . '",';
+			}
+
+            if (!empty($_POST['post_op'][$i]))
+            {
+                $post_op = 'b_post_op = "' . intval($_POST['post_op'][$i]) . '",';
+			}
 
             if ( !empty($_POST['rating'][$i]) )
                 $rating	= 'b_rating = "' . intval($_POST["rating"][$i]) . '",';
@@ -101,6 +108,7 @@ switch ( $action ) {
                 $review
                 $image
                 $post
+				$post_op
 				b_author = '$author',
 				b_asin = '$asin',
 				b_title = '$title',
