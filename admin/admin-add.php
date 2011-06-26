@@ -45,7 +45,7 @@ if ( !function_exists('now_reading_add') ) {
 
         echo '
 		<div class="wrap">
-					
+
 			<h2>Now Reading</h2>
 		';
 
@@ -101,14 +101,18 @@ if ( !function_exists('now_reading_add') ) {
 
                         echo '
 							<input type="hidden" name="amazon_data" value="' . htmlentities($data, ENT_QUOTES, "UTF-8") . '" />
-							
+
 							<img src="' . htmlentities($image, ENT_QUOTES, "UTF-8") . '" alt="" style="float:left; margin:8px; padding:2px; width:46px; height:70px; border:1px solid #ccc;" />
-							
+
 							<h3>' . htmlentities($title, ENT_QUOTES, "UTF-8") . '</h3>
 							' . (($author) ? '<p>by <strong>' . htmlentities($author, ENT_QUOTES, "UTF-8") . '</strong></p>' : '<p>(' . __("No author", NRTD) . ')</p>') . '
-							
+							' . (($ed) ? htmlentities($ed, ENT_QUOTES, "UTF-8") . ' ' : '
+							') . (($binding) ? htmlentities($binding, ENT_QUOTES, "UTF-8") . ' ' : '
+							') . (($date) ? ' - ' . htmlentities($date, ENT_QUOTES, "UTF-8") . ' ' : '
+							') . (($publisher) ? ' (' . htmlentities($publisher, ENT_QUOTES, "UTF-8") . ') ' : '
+							') . '
 							<p style="clear:left;"><input class="button" type="submit" value="' . __("Use This Result", NRTD) . '" /></p>
-							
+
 						</form>
 						';
                     }
@@ -125,11 +129,11 @@ if ( !function_exists('now_reading_add') ) {
             $thispage = $nr_urls['add'];
 
         echo '
-		
+
 		<p>' . __("Enter some information about the book that you'd like to add, and I'll try to fetch the information directly from Amazon.", NRTD) . '</p>
-		
+
 		<p>' . sprintf(__("Now Reading is currently set to search the <strong>amazon%s</strong> domain; you can change this setting and others in the <a href='%s'>options page</a>.", NRTD), $options['domain'], $nr_url->urls['options']) . '</p>
-		
+
 		<form method="post" action="' . $thispage . '">
 		';
 
@@ -139,27 +143,27 @@ if ( !function_exists('now_reading_add') ) {
         echo '
 			<p><label for="isbn"><acronym title="International Standard Book Number">ISBN</acronym>:</label><br />
 			<input type="text" name="u_isbn" id="isbn" size="25" value="' . $results[0]['asin'] . '" /></p>
-			
+
 			<p><strong>' . __("or", NRTD) . '</strong></p>
 
 			<p><label for="title">' . __("Title", NRTD) . ':</label><br />
 			<input type="text" name="u_title" id="title" size="50" value="' . $results[0]['title'] . '" /></p>
-			
+
 			<p><label for="title">' . __("Author", NRTD) . ' (' . __("optional", NRTD) . '):</label><br />
 			<input type="text" name="u_author" id="author" size="50" value="' . $results[0]['author'] . '" /></p>
-			
+
 			<p><input class="button" type="submit" value="' . __("Search", NRTD) . '" /></p>
-			
+
 		</form>
-		
+
 		</div>
-		
+
 		<div class="nr-add-grouping">
-			
+
 			<h3>' . __("Add a book manually", NRTD) . '</h3>
-			
+
 			<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/add.php">
-			
+
 			';
 
         if ( function_exists('wp_nonce_field') )
@@ -168,20 +172,20 @@ if ( !function_exists('now_reading_add') ) {
         echo '
 				<p><label for="custom_title">' . __("Title", NRTD) . ':</label><br />
 				<input type="text" name="custom_title" id="custom_title" size="50" /></p>
-				
+
 				<p><label for="custom_author">' . __("Author", NRTD) . ':</label><br />
 				<input type="text" name="custom_author" id="custom_author" size="50" /></p>
-				
+
 				<p><label for="custom_image">' . __("Link to image", NRTD) . ':</label><br />
 				<small>' . __("Remember, leeching images from other people's servers is nasty. Upload your own images or use Amazon's.", NRTD) . '</small><br />
 				<input type="text" name="custom_image" id="custom_image" size="50" /></p>
-				
+
 				<p><input class="button" type="submit" value="' . __("Add Book", NRTD) . '" /></p>
-				
+
 			</form>
-			
+
 			</div>
-			
+
 		</div>
 		';
 
