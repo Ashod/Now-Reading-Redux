@@ -8,9 +8,9 @@ Author: Ben Gunnink, Ashod Nakashian
 Author URI: http://heliologue.com
 */
 
-define('NOW_READING_VERSION', '6.0.4.0');
-define('NOW_READING_DB', 50);
-define('NOW_READING_OPTIONS', 10);
+define('NOW_READING_VERSION', '6.0.4.4');
+define('NOW_READING_DB', 55);
+define('NOW_READING_OPTIONS', 11);
 define('NOW_READING_REWRITE', 9);
 
 define('NRTD', 'now-reading');
