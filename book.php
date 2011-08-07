@@ -176,7 +176,8 @@ function get_book( $id ) {
 		COUNT(*) AS count,
 		b_id AS id, b_title AS title, b_author AS author, b_image AS image, b_status AS status, b_nice_title AS nice_title, b_nice_author AS nice_author,
 		b_added AS added, b_started AS started, b_finished AS finished,
-		b_asin AS asin, b_rating AS rating, b_review AS review, b_post AS post, b_reader as reader
+		b_asin AS asin, b_rating AS rating, b_review AS review, b_post AS post, b_reader as reader,
+		b_post_op AS post_op, b_visibility AS visibility
 	FROM {$wpdb->prefix}now_reading
 	WHERE b_id = $id
 	GROUP BY b_id

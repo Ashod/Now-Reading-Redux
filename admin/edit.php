@@ -1,6 +1,6 @@
 <?php
 /**
- * Handles the editing of existing books.
+ * Handles the POST of editing an existing books.
  * @package now-reading-redux
  */
 
@@ -60,16 +60,28 @@ switch ( $action ) {
 
             if (!empty($_POST['posts'][$i]))
             {
-                $post = 'b_post = "' . intval($_POST['posts'][$i]) . '",';
+                $post = 'b_post = "' . intval($_POST["posts"][$i]) . '",';
 			}
 
             if (!empty($_POST['post_op'][$i]))
             {
-                $post_op = 'b_post_op = "' . intval($_POST['post_op'][$i]) . '",';
+                $post_op = 'b_post_op = "' . intval($_POST["post_op"][$i]) . '",';
 			}
 
-            if ( !empty($_POST['rating'][$i]) )
-                $rating	= 'b_rating = "' . intval($_POST["rating"][$i]) . '",';
+            if (!empty($_POST['visibility'][$i]))
+            {
+                $visibility = 'b_visibility = "' . intval($_POST["visibility"][$i]) . '",';
+			}
+			else
+			{
+				// By default, Private.
+                $visibility = 'b_visibility = "0",';
+			}
+
+            if (!empty($_POST['rating'][$i]))
+            {
+				$rating	= 'b_rating = "' . intval($_POST["rating"][$i]) . '",';
+			}
 
             if ( !empty($_POST['review'][$i]) )
                 $review	= 'b_review = "' . $wpdb->escape($_POST["review"][$i]) . '",';
@@ -99,7 +111,7 @@ switch ( $action ) {
             else
                 $finished = "b_finished = '$finished',";
 
-            $result = $wpdb->query("
+			$query = "
 			UPDATE {$wpdb->prefix}now_reading
 			SET
                 $started
@@ -109,6 +121,7 @@ switch ( $action ) {
                 $image
                 $post
 				$post_op
+				$visibility
 				b_author = '$author',
 				b_asin = '$asin',
 				b_title = '$title',
@@ -118,7 +131,9 @@ switch ( $action ) {
 				b_added = '$added'
 			WHERE
 				b_id = $id
-                ");
+                ";
+			//echo $query;
+            $result = $wpdb->query($query);
             if ( $wpdb->rows_affected > 0 )
                 $updated++;
 

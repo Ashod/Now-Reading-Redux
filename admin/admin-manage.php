@@ -98,7 +98,10 @@ function nr_manage() {
 				<input type="hidden" name="id[]" value="' . $existing->id . '" />
 
 				<tbody>
+				';
 
+			// Title.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="title-0">' . __("Title", NRTD) . '</label>
@@ -107,7 +110,10 @@ function nr_manage() {
 						<input type="text" class="main" id="title-0" name="title[]" value="' . $existing->title . '" />
 					</td>
 				</tr>
+				';
 
+			// Author.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="author-0">' . __("Author", NRTD) . '</label>
@@ -116,6 +122,10 @@ function nr_manage() {
 						<input type="text" class="main" id="author-0" name="author[]" value="' . $existing->author . '" />
 					</td>
 				</tr>
+				';
+
+			// ASIN.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 					<label for="asin-0">' . __("ASIN", NRTD) . '</label>
@@ -124,6 +134,10 @@ function nr_manage() {
 					<input type="text" class="main" id="asin-0" name="asin[]" value="' . $existing->asin . '" />
 					</td>
 				</tr>
+				';
+
+			// Status.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="status-0">' . __("Status", NRTD) . '</label>
@@ -131,17 +145,49 @@ function nr_manage() {
 					<td>
 						<select name="status[]" id="status-0">
 							';
-            foreach ( (array) $nr_statuses as $status => $name ) {
-                $selected = '';
-                if ( $existing->status == $status )
-                    $selected = ' selected="selected"';
+				foreach ( (array) $nr_statuses as $status => $name ) {
+					$selected = '';
+					if ( $existing->status == $status )
+						$selected = ' selected="selected"';
 
-                echo '
+					echo '
 									<option value="' . $status . '"' . $selected . '>' . $name . '</option>
 								';
-            }
+				}
 
+				echo '
+						</select>
+					</td>
+				</tr>';
+
+			// Visibility.
             echo '
+				<tr class="form-field">
+					<th valign="top" scope="row">
+						<label for="visibility-0">' . __("Visibility", NRTD) . '</label>
+					</th>
+					<td>
+						<select name="visibility[]" id="visibility-0">
+							';
+
+					if ($existing->visibility)
+					{
+						// Public.
+						echo '
+									<option value="0">Private</option>
+									<option value="1" selected="selected">Public</option>
+								';
+					}
+					else
+					{
+						// Private.
+						echo '
+									<option value="0" selected="selected">Private</option>
+									<option value="1">Public</option>
+								';
+					}
+
+				echo '
 						</select>
 					</td>
 				</tr>';
@@ -150,6 +196,7 @@ function nr_manage() {
 			$started = ( nr_empty_date($existing->started) ) ? '' : date($dateTimeFormat, strtotime($existing->started));
 			$finished = ( nr_empty_date($existing->finished) ) ? '' : date($dateTimeFormat, strtotime($existing->finished));
 
+			// Added Date.
             echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
@@ -159,7 +206,10 @@ function nr_manage() {
 						<input type="text" id="added-0" name="added[]" value="' . htmlentities($added, ENT_QUOTES, "UTF-8") . '" />
 					</td>
 				</tr>
+				';
 
+			// Started Reading Date.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="started[]">' . __("Started", NRTD) . '</label>
@@ -169,6 +219,10 @@ function nr_manage() {
 					</td>
 				</tr>
 
+				';
+
+			// Finished Reading Date.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="finished[]">' . __("Finished", NRTD) . '</label>
@@ -178,6 +232,10 @@ function nr_manage() {
 					</td>
 				</tr>
 
+				';
+
+			// Image URL.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="image-0">' . __("Image", NRTD) . '</label>
@@ -187,9 +245,10 @@ function nr_manage() {
 					</td>
 				</tr>
 
+				';
 
-
-
+			// Tags.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="tags[]">' . __("Tags", NRTD) . '</label>
@@ -200,6 +259,10 @@ function nr_manage() {
 					</td>
 				</tr>
 
+				';
+
+			// Link to Post.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="posts[]">' . __("Link to post", NRTD) . '</label>
@@ -210,6 +273,7 @@ function nr_manage() {
 					</td>
 				</tr>';
 
+				// Post Option.
 				echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
@@ -218,20 +282,25 @@ function nr_manage() {
 					<td>
 						<select name="post_op[]" id="post_op">
 							';
-            foreach ( (array) $nr_post_options as $post_op => $name ) {
-                $selected = '';
-                if ( $existing->post_op == $post_op )
-                    $selected = ' selected="selected"';
+				$post_op_idx = 0;
+				foreach ( (array) $nr_post_options as $post_op => $name ) {
+					$selected = '';
+					if ($existing->post_op == $post_op_idx)
+					{
+						$selected = ' selected="selected"';
+					}
 
-                echo '
-									<option value="' . $post_op . '"' . $selected . '>' . $name . '</option>
+					echo '
+									<option value="' . $post_op_idx . '"' . $selected . '>' . $name . '</option>
 								';
-            }
-            echo '
+					$post_op_idx++;
+				}
+				echo '
 						</select>
 					</td>
 				</tr>';
 
+				// Meta Data.
 				echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
@@ -249,20 +318,20 @@ function nr_manage() {
 									</thead>
 									<tbody id="book-meta-table-0" class="book-meta-table">
 										';
-            foreach ( (array) $meta as $key => $val ) {
-                $url = get_option('siteurl') . "/wp-content/plugins/now-reading-redux/admin/edit.php?action=deletemeta&id={$existing->id}&key=" . urlencode($key);
-                if ( function_exists('wp_nonce_url') )
-                    $url = wp_nonce_url($url, 'now-reading-delete-meta_' . $existing->id . $key);
+					foreach ( (array) $meta as $key => $val ) {
+						$url = get_option('siteurl') . "/wp-content/plugins/now-reading-redux/admin/edit.php?action=deletemeta&id={$existing->id}&key=" . urlencode($key);
+						if ( function_exists('wp_nonce_url') )
+							$url = wp_nonce_url($url, 'now-reading-delete-meta_' . $existing->id . $key);
 
-                echo '
+						echo '
 												<tr>
 													<td><textarea name="keys-0[]" class="key">' . htmlspecialchars($key, ENT_QUOTES, "UTF-8") . '</textarea></td>
 													<td><textarea name="values-0[]" class="value">' . htmlspecialchars($val, ENT_QUOTES, "UTF-8") . '</textarea></td>
 													<td><a href="' . $url . '">' . __("Delete", NRTD) . '</a></td>
 												</tr>
 											';
-            }
-            echo '
+					}
+					echo '
 										<tr>
 											<td><textarea name="keys-0[]" class="key"></textarea></td>
 											<td><textarea name="values-0[]" class="value"></textarea></td>
@@ -272,7 +341,10 @@ function nr_manage() {
 
 					</td>
 				</tr>
+				';
 
+			// Rating.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="rating[]"><label for="rating">' . __("Rating", NRTD) . '</label></label>
@@ -290,7 +362,10 @@ function nr_manage() {
 						</select>
 					</td>
 				</tr>
+				';
 
+			// Review.
+            echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
 						<label for="review-0">' . __("Review", NRTD) . '</label>
