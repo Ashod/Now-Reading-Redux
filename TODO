@@ -1,4 +1,10 @@
 * Pull book details from Amazon and set as props.
+* Add language, edition, category and abridged props.
 * Show the library by year/month.
+* Show library by category/tag.
 * Replace book page by post.
 * Combobox to see books by Status in the management page.
+* Choose what to show in the Widget.
+* Public/Private visibility.
+* Rate.
+* Filter by Read/Reading/OnHold in the manager.
