@@ -9,7 +9,7 @@ Author URI: http://heliologue.com
 */
 
 define('NOW_READING_VERSION', '6.0.4.4');
-define('NOW_READING_DB', 55);
+define('NOW_READING_DB', 57);
 define('NOW_READING_OPTIONS', 11);
 define('NOW_READING_REWRITE', 9);
 
@@ -75,16 +75,19 @@ require_once dirname(__FILE__) . '/widget.php';
 /**
  * Checks if the install needs to be run by checking the `nowReadingVersions` option, which stores the current installed database, options and rewrite versions.
  */
-function nr_check_versions() {
+function nr_check_versions()
+{
     $versions = get_option('nowReadingVersions');
-    if ( empty($versions) )
-        nr_install();
-    else {
-        if ( $versions['db'] < NOW_READING_DB || $versions['options'] < NOW_READING_OPTIONS || $versions['rewrite'] < NOW_READING_REWRITE )
-            nr_install();
+    if (empty($versions) ||
+		$versions['db'] < NOW_READING_DB ||
+		$versions['options'] < NOW_READING_OPTIONS ||
+		$versions['rewrite'] < NOW_READING_REWRITE)
+    {
+		nr_install();
     }
 }
 add_action('init', 'nr_check_versions');
+add_action('plugins_loaded', 'nr_check_versions');
 
 function nr_check_api_key() {
     $options = get_option('nowReadingOptions');
@@ -140,6 +143,7 @@ function nr_install() {
 	b_review text,
 	b_post bigint(20) default '0',
 	b_post_op tinyint(4) default '0',
+	b_visibility tinyint(1) default '1',
 	b_reader tinyint(4) NOT NULL default '1',
 	PRIMARY KEY  (b_id),
 	INDEX permalink (b_nice_author, b_nice_title),
@@ -200,8 +204,12 @@ function nr_install() {
     $options = array_merge($defaultOptions, $options);
     update_option('nowReadingOptions', $options);
 
-    // Update our .htaccess file.
-    $wp_rewrite->flush_rules();
+	// May be unset if called during plugins_loaded action.
+	if (isset($wp_rewrite))
+    {
+		// Update our .htaccess file.
+		$wp_rewrite->flush_rules();
+	}
 
     // Update our nice titles/authors.
     $books = $wpdb->get_results("
@@ -354,7 +362,7 @@ function library_init() {
 
         die;
     }
-	
+
 	if ( get_query_var('now_reading_reader') ) {
                // Reader permalink.
                $reader = $wpdb->escape(urldecode(get_query_var('now_reading_reader')));
