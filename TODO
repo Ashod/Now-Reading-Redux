@@ -8,3 +8,7 @@
 * Public/Private visibility.
 * Rate.
 * Filter by Read/Reading/OnHold in the manager.
+
+Performance:
+
+* Delayed image loading.
