@@ -91,7 +91,7 @@ function print_reader( $echo=true, $reader_id = 0) {
     if ($echo)
         echo $username;
     return $username;
-} 
+}
 
 /**
  * Prints the author of the book.
@@ -164,7 +164,7 @@ function book_finished( $echo = true ) {
  * Prints the current book's status with optional overrides for messages.
  * @param bool $echo Whether or not to echo the results.
  */
-function book_status ( $echo = true, $unread = '', $reading = '', $read = '', $onhold = '' ) {
+function book_status( $echo = true, $unread = '', $reading = '', $read = '', $onhold = '' ) {
     global $book, $nr_statuses;
 
     if ( empty($unread) )
@@ -222,12 +222,29 @@ function books_read_since( $interval, $echo = true ) {
 }
 
 /**
+ * Prints book reading statistics.
+ * @param string $time_period The period to measure average over, eg "year", "month".
+ */
+function print_book_stats($time_period = 'year')
+{
+	echo "There are ";
+	total_books(0);
+	echo " listed, of which ";
+	books_read_since('1 year');
+	echo " have been read in the last year, ";
+	books_read_since('1 month');
+	echo " read in the last month. That's ";
+	average_books($time_period, true, false);
+	echo ".";
+}
+
+/**
  * Prints the total number of books in the library.
  * @param string $status A comma-separated list of statuses to include in the count. If ommitted, all statuses will be counted.
  * @param bool $echo Whether or not to echo the results.
- * @param int $userID Counting only userID's books
+ * @param int $userID Counting only userID's books.
  */
-function total_books( $status = '', $echo = true , $userID = 0) {
+function total_books($status = '', $echo = true , $userID = 0) {
     global $wpdb;
 
     get_currentuserinfo();
