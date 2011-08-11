@@ -288,40 +288,90 @@ function total_books($status = '', $echo = true , $userID = 0) {
 
 /**
  * Prints the average number of books read in the given time limit.
- * @param string $time_period The period to measure, eg "year", "month"
+ * Unless $absolute is true, the average is computed based on the weighted average of
+ * books read witin the last 365 days and those read within the last 30 days.
+ * @param string $time_period The period to measure average over, eg "year", "month".
  * @param bool $echo Whether or not to echo the results.
+ * @param bool $absolute If true, the average is computed based on the oldest finished date.
  */
-function average_books( $time_period = 'week', $echo = true ) {
+function average_books($time_period = 'week', $echo = true, $absolute = true)
+{
     global $wpdb;
 
-    $books_per_day = $wpdb->get_var("
-	SELECT
-		( COUNT(*) / ( TO_DAYS(CURDATE()) - TO_DAYS(MIN(b_finished)) ) ) AS books_per_day
-	FROM
-        {$wpdb->prefix}now_reading
-	WHERE
-		b_status = 'read'
-	AND b_finished > 0
-        ");
+	if (!$absolute)
+	{
+		$books_per_day = $wpdb->get_var("
+		SELECT
+			( COUNT(*) / ( TO_DAYS(CURDATE()) - TO_DAYS(MIN(b_finished)) ) ) AS books_per_day_in_year
+		FROM
+			{$wpdb->prefix}now_reading
+		WHERE
+			b_status = 'read'
+		AND b_finished > 0
+			");
+	}
+	else
+	{
+		$books_per_day_in_year = $wpdb->get_var("
+		SELECT
+			( COUNT(*) / ( TO_DAYS(CURDATE()) - TO_DAYS(MIN(b_finished)) ) ) AS books_per_day_in_year
+		FROM
+			{$wpdb->prefix}now_reading
+		WHERE
+			b_status = 'read'
+		AND TO_DAYS(b_finished) >= (TO_DAYS(CURDATE()) - 365)
+			");
+
+		$books_per_day_in_month = $wpdb->get_var("
+		SELECT
+			( COUNT(*) / ( TO_DAYS(CURDATE()) - TO_DAYS(MIN(b_finished)) ) ) AS books_per_day_in_month
+		FROM
+			{$wpdb->prefix}now_reading
+		WHERE
+			b_status = 'read'
+		AND TO_DAYS(b_finished) >= (TO_DAYS(CURDATE()) - 30)
+			");
+
+		// Give twice the weight for the last month's average than the total of last year's.
+		$books_per_day = ((2.0 * $books_per_day_in_month) + $books_per_day_in_year) / 3.0;
+	}
 
     $average = 0;
     switch ( $time_period ) {
         case 'year':
             $average = round($books_per_day * 365);
             break;
+
         case 'month':
             $average = round($books_per_day * 31);
             break;
+
         case 'week':
             $average = round($books_per_day * 7);
+			break;
+
         case 'day':
+            $average = round($books_per_day * 1);
             break;
+
         default:
             return 0;
     }
 
-    if( $echo )
-        printf(__("an average of %s book%s each %s", NRTD), $average, ($average != 1 ? 's' : ''), $time_period);
+    if($echo)
+    {
+		if ($absolute)
+		{
+			$type = __("an absolute");
+		}
+		else
+		{
+			$type = __("a current");
+		}
+
+		printf(__("%s average of %s book%s each %s", NRTD), $type, $average, ($average != 1 ? 's' : ''), $time_period);
+	}
+
     return $average;
 }
 
