@@ -18,11 +18,11 @@
 
 		<h2>Currently Reading (<?php echo total_books('reading', 0) ?>):</h2>
 
-		<?php if( have_books('status=reading&orderby=started&num=-1') ) : ?>
+		<?php if( have_books('status=reading&orderby=random&num=-1') ) : ?>
 
 			<ul>
 
-			<?php while( have_books('status=reading&orderby=started&num=-1') ) : the_book(); ?>
+			<?php while( have_books('status=reading&orderby=random&num=-1') ) : the_book(); ?>
 
 				<li>
 					<p><a href="<?php book_permalink() ?>"><img src="<?php book_image() ?>" alt="<?php book_title() ?>" /></a></p>
@@ -41,7 +41,7 @@
 
 		<h2>Planned books (<?php echo total_books('unread', 0) ?>):</h2>
 
-		<?php if( have_books('status=unread&num=-1') ) : ?>
+		<?php if( have_books('status=unread&orderby=random&num=-1') ) : ?>
 
 			<ul>
 
