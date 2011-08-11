@@ -8,7 +8,10 @@ if ( !empty($_POST['update']) ) {
     require '../../../../wp-config.php';
 
     if ( !current_user_can('level_9') )
-        die ( __('Cheating, huh?') );
+    {
+		// Admin please.
+		die ( __('Cheating, huh?') );
+	}
 
     check_admin_referer('now-reading-update-options');
 
@@ -16,20 +19,21 @@ if ( !empty($_POST['update']) ) {
 
     $append = '';
 
-	$options['AWSAccessKeyId']          = trim($_POST['AWSAccessKeyId']);
-    $options['SecretAccessKey']         = trim($_POST['SecretAccessKey']);
+	$options['AWSAccessKeyId']  = trim($_POST['AWSAccessKeyId']);
+    $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
     $options['formatDate']		= trim($_POST['format_date']);
     $options['associate']		= trim($_POST['associate']);
     $options['ignoreTime']		= trim($_POST['ignore_time']);
     $options['domain']			= trim($_POST['domain']);
     $options['debugMode']		= trim($_POST['debug_mode']);
-    $options['useModRewrite']           = trim($_POST['use_mod_rewrite']);
+    $options['useModRewrite']   = trim($_POST['use_mod_rewrite']);
     $options['menuLayout']		= ( trim($_POST['menu_layout']) == 'single' ) ? NR_MENU_SINGLE : NR_MENU_MULTIPLE;
     $options['proxyHost']		= trim($_POST['proxy_host']);
     $options['proxyPort']		= trim($_POST['proxy_port']);
-    $options['booksPerPage']            = trim($_POST['books_per_page']);
-    $options['permalinkBase']           = trim($_POST['permalink_base']);
-    $options['multiuserMode']           = trim($_POST['multiuser_mode']);
+    $options['booksPerPage']    = trim($_POST['books_per_page']);
+    $options['defBookCount']    = trim($_POST['def_book_count']);
+    $options['permalinkBase']   = trim($_POST['permalink_base']);
+    $options['multiuserMode']   = trim($_POST['multiuser_mode']);
 
     $nr_url->load_scheme($options['menuLayout']);
 

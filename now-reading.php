@@ -1,16 +1,16 @@
 <?php
 /*
 Plugin Name: Now Reading Redux
-Version: 6.0.4.0
-Plugin URI: http://heliologue.com/projects/now-reading-for-wordpress-27
-Description: Allows you to display the books you're reading, have read recently and plan to read, with cover art fetched automatically from Amazon.
-Author: Ben Gunnink, Ashod Nakashian
-Author URI: http://heliologue.com
+Version: 6.0.8.0
+Plugin URI: https://github.com/Ashod/Now-Reading-Redux/issues
+Description: Display the books you're reading, have read recently and plan to read, with cover art fetched automatically from Amazon.
+Author: Ashod Nakashian
+Author URI: http://ashodnakashian.com
 */
 
-define('NOW_READING_VERSION', '6.0.4.4');
+define('NOW_READING_VERSION', '6.0.8.0');
 define('NOW_READING_DB', 57);
-define('NOW_READING_OPTIONS', 11);
+define('NOW_READING_OPTIONS', 12);
 define('NOW_READING_REWRITE', 9);
 
 define('NRTD', 'now-reading');
@@ -195,6 +195,7 @@ function nr_install() {
         'debugMode'		=> false,
         'menuLayout'	=> NR_MENU_SINGLE,
         'booksPerPage'  => 15,
+        'defBookCount'  => 5,
         'permalinkBase' => 'library/'
     );
     add_option('nowReadingOptions', $defaultOptions);

@@ -173,6 +173,12 @@ function nr_options() {
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="def_book_count">' . __("Default number of books displayed (used by the sidebar)", NRTD) . '</label></th>
+				<td>
+					<input type="text" name="def_book_count" id="def_book_count" style="width:4em;" value="' . ( intval($options['defBookCount']) ) . '" />
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row">' . __("Use <code>mod_rewrite</code> enhanced library?", NRTD) . '</th>
 				<td>
 					<input type="checkbox" name="use_mod_rewrite" id="use_mod_rewrite"' . ( ($options['useModRewrite']) ? ' checked="checked"' : '' ) . ' />

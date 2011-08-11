@@ -80,8 +80,11 @@ function get_books($query, $show_private = false) {
             break;
     }
 
-    if ( empty($num) )
-        $num = 5;
+    if (empty($num))
+    {
+		// The default number of books if unspecified.
+		$num = $options['defBookCount'];
+	}
 
     if ( $num > -1 && $offset >= 0 ) {
         $offset	= intval($offset);

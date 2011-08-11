@@ -118,20 +118,21 @@ class NowReadingReduxAdmin extends NowReadingRedux {
     function defaults () {
         $defaults = array (
                 'version'			=>	$this->version,
-                //'AWSAccessKeyId'		=>	null,
-                //'SecretAccessKey'		=>	null,
-                'formatDate'			=>	'jS F Y',
+                //'AWSAccessKeyId'	=>	null,
+                //'SecretAccessKey'	=>	null,
+                'formatDate'		=>	'jS F Y',
                 'associate'			=>	'amodcon-20',
-				'ignoreTime'		=> false,
+				'ignoreTime'		=>	false,
                 'debugMode'			=>	'false',
-                'useModRewrite'			=>	'true',
+                'useModRewrite'		=>	'true',
                 'proxyHost'			=>	null,
                 'proxyPort'			=>	null,
-                'booksPerPage'			=>	15,
-                'multiuserMode'                 =>	'true',
-                'imageSize'                     =>      'medium',
-                'httpLib'                       =>      'snoopy',
-                'permalinkBase'                 =>      'library/'
+                'booksPerPage'		=>	15,
+                'booksPerPage'		=>	5,
+                'multiuserMode'     =>	'true',
+                'imageSize'         =>  'medium',
+                'httpLib'           =>  'snoopy',
+                'permalinkBase'     =>  'library/'
         );
         return $defaults;
     }
