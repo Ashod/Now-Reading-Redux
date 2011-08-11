@@ -307,7 +307,7 @@ function average_books($time_period = 'week', $echo = true, $absolute = true)
 {
     global $wpdb;
 
-	if (!$absolute)
+	if ($absolute)
 	{
 		$books_per_day = $wpdb->get_var("
 		SELECT
