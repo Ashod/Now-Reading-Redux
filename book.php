@@ -164,7 +164,7 @@ function get_books( $query ) {
  * Fetches a single book with the given ID.
  * @param int $id The b_id of the book you want to fetch.
  */
-function get_book( $id ) {
+function get_book($id) {
     global $wpdb;
 
     $options = get_option('nowReadingOptions');
@@ -188,6 +188,58 @@ function get_book( $id ) {
     $book->finished = ( nr_empty_date($book->finished) )	? '' : $book->finished;
 
     return $book;
+}
+
+/**
+ * Returns a string to be used in a WHERE clause to
+ * select books based on a reader (or all) and visibility.
+ * @param int $userID Interested only in the given userID's books.
+ * @param bool show_private If true, will show all readers' private books!
+ */
+function get_reader_visibility_filter($userID = 0, $show_private = false)
+{
+	global $user_ID;
+
+	if (!$show_private)
+	{
+		// Show publics only.
+		$visibility = "b_visibility = 1";
+	}
+
+    if (!empty($userID))
+	{
+		// we're only interested in this reader.
+		$reader = "b_reader = '$userID'";
+
+		if (is_user_logged_in())
+		{
+			get_currentuserinfo();
+			if ($show_private || ($userID == $user_ID))
+			{
+				// Privates are shown, so don't filter them.
+				return $reader;
+			}
+		}
+    }
+	else
+	{
+		// No specific reader, see if there is a logged-user, then get her private
+		// books too, otherwise, get everyeone's publics.
+		if (is_user_logged_in())
+		{
+			get_currentuserinfo();
+
+			// Either it's the owner, or we get public books only.
+			return "(b_reader = '$user_ID' OR b_visibility = 1)";
+		}
+	}
+
+	if (!empty($reader) && !empty($visibility))
+	{
+		return $reader . ' AND ' . $visibility;
+	}
+
+	return !empty($reader) ? $reader : $visibility;
 }
 
 /**
