@@ -247,31 +247,37 @@ function print_book_stats($time_period = 'year')
 function total_books($status = '', $echo = true , $userID = 0) {
     global $wpdb;
 
-    get_currentuserinfo();
+	$reader = get_reader_visibility_filter($userID, false);
 
-    if ( $status ) {
-        if ( strpos($status, ',') === false ) {
+    if ($status)
+	{
+        if (strpos($status, ',') === false)
+		{
             $status = 'WHERE b_status = "' . $wpdb->escape($status) . '"';
-        } else {
+        }
+		else
+		{
             $statuses = explode(',', $status);
 
             $status = 'WHERE 1=0';
-            foreach ( (array) $statuses as $st ) {
+            foreach ( (array) $statuses as $st )
+			{
                 $status .= ' OR b_status = "' . $wpdb->escape(trim($st)) . '" ';
             }
         }
-        //counting only current user's books
-        if ($userID) { //there's no user whose ID is 0
-            $status .= ' AND b_reader = '.$userID;
-        }
-    } else {
-        if ($userID) {
-            $status = 'WHERE b_reader = '.$userID;
-        } else {
-            $status = '';
-        }
-    }
 
+		if (!empty($reader))
+		{
+			$status .= ' AND ' . $reader;
+		}
+	}
+	else
+	{
+		if (!empty($reader))
+		{
+			$status = ' WHERE ' . $reader;
+		}
+    }
 
     $num = $wpdb->get_var("
 	SELECT
@@ -281,8 +287,11 @@ function total_books($status = '', $echo = true , $userID = 0) {
         $status
         ");
 
-    if ( $echo )
-        echo "$num book".($num != 1 ? 's' : '');
+    if ($echo)
+    {
+		echo "$num book".($num != 1 ? 's' : '');
+	}
+
     return $num;
 }
 

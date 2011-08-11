@@ -12,9 +12,10 @@
  * $books = get_books('status=reading&orderby=started&order=asc&num=-1&reader=user');
  * </code>
  * @param string $query Query string containing restrictions on what to fetch. Valid variables: $num, $status, $orderby, $order, $search, $author, $title, $reader
+ * @param bool show_private If true, will show all readers' private books!
  * @return array Returns a numerically indexed array in which each element corresponds to a book.
  */
-function get_books( $query ) {
+function get_books($query, $show_private = false) {
 
     global $wpdb;
 
@@ -114,16 +115,14 @@ function get_books( $query ) {
         }
     }
 
-    if ( !empty($reader)) {
-        $reader = "AND b_reader = '$reader'";
-    }
+	$reader = get_reader_visibility_filter($reader, $show_private);
 
-    $books = $wpdb->get_results("
+    $query = "
 	SELECT
 		COUNT(*) AS count,
 		b_id AS id, b_title AS title, b_author AS author, b_image AS image, b_status AS status, b_nice_title AS nice_title, b_nice_author AS nice_author,
 		b_added AS added, b_started AS started, b_finished AS finished,
-		b_asin AS asin, b_rating AS rating, b_review AS review, b_post AS post, b_reader as reader
+		b_asin AS asin, b_rating AS rating, b_review AS review, b_post AS post, b_reader as reader, b_post_op as post_op
 	FROM
         {$wpdb->prefix}now_reading
 	LEFT JOIN {$wpdb->prefix}now_reading_meta
@@ -141,13 +140,15 @@ function get_books( $query ) {
         $title
         $tag
         $meta
+	AND
         $reader
 	GROUP BY
 		b_id
 	ORDER BY
         $orderby $order
         $limit
-        ");
+        ";
+	$books = $wpdb->get_results($query);
 
     $books = apply_filters('get_books', $books);
 
