@@ -1,9 +1,9 @@
 # Now Reading Redux #
-Contributors: Ashod  
-Tags: wordpress, books, widget, amazon  
+Contributors: ashodnakashian, bgunnink
+Tags: wordpress, books, widget, amazon
 Requires at least: 2.7.0  
-Tested up to: 3.1  
-Stable tag: 6.0.4.0
+Tested up to: 3.2
+Stable tag: 6.0.8.0
 
 Allows you to display the books you're reading, have read recently and plan to read, with cover art fetched automatically from Amazon.
 
@@ -13,12 +13,17 @@ Now Reading Redux is a resurrection of the [Now Reading Reloaded project by Ben 
 
 With it, you can manage a library of your current books, as well as historical and planned books.
 
+## Disclaimer ##
+
+Please backup your database before installing/upgrading. I try hard to make sure the releases are bug-free. However I can't perform extensive tests. If you find any bugs or have feature requests, please kindly report them at https://github.com/Ashod/Now-Reading-Redux/issues.
+
 ## Upgrade ##
 
 1. Just to be safe than sorry, backup your database.
-1. Delete any existing versions of `now-reading` or `now-reading-reloaded`.
+1. Deactivate or delete any existing versions of `now-reading` or `now-reading-reloaded`.
 1. Install `now-reading-redux` as described below.
-1. Your library will be restored as was previously.
+1. Activate `now-reading-redux`.
+1. Your database will be updated and library restored as was previously.
 
 ## Installation ##
 
@@ -31,6 +36,15 @@ With it, you can manage a library of your current books, as well as historical a
 For the original Now Reading Reloaded readme, please find see readme.old.
 
 ### Changelog ###
+
+#### 6.0.8.0 ####
+* New option to control the default number of books displayed. Primarily controls the sidebar book count.
+* The 'reading' and 'unread' lists are now shown in random order, the 'read' list is shown last read first.
+* 'View Full Library' is now hidden in the library page. Search button is centered.
+
+#### 6.0.6.0 ####
+* New option to set books as private. Private books are not shown to anyone but the owner. Note: admins may be able to view them!
+* Templates updated to improve utility.
 
 #### 6.0.4.0 ####
 * New option to ignore time in timestamps.
