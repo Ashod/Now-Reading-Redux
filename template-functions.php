@@ -707,15 +707,25 @@ function library_search_form( $echo = true ) {
     $html = '
 	<form method="get" action="' . search_url(0) . '">
 	';
-    if ( !$options['useModRewrite'] ) {
+
+	if (!$options['useModRewrite'])
+	{
         $html .= '<input type="hidden" name="now_reading_search" value="1" />';
     }
+
     $html .= '
-		<input type="text" name="q" /> <input type="submit" value="' . __("Search Library", NRTD) . '" />
+		<input type="text" name="q" />
+		<div align=center>
+		<input type="submit" value="' . __("Search Library", NRTD) . '" />
+		</div>
 	</form>
 	';
-    if ( $echo )
-        echo $html;
+
+	if ($echo)
+    {
+		echo $html;
+	}
+
     return $html;
 }
 
