@@ -599,21 +599,22 @@ function can_now_reading_admin() {
 
 /**
  * Returns true if the current book is owned by the current user
- * Used only in multiuser mode
+ * Meaningful only when a user is logged in.
+ * Works for both multi-user and single-user modes.
  */
-function is_my_book() {
-    global $book,$userdata;
-    $options = get_option('nowReadingOptions');
-    if ($options['multiuserMode']) {
+function is_my_book()
+{
+    global $book, $userdata;
+
+	if (is_user_logged_in())
+	{
         get_currentuserinfo();
-        if ($book->reader == $userdata->ID) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        return true; //always return true if not in multiuser mode
-    }
+        return $book->reader == $userdata->ID;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 /**
