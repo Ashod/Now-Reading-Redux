@@ -11,7 +11,8 @@
  * <code>
  * $books = get_books('status=reading&orderby=started&order=asc&num=-1&reader=user');
  * </code>
- * @param string $query Query string containing restrictions on what to fetch. Valid variables: $num, $status, $orderby, $order, $search, $author, $title, $reader
+ * @param string $query Query string containing restrictions on what to fetch.
+ * 		 	Valid variables: $num, $status, $orderby, $order, $search, $author, $title, $reader.
  * @param bool show_private If true, will show all readers' private books!
  * @return array Returns a numerically indexed array in which each element corresponds to a book.
  */

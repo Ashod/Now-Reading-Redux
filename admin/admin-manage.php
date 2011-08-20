@@ -433,20 +433,26 @@ function nr_manage() {
 				else
 					$orderby = urlencode($_GET['s']);
 
+				// Filter by Author.
+				if (empty($_GET['author']))
+					$author = '';
+				else
+					$author = "&author=" . urlencode($_GET['author']);
+
 				$perpage = $options['booksPerPage'];
 
 				$offset = ($page * $perpage) - $perpage;
 				$num = $perpage;
 				$pageq = "&num=$num&offset=$offset";
 
-				//depends on multiuser mode
+				// Depends on multiuser mode.
 				if ($options['multiuserMode']) {
 					$reader = "&reader=".$userdata->ID;
 				} else {
 					$reader = '';
 				}
 
-				$books = get_books("num=-1&status=all&orderby={$orderby}&order={$order}{$search}{$pageq}{$reader}"); //get only current reader's books -> &reader=$reader_id
+				$books = get_books("num=-1&status=all&orderby={$orderby}&order={$order}{$search}{$pageq}{$reader}{$author}");
 				$count = count($books);
 
 				$numpages = ceil(total_books(0, 0, $userdata->ID) / $perpage);
