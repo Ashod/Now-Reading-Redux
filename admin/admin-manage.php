@@ -520,17 +520,17 @@ function nr_manage() {
 
 				$i = 0;
 
-				if ( $order == 'asc' )
-					$new_order = 'desc';
-				else
+				if ( $order == 'desc' )
 					$new_order = 'asc';
+				else
+					$new_order = 'desc';
 
-				$title_sort_link = "{$nr_url->urls['manage']}&p=$page&s=book&o=$new_order";
-				$author_sort_link = "{$nr_url->urls['manage']}&p=$page&s=author&o=$new_order";
-				$added_sort_link = "{$nr_url->urls['manage']}&p=$page&s=added&o=$new_order";
-				$started_sort_link = "{$nr_url->urls['manage']}&p=$page&s=started&o=$new_order";
-				$finished_sort_link = "{$nr_url->urls['manage']}&p=$page&s=finished&o=$new_order";
-				$status_sort_link = "{$nr_url->urls['manage']}&p=$page&s=status&o=$new_order";
+				$title_sort_link = "{$nr_url->urls['manage']}&p=$page&s=book&o=$new_order$author";
+				$author_sort_link = "{$nr_url->urls['manage']}&p=$page&s=author&o=$new_order$author";
+				$added_sort_link = "{$nr_url->urls['manage']}&p=$page&s=added&o=$new_order$author";
+				$started_sort_link = "{$nr_url->urls['manage']}&p=$page&s=started&o=$new_order$author";
+				$finished_sort_link = "{$nr_url->urls['manage']}&p=$page&s=finished&o=$new_order$author";
+				$status_sort_link = "{$nr_url->urls['manage']}&p=$page&s=status&o=$new_order$author";
 
 				echo '
 					<table class="widefat post fixed" cellspacing="0">
@@ -587,7 +587,7 @@ function nr_manage() {
 							</td>
 
 							<td>
-								' . $book->author . '
+								<a href="' . $nr_url->urls['manage'] . '&amp;author=' . $book->author . '">' . $book->author . '</a>
 							</td>
 
 							<td>
