@@ -51,7 +51,7 @@ function nr_options() {
     echo '
 	<div class="wrap">
 
-		<h2>Now Reading</h2>
+		<h2>Now Reading Redux</h2>
 	';
 
     echo '

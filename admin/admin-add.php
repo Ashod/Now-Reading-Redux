@@ -46,7 +46,7 @@ if ( !function_exists('now_reading_add') ) {
         echo '
 		<div class="wrap">
 
-			<h2>Now Reading</h2>
+			<h2>Now Reading Redux</h2>
 		';
 
         if (  !empty($_POST['u_isbn']) || !empty($_POST['u_author']) || !empty($_POST['u_title']) ) {
