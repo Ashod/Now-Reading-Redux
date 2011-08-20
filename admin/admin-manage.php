@@ -11,21 +11,20 @@ function nr_manage() {
 
     global $wpdb, $nr_statuses, $nr_post_options, $userdata;
 
-    $options = get_option('nowReadingOptions');
     get_currentuserinfo();
-
-    $list = true;
 
     $_POST = stripslashes_deep($_POST);
 
     $options = get_option('nowReadingOptions');
 
-    if( !$nr_url ) {
+    if (!$nr_url)
+	{
         $nr_url = new nr_url();
         $nr_url->load_scheme($options['menuLayout']);
     }
 
-    if ( !empty($_GET['updated']) ) {
+    if (!empty($_GET['updated']))
+	{
         $updated = intval($_GET['updated']);
 
         if ( $updated == 1 )
@@ -40,10 +39,11 @@ function nr_manage() {
 		';
     }
 
-    if ( !empty($_GET['deleted']) ) {
+    if (!empty($_GET['deleted']))
+	{
         $deleted = intval($_GET['deleted']);
 
-        if ( $deleted == 1 )
+        if ($deleted == 1)
             $deleted .= ' book';
         else
             $deleted .= ' books';
@@ -65,9 +65,12 @@ function nr_manage() {
 		$dateTimeFormat = 'Y-m-d';
 	}
 
-    switch ( $action ) {
+    switch ($action)
+	{
+		// Edit Book.
         case 'editsingle':
-            $id = intval($_GET['id']);
+        {
+			$id = intval($_GET['id']);
             $existing = get_book($id);
             $meta = get_book_meta($existing->id);
             $tags = join(get_book_tags($existing->id), ',');
@@ -395,238 +398,241 @@ function nr_manage() {
 
 
 			';
-            $list = false;
-            break;
-    }
+		}
+		break;
 
-    if ( $list ) {
-    //depends on multiusermode (B. Spyckerelle)
-        if ($options['multiuserMode']) {
-            $count = total_books(0, 0, $userdata->ID); //counting only current users books
-        } else {
-            $count = total_books(0, 0); //counting all books
-        }
-
-
-        if ( $count ) {
-            if ( !empty($_GET['q']) )
-                $search = '&search=' . urlencode($_GET['q']);
-            else
-                $search = '';
-
-            if ( empty($_GET['p']) )
-                $page = 1;
-            else
-                $page = intval($_GET['p']);
-
-            if ( empty($_GET['o']) )
-                $order = 'desc';
-            else
-                $order = urlencode($_GET['o']);
-
-			if ( empty($_GET['s']) )
-                $orderby = 'started';
-            else
-                $orderby = urlencode($_GET['s']);
-
-            $perpage = $options['booksPerPage'];
-
-            $offset = ($page * $perpage) - $perpage;
-            $num = $perpage;
-            $pageq = "&num=$num&offset=$offset";
-
-            //depends on multiuser mode
-            if ($options['multiuserMode']) {
-                $reader = "&reader=".$userdata->ID;
-            } else {
-                $reader = '';
-            }
-
-            $books = get_books("num=-1&status=all&orderby={$orderby}&order={$order}{$search}{$pageq}{$reader}"); //get only current reader's books -> &reader=$reader_id
-            $count = count($books);
-
-            $numpages = ceil(total_books(0, 0, $userdata->ID) / $perpage);
-
-            $pages = '<span class="displaying-num">' . __("Pages", NRTD) . '</span>';
-
-            if ( $page > 1 ) {
-                $previous = $page - 1;
-                $pages .= " <a class='page-numbers prev' href='{$nr_url->urls['manage']}&p=$previous&s=$orderby&o=$order'>&laquo;</a>";
-            }
-
-            for ( $i = 1; $i <= $numpages; $i++) {
-                if ( $page == $i )
-                    $pages .= "<span class='page-numbers current'>$i</span>";
-                else
-                    $pages .= " <a class='page-numbers' href='{$nr_url->urls['manage']}&p=$i&s=$orderby&o=$order'>$i</a>";
-            }
-
-            if ( $numpages > $page ) {
-                $next = $page + 1;
-                $pages .= " <a class='page-numbers next' href='{$nr_url->urls['manage']}&p=$next&s=$orderby&o=$order'>&raquo;</a>";
-            }
-
-            echo '
-			<div class="wrap">
-
-				<h2>Now Reading</h2>
-
-					<form method="get" action="" onsubmit="location.href += \'&q=\' + document.getElementById(\'q\').value; return false;">
-						<p class="search-box"><label class="hidden" for="q">' . __("Search Books", NRTD) . ':</label> <input type="text" name="q" id="q" value="' . htmlentities($_GET['q']) . '" /> <input class="button" type="submit" value="' . __('Search Books', NRTD) . '" /></p>
-					</form>
-
-						<ul>
-			';
-            if ( !empty($_GET['q']) ) {
-                echo '
-							<li><a href="' . $nr_url->urls['manage'] . '">' . __('Show all books', NRTD) . '</a></li>
-				';
-            }
-            echo '
-							<li><a href="' . library_url(0) . '">' . __('View library', NRTD) . '</a></li>
-						</ul>
-
-					<div class="tablenav">
-						<div class="tablenav-pages">
-							' . $pages . '
-						</div>
-					</div>
+		// Book Manager.
+		default:
+		{
+			//depends on multiusermode (B. Spyckerelle)
+			if ($options['multiuserMode']) {
+				$count = total_books(0, 0, $userdata->ID); //counting only current users books
+			} else {
+				$count = total_books(0, 0); //counting all books
+			}
 
 
-				<br style="clear:both;" />
+			if ( $count ) {
+				if ( !empty($_GET['q']) )
+					$search = '&search=' . urlencode($_GET['q']);
+				else
+					$search = '';
 
-				<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php">
-			';
+				if ( empty($_GET['p']) )
+					$page = 1;
+				else
+					$page = intval($_GET['p']);
 
-            if ( function_exists('wp_nonce_field') )
-                wp_nonce_field('now-reading-edit');
-            if ( function_exists('wp_referer_field') )
-                wp_referer_field();
+				if ( empty($_GET['o']) )
+					$order = 'desc';
+				else
+					$order = urlencode($_GET['o']);
 
-            echo '
-				<input type="hidden" name="action" value="update" />
-				<input type="hidden" name="count" value="' . $count . '" />
-			';
+				if ( empty($_GET['s']) )
+					$orderby = 'started';
+				else
+					$orderby = urlencode($_GET['s']);
 
-            $i = 0;
+				$perpage = $options['booksPerPage'];
 
-			if ( $order == 'asc' )
-				$new_order = 'desc';
-			else
-				$new_order = 'asc';
+				$offset = ($page * $perpage) - $perpage;
+				$num = $perpage;
+				$pageq = "&num=$num&offset=$offset";
 
-			$book_link = "{$nr_url->urls['manage']}&p=$page&s=book&o=$new_order";
-			$author_link = "{$nr_url->urls['manage']}&p=$page&s=author&o=$new_order";
-			$added_link = "{$nr_url->urls['manage']}&p=$page&s=added&o=$new_order";
-			$started_link = "{$nr_url->urls['manage']}&p=$page&s=started&o=$new_order";
-			$finished_link = "{$nr_url->urls['manage']}&p=$page&s=finished&o=$new_order";
-			$status_link = "{$nr_url->urls['manage']}&p=$page&s=status&o=$new_order";
+				//depends on multiuser mode
+				if ($options['multiuserMode']) {
+					$reader = "&reader=".$userdata->ID;
+				} else {
+					$reader = '';
+				}
 
-            echo '
-				<table class="widefat post fixed" cellspacing="0">
-					<thead>
-						<tr>
-							<th></th>
-							<th class="manage-column column-title"><a class="manage_books" href="'. $book_link .'">Book</a></th>
-							<th class="manage-column column-author"><a class="manage_books" href="'. $author_link .'">Author</a></th>
-							<th><a class="manage_books" href="'. $status_link .'">Status</a></th>
-							<th><a class="manage_books" href="'. $started_link .'">Started</a></th>
-							<th><a class="manage_books" href="'. $finished_link .'">Finished</a></th>';
+				$books = get_books("num=-1&status=all&orderby={$orderby}&order={$order}{$search}{$pageq}{$reader}"); //get only current reader's books -> &reader=$reader_id
+				$count = count($books);
 
-			if (!$options['hideAddedDate'])
-			{
+				$numpages = ceil(total_books(0, 0, $userdata->ID) / $perpage);
+
+				$pages = '<span class="displaying-num">' . __("Pages", NRTD) . '</span>';
+
+				if ( $page > 1 ) {
+					$previous = $page - 1;
+					$pages .= " <a class='page-numbers prev' href='{$nr_url->urls['manage']}&p=$previous&s=$orderby&o=$order'>&laquo;</a>";
+				}
+
+				for ( $i = 1; $i <= $numpages; $i++) {
+					if ( $page == $i )
+						$pages .= "<span class='page-numbers current'>$i</span>";
+					else
+						$pages .= " <a class='page-numbers' href='{$nr_url->urls['manage']}&p=$i&s=$orderby&o=$order'>$i</a>";
+				}
+
+				if ( $numpages > $page ) {
+					$next = $page + 1;
+					$pages .= " <a class='page-numbers next' href='{$nr_url->urls['manage']}&p=$next&s=$orderby&o=$order'>&raquo;</a>";
+				}
+
 				echo '
-							<th><a class="manage_books" href="'. $added_link .'">Added</a></th>';
+				<div class="wrap">
+
+					<h2>Now Reading</h2>
+
+						<form method="get" action="" onsubmit="location.href += \'&q=\' + document.getElementById(\'q\').value; return false;">
+							<p class="search-box"><label class="hidden" for="q">' . __("Search Books", NRTD) . ':</label> <input type="text" name="q" id="q" value="' . htmlentities($_GET['q']) . '" /> <input class="button" type="submit" value="' . __('Search Books', NRTD) . '" /></p>
+						</form>
+
+							<ul>
+				';
+				if ( !empty($_GET['q']) ) {
+					echo '
+								<li><a href="' . $nr_url->urls['manage'] . '">' . __('Show all books', NRTD) . '</a></li>
+					';
+				}
+				echo '
+								<li><a href="' . library_url(0) . '">' . __('View library', NRTD) . '</a></li>
+							</ul>
+
+						<div class="tablenav">
+							<div class="tablenav-pages">
+								' . $pages . '
+							</div>
+						</div>
+
+
+					<br style="clear:both;" />
+
+					<form method="post" action="' . get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php">
+				';
+
+				if ( function_exists('wp_nonce_field') )
+					wp_nonce_field('now-reading-edit');
+				if ( function_exists('wp_referer_field') )
+					wp_referer_field();
+
+				echo '
+					<input type="hidden" name="action" value="update" />
+					<input type="hidden" name="count" value="' . $count . '" />
+				';
+
+				$i = 0;
+
+				if ( $order == 'asc' )
+					$new_order = 'desc';
+				else
+					$new_order = 'asc';
+
+				$title_sort_link = "{$nr_url->urls['manage']}&p=$page&s=book&o=$new_order";
+				$author_sort_link = "{$nr_url->urls['manage']}&p=$page&s=author&o=$new_order";
+				$added_sort_link = "{$nr_url->urls['manage']}&p=$page&s=added&o=$new_order";
+				$started_sort_link = "{$nr_url->urls['manage']}&p=$page&s=started&o=$new_order";
+				$finished_sort_link = "{$nr_url->urls['manage']}&p=$page&s=finished&o=$new_order";
+				$status_sort_link = "{$nr_url->urls['manage']}&p=$page&s=status&o=$new_order";
+
+				echo '
+					<table class="widefat post fixed" cellspacing="0">
+						<thead>
+							<tr>
+								<th></th>
+								<th class="manage-column column-title"><a class="manage_books" href="'. $title_sort_link .'">Book</a></th>
+								<th class="manage-column column-author"><a class="manage_books" href="'. $author_sort_link .'">Author</a></th>
+								<th><a class="manage_books" href="'. $status_sort_link .'">Status</a></th>
+								<th><a class="manage_books" href="'. $started_sort_link .'">Started</a></th>
+								<th><a class="manage_books" href="'. $finished_sort_link .'">Finished</a></th>';
+
+				if (!$options['hideAddedDate'])
+				{
+					echo '
+								<th><a class="manage_books" href="'. $added_sort_link .'">Added</a></th>';
+				}
+
+				echo '
+							</tr>
+						</thead>
+						<tbody>
+				';
+
+				foreach ((array)$books as $book)
+				{
+
+					$meta = get_book_meta($book->id);
+					$tags = join(get_book_tags($book->id), ',');
+
+					$alt = ( $i % 2 == 0 ) ? ' alternate' : '';
+
+					$delete = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php?action=delete&id=' . $book->id;
+					$delete = wp_nonce_url($delete, 'now-reading-delete-book_' .$book->id);
+
+
+					echo '
+						<tr class="manage-book' . $alt . '">
+
+							<input type="hidden" name="id[]" value="' . $book->id . '" />
+							<input type="hidden" name="title[]" value="' . $book->title . '" />
+							<input type="hidden" name="author[]" value="' . $book->author . '" />
+
+							<td>
+								<img style="max-width:100px;" id="book-image-' . $i . '" class="small" alt="' . __('Book Cover', NRTD) . '" src="' . $book->image . '" />
+							</td>
+
+							<td class="post-title column-title">
+								<strong>' . stripslashes($book->title) . '</strong>
+								<div class="row-actions">
+									<a href="' . book_permalink(0, $book->id) . '">' . __('View', NRTD) . '</a> |
+										<a href="' . $nr_url->urls['manage'] . '&amp;action=editsingle&amp;id=' . $book->id . '">' . __('Edit', NRTD) . '</a> | <a href="' . $delete . '" onclick="return confirm(\'' . __("Are you sure you wish to delete this book permanently?", NRTD) . '\')">' . __("Delete", NRTD) . '</a>
+								</div>
+							</td>
+
+							<td>
+								' . $book->author . '
+							</td>
+
+							<td>
+								' . $book->status . '
+							</td>
+
+							<td>
+							' . ( ( nr_empty_date($book->started) ) ? '' : date($dateTimeFormat, strtotime($book->started)) ) . '
+							</td>
+
+							<td>
+							' .( ( nr_empty_date($book->finished) ) ? '' : date($dateTimeFormat, strtotime($book->finished)) ) . '
+							</td>';
+
+						if (!$options['hideAddedDate'])
+						{
+							echo '
+							<td>
+							' . ( ( nr_empty_date($book->added) ) ? '' : date($dateTimeFormat, strtotime($book->added)) ) . '
+							</td>';
+						}
+
+					echo '
+						</tr>
+					';
+
+					$i++;
+
+				}
+
+				echo '
+					</tbody>
+					</table>
+
+					</form>
+				';
+
+			} else {
+				echo '
+				<div class="wrap">
+					<h2>' . __("Manage Books", NRTD) . '</h2>
+					<p>' . sprintf(__("No books to display. To add some books, head over <a href='%s'>here</a>.", NRTD), $nr_url->urls['add']) . '</p>
+				</div>
+				';
 			}
 
 			echo '
-						</tr>
-					</thead>
-					<tbody>
-			';
-
-            foreach ( (array) $books as $book ) {
-
-                $meta = get_book_meta($book->id);
-                $tags = join(get_book_tags($book->id), ',');
-
-                $alt = ( $i % 2 == 0 ) ? ' alternate' : '';
-
-                $delete = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/admin/edit.php?action=delete&id=' . $book->id;
-				$delete = wp_nonce_url($delete, 'now-reading-delete-book_' .$book->id);
-
-
-                echo '
-					<tr class="manage-book' . $alt . '">
-
-						<input type="hidden" name="id[]" value="' . $book->id . '" />
-						<input type="hidden" name="title[]" value="' . $book->title . '" />
-						<input type="hidden" name="author[]" value="' . $book->author . '" />
-
-						<td>
-							<img style="max-width:100px;" id="book-image-' . $i . '" class="small" alt="' . __('Book Cover', NRTD) . '" src="' . $book->image . '" />
-						</td>
-
-						<td class="post-title column-title">
-							<strong>' . stripslashes($book->title) . '</strong>
-							<div class="row-actions">
-								<a href="' . book_permalink(0, $book->id) . '">' . __('View', NRTD) . '</a> |
-									<a href="' . $nr_url->urls['manage'] . '&amp;action=editsingle&amp;id=' . $book->id . '">' . __('Edit', NRTD) . '</a> | <a href="' . $delete . '" onclick="return confirm(\'' . __("Are you sure you wish to delete this book permanently?", NRTD) . '\')">' . __("Delete", NRTD) . '</a>
-							</div>
-						</td>
-
-						<td>
-							' . $book->author . '
-						</td>
-
-						<td>
-							' . $book->status . '
-						</td>
-
-						<td>
-						' . ( ( nr_empty_date($book->started) ) ? '' : date($dateTimeFormat, strtotime($book->started)) ) . '
-						</td>
-
-						<td>
-						' .( ( nr_empty_date($book->finished) ) ? '' : date($dateTimeFormat, strtotime($book->finished)) ) . '
-						</td>';
-
-					if (!$options['hideAddedDate'])
-					{
-						echo '
-						<td>
-						' . ( ( nr_empty_date($book->added) ) ? '' : date($dateTimeFormat, strtotime($book->added)) ) . '
-						</td>';
-					}
-
-				echo '
-					</tr>
-				';
-
-                $i++;
-
-            }
-
-            echo '
-				</tbody>
-				</table>
-
-				</form>
-			';
-
-        } else {
-            echo '
-			<div class="wrap">
-				<h2>' . __("Manage Books", NRTD) . '</h2>
-				<p>' . sprintf(__("No books to display. To add some books, head over <a href='%s'>here</a>.", NRTD), $nr_url->urls['add']) . '</p>
 			</div>
 			';
-        }
-
-        echo '
-		</div>
-		';
+		}
+		break;
     }
 }
-
 ?>
