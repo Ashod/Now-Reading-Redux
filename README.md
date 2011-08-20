@@ -5,7 +5,7 @@ Requires at least: 2.7.0
 Tested up to: 3.2
 Stable tag: 6.0.8.0
 
-Allows you to display the books you're reading, have read recently and plan to read, with cover art fetched automatically from Amazon.
+Allows you to track and share the books read, in progress and a wishlist of future books to read, with cover art fetched automatically from Amazon.
 
 ## Description ##
 
@@ -20,7 +20,7 @@ Please backup your database before installing/upgrading. I try hard to make sure
 ## Upgrade ##
 
 1. Just to be safe than sorry, backup your database.
-1. Deactivate or delete any existing versions of `now-reading` or `now-reading-reloaded`.
+1. Deactivate any existing versions of `now-reading` or `now-reading-reloaded`.
 1. Install `now-reading-redux` as described below.
 1. Activate `now-reading-redux`.
 1. Your database will be updated and library restored as was previously.

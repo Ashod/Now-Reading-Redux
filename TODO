@@ -3,11 +3,14 @@
 * Show the library by year/month.
 * Show library by category/tag.
 * Replace book page by post.
-* Combobox to see books by Status in the management page.
-* Choose what to show in the Widget.
-* Public/Private visibility.
-* Rate.
 * Filter by Read/Reading/OnHold in the manager.
+* Choose what to show in the Widget.
+* Rate.
+* Progress info per Book.
+* Icons for Book status.
+* Hide added dates.
+
+- Public/Private visibility.
 
 Performance:
 
