@@ -50,7 +50,7 @@ function nr_options() {
 
     echo '
 	<div class="wrap">
-			
+
 		<h2>Now Reading</h2>
 	';
 
@@ -127,7 +127,7 @@ function nr_options() {
     }
 
     echo '
-				
+
 					</select>
 					<p>
 					' . __("If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag, you can specify which country-specific Amazon site to link to. Now Reading will also use this domain when searching.", NRTD) . '
@@ -239,15 +239,15 @@ function nr_options() {
 				</td>
 			</tr>
 		</table>
-		
+
 		<input type="hidden" name="update" value="yes" />
-		
+
 		<p class="submit">
 			<input type="submit" value="' . __("Update Options", NRTD) . '" />
 		</p>
-		
+
 		</form>
-		
+
 	</div>
 	';
 

@@ -59,7 +59,7 @@ if ( !empty($_POST['update']) ) {
     } else {
         $options['httpLib'] = 'snoopy';
     }
-    
+
     update_option('nowReadingOptions', $options);
 
     global $wp_rewrite;
