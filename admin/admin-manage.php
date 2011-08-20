@@ -439,6 +439,12 @@ function nr_manage() {
 				else
 					$author = "&author=" . urlencode($_GET['author']);
 
+				// Filter by Status.
+				if (empty($_GET['status']))
+					$status = '';
+				else
+					$status = "&status=" . urlencode($_GET['status']);
+
 				$perpage = $options['booksPerPage'];
 
 				$offset = ($page * $perpage) - $perpage;
@@ -452,7 +458,7 @@ function nr_manage() {
 					$reader = '';
 				}
 
-				$books = get_books("num=-1&status=all&orderby={$orderby}&order={$order}{$search}{$pageq}{$reader}{$author}");
+				$books = get_books("num=-1&status=all&orderby={$orderby}&order={$order}{$search}{$pageq}{$reader}{$author}{$status}");
 				$count = count($books);
 
 				$numpages = ceil(total_books(0, 0, $userdata->ID) / $perpage);
@@ -591,7 +597,7 @@ function nr_manage() {
 							</td>
 
 							<td>
-								' . $book->status . '
+								<a href="' . $nr_url->urls['manage'] . '&amp;status=' . $book->status . '">' . $book->status . '</a>
 							</td>
 
 							<td>
