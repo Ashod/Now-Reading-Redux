@@ -10,7 +10,7 @@ Author URI: http://ashodnakashian.com
 
 define('NOW_READING_VERSION', '6.0.8.0');
 define('NOW_READING_DB', 57);
-define('NOW_READING_OPTIONS', 12);
+define('NOW_READING_OPTIONS', 13);
 define('NOW_READING_REWRITE', 9);
 
 define('NRTD', 'now-reading');
@@ -187,6 +187,7 @@ function nr_install() {
     $defaultOptions = array(
         'formatDate'	=> 'jS F Y',
 		'ignoreTime'	=> false,
+		'hideAddedDate'		=>	false,
         'associate'		=> 'amodcon-20',
         'domain'		=> '.com',
         'imageSize'		=> 'Medium',

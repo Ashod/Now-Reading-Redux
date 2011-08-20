@@ -8,9 +8,11 @@
 * Rate.
 * Progress info per Book.
 * Icons for Book status.
-* Hide added dates.
+* Use calendar UI for dates.
+* Link authors in the Manager page to filter by that author only.
 
 - Public/Private visibility.
+- Hide added dates.
 
 Performance:
 

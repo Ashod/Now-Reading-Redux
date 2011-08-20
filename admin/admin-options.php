@@ -100,6 +100,15 @@ function nr_options() {
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row">' . __('Hide Added Date', NRTD) . '</th>
+				<td>
+					<input type="checkbox" name="hide_added_date" id="hide_added_date"' . ( ($options['hideAddedDate']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("When checked <code>added</code> date will be hidden in the Manager and Book pages", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row">' . __('Your Amazon Associates ID', NRTD) . ':</th>
 				<td>
 					<input type="text" name="associate" value="' . htmlentities($options['associate'], ENT_QUOTES, "UTF-8") . '" />

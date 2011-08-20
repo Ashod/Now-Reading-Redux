@@ -192,23 +192,24 @@ function nr_manage() {
 					</td>
 				</tr>';
 
-			$added = ( nr_empty_date($existing->added) ) ? '' : date($dateTimeFormat, strtotime($existing->added));
-			$started = ( nr_empty_date($existing->started) ) ? '' : date($dateTimeFormat, strtotime($existing->started));
-			$finished = ( nr_empty_date($existing->finished) ) ? '' : date($dateTimeFormat, strtotime($existing->finished));
-
 			// Added Date.
-            echo '
-				<tr class="form-field">
-					<th valign="top" scope="row">
-						<label for="added[]">' . __("Added", NRTD) . '</label>
-					</th>
-					<td>
-						<input type="text" id="added-0" name="added[]" value="' . htmlentities($added, ENT_QUOTES, "UTF-8") . '" />
-					</td>
-				</tr>
-				';
+			if (!$options['hideAddedDate'])
+			{
+				$added = ( nr_empty_date($existing->added) ) ? '' : date($dateTimeFormat, strtotime($existing->added));
+				echo '
+					<tr class="form-field">
+						<th valign="top" scope="row">
+							<label for="added[]">' . __("Added", NRTD) . '</label>
+						</th>
+						<td>
+							<input type="text" id="added-0" name="added[]" value="' . htmlentities($added, ENT_QUOTES, "UTF-8") . '" />
+						</td>
+					</tr>
+					';
+			}
 
 			// Started Reading Date.
+			$started = ( nr_empty_date($existing->started) ) ? '' : date($dateTimeFormat, strtotime($existing->started));
             echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
@@ -222,6 +223,7 @@ function nr_manage() {
 				';
 
 			// Finished Reading Date.
+			$finished = ( nr_empty_date($existing->finished) ) ? '' : date($dateTimeFormat, strtotime($existing->finished));
             echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
@@ -529,8 +531,15 @@ function nr_manage() {
 							<th class="manage-column column-author"><a class="manage_books" href="'. $author_link .'">Author</a></th>
 							<th><a class="manage_books" href="'. $status_link .'">Status</a></th>
 							<th><a class="manage_books" href="'. $started_link .'">Started</a></th>
-							<th><a class="manage_books" href="'. $finished_link .'">Finished</a></th>
-							<th><a class="manage_books" href="'. $added_link .'">Added</a></th>
+							<th><a class="manage_books" href="'. $finished_link .'">Finished</a></th>';
+
+			if (!$options['hideAddedDate'])
+			{
+				echo '
+							<th><a class="manage_books" href="'. $added_link .'">Added</a></th>';
+			}
+
+			echo '
 						</tr>
 					</thead>
 					<tbody>
@@ -580,11 +589,17 @@ function nr_manage() {
 
 						<td>
 						' .( ( nr_empty_date($book->finished) ) ? '' : date($dateTimeFormat, strtotime($book->finished)) ) . '
-						</td>
+						</td>';
 
+					if (!$options['hideAddedDate'])
+					{
+						echo '
 						<td>
 						' . ( ( nr_empty_date($book->added) ) ? '' : date($dateTimeFormat, strtotime($book->added)) ) . '
-						</td>
+						</td>';
+					}
+
+				echo '
 					</tr>
 				';
 

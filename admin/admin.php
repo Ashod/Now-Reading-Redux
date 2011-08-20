@@ -1,8 +1,8 @@
 <?php
 /**
- * NowReadingRedux class for admin actions
+ * NowReadingRedux class for admin actions.
  *
- * This class contains all functions and actions required for Now Reading Redux to work in the admin of WordPress
+ * This class contains all functions and actions required for Now Reading Redux to work in the admin of WordPress.
  *
  * @package now-reading-redux
  * @subpackage admin
@@ -123,6 +123,7 @@ class NowReadingReduxAdmin extends NowReadingRedux {
                 'formatDate'		=>	'jS F Y',
                 'associate'			=>	'amodcon-20',
 				'ignoreTime'		=>	false,
+				'hideAddedDate'		=>	false,
                 'debugMode'			=>	'false',
                 'useModRewrite'		=>	'true',
                 'proxyHost'			=>	null,
