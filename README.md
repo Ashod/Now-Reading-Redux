@@ -1,15 +1,12 @@
 # Now Reading Redux #
-Contributors: ashodnakashian, bgunnink
-
-Tags: wordpress, books, widget, amazon
-
-Requires at least: 2.7.0  
-
-Tested up to: 3.2
-
-Stable tag: 6.0.9.0
 
 Allows you to track and share the books read, in progress and a wishlist of future books to read, with cover art fetched automatically from Amazon.
+
+ Contributors: ashodnakashian, bgunnink
+ Tags: wordpress, books, widget, amazon
+ Requires at least: 2.7.0
+ Tested up to: 3.2
+ Stable tag: 6.0.9.0
 
 ## Description ##
 
