@@ -3,16 +3,16 @@
 * Show the library by year/month.
 * Show library by category/tag.
 * Replace book page by post.
-* Filter by Read/Reading/OnHold in the manager.
 * Choose what to show in the Widget.
 * Rate.
 * Progress info per Book.
 * Icons for Book status.
 * Use calendar UI for dates.
-* Link authors in the Manager page to filter by that author only.
 
 - Public/Private visibility.
 - Hide added dates.
+- Link authors in the Manager page to filter by that author only.
+- Filter by Read/Reading/OnHold in the manager.
 
 Performance:
 
