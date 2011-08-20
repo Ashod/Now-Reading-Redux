@@ -446,7 +446,6 @@ function nr_manage() {
 					$status = "&status=" . urlencode($_GET['status']);
 
 				$perpage = $options['booksPerPage'];
-
 				$offset = ($page * $perpage) - $perpage;
 				$num = $perpage;
 				$pageq = "&num=$num&offset=$offset";
@@ -485,7 +484,7 @@ function nr_manage() {
 				echo '
 				<div class="wrap">
 
-					<h2>Now Reading</h2>
+					<h2>Now Reading Redux</h2>
 
 						<form method="get" action="" onsubmit="location.href += \'&q=\' + document.getElementById(\'q\').value; return false;">
 							<p class="search-box"><label class="hidden" for="q">' . __("Search Books", NRTD) . ':</label> <input type="text" name="q" id="q" value="' . htmlentities($_GET['q']) . '" /> <input class="button" type="submit" value="' . __('Search Books', NRTD) . '" /></p>
@@ -493,11 +492,13 @@ function nr_manage() {
 
 							<ul>
 				';
-				if ( !empty($_GET['q']) ) {
+				if (!empty($_GET['q']) || !empty($_GET['author']) || !empty($_GET['status']))
+				{
 					echo '
 								<li><a href="' . $nr_url->urls['manage'] . '">' . __('Show all books', NRTD) . '</a></li>
 					';
 				}
+
 				echo '
 								<li><a href="' . library_url(0) . '">' . __('View library', NRTD) . '</a></li>
 							</ul>
