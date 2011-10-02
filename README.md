@@ -1,13 +1,13 @@
 # Now Reading Redux #
 
-Contributors: ashodnakashian, bgunnink
+Contributors: ashodnakashian
 Donate link:
 Tags: wordpress, books, widget, amazon
 Requires at least: 2.7.0
 Tested up to: 3.2
 Stable tag: trunk
 
-Allows you to track and share the books read, in progress and a wishlist of future books to read, with cover art fetched automatically from Amazon.
+Allows you to track and share books you read, are reading and a wishlist of future books to read, with cover art fetched automatically from Amazon.
 
 ## Description ##
 
@@ -19,11 +19,9 @@ The home of Now Reading Redux is [blog.ashodnakashian.com/projects/now-reading-r
 
 For issues and complaints and for development source code, please go to [github.com/Ashod/Now-Reading-Redux] (https://github.com/Ashod/Now-Reading-Redux "Git repository").
 
-### Disclaimer ###
+## Installation ##
 
 Please backup your database before installing/upgrading. I try hard to make sure the releases are bug-free. However I can't perform extensive tests. If you find any bugs or have feature requests, please kindly report them at https://github.com/Ashod/Now-Reading-Redux/issues.
-
-## Installation ##
 
 1. Upload `now-reading-redux` to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
@@ -38,6 +36,10 @@ Please backup your database before installing/upgrading. I try hard to make sure
 1. Your database will be updated and library restored as was previously.
 
 ## Frequently Asked Questions ##
+
+### Can I upgrade from Now Reading or Now Reading Reloaded? How? ###
+
+Please read the Upgrade section under Installation.
 
 ### Where is the old changelog? ###
 
@@ -82,6 +84,5 @@ Please find the original Now Reading Relaoded readme with the changelog in the r
 
 ### Upgrade Notice ###
 
-#### 6.0.9.0 ####
-New options and features.
+Please read the changelog for reasons to upgrade.
 
