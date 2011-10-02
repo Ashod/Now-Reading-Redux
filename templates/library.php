@@ -4,6 +4,8 @@
 
 	<div id="content" class="now-reading primary narrowcolumn">
 
+	<?php print_book_stats() ?>
+
 	<div class="post">
 
 		<?php if( can_now_reading_admin() ) : ?>
