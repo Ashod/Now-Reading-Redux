@@ -1,10 +1,10 @@
+<?php wp_enqueue_script("jquery"); ?>
+
 <?php get_header() ?>
 
 <div class="content">
 
 	<div id="content" class="now-reading primary narrowcolumn">
-
-	<?php print_book_stats() ?>
 
 	<div class="post">
 
