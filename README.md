@@ -15,7 +15,7 @@ Now Reading Redux is a resurrection of the [Now Reading Reloaded project by Ben 
 
 With NRR, you can manage a library of your current books, as well as historical and planned books.
 
-NRR depends on jQuery and assumes it already loaded by WP or your theme. Please use a sufficiently recent version, say 1.4 or newer, preferably the latest. The graph is generated using TufteGraph (http://xaviershay.github.com/tufte-graph/ "TufteGraph") which depends on [Raphaël] (http://raphaeljs.com/ "Raphaël"). All necessary files are included, no additional libraries necessary (beyond jQuery).
+NRR depends on jQuery and assumes it already loaded by WP or your theme. Please use a sufficiently recent version, say 1.4 or newer, preferably the latest. The graph is generated using [TufteGraph] (http://xaviershay.github.com/tufte-graph/ "TufteGraph") which depends on [Raphaël] (http://raphaeljs.com/ "Raphaël"). All necessary files are included, no additional libraries necessary (beyond jQuery).
 
 The home of Now Reading Redux is [blog.ashodnakashian.com/projects/now-reading-redux/] (http://blog.ashodnakashian.com/projects/now-reading-redux/ "Now Reading Redux"). You may find news and leave comments and requests there.
 
@@ -58,7 +58,7 @@ Please find the original Now Reading Relaoded readme with the changelog in the r
 
 ### Changelog ###
 
-= 6.1.0.0 =
+### 6.1.0.0 ###
 * New feature: Reading statistics and graph shown in the library page by calling print_book_stats(). Uses TafteGraph/Raphaël.
 * Updated and included Suffusion NRR templates.
 
