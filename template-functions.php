@@ -225,7 +225,7 @@ function books_read_since( $interval, $echo = true ) {
  * Prints book reading statistics.
  * @param string $time_period The period to measure average over, eg "year", "month".
  */
-function print_book_stats($time_period = 'year')
+function print_book_average($time_period = 'year')
 {
 	echo "There are ";
 	total_books(0);
@@ -236,6 +236,84 @@ function print_book_stats($time_period = 'year')
 	echo " read in the last month. That's ";
 	average_books($time_period, true, false);
 	echo ".";
+}
+
+/**
+ * Prints book reading statistics per month.
+ * @param int $duration_months The duration of the stats in number of months.
+ * @param int $bar_width The width of the graph bars. Overriden by graph_width, if specified.
+ * @param int $graph_height The height of the graph in pixels.
+ * @param int $graph_width The width of the graph in pixels. <0 to calculate based on duration_months * default bar width.
+ * @param bool $print_average Whether or not to print average books read per year.
+ */
+function print_book_stats($duration_months = 12, $bar_width = 40, $graph_height = 150, $graph_width = -1, $div_id = 'book_stats_graph', $print_average = true)
+{
+    global $wpdb;
+
+	if ($graph_width < 0)
+	{
+		$graph_width = $bar_width * $duration_months;
+	}
+
+	// Print the statistics per month.
+	$query = "
+		SELECT YEAR(b_finished) AS Year, MONTH(b_finished) AS Month, COUNT(*) AS Count
+		FROM wp_now_reading
+		WHERE b_started > 0
+		AND b_finished > DATE_SUB(CURDATE(), INTERVAL {$duration_months} MONTH)
+		AND b_status != 'onhold'
+		GROUP BY  YEAR(b_finished), MONTH(b_finished)
+		ORDER BY YEAR(b_finished), MONTH(b_finished)
+        ";
+	$statistics = $wpdb->get_results($query);
+    $statistics = apply_filters('get_books', $statistics);
+
+	echo "
+	<div class='graph-caption' style='margin: auto; text-align: center'><i>";
+	printf(__("Number of Books read during the past %d months.", NRTD), $duration_months);
+	echo "</i></div>
+	";
+
+    echo '
+		<link rel="stylesheet" href="' . plugins_url('/css/tufte-graph.css', __FILE__) . '" type="text/css" />
+		<script type="text/javascript" src="' . plugins_url('/js/jquery.enumerable.js', __FILE__) .'"></script>
+		<script type="text/javascript" src="' . plugins_url('/js/jquery.tufte-graph.js', __FILE__) .'"></script>
+		<script type="text/javascript" src="' . plugins_url('/js/raphael-min.js', __FILE__) .'"></script>
+		<script type="text/javascript">
+		jQuery(document).ready(function () {';
+    echo "
+		jQuery('#{$div_id}').tufteBar({
+		data: [";
+
+	// For each year/month, create an entry of the total finished count.
+	// Entry format: [0, {label: '2005'}, {barLabel: '0 Books'}],
+	foreach ((array)$statistics as $stat)
+	{
+		$label = date("M", mktime(0, 0, 0, $stat->Month, 1, 2000)) . ' ' . $stat->Year;
+		echo "
+			[{$stat->Count}, {label: '" . $label . "'}, {barLabel: '{$stat->Count}'}],";
+	}
+
+	echo "
+		],
+		barLabel:  function(index) {
+			return this[2].barLabel;
+		},
+		axisLabel: function(index) { return this[1].label },
+		});
+		});
+	</script>
+	<div id='{$div_id}' class='graph' style='width: {$graph_width}px; height: {$graph_height}px;'></div>
+	";
+
+	if ($print_average)
+	{
+		echo "
+		<div class='graph-caption' style='margin: auto; text-align: center; padding: 10px;'>";
+		print_book_average();
+		echo "</div>
+		";
+	}
 }
 
 /**
@@ -378,7 +456,7 @@ function average_books($time_period = 'week', $echo = true, $absolute = true)
 			$type = __("a current");
 		}
 
-		printf(__("%s average of %s book%s each %s", NRTD), $type, $average, ($average != 1 ? 's' : ''), $time_period);
+		printf(__("%s average of %s book%s per %s", NRTD), $type, $average, ($average != 1 ? 's' : ''), $time_period);
 	}
 
     return $average;
