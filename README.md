@@ -56,6 +56,10 @@ Please find the original Now Reading Relaoded readme with the changelog in the r
 
 4. The search results may return more editions than older versions of the plugin. Clicking "Use This Result" adds the book in question to the library.
 
+5. The library page showing statistics graph.
+
+6. The side-bar widget showing read, current and up-next books, link to the library and search box.
+
 ### Changelog ###
 
 ### 6.1.0.0 ###
