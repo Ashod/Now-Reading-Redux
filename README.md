@@ -7,19 +7,19 @@ Requires at least: 2.7.0
 Tested up to: 3.2.1
 Stable tag: trunk
 
-Allows you to track and share books you read, are reading and a wishlist of future books to read, with cover art fetched automatically from Amazon. Tracks and graphs reading statistics.
+Track and share books you read, are reading and plan to read, with Amazon integration and cover art and graphs reading statistics.
 
 ## Description ##
 
-Now Reading Redux is a resurrection of the [Now Reading Reloaded project by Ben Gunnink] (http://heliologue.com/ "Now Reading Reloaded") 5.1.3.2 codebase, which was itself a fork/re-enlivening of [Rob Miller's original Now Reading plugin](http://robm.me.uk/projects/plugins/wordpress/now-reading/ "Original Now Reading Plugin").  It was forked from Rob's code as of 4.4.4svn, in order to update its interface to work with Wordpress 2.7 and above.
+Now Reading Redux is a resurrection of the [Now Reading Reloaded project by Ben Gunnink](http://heliologue.com/ "Now Reading Reloaded") 5.1.3.2 codebase, which was itself a fork/re-enlivening of [Rob Miller's original Now Reading plugin](http://robm.me.uk/projects/plugins/wordpress/now-reading/ "Original Now Reading Plugin").  It was forked from Rob's code as of 4.4.4svn, in order to update its interface to work with Wordpress 2.7 and above.
 
 With NRR, you can manage a library of your current books, as well as historical and planned books.
 
-NRR depends on jQuery and assumes it already loaded by WP or your theme. Please use a sufficiently recent version, say 1.4 or newer, preferably the latest. The graph is generated using [TufteGraph] (http://xaviershay.github.com/tufte-graph/ "TufteGraph") which depends on [Raphaël] (http://raphaeljs.com/ "Raphaël"). All necessary files are included, no additional libraries necessary (beyond jQuery).
+NRR depends on jQuery and assumes it already loaded by WP or your theme. Please use a sufficiently recent version, say 1.4 or newer, preferably the latest. The graph is generated using [TufteGraph](http://xaviershay.github.com/tufte-graph/ "TufteGraph") which depends on [Raphaël](http://raphaeljs.com/ "Raphaël"). All necessary files are included, no additional libraries necessary (beyond jQuery).
 
-The home of Now Reading Redux is [blog.ashodnakashian.com/projects/now-reading-redux/] (http://blog.ashodnakashian.com/projects/now-reading-redux/ "Now Reading Redux"). You may find news and leave comments and requests there.
+The home of Now Reading Redux is [blog.ashodnakashian.com/projects/now-reading-redux/](http://blog.ashodnakashian.com/projects/now-reading-redux/ "Now Reading Redux"). You may find news and leave comments and requests there.
 
-For issues and complaints and for development source code, please go to [github.com/Ashod/Now-Reading-Redux] (https://github.com/Ashod/Now-Reading-Redux "Git repository").
+For issues and complaints and for development source code, please go to [github.com/Ashod/Now-Reading-Redux](https://github.com/Ashod/Now-Reading-Redux "Git repository").
 
 ## Installation ##
 
@@ -36,6 +36,8 @@ Please backup your database before installing/upgrading. I try hard to make sure
 1. Install `now-reading-redux` as described below.
 1. Activate `now-reading-redux`.
 1. Your database will be updated and library restored as was previously.
+
+Note: After upgrading the widget, if any, may get removed. This may happen in some themes but not most. If it is, simply drag it where you'd like to see it.
 
 ## Frequently Asked Questions ##
 
@@ -96,3 +98,6 @@ Please find the original Now Reading Relaoded readme with the changelog in the r
 
 Please read the changelog for reasons to upgrade.
 
+## Known Issues ##
+
+* When js-minify is enabled by an optimization plugin, the javascript files used by the TafteGraph/Raphaël may get corrupted. This issue is known to exist in W3 Total Cache (tested version 0.9.2.4). The only known workaround at this point is to disable js-minify from the Minify settings. CSS and HTML minification can still be enabled as well as compression.
