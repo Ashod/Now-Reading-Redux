@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: Now Reading Redux
-Version: 6.1.0.0
+Version: 6.1.5.0
 Plugin URI: http://wordpress.org/extend/plugins/now-reading-redux/
 Description: Display the books you're reading, have read recently and plan to read, with cover art fetched automatically from Amazon.
 Author: Ashod Nakashian
 Author URI: http://ashodnakashian.com
 */
 
-define('NOW_READING_VERSION', '6.1.0.0');
+define('NOW_READING_VERSION', '6.1.5.0');
 define('NOW_READING_DB', 57);
 define('NOW_READING_OPTIONS', 13);
 define('NOW_READING_REWRITE', 9);
@@ -188,7 +188,7 @@ function nr_install() {
         'formatDate'	=> 'jS F Y',
 		'ignoreTime'	=> false,
 		'hideAddedDate'		=>	false,
-        'associate'		=> 'amodcon-20',
+        'associate'		=> 'thevoid0f-20',
         'domain'		=> '.com',
         'imageSize'		=> 'Medium',
         'httpLib'		=> 'snoopy',

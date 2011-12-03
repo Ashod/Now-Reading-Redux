@@ -16,7 +16,7 @@ class NowReadingReduxAdmin extends NowReadingRedux {
      * @since 6.0.0.0
      * @var int
      */
-    var $version = '6.0.4.0';
+    var $version = '6.1.5.0';
 
     /**
      * Full file system path to the main plugin file
@@ -121,7 +121,7 @@ class NowReadingReduxAdmin extends NowReadingRedux {
                 //'AWSAccessKeyId'	=>	null,
                 //'SecretAccessKey'	=>	null,
                 'formatDate'		=>	'jS F Y',
-                'associate'			=>	'amodcon-20',
+                'associate'			=>	'thevoid0f-20',
 				'ignoreTime'		=>	false,
 				'hideAddedDate'		=>	false,
                 'debugMode'			=>	'false',
@@ -327,7 +327,7 @@ class NowReadingReduxAdmin extends NowReadingRedux {
                     </p>
                     <p>
                         <span class="description">
-                                    <?php sprintf(__('If you don\'t have an Amazon Associates ID, you can either <a href=\'%s\'>get one</a>, or consider entering mine - <strong>%s</strong> - if you\'re feeling generous.', 'now-reading-redux'), "http://associates.amazon.com", "amodcon-20")?>
+                                    <?php sprintf(__('If you don\'t have an Amazon Associates ID, you can either <a href=\'%s\'>get one</a>, or consider entering mine - <strong>%s</strong> - if you\'re feeling generous.', 'now-reading-redux'), "http://associates.amazon.com", "thevoid0f-20")?>
                         </span>
                     </p>
                 </td>
