@@ -8,15 +8,23 @@
 * Progress info per Book.
 * Icons for Book status.
 * Use calendar UI for dates.
-* Show statistics in Library.
 * Search filter is appending to URL.
 * Show number of books visible from total in Manager.
+* Add more links to the manager page to add books.
+* When pulling cover art, upload them and host them locally.
+* Support changing cover art size.
+* Support import/export of books.
+* Add admin menu.
+* Add reading progress.
+* Update translations.
 
+- Show statistics in Library.
 - Public/Private visibility.
 - Hide added dates.
 - Link authors in the Manager page to filter by that author only.
 - Filter by Read/Reading/OnHold in the manager.
+- FAQ: file_get_contents needs allow_url_fopen.
 
 Performance:
 
-* Delayed image loading.
+* Delayed/background image loading.

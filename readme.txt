@@ -49,6 +49,10 @@ Please read the Upgrade section under Installation.
 
 Please find the original Now Reading Relaoded readme with the changelog in the readme.old file.
 
+= Is searching for books broken? =
+
+If you get a warning such as "URL file-access is disabled in the server configuration" then you need to edit your PHP.ini file. Searching relies on PHP's file_get_contents() function. This function is subject to security permissions. Specifically, allow_url_fopen must be set to 'on' in PHP.ini (which is the default). More information [here](http://phpsec.org/projects/phpsecinfo/tests/allow_url_fopen.html), [file_get_contents's reference](http://www.php.net/manual/en/function.file-get-contents.php) and [allow_url_fopen's reference](http://php.net/manual/en/filesystem.configuration.php).
+
 == Screenshots ==
 
 1. The book manager where all the books are visible, sorted by any of the columns, in both ascending and descending orders. Searching for -partial- book titles is supported. Author names are shortcuts to filter by that author only.
@@ -63,6 +67,10 @@ Please find the original Now Reading Relaoded readme with the changelog in the r
 6. The side-bar widget showing read, current and up-next books, link to the library and search box.
 
 == Changelog ==
+
+= 6.1.5.0 =
+* Romanian translation courtesy of Alexander Ovsov [Web Geek Sciense](http://webhostinggeeks.com/science/).
+* Changed the default Amazon Associates ID to thevoid0f-20. This can be changed from the options.
 
 = 6.1.0.0 =
 * New feature: Reading statistics and graph shown in the library page by calling print_book_stats(). Uses TafteGraph/Raphaël.

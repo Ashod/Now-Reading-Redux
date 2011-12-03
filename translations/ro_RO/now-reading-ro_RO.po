@@ -1,0 +1,679 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: now-reading\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2011-11-17 21:38+0200\n"
+"Last-Translator: \n"
+"Language-Team: Web Geek\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Romanian\n"
+"X-Poedit-Country: ROMANIA\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-admin.php:10
+#: admin.php:14
+msgid "Hide"
+msgstr "Ascunde"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:341
+#: admin.php:15
+#: admin/admin-manage.php:350
+msgid "Edit"
+msgstr "Edita"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:341
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:523
+#: amazon.php:44
+#: now-reading.php:370
+msgid "cURL is not installed correctly."
+msgstr "cURL nu este instalat corect."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:45
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:77
+#: amazon.php:87
+#: admin/admin-add.php:56
+#: admin/admin-add.php:86
+#: admin/admin-manage.php:69
+msgid "Oops!"
+msgstr "Hopa!"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:368
+#: amazon.php:88
+#, php-format
+msgid "For some reason, I couldn't search for your book on amazon%s."
+msgstr "Din anumite motive, nu am putut căutare pentru cartea dvs. de pe% s. Amazon"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:369
+#: amazon.php:89
+msgid "Amazon's Web Services may be down, or there may be a problem with your server configuration."
+msgstr "Amazon Web Services poate fi jos, sau poate exista o problemă cu configurarea serverului."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:373
+#: amazon.php:93
+msgid "Try changing your HTTP Library setting to <strong>cURL</strong>."
+msgstr "Încercaţi să schimbaţi Biblioteca dvs. de HTTP setarea <strong>cURL.</strong>"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:779
+#: now-reading.php:39
+msgid "Yet to read"
+msgstr "Cu toate acestea, pentru a citi"
+
+#: now-reading.php:40
+msgid "On Hold"
+msgstr "Pe Hold"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:780
+#: now-reading.php:41
+msgid "Currently reading"
+msgstr "În prezent, lectură"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:429
+#: now-reading.php:42
+#: admin/admin-manage.php:132
+#: admin/admin-manage.php:377
+msgid "Finished"
+msgstr "Terminat"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:28
+#: now-reading.php:51
+msgid "International"
+msgstr "Internaţional"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:29
+#: now-reading.php:52
+msgid "United Kingdom"
+msgstr "Regatul Unit"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:30
+#: now-reading.php:53
+msgid "France"
+msgstr "Franţa"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:31
+#: now-reading.php:54
+msgid "Germany"
+msgstr "Germania"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:32
+#: now-reading.php:55
+msgid "Japan"
+msgstr "Japonia"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:33
+#: now-reading.php:56
+msgid "Canada"
+msgstr "Canada"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading.php:489
+#: now-reading.php:330
+#, php-format
+msgid "Oops! The template file %s could not be found in either the Now Reading template directory or your theme's Now Reading directory."
+msgstr "Hopa! Fişier şablon% s nu a putut fi găsită nici în directorul şablonului Acum lectură sau tema dvs. de lectură Acum director."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:57
+#: template-functions.php:102
+msgid "Not yet started."
+msgstr "Nu a început încă."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:73
+#: template-functions.php:118
+msgid "Not yet finished."
+msgstr "Nu a fost încă terminat."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:214
+#: template-functions.php:257
+#, php-format
+msgid "an average of %s book%s each %s"
+msgstr "o medie de Rezervaţi la% s% s% s fiecare"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:219
+#: template-functions.php:468
+msgid "Unrated"
+msgstr "Unrated"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:230
+#: template-functions.php:484
+msgid "This book has not yet been reviewed."
+msgstr "Această carte nu a fost încă revizuită."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/template-functions.php:266
+#: template-functions.php:534
+msgid "Search Library"
+msgstr "Biblioteca căutare"
+
+#: widget.php:49
+#: widget.php:50
+msgid "Now Reading"
+msgstr "Acum Reading"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/add.php:12
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/edit.php:11
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/options.php:9
+#: admin/add.php:16
+#: admin/edit.php:22
+#: admin/options.php:13
+msgid "Cheatin&#8217; uh?"
+msgstr "Uh Cheatin &quot;?"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:17
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:214
+#: admin/admin-add.php:27
+msgid "Error adding book!"
+msgstr "Eroare la adăugarea carte!"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:25
+#: admin/admin-add.php:35
+msgid "Book added."
+msgstr "Rezervaţi adăugat."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:27
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:206
+#: admin/admin-add.php:37
+msgid "Manage books"
+msgstr "Gestionaţi cărţi"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:34
+#: admin/admin-add.php:38
+msgid "Edit this book"
+msgstr "Editaţi această carte"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:28
+#: admin/admin-add.php:39
+msgid "View Library"
+msgstr "Vezi Bibliotecă"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:29
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:207
+#: admin/admin-add.php:40
+msgid "View Site"
+msgstr "Vezi site-ului"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:46
+#: admin/admin-add.php:57
+#: admin/admin-manage.php:70
+msgid "I couldn't fetch the latest version of Now Reading, because you don't have cURL installed!"
+msgstr "Nu am putut aduce cea mai recentă versiune de citiţi acum, pentru că nu aveţi instalat cURL!"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:47
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:79
+#: admin/admin-add.php:58
+#: admin/admin-add.php:88
+#: admin/admin-manage.php:71
+msgid "To solve this problem, please switch your <strong>HTTP Library</strong> setting to <strong>Snoopy</strong>, which works on virtually all server setups."
+msgstr "Pentru a rezolva această problemă, vă rugăm să activaţi <strong>HTTP Biblioteca</strong> dvs. de setare pentru a <strong>Snoopy,</strong> care funcţionează pe aproape toate setari server."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:48
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:80
+#: admin/admin-add.php:59
+#: admin/admin-add.php:89
+#: admin/admin-manage.php:72
+#, php-format
+msgid "You can change your options <a href='%s'>here</a>."
+msgstr "Aveţi posibilitatea să modificaţi opţiunile de <a href='%s'>aici</a> ."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:52
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:160
+#: admin/admin-add.php:63
+#: admin/admin-manage.php:76
+#, php-format
+msgid "CAUTION: A newer version of Now Reading exists! Please download it <a href='%s'>here</a>."
+msgstr "ATENŢIE: O versiune mai nouă a există Reading acum! Vă rugăm să descărcaţi-l <a href='%s'>aici</a> ."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:59
+#: admin/admin-add.php:68
+msgid "Search Results"
+msgstr "Search Results"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:78
+#: admin/admin-add.php:87
+msgid "I couldn't fetch the results for your search, because you don't have cURL installed!"
+msgstr "Nu am putut aduce rezultate pentru căutarea dvs., pentru că nu aveţi instalat cURL!"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:86
+#: admin/admin-add.php:97
+#, php-format
+msgid "Sorry, but amazon%s did not return any results for the ISBN number <code>%s</code>."
+msgstr "Ne pare rau, dar amazon% s nu a returnat nici un rezultat pentru numărul ISBN <code>%s</code> ."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:88
+#: admin/admin-add.php:99
+#, php-format
+msgid "Sorry, but amazon%s did not return any results for the book &ldquo;%s&rdquo;"
+msgstr "Ne pare rau, dar amazon% s nu a returnat nici un rezultat pentru &quot;% s&quot; carte"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:91
+#: admin/admin-add.php:102
+#, php-format
+msgid "You searched for the ISBN <code>%s<code>. amazon%s returned these results:"
+msgstr "Ati cautat ISBN <code>%s . amazon%s returned these results:</code>"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:93
+#: admin/admin-add.php:104
+#, php-format
+msgid "You searched for the book &ldquo;%s&rdquo;. amazon%s returned these results:"
+msgstr "Ati cautat &quot;% s&quot; carte. amazon% s returnat urmatoarele rezultate:"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:117
+#: admin/admin-add.php:122
+msgid "No author"
+msgstr "Nr autor"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:119
+#: admin/admin-add.php:124
+msgid "Use This Result"
+msgstr "Folosind acest rezultat"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:128
+#: admin/admin-add.php:133
+msgid "Not found what you like? You have a couple of options."
+msgstr "Nu a fost gasit ce-ţi place? Aveţi câteva opţiuni."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:130
+#: admin/admin-add.php:135
+msgid "If you like, you can add a book manually"
+msgstr "Dacă doriţi, aveţi posibilitatea să adăugaţi o carte manual"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:132
+#: admin/admin-add.php:139
+msgid "Add a book manually"
+msgstr "Adăugaţi o carte manual"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:142
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:241
+#: admin/admin-add.php:149
+#: admin/admin-add.php:200
+#: admin/admin-manage.php:107
+msgid "Title"
+msgstr "Titlu"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:145
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:244
+#: admin/admin-add.php:152
+#: admin/admin-add.php:203
+#: admin/admin-manage.php:109
+msgid "Author"
+msgstr "Autor"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:148
+#: admin/admin-add.php:155
+msgid "Link to image"
+msgstr "Legătură într-imagine"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:149
+#: admin/admin-add.php:156
+msgid "Remember, leeching images from other people's servers is nasty. Upload your own images or use Amazon's."
+msgstr "Amintiţi-vă, leech imagini de pe serverele altor oameni este urât. Incarca propriile imagini sau de a folosi Amazonului."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:152
+#: admin/admin-add.php:159
+msgid "Add Book"
+msgstr "Adaugă Rezervaţi"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:156
+#: admin/admin-add.php:165
+msgid "Or, you can try searching again with some different search terms"
+msgstr "Sau, aveţi posibilitatea să încercaţi să căutaţi din nou cu câţiva termeni de căutare diferite"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:166
+#: admin/admin-add.php:170
+msgid "Search again"
+msgstr "Cauta din nou"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:173
+#: admin/admin-add.php:177
+msgid "Add a new book"
+msgstr "Adăugaţi o nouă carte"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:225
+#: admin/admin-add.php:184
+msgid "Enter some information about the book that you'd like to add, and I'll try to fetch the information directly from Amazon."
+msgstr "Introduceţi câteva informaţii despre cartea pe care doriţi să adăugaţi, şi voi încerca să-i aducă informaţii direct de la Amazon."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:227
+#: admin/admin-add.php:186
+#, php-format
+msgid "Now Reading is currently set to search the <strong>amazon%s</strong> domain; you can change this setting and others in the <a href='%s'>options page</a>."
+msgstr "Acum Reading este setată pentru a căuta domeniu <strong>amazon% s;</strong> aveţi posibilitatea să modificaţi această setare şi altele în <a href='%s'>pagina de opţiuni</a> ."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:239
+#: admin/admin-add.php:198
+msgid "or"
+msgstr "sau"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-add.php:244
+#: admin/admin-add.php:203
+msgid "optional"
+msgstr "facultativ"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:344
+#: admin/admin-add.php:206
+#: admin/admin-manage.php:289
+msgid "Search"
+msgstr "Căutare"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:90
+#: admin/admin-manage.php:81
+msgid "Edit Book"
+msgstr "Editare Rezervaţi"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:402
+#: admin/admin-manage.php:104
+#: admin/admin-manage.php:350
+msgid "Book"
+msgstr "Carte"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:429
+#: admin/admin-manage.php:111
+#: admin/admin-manage.php:356
+msgid "Status"
+msgstr "Stare"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:425
+#: admin/admin-manage.php:128
+#: admin/admin-manage.php:373
+msgid "Added"
+msgstr "Adăugat"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:427
+#: admin/admin-manage.php:130
+#: admin/admin-manage.php:375
+msgid "Started"
+msgstr "Începute"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:144
+#: admin/admin-manage.php:135
+msgid "Image"
+msgstr "Imagine"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:221
+#: admin/admin-manage.php:139
+msgid "Add another field"
+msgstr "Adauga un alt câmp"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:152
+#: admin/admin-manage.php:143
+msgid "Key"
+msgstr "Cheie"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:153
+#: admin/admin-manage.php:144
+msgid "Value"
+msgstr "Valoare"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:263
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:457
+#: admin/admin-manage.php:159
+#: admin/admin-manage.php:192
+#: admin/admin-manage.php:386
+msgid "Delete"
+msgstr "Şterge"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:249
+#: admin/admin-manage.php:173
+msgid "A comma-separated list of keywords that describe the book."
+msgstr "O lista separata prin virgula de cuvinte cheie care descriu carte."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:186
+#: admin/admin-manage.php:177
+msgid "Link to post"
+msgstr "Legătură într-te pentru a publica"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:296
+#: admin/admin-manage.php:178
+msgid "If you wish, you can link this book to a blog entry by entering that entry's ID here. The entry will be linked to from the book's library page."
+msgstr "Dacă doriţi, puteţi legătură într-această carte într-o intrare pe blog prin introducerea ID-ul de intrare pentru că e aici. Menţiunea va fi legat de pagina din biblioteca de carte."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:432
+#: admin/admin-manage.php:182
+#: admin/admin-manage.php:382
+msgid "Actions"
+msgstr "Oferte"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:434
+#: admin/admin-manage.php:184
+#: admin/admin-manage.php:384
+msgid "View library entry"
+msgstr "Vezi bibliotecă de intrare"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:263
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:457
+#: admin/admin-manage.php:192
+#: admin/admin-manage.php:386
+msgid "Are you sure you wish to delete this book permanently?"
+msgstr "Sunteţi sigur că doriţi să ştergeţi această carte permanent?"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:280
+#: admin/admin-manage.php:196
+#: admin/admin-manage.php:210
+msgid "Review"
+msgstr "Recenzie"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:269
+#: admin/admin-manage.php:198
+msgid "Rating"
+msgstr "Evaluare"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:224
+#: admin/admin-manage.php:215
+msgid "Increase size"
+msgstr "Creşterea dimensiunii"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:226
+#: admin/admin-manage.php:217
+msgid "Decrease size"
+msgstr "Micşorează dimensiunea"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:284
+#: admin/admin-manage.php:222
+msgid "Save"
+msgstr "Salva"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:322
+#: admin/admin-manage.php:261
+msgid "Pages"
+msgstr "Pagini"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:365
+#: admin/admin-manage.php:289
+msgid "Search books"
+msgstr "Căutare cărţi"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:352
+#: admin/admin-manage.php:297
+msgid "Show all books"
+msgstr "Arată toate cărţile"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:356
+#: admin/admin-manage.php:301
+msgid "View library"
+msgstr "Vezi bibliotecă"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:398
+#: admin/admin-manage.php:346
+msgid "Book Cover"
+msgstr "Rezervaţi Cover"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:435
+#: admin/admin-manage.php:385
+msgid "Edit details/write review"
+msgstr "Editarea detaliilor / scrie comentariu"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:435
+#: admin/admin-manage.php:385
+msgid "Not yet rated"
+msgstr "Neevaluat încă"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:435
+#: admin/admin-manage.php:385
+msgid "Current rating"
+msgstr "Reitingul curent"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:440
+#: admin/admin-manage.php:390
+msgid "Top"
+msgstr "Top"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:440
+#: admin/admin-manage.php:390
+msgid "Bottom"
+msgstr "Fund"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-manage.php:474
+#: admin/admin-manage.php:403
+msgid "Update"
+msgstr "Actualizare"
+
+#: admin/admin-manage.php:412
+msgid "Manage Books"
+msgstr "Gestionaţi cărţi"
+
+#: admin/admin-manage.php:413
+#, php-format
+msgid "No books to display. To add some books, head over <a href='%s'>here</a>."
+msgstr "Nr cărţi pentru a afişa. Pentru a adăuga unele cărţi, peste cap de <a href='%s'>aici</a> ."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:91
+#: admin/admin-options.php:67
+msgid "Date format string"
+msgstr "Data format şir"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:95
+#: admin/admin-options.php:71
+#, php-format
+msgid "How to format the book's <code>added</code>, <code>started</code> and <code>finished</code> dates. Acceptable variables can be found <a href='%s'>here</a>."
+msgstr "Cum sa format carte de <code>added</code> , <code>started</code> şi <code>finished</code> date. Variabile acceptabilă pot fi găsite <a href='%s'>aici</a> ."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:101
+#: admin/admin-options.php:76
+msgid "Your Amazon Associates ID"
+msgstr "Amazon Associates ID-ul dvs."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:104
+#: admin/admin-options.php:80
+msgid "If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag - as the default template does - then you can earn commission if your visitors then purchase products."
+msgstr "Dacă alegeţi să legătură într-pagina produsului cartea dvs. de pe Amazon.com folosind <code>book_url()</code> tag şablon - ca şablon implicit nu - atunci puteţi câştiga dacă comisionul vizitatori dvs. de achiziţie apoi produsele."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:108
+#: admin/admin-options.php:83
+#, php-format
+msgid "If you don't have an Amazon Associates ID, you can either <a href='%s'>get one</a>, or consider entering mine - <strong>%s</strong> - if you're feeling generous."
+msgstr "Dacă nu aveţi un ID-ul Amazon Associates, aveţi posibilitatea să fie <a href='%s'>obţine unul</a> , sau ia în considerare introducerea mea <strong>-% s</strong> - dacă vă simţiţi generos."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:115
+#: admin/admin-options.php:88
+msgid "Amazon domain to use"
+msgstr "Amazon domeniu pentru a utiliza"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:123
+#: admin/admin-options.php:106
+msgid "If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag, you can specify which country-specific Amazon site to link to. Now Reading will also use this domain when searching."
+msgstr "Dacă alegeţi să legătură într-pagina produsului cartea dvs. de pe Amazon.com folosind <code>book_url()</code> tag-şablon, aveţi posibilitatea să specificaţi ţară care-specifice Amazon site legătură într-. Acum, Reading va folosi, de asemenea, acest domeniu atunci când caută."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:129
+#: admin/admin-options.php:109
+msgid "NB: If you have country-specific books in your catalogue and then change your domain setting, some old links might stop working."
+msgstr "NB: Dacă aveţi specifice de ţară cărţi din catalogul dvs. şi apoi modificaţi setarea dvs. de domeniu, unele link-uri vechi pot opri din funcţionare."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:134
+#: admin/admin-options.php:114
+msgid "Image size to use"
+msgstr "Dimensiunea imaginii de a utiliza"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:137
+#: admin/admin-options.php:117
+msgid "Small"
+msgstr "Mic"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:138
+#: admin/admin-options.php:118
+msgid "Medium"
+msgstr "Mediu"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:139
+#: admin/admin-options.php:119
+msgid "Large"
+msgstr "Mare"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:142
+#: admin/admin-options.php:122
+msgid "NB: This change will only be applied to books you add from this point onwards."
+msgstr "NB: Această modificare va fi aplicată doar la cărţile pe care le adăuga începând cu acest moment."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:116
+#: admin/admin-options.php:127
+msgid "Admin menu layout"
+msgstr "Admin aspectul meniului"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:118
+#: admin/admin-options.php:129
+msgid "Single"
+msgstr "Singur"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:121
+#: admin/admin-options.php:132
+msgid "Multiple"
+msgstr "Multiplu"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:124
+#: admin/admin-options.php:135
+msgid "When set to 'Single', Now Reading will add a top-level menu with submenus containing the 'Add a Book', 'Manage Books' and 'Options' screens."
+msgstr "Când este setată la &quot;single&quot;, citiţi acum se va adăuga un meniu de nivel superior cu submeniurile care conţin &#39;Adăugaţi o carte &quot;,&quot; Gestionaţi cărţi &quot;şi ecrane&quot; Opţiuni &quot;."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:127
+#: admin/admin-options.php:138
+msgid "When set to 'Multiple', Now Reading will insert those menus under 'Write', 'Manage' and 'Options' respectively."
+msgstr "Când este setată la &quot;multiple&quot;, citiţi acum va insera cele derulează în conformitate cu &quot;Scrie&quot;, &quot;Administrare&quot; şi &quot;Opţiuni&quot;, respectiv."
+
+#: admin/admin-options.php:143
+msgid "Books per page"
+msgstr "Cărţi pe pagină"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:147
+#: admin/admin-options.php:149
+msgid "Use <code>mod_rewrite</code> enhanced library?"
+msgstr "Utilizarea <code>mod_rewrite</code> bibliotecă consolidată?"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:151
+#: admin/admin-options.php:153
+msgid "If you have an Apache webserver with <code>mod_rewrite</code>, you can enable this option to have your library use prettier URLs. Compare:"
+msgstr "Dacă aveţi un server de web Apache cu <code>mod_rewrite</code> , aveţi posibilitatea să activaţi această opţiune pentru a avea biblioteca dvs. utilizează adrese URL mai frumoasa. Compară:"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:158
+#: admin/admin-options.php:162
+#, php-format
+msgid "If you choose this option, be sure you have a custom permalink structure set up at your <a href='%s'>Options &rarr; Permalinks</a> page."
+msgstr "Dacă alegeţi această opţiune, asiguraţi-vă că aveţi un obicei structură permanentă constituite la dumneavoastră <a href='%s'>Opţiuni → Permalinks</a> pagina."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:166
+#: admin/admin-options.php:167
+msgid "HTTP Library"
+msgstr "HTTP Bibliotecă"
+
+#: admin/admin-options.php:174
+#: admin/admin-options.php:183
+msgid "Don't worry if you don't understand this; unless you're having problems searching for books, the default setting will be fine."
+msgstr "Nu vă faceţi griji dacă nu înţelegeţi acest lucru, cu excepţia cazului în care aveţi probleme căutare pentru cărţi, setarea implicită va fi bine."
+
+#: admin/admin-options.php:179
+msgid "Proxy hostname and port"
+msgstr "Proxy host şi portuare"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:178
+#: admin/admin-options.php:188
+msgid "Debug mode"
+msgstr "Mod de Debug"
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:182
+#: admin/admin-options.php:192
+msgid "With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs."
+msgstr "Cu acest set de opţiune, citiţi acum va produce de ieşire de depanare, care ar putea ajuta să rezolvaţi problemele sau cel puţin un raport bug-uri."
+
+# C:\apache\xampp\htdocs\blog\wp-content\plugins\now-reading/now-reading-options.php:191
+#: admin/admin-options.php:201
+msgid "Update Options"
+msgstr "Actualizare Opţiuni"
+
