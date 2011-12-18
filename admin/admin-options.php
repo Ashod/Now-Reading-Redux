@@ -69,13 +69,13 @@ function nr_options()
 				<th scope="row"> <h4>Library Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="books_per_page">' . __("Books per page", NRTD) . '</label></th>
+				<th scope="row"><label for="books_per_page">' . __("Books per page", NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="books_per_page" id="books_per_page" style="width:4em;" value="' . ( intval($options['booksPerPage']) ) . '" />
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __("Use <code>mod_rewrite</code> enhanced library?", NRTD) . '</th>
+				<th scope="row"><label for="use_mod_rewrite">' . __("Use <code>mod_rewrite</code> enhanced library", NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="use_mod_rewrite" id="use_mod_rewrite"' . ( ($options['useModRewrite']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -100,7 +100,7 @@ function nr_options()
 				<th scope="row"> <h4>Sidebar Widget Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Show images only', NRTD) . '</th>
+				<th scope="row"><label for="sidebar_images_only">' . __('Show images only', NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="sidebar_images_only" id="sidebar_images_only"' . ( ($options['sidebarImagesOnly']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -109,9 +109,9 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Wishlist URL', NRTD) . ':</th>
+				<th scope="row"><label for="wishlist_url">' . __('Wishlist URL', NRTD) . ':</label></th>
 				<td>
-					<input type="text" name="wishlist_url" size="75" value="' . htmlentities($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" name="wishlist_url" id="wishlist_url" size="75" value="' . htmlentities($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
 					' . __("An optional link shown at the bottom of the side bar as \"Buy me a gift!\" It is typically used to link to an Amazon wishlist page, but can be to any page.", NRTD) . '
 					</p>
@@ -121,7 +121,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="def_book_count">' . __("Default number of books queried", NRTD) . '</label></th>
+				<th scope="row"><label for="def_book_count">' . __("Default number of books queried", NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="def_book_count" id="def_book_count" style="width:4em;" value="' . ( intval($options['defBookCount']) ) . '" />
 				</td>
@@ -131,7 +131,7 @@ function nr_options()
 				<th scope="row"> <h4>Admin Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __("Multiuser mode", NRTD) . '</th>
+				<th scope="row"><label for="multiuser_mode">' . __("Multiuser mode", NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="multiuser_mode" id="multiuser_mode"' . ( ($options['multiuserMode']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -145,8 +145,8 @@ function nr_options()
 					<label for="menu_layout_single">' . __('Single', NRTD) . '</label>
 					<input type="radio" name="menu_layout" id="menu_layout_single" value="single"' . ( ( $options['menuLayout'] == NR_MENU_SINGLE ) ? ' checked="checked"' : '' ) . ' />
 					<br />
-					<label for="menu_layout_single">' . __('Multiple', NRTD) . '</label>
-					<input type="radio" name="menu_layout" id="menu_layout_single" value="multiple"' . ( ( $options['menuLayout'] == NR_MENU_MULTIPLE ) ? ' checked="checked"' : '' ) . ' />
+					<label for="menu_layout_multiple">' . __('Multiple', NRTD) . '</label>
+					<input type="radio" name="menu_layout" id="menu_layout_multiple" value="multiple"' . ( ( $options['menuLayout'] == NR_MENU_MULTIPLE ) ? ' checked="checked"' : '' ) . ' />
 					<p>
 					' . __("When set to 'Single', Now Reading will add a top-level menu with submenus containing the 'Add a Book', 'Manage Books' and 'Options' screens.", NRTD) . '
 					</p>
@@ -160,16 +160,16 @@ function nr_options()
 				<th scope="row"> <h4>Manage Page Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Date format string', NRTD) . '</th>
+				<th scope="row"><label for="format_date">' . __('Date format string', NRTD) . ':</label></th>
 				<td>
-					<input type="text" name="format_date" value="' . htmlentities($options['formatDate'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" name="format_date" id="format_date" value="' . htmlentities($options['formatDate'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
 					' . sprintf(__("How to format the book's <code>added</code>, <code>started</code> and <code>finished</code> dates. Acceptable variables can be found <a href='%s'>here</a>.", NRTD), "http://php.net/date") . '
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('No time in timestamps', NRTD) . '</th>
+				<th scope="row"><label for="ignore_time">' . __('No time in timestamps', NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="ignore_time" id="ignore_time"' . ( ($options['ignoreTime']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -178,7 +178,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Hide Added Date', NRTD) . '</th>
+				<th scope="row"><label for="hide_added_date">' . __('Hide Added Date', NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="hide_added_date" id="hide_added_date"' . ( ($options['hideAddedDate']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -191,27 +191,27 @@ function nr_options()
 				<th scope="row"> <h4>Amazon Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Amazon Web Services Access Key ID', NRTD) . '</th>
+				<th scope="row"><label for="AWSAccessKeyId">' . __('Amazon Web Services Access Key ID', NRTD) . ':</label></th>
 				<td>
-					<input type="text" size="50" name="AWSAccessKeyId" value="' . htmlentities($options['AWSAccessKeyId'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" size="50" name="AWSAccessKeyId" id="AWSAccessKeyId" value="' . htmlentities($options['AWSAccessKeyId'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
 					' . sprintf(__("Required to add books from Amazon.  It's free to sign up. Register <a href='%s'>here</a>.", NRTD), "https://aws-portal.amazon.com/gp/aws/developer/registration/index.html") . '
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Amazon Web Services Secret Access Key', NRTD) . '</th>
+				<th scope="row"><label for="SecretAccessKey">' . __('Amazon Web Services Secret Access Key', NRTD) . ':</label></th>
 				<td>
-					<input type="text" size="50" name="SecretAccessKey" value="' . htmlentities($options['SecretAccessKey'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" size="50" name="SecretAccessKey" id="SecretAccessKey" value="' . htmlentities($options['SecretAccessKey'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
 					' . sprintf(__("Required to add books from Amazon.  Found at the same site as above. Register <a href='%s'>here</a>.", NRTD), "https://aws-portal.amazon.com/gp/aws/developer/registration/index.html") . '
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Your Amazon Associates ID', NRTD) . ':</th>
+				<th scope="row"><label for="associate">' . __('Your Amazon Associates ID', NRTD) . ':</label></th>
 				<td>
-					<input type="text" name="associate" value="' . htmlentities($options['associate'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" name="associate" id="associate" value="' . htmlentities($options['associate'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
 					' . __("If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag - as the default template does - then you can earn commission if your visitors then purchase products.", NRTD) . '
 					</p>
@@ -221,9 +221,9 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Amazon domain to use', NRTD) . ':</th>
+				<th scope="row"><label for="domain">' . __('Amazon domain to use', NRTD) . ':</label></th>
 				<td>
-					<select name="domain">
+					<select name="domain" id="domain">
 	';
 
     foreach ( (array) $nr_domains as $domain => $country ) {
@@ -250,9 +250,9 @@ function nr_options()
 				<th scope="row"> <h4>Search Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Image size to use', NRTD) . ':</th>
+				<th scope="row"><label for="image_size">' . __('Image size to use', NRTD) . ':</label></th>
 				<td>
-					<select name="image_size">
+					<select name="image_size" id="image_size">
 						<option' . ( ($options['imageSize'] == 'Small') ? ' selected="selected"' : '' ) . ' value="Small">' . __("Small", NRTD) . '</option>
 						<option' . ( ($options['imageSize'] == 'Medium') ? ' selected="selected"' : '' ) . ' value="Medium">' . __("Medium", NRTD) . '</option>
 						<option' . ( ($options['imageSize'] == 'Large') ? ' selected="selected"' : '' ) . ' value="Large">' . __("Large", NRTD) . '</option>
@@ -263,9 +263,9 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __("HTTP Library", NRTD) . '</th>
+				<th scope="row"><label for="http_lib">' . __("HTTP Library", NRTD) . ':</label></th>
 				<td>
-					<select name="http_lib">
+					<select name="http_lib" id="http_lib">
 						<option' . ( ($options['httpLib'] == 'snoopy') ? ' selected="selected"' : '' ) . ' value="snoopy">Snoopy</option>
 						<option' . ( ($options['httpLib'] == 'curl') ? ' selected="selected"' : '' ) . ' value="curl">cURL</option>
 					</select>
@@ -275,7 +275,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __("Proxy hostname and port", NRTD) . '</th>
+				<th scope="row"><label for="proxy_host">' . __("Proxy hostname and port", NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="proxy_host" id="proxy_host" size="50" value="' . $options['proxyHost'] . '" />:<input type="text" name="proxy_port" id="proxy_port" style="width:4em;" value="' . $options['proxyPort'] . '" />
 					<p>
@@ -284,7 +284,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __("Debug mode", NRTD) . '</th>
+				<th scope="row"><label for="debug_mode">' . __("Debug mode", NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="debug_mode" id="debug_mode"' . ( ($options['debugMode']) ? ' checked="checked"' : '' ) . ' />
 					<p>
