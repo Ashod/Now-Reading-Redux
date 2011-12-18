@@ -108,9 +108,16 @@ foreach ($lib_order as $entity) {
 		}
 	}
 }
-if ($suf_nr_wid_search_show == 'bottom') {
+
+if ($suf_nr_wid_search_show == 'bottom')
+{
 	library_search_form();
 }
+
 ?>
+
+<?php if (!empty(wishlist_url(false))) : ?>
+	<p><a href="<?php wishlist_url() ?>">Buy me a gift!</a></p>
+<?php endif; ?>
 
 </div>
