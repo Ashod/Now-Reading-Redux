@@ -927,6 +927,39 @@ function library_page_url( $page, $echo = true ) {
     return $url;
 }
 
+function sidebar_images_only()
+{
+    $options = get_option('nowReadingOptions');
+
+    return $options['sidebarImagesOnly'];
+}
+
+/**
+ * Returns the Wishlist URL if any.
+ * @param bool $echo Whether or not to echo the results.
+ */
+function wishlist_url($echo = true)
+{
+    $options = get_option('nowReadingOptions');
+
+    $url = $options['wishlistUrl'];
+    if ($echo)
+    {
+        echo $url;
+    }
+    
+    return $url;
+}
+
+/**
+ * Returns true if we have a Wishlist URL.
+ */
+function have_wishlist_url()
+{
+    $url = wishlist_url(false);
+    return !empty($url);
+}
+
 /**
  * Returns or prints the currently viewed tag.
  * @param bool $echo Whether or not to echo the results.
