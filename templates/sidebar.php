@@ -49,18 +49,16 @@
 
 <div class="now-reading nr_widget">
 
-	<div align=center><p><b><a href="<?php library_url() ?>">View Full Library</a></b></p></div>
+	<div align=center><br /><p><b><i><a href="<?php library_url() ?>">View Full Library</a></i></b></p></div>
 
 	<h4>Current books:</h4>
 	<?php if (have_books('status=reading&orderby=random')) : ?>
 		<ul>
 		<?php while(have_books('status=reading&orderby=random')) : the_book(); ?>
 			<li>
-                <?php if (sidebar_images_only()) : ?>
-                    <a href="<?php book_permalink() ?>">
-                        <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
-                <?php else : ?>
-                    <p><a href="<?php book_permalink() ?>"><img src="<?php book_image() ?>" alt="<?php book_title() ?>" /></a></p>
+                <a href="<?php book_permalink() ?>">
+                    <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
+                <?php if (!sidebar_images_only()) : ?>
                     <p><strong><?php book_title() ?></strong> by <?php book_author() ?></p>
             	<?php endif; ?>
 			</li>
@@ -75,11 +73,9 @@
 		<ul>
 		<?php while(have_books('status=unread&orderby=random')) : the_book(); ?>
 			<li>
-                <?php if (sidebar_images_only()) : ?>
-                    <a href="<?php book_permalink() ?>">
-                        <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
-                <?php else : ?>
-                    <p><a href="<?php book_permalink() ?>"><img src="<?php book_image() ?>" alt="<?php book_title() ?>" /></a></p>
+                <a href="<?php book_permalink() ?>">
+                    <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
+                <?php if (!sidebar_images_only()) : ?>
                     <p><strong><?php book_title() ?></strong> by <?php book_author() ?></p>
             	<?php endif; ?>
 			</li>
@@ -94,11 +90,9 @@
 		<ul>
 		<?php while(have_books('status=read&orderby=finished&order=desc')) : the_book(); ?>
 			<li>
-                <?php if (sidebar_images_only()) : ?>
-                    <a href="<?php book_permalink() ?>">
-                        <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
-                <?php else : ?>
-                    <p><a href="<?php book_permalink() ?>"><img src="<?php book_image() ?>" alt="<?php book_title() ?>" /></a></p>
+                <a href="<?php book_permalink() ?>">
+                    <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
+                <?php if (!sidebar_images_only()) : ?>
                     <p><strong><?php book_title() ?></strong> by <?php book_author() ?></p>
             	<?php endif; ?>
 			</li>
