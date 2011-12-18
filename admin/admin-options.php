@@ -14,8 +14,8 @@ if( !isset($_SERVER['REQUEST_URI']) ) {
 /**
  * Creates the options admin page and manages the updating of options.
  */
-function nr_options() {
-
+function nr_options()
+{
     global $wpdb, $nr_domains;
 
     $options = get_option('nowReadingOptions');
@@ -63,6 +63,7 @@ function nr_options() {
 
     echo '
 		<table class="form-table" width="100%" cellspacing="2" cellpadding="5">
+		
 			<tr valign="top">
 				<th scope="row">' . __('Amazon Web Services Access Key ID', NRTD) . '</th>
 				<td>
@@ -105,6 +106,27 @@ function nr_options() {
 					<input type="checkbox" name="hide_added_date" id="hide_added_date"' . ( ($options['hideAddedDate']) ? ' checked="checked"' : '' ) . ' />
 					<p>
 					' . __("When checked <code>added</code> date will be hidden in the Manager and Book pages", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row">' . __('Show Only Images in Sidebar', NRTD) . '</th>
+				<td>
+					<input type="checkbox" name="sidebar_images_only" id="sidebar_images_only"' . ( ($options['sidebarImagesOnly']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("When checked only images will be shown in the sidebar. Otherwise, titles and authors are shown as text.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row">' . __('Wishlist URL', NRTD) . ':</th>
+				<td>
+					<input type="text" name="wishlist_url" value="' . htmlentities($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
+					<p>
+					' . __("An optional link shown at the bottom of the side bar as \"Buy me a gift!\" It is typically used to link to an Amazon wishlist page, but can be to any page.", NRTD) . '
+					</p>
+					<p>
+					' . __("Add 'http://' to make the URL absolute and not relative to the current page.", NRTD) . '
 					</p>
 				</td>
 			</tr>

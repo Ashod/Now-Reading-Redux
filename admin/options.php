@@ -22,6 +22,8 @@ if ( !empty($_POST['update']) ) {
 	$options['AWSAccessKeyId']  = trim($_POST['AWSAccessKeyId']);
     $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
     $options['formatDate']		= trim($_POST['format_date']);
+    $options['sidebarImagesOnly'] = trim($_POST['sidebar_images_only']);
+    $options['wishlistUrl']		= trim($_POST['wishlist_url']);
     $options['associate']		= trim($_POST['associate']);
     $options['ignoreTime']		= trim($_POST['ignore_time']);
     $options['hideAddedDate']	= trim($_POST['hide_added_date']);

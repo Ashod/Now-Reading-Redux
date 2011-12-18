@@ -10,7 +10,7 @@ Author URI: http://ashodnakashian.com
 
 define('NOW_READING_VERSION', '6.1.5.0');
 define('NOW_READING_DB', 57);
-define('NOW_READING_OPTIONS', 13);
+define('NOW_READING_OPTIONS', 15);
 define('NOW_READING_REWRITE', 9);
 
 define('NRTD', 'now-reading');
@@ -187,7 +187,9 @@ function nr_install() {
     $defaultOptions = array(
         'formatDate'	=> 'jS F Y',
 		'ignoreTime'	=> false,
-		'hideAddedDate'		=>	false,
+		'hideAddedDate'	=>	false,
+		'sidebarImagesOnly'	=> true,
+		'wishlistUrl'	=>  '',
         'associate'		=> 'thevoid0f-20',
         'domain'		=> '.com',
         'imageSize'		=> 'Medium',
@@ -196,7 +198,7 @@ function nr_install() {
         'debugMode'		=> false,
         'menuLayout'	=> NR_MENU_SINGLE,
         'booksPerPage'  => 15,
-        'defBookCount'  => 5,
+        'defBookCount'  => 3,
         'permalinkBase' => 'library/'
     );
     add_option('nowReadingOptions', $defaultOptions);
