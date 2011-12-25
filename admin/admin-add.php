@@ -14,7 +14,7 @@ if ( !function_exists('now_reading_add') ) {
 
         global $wpdb;
 
-        $options = get_option('nowReadingOptions');
+        $options = get_option(NOW_READING_OPTIONS);
 
         if( !$nr_url ) {
             $nr_url = new nr_url();

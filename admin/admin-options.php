@@ -18,7 +18,7 @@ function nr_options()
 {
     global $wpdb, $nr_domains;
 
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
 
     if ( !empty($_GET['curl']) ) {
         echo '

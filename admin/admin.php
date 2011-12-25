@@ -94,8 +94,9 @@ class NowReadingReduxAdmin extends NowReadingRedux {
      * @since 6.0.0.0
      * @return none
      */
-    function register_settings () {
-        register_setting ( 'nowReadingOptions' , 'nowReadingOptions' , array ( &$this , 'update' ) );
+    function register_settings ()
+    {
+        register_setting (NOW_READING_OPTIONS, NOW_READING_OPTIONS, array( &$this , 'update' ));
     }
 
     /**
@@ -144,11 +145,16 @@ class NowReadingReduxAdmin extends NowReadingRedux {
      * @return none
      * @since 6.0.0.0
      */
-    function init () {
-        if ( ! get_option ( 'nowReadingOptions' ) )
-            add_option ( 'nowReadingOptions' , $this->defaults () );
+    function init ()
+    {
+        if (!get_option(NOW_READING_OPTIONS))
+        {
+            add_option(NOW_READING_OPTIONS, $this->defaults());
+        }
         else
+        {
             $this->check_upgrade();
+        }
     }
 
     /**
@@ -267,13 +273,14 @@ class NowReadingReduxAdmin extends NowReadingRedux {
      * @return none
      * @since 2.0.3
      */
-    function admin_page () {
+    function admin_page ()
+    {
         global $wpdb;
         ?>
 <div class="wrap">
     <h2><?php _e( 'Now Reading Redux' ); ?></h2>
     <form action="options.php" method="post">
-                <?php settings_fields('nowReadingOptions'); ?>
+                <?php settings_fields(NOW_READING_OPTIONS); ?>
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">

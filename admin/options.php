@@ -63,7 +63,7 @@ if ( !empty($_POST['update']) ) {
         $options['httpLib'] = 'snoopy';
     }
 
-    update_option('nowReadingOptions', $options);
+    update_option(NOW_READING_OPTIONS, $options);
 
     global $wp_rewrite;
     if ($wp_rewrite->using_mod_rewrite_permalinks() ) {

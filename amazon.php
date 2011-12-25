@@ -31,7 +31,7 @@ function query_amazon( $query ) {
 
     global $item, $items;
 
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
 
     $using_isbn = false;
 

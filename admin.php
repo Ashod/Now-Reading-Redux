@@ -22,7 +22,7 @@ require_once dirname(__FILE__) . '/admin/admin-options.php';
  * Manages the various admin pages Now Reading uses.
  */
 function nr_add_pages() {
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
 
     //B. Spyckerelle
     //changing NR level access in order to let blog authors to add books in multiuser mode

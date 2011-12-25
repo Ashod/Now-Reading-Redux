@@ -9,11 +9,13 @@ Author URI: http://ashodnakashian.com
 */
 
 define('NOW_READING_VERSION', '6.1.5.0');
-define('NOW_READING_DB', 57);
-define('NOW_READING_OPTIONS', 15);
-define('NOW_READING_REWRITE', 9);
+define('NOW_READING_DB_VERSION', 57);
+define('NOW_READING_OPTIONS_VERSION', 15);
+define('NOW_READING_REWRITE_VERSION', 9);
 
 define('NRTD', 'now-reading');
+define('NOW_READING_OPTIONS', 'nowReadingOptions');
+define('NOW_READING_VERSIONS', 'nowReadingVersions');
 
 define('NR_MENU_SINGLE', 2);
 define('NR_MENU_MULTIPLE', 4);
@@ -77,7 +79,7 @@ require_once dirname(__FILE__) . '/widget.php';
  */
 function nr_check_versions()
 {
-    $versions = get_option('nowReadingVersions');
+    $versions = get_option(NOW_READING_VERSIONS);
     if (empty($versions) ||
 		$versions['db'] < NOW_READING_DB ||
 		$versions['options'] < NOW_READING_OPTIONS ||
@@ -90,7 +92,7 @@ add_action('init', 'nr_check_versions');
 add_action('plugins_loaded', 'nr_check_versions');
 
 function nr_check_api_key() {
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
     $AWSAccessKeyId = $options['AWSAccessKeyId'];
     $SecretAccessKey = $options['SecretAccessKey'];
 
@@ -201,12 +203,12 @@ function nr_install() {
         'defBookCount'  => 3,
         'permalinkBase' => 'library/'
     );
-    add_option('nowReadingOptions', $defaultOptions);
+    add_option(NOW_READING_OPTIONS, $defaultOptions);
 
     // Merge any new options to the existing ones.
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
     $options = array_merge($defaultOptions, $options);
-    update_option('nowReadingOptions', $options);
+    update_option(NOW_READING_OPTIONS, $options);
 
 	// May be unset if called during plugins_loaded action.
 	if (isset($wp_rewrite))
@@ -258,7 +260,7 @@ function nr_install() {
 
     // Set an option that stores the current installed versions of the database, options and rewrite.
     $versions = array('db' => NOW_READING_DB, 'options' => NOW_READING_OPTIONS, 'rewrite' => NOW_READING_REWRITE);
-    update_option('nowReadingVersions', $versions);
+    update_option(NOW_READING_VERSIONS, $versions);
 }
 register_activation_hook('now-reading-redux/now-reading.php', 'nr_install');
 

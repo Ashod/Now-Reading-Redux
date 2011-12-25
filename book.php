@@ -20,7 +20,7 @@ function get_books($query, $show_private = false) {
 
     global $wpdb;
 
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
 
     parse_str($query);
 
@@ -172,7 +172,7 @@ function get_books($query, $show_private = false) {
 function get_book($id) {
     global $wpdb;
 
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
 
     $id = intval($id);
 

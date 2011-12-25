@@ -15,7 +15,7 @@ function nr_manage() {
 
     $_POST = stripslashes_deep($_POST);
 
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
 
     if (!$nr_url)
 	{
@@ -58,7 +58,7 @@ function nr_manage() {
     $action = $_GET['action'];
     nr_reset_vars(array('action'));
 
-	$options = get_option('nowReadingOptions');
+	$options = get_option(NOW_READING_OPTIONS);
 	$dateTimeFormat = 'Y-m-d H:i:s';
 	if ($options['ignoreTime'])
 	{

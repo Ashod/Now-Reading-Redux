@@ -67,7 +67,7 @@ class nr_url {
  * @name $nr_url
  */
 $nr_url		= new nr_url();
-$options	= get_option('nowReadingOptions');
+$options	= get_option(NOW_READING_OPTIONS);
 $nr_url->load_scheme($options['menuLayout']);
 
 /**
@@ -94,7 +94,7 @@ add_filter('query_vars', 'nr_query_vars');
  * @return array The modified rewrite rules with our additions.
  */
 function nr_mod_rewrite( $rules ) {
-    $options = get_option('nowReadingOptions');
+    $options = get_option(NOW_READING_OPTIONS);
     add_rewrite_rule(preg_quote($options['permalinkBase']) . '([0-9]+)/?$', 'index.php?now_reading_id=$matches[1]', 'top');
     add_rewrite_rule(preg_quote($options['permalinkBase']) . 'tag/([^/]+)/?$', 'index.php?now_reading_tag=$matches[1]', 'top');
     add_rewrite_rule(preg_quote($options['permalinkBase']) . 'page/([^/]+)/?$', 'index.php?now_reading_page=$matches[1]', 'top');   
