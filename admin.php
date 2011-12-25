@@ -7,10 +7,9 @@
 /**
  * Adds our stylesheets and JS to admin pages.
  */
-function nr_add_head() {
-
+function nr_add_head()
+{
     wp_enqueue_script('nowreading', plugins_url('/js/manage.js', __FILE__), array('jquery'));
-
 }
 add_action('admin_print_scripts', 'nr_add_head');
 
@@ -21,7 +20,8 @@ require_once dirname(__FILE__) . '/admin/admin-options.php';
 /**
  * Manages the various admin pages Now Reading uses.
  */
-function nr_add_pages() {
+function nr_add_pages()
+{
     $options = get_option(NOW_READING_OPTIONS);
 
     //B. Spyckerelle

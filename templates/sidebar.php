@@ -1,55 +1,11 @@
 
 <style type="text/css">
-.nr_widget img {
-	padding: 5px 5px 5px 5px;
-	width: 65px;
-	height: 100px;
-}
-.nr_widget h4 {
-	border: 1px solid #c0c0c0;
-	padding: 5px 5px 5px 5px;
-	font: bold 100%/100% Arial, Helvetica, sans-serif;
-	margin: 20px 0 5px 0;
-	clear: both;
-}
-.nr_widget ul {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-}
-.nr_widget li {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-    display: -moz-inline-box;
-    -moz-box-orient: vertical;
-    display: inline-block;
-    vertical-align:top;
-    word-wrap: break-word;
-}
-* html .nr_widget li {
-    display: inline;
-}
-* + html .nr_widget li {
-    display: inline;
-    }
-.nr_widget li > * {
-    display: table;
-    table-layout: fixed;
-    overflow: hidden;
-}
-* html .nr_widget li { /* for IE 6 */
-    width: 80px;
-}
-.nr_widget li > * { /* for all other browser */
-    width: 80px;
-}
-}
+<?php echo sidebar_css() ?>
 </style>
 
 <div class="now-reading nr_widget">
 
-	<div align=center><br /><p><b><i><a href="<?php library_url() ?>">View Full Library</a></i></b></p></div>
+	<div align=center><br /><b><a href="<?php library_url() ?>">View Full Library</a></b></div>
 
 	<h4>Current books:</h4>
 	<?php if (have_books('status=reading&orderby=random')) : ?>

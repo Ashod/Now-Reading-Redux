@@ -927,11 +927,24 @@ function library_page_url( $page, $echo = true ) {
     return $url;
 }
 
+/**
+ * Returns true if sidebar images-only is enabled.
+ */
 function sidebar_images_only()
 {
     $options = get_option(NOW_READING_OPTIONS);
 
     return $options['sidebarImagesOnly'];
+}
+
+/**
+ * Returns the Sidebar CSS code.
+ */
+function sidebar_css()
+{
+    $options = get_option(NOW_READING_OPTIONS);
+
+    return $options['sidebarCss'];
 }
 
 /**

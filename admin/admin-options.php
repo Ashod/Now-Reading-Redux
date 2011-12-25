@@ -126,7 +126,15 @@ function nr_options()
 					<input type="text" name="def_book_count" id="def_book_count" style="width:4em;" value="' . ( intval($options['defBookCount']) ) . '" />
 				</td>
 			</tr>
-						
+			<tr valign="top">
+				<th scope="row"><label for="sidebarCss">' . __("Sidebar CSS code", NRTD) . ':</label></th>
+				<td>
+					<textarea name="sidebarCss" id="sidebarCss" rows="6" cols="75">' . $options['sidebarCss'] . '</textarea>
+					<br />
+					<button type="button" onclick="document.getElementById(\'sidebarCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_SIDEBAR_CSS)) . '\'">Default</button>
+				</td>
+			</tr>
+
 			<tr valign="top">
 				<th scope="row"> <h4>Admin Options</h4><hr /></th>
 			</tr>
@@ -164,7 +172,7 @@ function nr_options()
 				<td>
 					<input type="text" name="format_date" id="format_date" value="' . htmlentities($options['formatDate'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
-					' . sprintf(__("How to format the book's <code>added</code>, <code>started</code> and <code>finished</code> dates. Acceptable variables can be found <a href='%s'>here</a>.", NRTD), "http://php.net/date") . '
+					' . sprintf(__("How to format the book's <code>added</code>, <code>started</code> and <code>finished</code> dates. Default is <code>jS F Y</code>. Acceptable variables can be found <a href='%s'>here</a>.", NRTD), "http://php.net/date") . '
 					</p>
 				</td>
 			</tr>
@@ -226,16 +234,15 @@ function nr_options()
 					<select name="domain" id="domain">
 	';
 
-    foreach ( (array) $nr_domains as $domain => $country ) {
-        if ( $domain == $options['domain'] )
-            $selected = ' selected="selected"';
-        else
-            $selected = '';
-
-        echo "<option value='$domain'$selected>$country (Amazon$domain)</option>";
-    }
-
-    echo '
+					foreach ( (array) $nr_domains as $domain => $country )
+					{
+						if ( $domain == $options['domain'] )
+							$selected = ' selected="selected"';
+						else
+							$selected = '';
+						echo "<option value='$domain'$selected>$country (Amazon$domain)</option>";
+					}	
+			echo '
 					</select>
 					<p>
 					' . __("If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag, you can specify which country-specific Amazon site to link to. Now Reading will also use this domain when searching.", NRTD) . '
@@ -291,21 +298,16 @@ function nr_options()
 					' . __("With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs.", NRTD) . '
 					</p>
 				</td>
-			</tr>
-			
+			</tr>			
 		</table>
 
 		<input type="hidden" name="update" value="yes" />
-
 		<p class="submit">
 			<input type="submit" value="' . __("Update Options", NRTD) . '" />
 		</p>
-
 		</form>
-
 	</div>
 	';
-
 }
 
 ?>

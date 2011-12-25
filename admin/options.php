@@ -23,6 +23,7 @@ if ( !empty($_POST['update']) ) {
     $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
     $options['formatDate']		= trim($_POST['format_date']);
     $options['sidebarImagesOnly'] = trim($_POST['sidebar_images_only']);
+    $options['sidebarCss'] 		= trim($_POST['sidebarCss']);
     $options['wishlistUrl']		= trim($_POST['wishlist_url']);
     $options['associate']		= trim($_POST['associate']);
     $options['ignoreTime']		= trim($_POST['ignore_time']);

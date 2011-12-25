@@ -20,6 +20,56 @@ define('NOW_READING_VERSIONS', 'nowReadingVersions');
 define('NR_MENU_SINGLE', 2);
 define('NR_MENU_MULTIPLE', 4);
 
+define('DEFAULT_SIDEBAR_CSS',
+'.nr_widget img {
+	padding: 5px 5px 5px 5px;
+	width: 65px;    /* Jacket image width. */
+	height: 100px;  /* Jacket image height. */
+}
+.nr_widget h4 {
+	border: 1px solid #c0c0c0;
+	padding: 5px 5px 5px 5px;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
+	margin: 20px 0 5px 0;
+	clear: both;
+}
+.nr_widget ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+.nr_widget li {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    display: -moz-inline-box;
+    -moz-box-orient: vertical;
+    display: inline-block;
+    vertical-align:top;
+    word-wrap: break-word;
+}
+* html .nr_widget li {
+    display: inline;
+}
+* + html .nr_widget li {
+    display: inline;
+}
+');
+
+/*
+ .nr_widget li > * {
+    display: table;
+    table-layout: fixed;
+    overflow: hidden;
+}
+* html .nr_widget li { // for IE 6
+    width: 80px;
+}
+.nr_widget li > * { // for all other browser
+    width: 80px;
+}
+*/
+
 /**
  * Load our l18n domain.
  */
@@ -75,15 +125,16 @@ require_once dirname(__FILE__) . '/template-functions.php';
 require_once dirname(__FILE__) . '/widget.php';
 
 /**
- * Checks if the install needs to be run by checking the `nowReadingVersions` option, which stores the current installed database, options and rewrite versions.
+ * Checks if the install needs to be run by checking the NOW_READING_VERSIONS option,
+ * which stores the current installed database, options and rewrite versions.
  */
 function nr_check_versions()
 {
     $versions = get_option(NOW_READING_VERSIONS);
     if (empty($versions) ||
-		$versions['db'] < NOW_READING_DB ||
-		$versions['options'] < NOW_READING_OPTIONS ||
-		$versions['rewrite'] < NOW_READING_REWRITE)
+		$versions['db'] < NOW_READING_DB_VERSION ||
+		$versions['options'] < NOW_READING_OPTIONS_VERSION ||
+		$versions['rewrite'] < NOW_READING_REWRITE_VERSION)
     {
 		nr_install();
     }
@@ -113,10 +164,12 @@ add_action('init','nr_check_api_key');
 /**
  * Handler for the activation hook. Installs/upgrades the database table and adds/updates the nowReadingOptions option.
  */
-function nr_install() {
+function nr_install()
+{
     global $wpdb, $wp_rewrite, $wp_version;
 
-    if ( version_compare('2.0', $wp_version) == 1 && strpos($wp_version, 'wordpress-mu') === false ) {
+    if (version_compare('2.0', $wp_version) == 1 && strpos($wp_version, 'wordpress-mu') === false)
+	{
         echo '
 		<p>(Now Reading Redux only works with WordPress 2.0 and above, sorry!)</p>
 		';
@@ -126,6 +179,7 @@ function nr_install() {
     // WP's dbDelta function takes care of installing/upgrading our DB table.
     $upgrade_file = file_exists(ABSPATH . 'wp-admin/includes/upgrade.php') ? ABSPATH . 'wp-admin/includes/upgrade.php' : ABSPATH . 'wp-admin/upgrade-functions.php';
     require_once $upgrade_file;
+	
     // Until the nasty bug with duplicate indexes is fixed, we should hide dbDelta output.
     ob_start();
     dbDelta("
@@ -259,7 +313,7 @@ function nr_install() {
     }
 
     // Set an option that stores the current installed versions of the database, options and rewrite.
-    $versions = array('db' => NOW_READING_DB, 'options' => NOW_READING_OPTIONS, 'rewrite' => NOW_READING_REWRITE);
+    $versions = array('db' => NOW_READING_DB_VERSION, 'options' => NOW_READING_OPTIONS_VERSION, 'rewrite' => NOW_READING_REWRITE_VERSION);
     update_option(NOW_READING_VERSIONS, $versions);
 }
 register_activation_hook('now-reading-redux/now-reading.php', 'nr_install');
