@@ -15,7 +15,7 @@
                 <a href="<?php book_permalink() ?>">
                     <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
                 <?php if (!sidebar_images_only()) : ?>
-                    <p><strong><?php book_title() ?></strong> by <?php book_author() ?></p>
+						<br /><strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
             	<?php endif; ?>
 			</li>
 		<?php endwhile; ?>
@@ -32,7 +32,7 @@
                 <a href="<?php book_permalink() ?>">
                     <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
                 <?php if (!sidebar_images_only()) : ?>
-                    <p><strong><?php book_title() ?></strong> by <?php book_author() ?></p>
+						<br /><strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
             	<?php endif; ?>
 			</li>
 		<?php endwhile; ?>
@@ -49,7 +49,7 @@
                 <a href="<?php book_permalink() ?>">
                     <img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
                 <?php if (!sidebar_images_only()) : ?>
-                    <p><strong><?php book_title() ?></strong> by <?php book_author() ?></p>
+						<br /><strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
             	<?php endif; ?>
 			</li>
 		<?php endwhile; ?>
