@@ -56,6 +56,41 @@ define('DEFAULT_SIDEBAR_CSS',
 }
 ');
 
+define('DEFAULT_LIBRARY_CSS',
+'.nr_library img {
+	padding: 5px 5px 5px 5px;
+	width: 100px;    /* Jacket image width. */
+	height: 155px;  /* Jacket image height. */
+}
+.nr_library h4 {
+	border: 1px solid #c0c0c0;
+	padding: 5px 5px 5px 5px;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
+	margin: 20px 0 5px 0;
+	clear: both;
+}
+.nr_library ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+.nr_library li {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    display: -moz-inline-box;
+    -moz-box-orient: vertical;
+    display: inline-block;
+    vertical-align:top;
+    word-wrap: break-word;
+}
+* html .nr_library li {
+    display: inline;
+}
+* + html .nr_library li {
+    display: inline;
+}
+');
 /*
  .nr_widget li > * {
     display: table;
@@ -245,6 +280,9 @@ function nr_install()
 		'ignoreTime'	=> false,
 		'hideAddedDate'	=>	false,
 		'sidebarImagesOnly'	=> true,
+		'sidebarCss'	=> DEFAULT_SIDEBAR_CSS,
+		'libraryImagesOnly'	=> false,
+		'libraryCss'	=> DEFAULT_LIBRARY_CSS,
 		'wishlistUrl'	=>  '',
         'associate'		=> 'thevoid0f-20',
         'domain'		=> '.com',

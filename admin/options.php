@@ -24,6 +24,8 @@ if ( !empty($_POST['update']) ) {
     $options['formatDate']		= trim($_POST['format_date']);
     $options['sidebarImagesOnly'] = trim($_POST['sidebar_images_only']);
     $options['sidebarCss'] 		= trim($_POST['sidebarCss']);
+    $options['libraryImagesOnly'] = trim($_POST['libraryImagesOnly']);
+    $options['libraryCss'] 		= trim($_POST['libraryCss']);
     $options['wishlistUrl']		= trim($_POST['wishlist_url']);
     $options['associate']		= trim($_POST['associate']);
     $options['ignoreTime']		= trim($_POST['ignore_time']);

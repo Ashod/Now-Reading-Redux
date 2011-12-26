@@ -69,6 +69,23 @@ function nr_options()
 				<th scope="row"> <h4>Library Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="libraryImagesOnly">' . __('Show images only', NRTD) . ':</label></th>
+				<td>
+					<input type="checkbox" name="libraryImagesOnly" id="libraryImagesOnly"' . ( ($options['libraryImagesOnly']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("When checked only images will be shown in the library. Otherwise, titles and authors are shown as text and links.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryCss">' . __("Library CSS code", NRTD) . ':</label></th>
+				<td>
+					<textarea name="libraryCss" id="libraryCss" rows="6" cols="75">' . $options['libraryCss'] . '</textarea>
+					<br />
+					<button type="button" onclick="document.getElementById(\'libraryCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_LIBRARY_CSS)) . '\'">Default</button>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="books_per_page">' . __("Books per page", NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="books_per_page" id="books_per_page" style="width:4em;" value="' . ( intval($options['booksPerPage']) ) . '" />
@@ -109,6 +126,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="sidebarCss">' . __("Sidebar CSS code", NRTD) . ':</label></th>
+				<td>
+					<textarea name="sidebarCss" id="sidebarCss" rows="6" cols="75">' . $options['sidebarCss'] . '</textarea>
+					<br />
+					<button type="button" onclick="document.getElementById(\'sidebarCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_SIDEBAR_CSS)) . '\'">Default</button>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="wishlist_url">' . __('Wishlist URL', NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="wishlist_url" id="wishlist_url" size="75" value="' . htmlentities($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
@@ -124,14 +149,6 @@ function nr_options()
 				<th scope="row"><label for="def_book_count">' . __("Default number of books queried", NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="def_book_count" id="def_book_count" style="width:4em;" value="' . ( intval($options['defBookCount']) ) . '" />
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="sidebarCss">' . __("Sidebar CSS code", NRTD) . ':</label></th>
-				<td>
-					<textarea name="sidebarCss" id="sidebarCss" rows="6" cols="75">' . $options['sidebarCss'] . '</textarea>
-					<br />
-					<button type="button" onclick="document.getElementById(\'sidebarCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_SIDEBAR_CSS)) . '\'">Default</button>
 				</td>
 			</tr>
 

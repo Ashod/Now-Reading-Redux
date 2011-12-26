@@ -779,7 +779,8 @@ function search_query( $echo = true ) {
  * Prints a standard search form for users who don't want to create their own.
  * @param bool $echo Whether or not to echo the results.
  */
-function library_search_form( $echo = true ) {
+function library_search_form($echo = true)
+{
     $options = get_option(NOW_READING_OPTIONS);
 
     $html = '
@@ -792,8 +793,8 @@ function library_search_form( $echo = true ) {
     }
 
     $html .= '
-		<input type="text" name="q" />
 		<div align=center>
+		<input type="text" name="q" />
 		<input type="submit" value="' . __("Search Library", NRTD) . '" />
 		</div>
 	</form>
@@ -928,7 +929,7 @@ function library_page_url( $page, $echo = true ) {
 }
 
 /**
- * Returns true if sidebar images-only is enabled.
+ * Returns true if Sidebar images-only is enabled.
  */
 function sidebar_images_only()
 {
@@ -945,6 +946,26 @@ function sidebar_css()
     $options = get_option(NOW_READING_OPTIONS);
 
     return $options['sidebarCss'];
+}
+
+/**
+ * Returns true if Library images-only is enabled.
+ */
+function library_images_only()
+{
+    $options = get_option(NOW_READING_OPTIONS);
+
+    return $options['libraryImagesOnly'];
+}
+
+/**
+ * Returns the Library CSS code.
+ */
+function library_css()
+{
+    $options = get_option(NOW_READING_OPTIONS);
+
+    return $options['libraryCss'];
 }
 
 /**
