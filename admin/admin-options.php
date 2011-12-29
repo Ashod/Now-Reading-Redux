@@ -149,12 +149,6 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="books_per_page">' . __("Books per page", NRTD) . ':</label></th>
-				<td>
-					<input type="text" name="books_per_page" id="books_per_page" style="width:4em;" value="' . ( intval($options['booksPerPage']) ) . '" />
-				</td>
-			</tr>
-			<tr valign="top">
 				<th scope="row"><label for="use_mod_rewrite">' . __("Use <code>mod_rewrite</code> enhanced library", NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="use_mod_rewrite" id="use_mod_rewrite"' . ( ($options['useModRewrite']) ? ' checked="checked"' : '' ) . ' />
@@ -335,6 +329,12 @@ function nr_options()
 					<p>
 					' . __("When checked <code>added</code> date will be hidden in the Manager and Book pages", NRTD) . '
 					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="books_per_page">' . __("Books per page", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="books_per_page" id="books_per_page" style="width:4em;" value="' . ( intval($options['booksPerPage']) ) . '" />
 				</td>
 			</tr>
 			
