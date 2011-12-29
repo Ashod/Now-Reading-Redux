@@ -944,26 +944,6 @@ function library_page_url( $page, $echo = true ) {
 }
 
 /**
- * Returns true if Sidebar images-only is enabled.
- */
-function sidebar_images_only()
-{
-    $options = get_option(NOW_READING_OPTIONS);
-
-    return $options['sidebarImagesOnly'];
-}
-
-/**
- * Returns the Sidebar CSS code.
- */
-function sidebar_css()
-{
-    $options = get_option(NOW_READING_OPTIONS);
-
-    return $options['sidebarCss'];
-}
-
-/**
  * Returns true if Library images-only is enabled.
  */
 function library_images_only()

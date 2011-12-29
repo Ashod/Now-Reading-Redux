@@ -1,12 +1,12 @@
-<style type="text/css">
-	<?php echo sidebar_css(); ?>
-</style>
-
 <?php
 	global $book_query, $library_options, $shelf_name, $shelf_option;
 	$options = get_option(NOW_READING_OPTIONS);
 	$library_options = $options['sidebarOptions'];
 ?>
+
+<style type="text/css">
+	<?php echo $library_options['css'] ?>
+</style>
 
 <div class="now-reading nr_widget">
 
