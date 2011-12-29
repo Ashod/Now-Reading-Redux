@@ -173,8 +173,7 @@ $nr_shelf_viz_options = apply_filters('nr_shelf_viz_options', array(
  */
 $nr_shelf_options = apply_filters('nr_shelf_options', array(
     'viz'		=> 'show_image',
-	'title'		=> '',
-	'style'		=> 'list'
+	'title'		=> ''
 ));
 
 /**
@@ -188,8 +187,8 @@ $def_library_options = array(
     'readingShelf'	=> array('viz' => 'show_image_text', 'title' => DEFAULT_READING_TITLE),
     'readShelf'		=> array('viz' => 'show_image_text', 'title' => DEFAULT_READ_TITLE),
 	'css'			=> DEFAULT_LIBRARY_CSS,
-    'itemsPerRow'	=> 4,
-	'style'			=> 'list'
+	'renderStyle'	=> 'list',
+    'itemsPerTableRow'	=> 4,
 );
 
 /**
@@ -203,8 +202,8 @@ $def_sidebar_options = array(
     'readingShelf'	=> array('viz' => 'show_image', 'title' => DEFAULT_READING_TITLE),
     'readShelf'		=> array('viz' => 'show_image', 'title' => DEFAULT_READ_TITLE),
 	'css'			=> DEFAULT_SIDEBAR_CSS,
-    'itemsPerRow'	=> 3,
-	'style'			=> 'list'
+	'renderStyle'	=> 'list',
+    'itemsPerTableRow'	=> 3,
 );
 
 // Include other functionality

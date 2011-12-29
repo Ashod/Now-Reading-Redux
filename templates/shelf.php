@@ -10,7 +10,7 @@
 <?php
 		if (have_books($book_query))
 		{
-			if ($library_options['style'] != 'table')
+			if ($library_options['renderStyle'] != 'table')
 			{
 				// List
 ?>
@@ -36,7 +36,7 @@
 				<table class='nr-shelf'>
 				<?php
 					$col_ctr = 0;
-					$books_per_row = (int)$library_options['itemsPerRow'];
+					$books_per_row = (int)$library_options['itemsPerTableRow'];
 					if ($books_per_row <= 0)
 					{
 						$books_per_row = 1;

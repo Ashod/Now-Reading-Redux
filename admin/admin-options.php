@@ -149,6 +149,24 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="libraryRenderStyle">' . __('Render style', NRTD) . ':</label></th>
+				<td>
+					<select name="libraryRenderStyle" id="libraryRenderStyle">
+						<option' . ( ($options['libraryOptions']['renderStyle'] == 'list') ? ' selected="selected"' : '' ) . ' value="list">' . __("List", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['renderStyle'] == 'table') ? ' selected="selected"' : '' ) . ' value="table">' . __("Table", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryItemsPerTableRow">' . __("Items per table row", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="libraryItemsPerTableRow" id="libraryItemsPerTableRow" style="width:4em;" value="' . ( intval($options['libraryOptions']['itemsPerTableRow']) ) . '" />
+					<p>
+					' . __("Number of table columns used to render the library. Only meaningful when \"Render style\" is \"Table\".", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="use_mod_rewrite">' . __("Use <code>mod_rewrite</code> enhanced library", NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="use_mod_rewrite" id="use_mod_rewrite"' . ( ($options['useModRewrite']) ? ' checked="checked"' : '' ) . ' />
@@ -254,6 +272,27 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="sidebarRenderStyle">' . __('Render style', NRTD) . ':</label></th>
+				<td>
+					<select name="sidebarRenderStyle" id="sidebarRenderStyle">
+						<option' . ( ($options['sidebarOptions']['renderStyle'] == 'list') ? ' selected="selected"' : '' ) . ' value="list">' . __("List", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['renderStyle'] == 'table') ? ' selected="selected"' : '' ) . ' value="table">' . __("Table", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarItemsPerTableRow">' . __("Items per table row", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="sidebarItemsPerTableRow" id="sidebarItemsPerTableRow" style="width:4em;" value="' . ( intval($options['sidebarOptions']['itemsPerTableRow']) ) . '" />
+					<p>
+					' . __("Number of table columns used to render the sidebar. Only meaningful when \"Render style\" is \"Table\".", NRTD) . '
+					</p>
+					<p>
+					' . __("Note: The sidebar width is limited and, depending on the image width (which can be controlled by the CSS,) a wide table may be problematic. Try 2 or 3.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="wishlist_url">' . __('Wishlist URL', NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="wishlist_url" id="wishlist_url" size="75" value="' . htmlentities($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
@@ -266,7 +305,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="def_book_count">' . __("Default number of books queried", NRTD) . ':</label></th>
+				<th scope="row"><label for="def_book_count">' . __("Number of books shown", NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="def_book_count" id="def_book_count" style="width:4em;" value="' . ( intval($options['defBookCount']) ) . '" />
 				</td>

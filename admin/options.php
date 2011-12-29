@@ -24,7 +24,8 @@ if ( !empty($_POST['update']) ) {
     $options['formatDate']		= trim($_POST['format_date']);
 	
     $options['libraryOptions']['css'] = trim($_POST['libraryCss']);
-    $options['libraryOptions']['itemsPerRow'] = trim($_POST['libraryItemsPerRow']);
+	$options['libraryOptions']['renderStyle'] = trim($_POST['libraryRenderStyle']);
+    $options['libraryOptions']['itemsPerTableRow'] = trim($_POST['libraryItemsPerTableRow']);
     $options['libraryOptions']['unreadShelf']['viz'] = trim($_POST['libraryUnreadShelfViz']);
     $options['libraryOptions']['unreadShelf']['title'] = trim($_POST['libraryUnreadShelfTitle']);
     $options['libraryOptions']['onholdShelf']['viz'] = trim($_POST['libraryOnholdShelfViz']);
@@ -35,7 +36,8 @@ if ( !empty($_POST['update']) ) {
     $options['libraryOptions']['readShelf']['title'] = trim($_POST['libraryReadShelfTitle']);
 
     $options['sidebarOptions']['css'] = trim($_POST['sidebarCss']);
-    $options['sidebarOptions']['itemsPerRow'] = trim($_POST['sidebarItemsPerRow']);
+	$options['sidebarOptions']['renderStyle'] = trim($_POST['sidebarRenderStyle']);
+    $options['sidebarOptions']['itemsPerTableRow'] = trim($_POST['sidebarItemsPerTableRow']);
     $options['sidebarOptions']['unreadShelf']['viz'] = trim($_POST['sidebarUnreadShelfViz']);
     $options['sidebarOptions']['unreadShelf']['title'] = trim($_POST['sidebarUnreadShelfTitle']);
     $options['sidebarOptions']['onholdShelf']['viz'] = trim($_POST['sidebarOnholdShelfViz']);
