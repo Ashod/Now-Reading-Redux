@@ -5,29 +5,45 @@
  * @package now-reading
  */
 
+/*
+ * Returns the CDATA of an amazon search result attribute, if available.
+ * The result is sanitized.
+ */
+function get_attribute_cdata($attribute)
+{
+    $value = '';
+    if (isset($attribute))
+    {
+        $value = $attribute->CDATA();
+        $value = stripslashes($value);
+    }
+    
+    return $value;
+}
+
 /**
  * Fetches and parses XML from Amazon for the given query.
  * @param string $query Query string containing variables to search Amazon for. Valid variables: $isbn, $title, $author
  * @return array Array containing each book's information.
  */
-function query_amazon( $query ) {
-
+function query_amazon($query)
+{
     require_once dirname(__FILE__) . '/sha256.inc.php';
 
     if (!function_exists('hmac'))
-      {
-       function hmac($key, $data, $hashfunc='sha256')
+    {
+        function hmac($key, $data, $hashfunc='sha256')
         {
-         $blocksize=64;
-
-         if (strlen($key) > $blocksize) $key=pack('H*', $hashfunc($key));
-         $key=str_pad($key, $blocksize, chr(0x00));
-         $ipad=str_repeat(chr(0x36), $blocksize);
-         $opad=str_repeat(chr(0x5c), $blocksize);
-         $hmac = pack('H*', $hashfunc(($key^$opad) . pack('H*', $hashfunc(($key^$ipad) . $data))));
-         return $hmac;
+            $blocksize=64;
+            
+            if (strlen($key) > $blocksize) $key=pack('H*', $hashfunc($key));
+            $key=str_pad($key, $blocksize, chr(0x00));
+            $ipad=str_repeat(chr(0x36), $blocksize);
+            $opad=str_repeat(chr(0x5c), $blocksize);
+            $hmac = pack('H*', $hashfunc(($key^$opad) . pack('H*', $hashfunc(($key^$ipad) . $data))));
+            return $hmac;
         }
-      }
+    }
 
     global $item, $items;
 
@@ -79,23 +95,24 @@ function query_amazon( $query ) {
 
     // Sort paramters
     ksort($params);
-
-   // re-build the request
-   $request = array();
+    
+    // re-build the request
+    $request = array();
     foreach ($params as $parameter=>$value)
-     {
-      $parameter = str_replace("_", ".", $parameter);
-      $parameter = str_replace("%7E", "~", rawurlencode($parameter));
-      $value = str_replace("%7E", "~", rawurlencode($value));
-      $request[] = $parameter . "=" . $value;
-     }
-   $request = implode("&", $request);
-
-   $signatureString = $method . chr(10) . $host . chr(10) . $uri . chr(10) . $request;
-
-   $signature = urlencode(base64_encode(hmac($SecretAccessKey, $signatureString)));
-
-   $request = "http://" . $host . $uri . "?" . $request . "&Signature=" . $signature;
+    {
+        $parameter = str_replace("_", ".", $parameter);
+        $parameter = str_replace("%7E", "~", rawurlencode($parameter));
+        $value = str_replace("%7E", "~", rawurlencode($value));
+        $request[] = $parameter . "=" . $value;
+    }
+    
+    $request = implode("&", $request);
+    
+    $signatureString = $method . chr(10) . $host . chr(10) . $uri . chr(10) . $request;
+    
+    $signature = urlencode(base64_encode(hmac($SecretAccessKey, $signatureString)));
+    
+    $request = "http://" . $host . $uri . "?" . $request . "&Signature=" . $signature;
 
     // Fetch the XML using either Snoopy or cURL, depending on our options.
     if ( $options['httpLib'] == 'curl' ) {
@@ -139,7 +156,8 @@ function query_amazon( $query ) {
         $xmlString = $snoopy->results;
     }
 
-    if ( empty($xmlString) ) {
+    if (empty($xmlString))
+    {
         do_action('nr_search_error', $query);
         echo '
         <div id="message" class="error fade">
@@ -161,9 +179,39 @@ function query_amazon( $query ) {
     $impl = new IsterXmlSimpleXMLImpl;
     $xml = $impl->load_string($xmlString);
 
-    if ( $options['debugMode'] )
+    if ($options['debugMode'])
+    {
         robm_dump("Amazon Search XML:", htmlentities(str_replace(">", ">\n", $xmlString)));
+    }
 
+    if (!isset($xml->ItemSearchResponse->Items))
+    {
+        do_action('nr_search_error', $query);
+        echo '
+        <div id="message" class="error fade">
+            <p><strong>' . __("Oops!") . '</strong></p>
+        ';
+        
+        if (isset($xml->ItemSearchResponse->Error) &&
+            isset($xml->ItemSearchResponse->Error->Message))
+        {
+            echo '
+            <p>Amazon error: <b>' . $xml->ItemSearchResponse->Error->Message->CDATA() . '</b></p>
+            ';
+        }
+        else
+        {
+            echo 'Amazon returned:
+            <p>' . htmlentities(str_replace(">", ">\n", $xml->asXML())) . '</p>';
+        }
+        
+        echo '
+        </div>
+        ';
+
+        return false;
+    }
+    
     $items = $xml->ItemSearchResponse->Items->children();
     if (count($items) == 0)
     {
@@ -221,6 +269,7 @@ function query_amazon( $query ) {
             }
 
             $title = $edition->ItemAttributes->Title->CDATA();
+            $title = stripslashes($title);
             if (empty($title))
             {
                 continue;
@@ -261,32 +310,16 @@ function query_amazon( $query ) {
             $image = $item->$size->URL->CDATA();
             if (empty($image))
             {
-                $image = get_option('siteurl') . '/wp-content/plugins/now-reading-redux/no-image.png';
+                $image = plugin_dir_url(__FILE__) . "no-image.png";
             }
 
-            $binding = '';
-			if (isset($edition->ItemAttributes->Binding))
-			{
-				$binding = $edition->ItemAttributes->Binding->CDATA();
-			}
+            $binding = get_attribute_cdata($edition->ItemAttributes->Binding);
 
-			$ed = '';
-			if (isset($edition->ItemAttributes->Edition))
-			{
-				$ed = $edition->ItemAttributes->Edition->CDATA();
-			}
+			$ed = get_attribute_cdata($edition->ItemAttributes->Edition);
 
-            $date = '';
-			if (isset($edition->ItemAttributes->PublicationDate))
-			{
-				$date = $edition->ItemAttributes->PublicationDate->CDATA();
-			}
+            $date = get_attribute_cdata($edition->ItemAttributes->PublicationDate);
 
-			$publisher = '';
-			if (isset($edition->ItemAttributes->Publisher))
-			{
-				$publisher = $edition->ItemAttributes->Publisher->CDATA();
-			}
+			$publisher = get_attribute_cdata($edition->ItemAttributes->Publisher);
 
             if ($options['debugMode'])
             {
@@ -298,12 +331,11 @@ function query_amazon( $query ) {
     }
 
     $results = apply_filters('returned_books', $results);
-
     return $results;
 }
 
-  function getMetadataFromIsbn($isbn, $awsAccessKeyID, $awsSecretKey, $awsAssociateTag) {
-
+function getMetadataFromIsbn($isbn, $awsAccessKeyID, $awsSecretKey, $awsAssociateTag)
+{
     $host = 'ecs.amazonaws.com';
     $path = '/onca/xml';
 
@@ -344,8 +376,10 @@ function query_amazon( $query ) {
     $url = 'http://' . $host . $path . '?' . implode("&", $parts) . "&Signature=" . $signature;
     $rawData = file_get_contents($url);
 
-    if ( $options['debugMode'] )
+    if ($options['debugMode'])
+    {
         robm_dump("raw XML:", htmlentities(str_replace(">", ">\n", $rawData)));
+    }
 
     return $rawData;
   }
