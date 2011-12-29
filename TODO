@@ -5,7 +5,6 @@
 * Replace book page by post.
 * Choose what to show in the Widget.
 * Rate.
-* Progress info per Book.
 * Icons for Book status.
 * Use calendar UI for dates.
 * Search filter is appending to URL.
@@ -17,6 +16,9 @@
 * Add admin menu.
 * Add reading progress.
 * Update translations.
+* Remove all explicit includes.
+* Replace options with automatic handling.
+* Library search broken and unlike manage-books search.
 
 - Show statistics in Library.
 - Public/Private visibility.
