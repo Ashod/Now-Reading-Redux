@@ -69,20 +69,83 @@ function nr_options()
 				<th scope="row"> <h4>Library Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryImagesOnly">' . __('Show images only', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryUnreadShelfTitle">' . __('Unread shelf title', NRTD) . ':</label></th>
 				<td>
-					<input type="checkbox" name="libraryImagesOnly" id="libraryImagesOnly"' . ( ($options['libraryImagesOnly']) ? ' checked="checked"' : '' ) . ' />
-					<p>
-					' . __("When checked only images will be shown in the library. Otherwise, titles and authors are shown as text and links.", NRTD) . '
-					</p>
+					<input type="text" size="30" style="vertical-align:middle;" name="libraryUnreadShelfTitle" id="libraryUnreadShelfTitle" value="' . text_or_default($options['libraryOptions']['unreadShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryUnreadShelfTitle\').value=\'' . DEFAULT_UNREAD_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryUnreadShelfViz">' . __('Unread shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="libraryUnreadShelfViz" id="libraryUnreadShelfViz">
+						<option' . ( ($options['libraryOptions']['unreadShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['unreadShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['unreadShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['unreadShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryOnholdShelfTitle">' . __('On Hold shelf title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="libraryOnholdShelfTitle" id="libraryOnholdShelfTitle" value="' . text_or_default($options['libraryOptions']['onholdShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryOnholdShelfTitle\').value=\'' . DEFAULT_ONHOLD_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryOnholdShelfViz">' . __('On Hold shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="libraryOnholdShelfViz" id="libraryOnholdShelfViz">
+						<option' . ( ($options['libraryOptions']['onholdShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['onholdShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['onholdShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['onholdShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryReadingShelfTitle">' . __('Reading shelf title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="libraryReadingShelfTitle" id="libraryReadingShelfTitle" value="' . text_or_default($options['libraryOptions']['readingShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryReadingShelfTitle\').value=\'' . DEFAULT_READING_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryReadingShelfViz">' . __('Reading shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="libraryReadingShelfViz" id="libraryReadingShelfViz">
+						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryReadShelfTitle">' . __('Finished shelf title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="libraryReadShelfTitle" id="libraryReadShelfTitle" value="' . text_or_default($options['libraryOptions']['readShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryReadShelfTitle\').value=\'' .DEFAULT_READ_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryReadShelfViz">' . __('Finished shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="libraryReadShelfViz" id="libraryReadShelfViz">
+						<option' . ( ($options['libraryOptions']['readShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><label for="libraryCss">' . __("Library CSS code", NRTD) . ':</label></th>
 				<td>
-					<textarea name="libraryCss" id="libraryCss" rows="6" cols="75">' . $options['libraryCss'] . '</textarea>
+					<textarea name="libraryCss" id="libraryCss" rows="6" cols="75">' . $options['libraryOptions']['css'] . '</textarea>
 					<br />
-					<button type="button" onclick="document.getElementById(\'libraryCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_LIBRARY_CSS)) . '\'">Default</button>
+					<button type="button" onclick="document.getElementById(\'libraryCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_LIBRARY_CSS)) . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -117,20 +180,83 @@ function nr_options()
 				<th scope="row"> <h4>Sidebar Widget Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebar_images_only">' . __('Show images only', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarUnreadShelfTitle">' . __('Unread shelf title', NRTD) . ':</label></th>
 				<td>
-					<input type="checkbox" name="sidebar_images_only" id="sidebar_images_only"' . ( ($options['sidebarImagesOnly']) ? ' checked="checked"' : '' ) . ' />
-					<p>
-					' . __("When checked only images will be shown in the sidebar. Otherwise, titles and authors are shown as text.", NRTD) . '
-					</p>
+					<input type="text" size="30" style="vertical-align:middle;" name="sidebarUnreadShelfTitle" id="sidebarUnreadShelfTitle" value="' . text_or_default($options['sidebarOptions']['unreadShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarUnreadShelfTitle\').value=\'' . DEFAULT_UNREAD_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarUnreadShelfViz">' . __('Unread shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="sidebarUnreadShelfViz" id="sidebarUnreadShelfViz">
+						<option' . ( ($options['sidebarOptions']['unreadShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['unreadShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['unreadShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['unreadShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarOnholdShelfTitle">' . __('On Hold shelf title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="sidebarOnholdShelfTitle" id="sidebarOnholdShelfTitle" value="' . text_or_default($options['sidebarOptions']['onholdShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarOnholdShelfTitle\').value=\'' . DEFAULT_ONHOLD_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarOnholdShelfViz">' . __('On Hold shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="sidebarOnholdShelfViz" id="sidebarOnholdShelfViz">
+						<option' . ( ($options['sidebarOptions']['onholdShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['onholdShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['onholdShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['onholdShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarReadingShelfTitle">' . __('Reading shelf title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="sidebarReadingShelfTitle" id="sidebarReadingShelfTitle" value="' . text_or_default($options['sidebarOptions']['readingShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarReadingShelfTitle\').value=\'' . DEFAULT_READING_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarReadingShelfViz">' . __('Reading shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="sidebarReadingShelfViz" id="sidebarReadingShelfViz">
+						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarReadShelfTitle">' . __('Finished shelf title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="sidebarReadShelfTitle" id="sidebarReadShelfTitle" value="' . text_or_default($options['sidebarOptions']['readShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarReadShelfTitle\').value=\'' . DEFAULT_READ_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarReadShelfViz">' . __('Finished shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="sidebarReadShelfViz" id="sidebarReadShelfViz">
+						<option' . ( ($options['sidebarOptions']['readShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
 				</td>
 			</tr>
 			<tr valign="top">
 				<th scope="row"><label for="sidebarCss">' . __("Sidebar CSS code", NRTD) . ':</label></th>
 				<td>
-					<textarea name="sidebarCss" id="sidebarCss" rows="6" cols="75">' . $options['sidebarCss'] . '</textarea>
+					<textarea name="sidebarCss" id="sidebarCss" rows="6" cols="75">' . $options['sidebarOptions']['css'] . '</textarea>
 					<br />
-					<button type="button" onclick="document.getElementById(\'sidebarCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_SIDEBAR_CSS)) . '\'">Default</button>
+					<button type="button" onclick="document.getElementById(\'sidebarCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_SIDEBAR_CSS)) . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -218,7 +344,7 @@ function nr_options()
 			<tr valign="top">
 				<th scope="row"><label for="AWSAccessKeyId">' . __('Amazon Web Services Access Key ID', NRTD) . ':</label></th>
 				<td>
-					<input type="text" size="50" name="AWSAccessKeyId" id="AWSAccessKeyId" value="' . htmlentities($options['AWSAccessKeyId'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" size="70" name="AWSAccessKeyId" id="AWSAccessKeyId" value="' . htmlentities($options['AWSAccessKeyId'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
 					' . sprintf(__("Required to add books from Amazon.  It's free to sign up. Register <a href='%s'>here</a>.", NRTD), "https://aws-portal.amazon.com/gp/aws/developer/registration/index.html") . '
 					</p>
@@ -227,7 +353,7 @@ function nr_options()
 			<tr valign="top">
 				<th scope="row"><label for="SecretAccessKey">' . __('Amazon Web Services Secret Access Key', NRTD) . ':</label></th>
 				<td>
-					<input type="text" size="50" name="SecretAccessKey" id="SecretAccessKey" value="' . htmlentities($options['SecretAccessKey'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" size="70" name="SecretAccessKey" id="SecretAccessKey" value="' . htmlentities($options['SecretAccessKey'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
 					' . sprintf(__("Required to add books from Amazon.  Found at the same site as above. Register <a href='%s'>here</a>.", NRTD), "https://aws-portal.amazon.com/gp/aws/developer/registration/index.html") . '
 					</p>

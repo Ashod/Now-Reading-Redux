@@ -112,16 +112,21 @@ $locale = get_locale();
 $path = "wp-content/plugins/now-reading-redux/translations/$locale";
 load_plugin_textdomain(NRTD, $path);
 
+define('DEFAULT_UNREAD_TITLE', 'Planned');
+define('DEFAULT_ONHOLD_TITLE', 'On Hold');
+define('DEFAULT_READING_TITLE', 'Reading');
+define('DEFAULT_READ_TITLE', 'Finished');
+
 /**
  * Array of the statuses that books can be.
  * @global array $GLOBALS['nr_statuses']
  * @name $nr_statuses
  */
 $nr_statuses = apply_filters('nr_statuses', array(
-    'unread'	=> __('Yet to read', NRTD),
-    'onhold'	=> __('On Hold', NRTD),
-    'reading'	=> __('Currently reading', NRTD),
-    'read'		=> __('Finished', NRTD)
+    'unread'	=> __(DEFAULT_UNREAD_TITLE, NRTD),
+    'onhold'	=> __(DEFAULT_ONHOLD_TITLE, NRTD),
+    'reading'	=> __(DEFAULT_READING_TITLE, NRTD),
+    'read'		=> __(DEFAULT_READ_TITLE, NRTD)
 ));
 
 /**
@@ -147,6 +152,56 @@ $nr_domains = array(
     '.de'		=> __('Germany', NRTD),
     '.co.jp'	=> __('Japan', NRTD),
     '.ca'		=> __('Canada', NRTD)
+);
+
+/**
+ * Array of the shelf visualization options.
+ * @global array $GLOBALS['nr_shelf_viz_options']
+ * @name $nr_shelf_viz_options
+ */
+$nr_shelf_viz_options = apply_filters('nr_shelf_viz_options', array(
+    'hide'			=> __('Hide', NRTD),
+    'show_image'	=> __('Show image only', NRTD),
+    'show_text'		=> __('Show text only', NRTD),
+    'show_image_text' => __('Show both image and text', NRTD)
+));
+
+/**
+ * Array of the shelf options.
+ * @global array $GLOBALS['nr_shelf_options']
+ * @name $nr_shelf_options
+ */
+$nr_shelf_options = apply_filters('nr_shelf_options', array(
+    'viz'		=> 'show_image',
+	'title'		=> ''
+));
+
+/**
+ * Array of the default library options.
+ * @global array $GLOBALS['def_library_options']
+ * @name $def_library_options
+ */
+$def_library_options = array(
+    'unreadShelf'	=> array('viz' => 'show_image_text', 'title' => DEFAULT_UNREAD_TITLE),
+    'onholdShelf'	=> array('viz' => 'hide', 'title' => DEFAULT_ONHOLD_TITLE),
+    'readingShelf'	=> array('viz' => 'show_image_text', 'title' => DEFAULT_READING_TITLE),
+    'readShelf'		=> array('viz' => 'show_image_text', 'title' => DEFAULT_READ_TITLE),
+	'css'			=> DEFAULT_LIBRARY_CSS,
+    'itemsPerRow'	=> 4,
+);
+
+/**
+ * Array of the default sideb options.
+ * @global array $GLOBALS['def_sidebar_options']
+ * @name $def_sidebar_options
+ */
+$def_sidebar_options = array(
+    'unreadShelf'	=> array('viz' => 'show_image', 'title' => DEFAULT_UNREAD_TITLE),
+    'onholdShelf'	=> array('viz' => 'hide', 'title' => DEFAULT_ONHOLD_TITLE),
+    'readingShelf'	=> array('viz' => 'show_image', 'title' => DEFAULT_READING_TITLE),
+    'readShelf'		=> array('viz' => 'show_image', 'title' => DEFAULT_READ_TITLE),
+	'css'			=> DEFAULT_SIDEBAR_CSS,
+    'itemsPerRow'	=> 3,
 );
 
 // Include other functionality
@@ -194,7 +249,6 @@ function nr_check_api_key() {
     }
 }
 add_action('init','nr_check_api_key');
-
 
 /**
  * Handler for the activation hook. Installs/upgrades the database table and adds/updates the nowReadingOptions option.
@@ -279,10 +333,8 @@ function nr_install()
         'formatDate'	=> 'jS F Y',
 		'ignoreTime'	=> false,
 		'hideAddedDate'	=>	false,
-		'sidebarImagesOnly'	=> true,
-		'sidebarCss'	=> DEFAULT_SIDEBAR_CSS,
-		'libraryImagesOnly'	=> false,
-		'libraryCss'	=> DEFAULT_LIBRARY_CSS,
+		'sidebarOptions' => $def_library_options,
+		'libraryOptions' => $def_sidebar_options,
 		'wishlistUrl'	=>  '',
         'associate'		=> 'thevoid0f-20',
         'domain'		=> '.com',

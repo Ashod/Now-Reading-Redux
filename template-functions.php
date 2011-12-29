@@ -44,6 +44,21 @@ function nr_empty_date( $date ) {
     return ( empty($date) || $date == "0000-00-00 00:00:00" );
 }
 
+/*
+ * Returns an html-entity escaped string of $value (if not empty) or
+ * of the translation of $default (if value is empty).
+ */
+function text_or_default($value, $default)
+{
+    $text = $value;
+    if (empty($text))
+    {
+        $text = __($default, NRTD);
+    }
+    
+    return htmlentities($text, ENT_QUOTES, "UTF-8");
+}
+
 /**
  * Prints the book's title.
  * @param bool $echo Whether or not to echo the results.
