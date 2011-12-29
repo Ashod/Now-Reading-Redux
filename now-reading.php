@@ -173,7 +173,8 @@ $nr_shelf_viz_options = apply_filters('nr_shelf_viz_options', array(
  */
 $nr_shelf_options = apply_filters('nr_shelf_options', array(
     'viz'		=> 'show_image',
-	'title'		=> ''
+	'title'		=> '',
+	'style'		=> 'list'
 ));
 
 /**
@@ -188,6 +189,7 @@ $def_library_options = array(
     'readShelf'		=> array('viz' => 'show_image_text', 'title' => DEFAULT_READ_TITLE),
 	'css'			=> DEFAULT_LIBRARY_CSS,
     'itemsPerRow'	=> 4,
+	'style'			=> 'list'
 );
 
 /**
@@ -202,6 +204,7 @@ $def_sidebar_options = array(
     'readShelf'		=> array('viz' => 'show_image', 'title' => DEFAULT_READ_TITLE),
 	'css'			=> DEFAULT_SIDEBAR_CSS,
     'itemsPerRow'	=> 3,
+	'style'			=> 'list'
 );
 
 // Include other functionality
@@ -534,21 +537,28 @@ add_action('template_redirect', 'library_init');
  * Loads the given filename from either the current theme's now-reading directory or, if that doesn't exist, the Now Reading templates directory.
  * @param string $filename The filename of the template to load.
  */
-function nr_load_template( $filename ) {
+function nr_load_template($filename, $require_once = true)
+{
     $filename = basename($filename);
     $template = TEMPLATEPATH ."/now-reading-redux/$filename";
 
 	/*  check `now-reading` for backwards compatibility */
-    if ( !file_exists($template) )
-        $template = TEMPLATEPATH ."/now-reading/$filename";
+    if (!file_exists($template))
+    {
+		$template = TEMPLATEPATH ."/now-reading/$filename";
+	}
 
-    if ( !file_exists($template) )
-        $template = dirname(__FILE__)."/templates/$filename";
+    if (!file_exists($template))
+    {
+		$template = dirname(__FILE__)."/templates/$filename";
+	}
 
-    if ( !file_exists($template) )
-        return new WP_Error('template-missing', sprintf(__("Oops! The template file %s could not be found in either the Now Reading template directory or your theme's Now Reading directory.", NRTD), "<code>$filename</code>"));
+    if (!file_exists($template))
+    {
+		return new WP_Error('template-missing', sprintf(__("Oops! The template file %s could not be found in either the Now Reading template directory or your theme's Now Reading directory.", NRTD), "<code>$filename</code>"));
+	}
 
-    load_template($template);
+    load_template($template, $require_once);
 }
 
 /**
