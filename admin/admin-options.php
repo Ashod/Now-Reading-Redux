@@ -66,17 +66,17 @@ function nr_options()
 		<table class="form-table" width="100%" cellspacing="2" cellpadding="5">
 		
 			<tr valign="top">
-				<th scope="row"> <h4>Library Options</h4><hr /></th>
+				<th scope="row"> <h3>Library Options</h3><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryReadingShelfTitle">' . __('Reading shelf title', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryReadingShelfTitle"><b>' . __('Reading shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="libraryReadingShelfTitle" id="libraryReadingShelfTitle" value="' . text_or_default($options['libraryOptions']['readingShelf']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryReadingShelfTitle\').value=\'' . DEFAULT_READING_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryReadingShelfViz">' . __('Reading shelf visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryReadingShelfViz"><b>' . __('Reading shelf visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="libraryReadingShelfViz" id="libraryReadingShelfViz">
 						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
@@ -87,14 +87,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryUnreadShelfTitle">' . __('Unread shelf title', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryUnreadShelfTitle"><b>' . __('Unread shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="libraryUnreadShelfTitle" id="libraryUnreadShelfTitle" value="' . text_or_default($options['libraryOptions']['unreadShelf']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryUnreadShelfTitle\').value=\'' . DEFAULT_UNREAD_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryUnreadShelfViz">' . __('Unread shelf visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryUnreadShelfViz"><b>' . __('Unread shelf visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="libraryUnreadShelfViz" id="libraryUnreadShelfViz">
 						<option' . ( ($options['libraryOptions']['unreadShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
@@ -105,14 +105,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryOnholdShelfTitle">' . __('On Hold shelf title', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryOnholdShelfTitle"><b>' . __('On Hold shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="libraryOnholdShelfTitle" id="libraryOnholdShelfTitle" value="' . text_or_default($options['libraryOptions']['onholdShelf']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryOnholdShelfTitle\').value=\'' . DEFAULT_ONHOLD_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryOnholdShelfViz">' . __('On Hold shelf visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryOnholdShelfViz"><b>' . __('On Hold shelf visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="libraryOnholdShelfViz" id="libraryOnholdShelfViz">
 						<option' . ( ($options['libraryOptions']['onholdShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
@@ -123,14 +123,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryReadShelfTitle">' . __('Finished shelf title', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryReadShelfTitle"><b>' . __('Finished shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="libraryReadShelfTitle" id="libraryReadShelfTitle" value="' . text_or_default($options['libraryOptions']['readShelf']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryReadShelfTitle\').value=\'' .DEFAULT_READ_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryReadShelfViz">' . __('Finished shelf visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryReadShelfViz"><b>' . __('Finished shelf visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="libraryReadShelfViz" id="libraryReadShelfViz">
 						<option' . ( ($options['libraryOptions']['readShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
@@ -141,7 +141,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryCss">' . __("Library CSS code", NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryCss"><b>' . __("Library CSS code", NRTD) . ':</b></label></th>
 				<td>
 					<textarea name="libraryCss" id="libraryCss" rows="6" cols="75">' . $options['libraryOptions']['css'] . '</textarea>
 					<br />
@@ -149,7 +149,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryRenderStyle">' . __('Render style', NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryRenderStyle"><b>' . __('Rendering style', NRTD) . ':</b></label></th>
 				<td>
 					<select name="libraryRenderStyle" id="libraryRenderStyle">
 						<option' . ( ($options['libraryOptions']['renderStyle'] == 'list') ? ' selected="selected"' : '' ) . ' value="list">' . __("List", NRTD) . '</option>
@@ -158,16 +158,16 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryItemsPerTableRow">' . __("Items per table row", NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryItemsPerTableRow"><b>' . __("Items per table row", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="libraryItemsPerTableRow" id="libraryItemsPerTableRow" style="width:4em;" value="' . ( intval($options['libraryOptions']['itemsPerTableRow']) ) . '" />
 					<p>
-					' . __("Number of table columns used to render the sidebar. Only meaningful when \"Render style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
+					' . __("Number of table columns used to render the sidebar. Only meaningful when \"Rendering style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
 					</p>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="libraryShowStats">' . __("Show statistics", NRTD) . ':</label></th>
+				<th scope="row"><label for="libraryShowStats"><b>' . __("Show statistics", NRTD) . ':</b></label></th>
 				<td>
 					<input type="checkbox" name="libraryShowStats" id="libraryShowStats"' . ( ($options['libraryOptions']['showStats']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -176,7 +176,7 @@ function nr_options()
 				</td>
 			</tr>			
 			<tr valign="top">
-				<th scope="row"><label for="use_mod_rewrite">' . __("Use <code>mod_rewrite</code> enhanced library", NRTD) . ':</label></th>
+				<th scope="row"><label for="use_mod_rewrite"><b>' . __("Use <code>mod_rewrite</code> enhanced library", NRTD) . ':</b></label></th>
 				<td>
 					<input type="checkbox" name="use_mod_rewrite" id="use_mod_rewrite"' . ( ($options['useModRewrite']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -198,17 +198,17 @@ function nr_options()
 			</tr>
 		
 			<tr valign="top">
-				<th scope="row"> <h4>Sidebar Widget Options</h4><hr /></th>
+				<th scope="row"> <h3>Sidebar Widget Options</h3><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarReadingShelfTitle">' . __('Reading shelf title', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarReadingShelfTitle"><b>' . __('Reading shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="sidebarReadingShelfTitle" id="sidebarReadingShelfTitle" value="' . text_or_default($options['sidebarOptions']['readingShelf']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarReadingShelfTitle\').value=\'' . DEFAULT_READING_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarReadingShelfViz">' . __('Reading shelf visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarReadingShelfViz"><b>' . __('Reading shelf visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="sidebarReadingShelfViz" id="sidebarReadingShelfViz">
 						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
@@ -219,7 +219,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarReadingShelfMaxItems">' . __("Reading shelf items limit", NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarReadingShelfMaxItems"><b>' . __("Reading shelf items limit", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="sidebarReadingShelfMaxItems" id="sidebarReadingShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['readingShelf']['maxItems']) ) . '" />
 					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
@@ -227,14 +227,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarUnreadShelfTitle">' . __('Unread shelf title', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarUnreadShelfTitle"><b>' . __('Unread shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="sidebarUnreadShelfTitle" id="sidebarUnreadShelfTitle" value="' . text_or_default($options['sidebarOptions']['unreadShelf']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarUnreadShelfTitle\').value=\'' . DEFAULT_UNREAD_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarUnreadShelfViz">' . __('Unread shelf visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarUnreadShelfViz"><b>' . __('Unread shelf visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="sidebarUnreadShelfViz" id="sidebarUnreadShelfViz">
 						<option' . ( ($options['sidebarOptions']['unreadShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
@@ -245,7 +245,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarUnreadShelfMaxItems">' . __("Unread shelf items limit", NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarUnreadShelfMaxItems"><b>' . __("Unread shelf items limit", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="sidebarUnreadShelfMaxItems" id="sidebarUnreadShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['unreadShelf']['maxItems']) ) . '" />
 					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
@@ -253,14 +253,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarOnholdShelfTitle">' . __('On Hold shelf title', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarOnholdShelfTitle"><b>' . __('On Hold shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="sidebarOnholdShelfTitle" id="sidebarOnholdShelfTitle" value="' . text_or_default($options['sidebarOptions']['onholdShelf']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarOnholdShelfTitle\').value=\'' . DEFAULT_ONHOLD_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarOnholdShelfViz">' . __('On Hold shelf visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarOnholdShelfViz"><b>' . __('On Hold shelf visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="sidebarOnholdShelfViz" id="sidebarOnholdShelfViz">
 						<option' . ( ($options['sidebarOptions']['onholdShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
@@ -271,7 +271,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarOnholdShelfMaxItems">' . __("On Hold shelf items limit", NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarOnholdShelfMaxItems"><b>' . __("On Hold shelf items limit", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="sidebarOnholdShelfMaxItems" id="sidebarOnholdShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['onholdShelf']['maxItems']) ) . '" />
 					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
@@ -279,14 +279,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarReadShelfTitle">' . __('Finished shelf title', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarReadShelfTitle"><b>' . __('Finished shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="sidebarReadShelfTitle" id="sidebarReadShelfTitle" value="' . text_or_default($options['sidebarOptions']['readShelf']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarReadShelfTitle\').value=\'' . DEFAULT_READ_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarReadShelfViz">' . __('Finished shelf visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarReadShelfViz"><b>' . __('Finished shelf visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="sidebarReadShelfViz" id="sidebarReadShelfViz">
 						<option' . ( ($options['sidebarOptions']['readShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
@@ -297,7 +297,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarReadShelfMaxItems">' . __("Finished shelf items limit", NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarReadShelfMaxItems"><b>' . __("Finished shelf items limit", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="sidebarReadShelfMaxItems" id="sidebarReadShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['readShelf']['maxItems']) ) . '" />
 					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
@@ -305,7 +305,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarCss">' . __("Sidebar CSS code", NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarCss"><b>' . __("Sidebar CSS code", NRTD) . ':</b></label></th>
 				<td>
 					<textarea name="sidebarCss" id="sidebarCss" rows="6" cols="75">' . $options['sidebarOptions']['css'] . '</textarea>
 					<br />
@@ -313,7 +313,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarRenderStyle">' . __('Render style', NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarRenderStyle"><b>' . __('Rendering style', NRTD) . ':</b></label></th>
 				<td>
 					<select name="sidebarRenderStyle" id="sidebarRenderStyle">
 						<option' . ( ($options['sidebarOptions']['renderStyle'] == 'list') ? ' selected="selected"' : '' ) . ' value="list">' . __("List", NRTD) . '</option>
@@ -322,11 +322,11 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="sidebarItemsPerTableRow">' . __("Items per table row", NRTD) . ':</label></th>
+				<th scope="row"><label for="sidebarItemsPerTableRow"><b>' . __("Items per table row", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="sidebarItemsPerTableRow" id="sidebarItemsPerTableRow" style="width:4em;" value="' . ( intval($options['sidebarOptions']['itemsPerTableRow']) ) . '" />
 					<p>
-					' . __("Number of table columns used to render the sidebar. Only meaningful when \"Render style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
+					' . __("Number of table columns used to render the sidebar. Only meaningful when \"Rendering style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
 					</p>
 					<p>
 					' . __("Note: The sidebar width is limited and, depending on the image width (which can be controlled by the CSS,) a wide table may be problematic. Try 2 or 3.", NRTD) . '
@@ -334,11 +334,11 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="wishlist_url">' . __('Wishlist URL', NRTD) . ':</label></th>
+				<th scope="row"><label for="wishlist_url"><b>' . __('Wishlist URL', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="wishlist_url" id="wishlist_url" size="75" value="' . htmlentities($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
-					' . __("An optional link shown at the bottom of the side bar as \"Buy me a gift!\" It is typically used to link to an Amazon wishlist page, but can be to any page.", NRTD) . '
+					' . __("An optional link shown at the bottom of the side bar as \"Buy me a gift!\" It is typically used to link to an Amazon wishlist page, but can be any page.", NRTD) . '
 					</p>
 					<p>
 					' . __("Add 'http://' to make the URL absolute and not relative to the current page.", NRTD) . '
@@ -347,17 +347,17 @@ function nr_options()
 			</tr>
 
 			<tr valign="top">
-				<th scope="row"> <h4>Search Options</h4><hr /></th>
+				<th scope="row"> <h3>Search Options</h3><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="searchTitle">' . __('Search page title', NRTD) . ':</label></th>
+				<th scope="row"><label for="searchTitle"><b>' . __('Search page title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="searchTitle" id="searchTitle" value="' . text_or_default($options['searchOptions']['title'], '') . '" />
 					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'searchTitle\').value=\'' . DEFAULT_SEARCH_TITLE . '\'">' . __("Default", NRTD) . '</button>
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="searchViz">' . __('Search page visual', NRTD) . ':</label></th>
+				<th scope="row"><label for="searchViz"><b>' . __('Search page visual', NRTD) . ':</b></label></th>
 				<td>
 					<select name="searchViz" id="searchViz">
 						<option' . ( ($options['searchOptions']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
@@ -367,7 +367,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="searchMaxItems">' . __("Search items limit", NRTD) . ':</label></th>
+				<th scope="row"><label for="searchMaxItems"><b>' . __("Search items limit", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="searchMaxItems" id="searchMaxItems" style="width:4em;" value="' . ( intval($options['searchOptions']['maxItems']) ) . '" />
 					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
@@ -375,7 +375,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="searchCss">' . __("search CSS code", NRTD) . ':</label></th>
+				<th scope="row"><label for="searchCss"><b>' . __("search CSS code", NRTD) . ':</b></label></th>
 				<td>
 					<textarea name="searchCss" id="searchCss" rows="6" cols="75">' . $options['searchOptions']['css'] . '</textarea>
 					<br />
@@ -383,7 +383,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="searchRenderStyle">' . __('Render style', NRTD) . ':</label></th>
+				<th scope="row"><label for="searchRenderStyle"><b>' . __('Rendering style', NRTD) . ':</b></label></th>
 				<td>
 					<select name="searchRenderStyle" id="searchRenderStyle">
 						<option' . ( ($options['searchOptions']['renderStyle'] == 'list') ? ' selected="selected"' : '' ) . ' value="list">' . __("List", NRTD) . '</option>
@@ -392,20 +392,20 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="searchItemsPerTableRow">' . __("Items per table row", NRTD) . ':</label></th>
+				<th scope="row"><label for="searchItemsPerTableRow"><b>' . __("Items per table row", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="searchItemsPerTableRow" id="searchItemsPerTableRow" style="width:4em;" value="' . ( intval($options['searchOptions']['itemsPerTableRow']) ) . '" />
 					<p>
-					' . __("Number of table columns used to render the search. Only meaningful when \"Render style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
+					' . __("Number of table columns used to render the search. Only meaningful when \"Rendering style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
 					</p>
 				</td>
 			</tr>
 
 			<tr valign="top">
-				<th scope="row"> <h4>Admin Options</h4><hr /></th>
+				<th scope="row"> <h3>Admin Options</h3><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="multiuser_mode">' . __("Multiuser mode", NRTD) . ':</label></th>
+				<th scope="row"><label for="multiuser_mode"><b>' . __("Multiuser mode", NRTD) . ':</b></label></th>
 				<td>
 					<input type="checkbox" name="multiuser_mode" id="multiuser_mode"' . ( ($options['multiuserMode']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -414,7 +414,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row">' . __('Admin menu layout', NRTD) . ':</th>
+				<th scope="row"><b>' . __('Admin menu layout', NRTD) . ':</th>
 				<td>
 					<label for="menu_layout_single">' . __('Single', NRTD) . '</label>
 					<input type="radio" name="menu_layout" id="menu_layout_single" value="single"' . ( ( $options['menuLayout'] == NR_MENU_SINGLE ) ? ' checked="checked"' : '' ) . ' />
@@ -430,7 +430,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="debug_mode">' . __("Debug mode", NRTD) . ':</label></th>
+				<th scope="row"><label for="debug_mode"><b>' . __("Debug mode", NRTD) . ':</b></label></th>
 				<td>
 					<input type="checkbox" name="debug_mode" id="debug_mode"' . ( ($options['debugMode']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -440,10 +440,10 @@ function nr_options()
 			</tr>
 
 			<tr valign="top">
-				<th scope="row"> <h4>Manage Page Options</h4><hr /></th>
+				<th scope="row"> <h3>Manage Page Options</h3><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="format_date">' . __('Date format string', NRTD) . ':</label></th>
+				<th scope="row"><label for="format_date"><b>' . __('Date format string', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="format_date" id="format_date" value="' . htmlentities($options['formatDate'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
@@ -452,7 +452,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="ignore_time">' . __('No time in timestamps', NRTD) . ':</label></th>
+				<th scope="row"><label for="ignore_time"><b>' . __('No time in timestamps', NRTD) . ':</b></label></th>
 				<td>
 					<input type="checkbox" name="ignore_time" id="ignore_time"' . ( ($options['ignoreTime']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -461,7 +461,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="hide_added_date">' . __('Hide Added Date', NRTD) . ':</label></th>
+				<th scope="row"><label for="hide_added_date"><b>' . __('Hide Added Date', NRTD) . ':</b></label></th>
 				<td>
 					<input type="checkbox" name="hide_added_date" id="hide_added_date"' . ( ($options['hideAddedDate']) ? ' checked="checked"' : '' ) . ' />
 					<p>
@@ -470,17 +470,17 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="books_per_page">' . __("Books per page", NRTD) . ':</label></th>
+				<th scope="row"><label for="books_per_page"><b>' . __("Books per page", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="books_per_page" id="books_per_page" style="width:4em;" value="' . ( intval($options['booksPerPage']) ) . '" />
 				</td>
 			</tr>
 			
 			<tr valign="top">
-				<th scope="row"> <h4>Amazon Options</h4><hr /></th>
+				<th scope="row"> <h3>Amazon Options</h3><hr /></th>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="AWSAccessKeyId">' . __('Amazon Web Services Access Key ID', NRTD) . ':</label></th>
+				<th scope="row"><label for="AWSAccessKeyId"><b>' . __('Amazon Web Services Access Key ID', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="70" name="AWSAccessKeyId" id="AWSAccessKeyId" value="' . htmlentities($options['AWSAccessKeyId'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
@@ -489,7 +489,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="SecretAccessKey">' . __('Amazon Web Services Secret Access Key', NRTD) . ':</label></th>
+				<th scope="row"><label for="SecretAccessKey"><b>' . __('Amazon Web Services Secret Access Key', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="70" name="SecretAccessKey" id="SecretAccessKey" value="' . htmlentities($options['SecretAccessKey'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
@@ -498,7 +498,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="associate">' . __('Your Amazon Associates ID', NRTD) . ':</label></th>
+				<th scope="row"><label for="associate"><b>' . __('Your Amazon Associates ID', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="associate" id="associate" value="' . htmlentities($options['associate'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
@@ -510,7 +510,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="domain">' . __('Amazon domain to use', NRTD) . ':</label></th>
+				<th scope="row"><label for="domain"><b>' . __('Amazon domain to use', NRTD) . ':</b></label></th>
 				<td>
 					<select name="domain" id="domain">
 	';
@@ -530,7 +530,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="image_size">' . __('Image size to use', NRTD) . ':</label></th>
+				<th scope="row"><label for="image_size"><b>' . __('Image size to use', NRTD) . ':</b></label></th>
 				<td>
 					<select name="image_size" id="image_size">
 						<option' . ( ($options['imageSize'] == 'Small') ? ' selected="selected"' : '' ) . ' value="Small">' . __("Small", NRTD) . '</option>
@@ -543,7 +543,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="http_lib">' . __("HTTP Library", NRTD) . ':</label></th>
+				<th scope="row"><label for="http_lib"><b>' . __("HTTP Library", NRTD) . ':</b></label></th>
 				<td>
 					<select name="http_lib" id="http_lib">
 						<option' . ( ($options['httpLib'] == 'snoopy') ? ' selected="selected"' : '' ) . ' value="snoopy">Snoopy</option>
@@ -555,7 +555,7 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="proxy_host">' . __("Proxy hostname and port", NRTD) . ':</label></th>
+				<th scope="row"><label for="proxy_host"><b>' . __("Proxy hostname and port", NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" name="proxy_host" id="proxy_host" size="50" value="' . $options['proxyHost'] . '" />:<input type="text" name="proxy_port" id="proxy_port" style="width:4em;" value="' . $options['proxyPort'] . '" />
 					<p>
