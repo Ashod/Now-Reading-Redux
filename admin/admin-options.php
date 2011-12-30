@@ -415,13 +415,9 @@ function nr_options()
 				<td>
 					<select name="domain" id="domain">
 	';
-
 					foreach ( (array) $nr_domains as $domain => $country )
 					{
-						if ( $domain == $options['domain'] )
-							$selected = ' selected="selected"';
-						else
-							$selected = '';
+						$selected = ($domain == $options['domain']) ? ' selected="selected"' : '';
 						echo "<option value='$domain'$selected>$country (Amazon$domain)</option>";
 					}	
 			echo '
