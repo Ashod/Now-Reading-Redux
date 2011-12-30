@@ -402,44 +402,6 @@ function nr_options()
 			</tr>
 
 			<tr valign="top">
-				<th scope="row"> <h3>Admin Options</h3><hr /></th>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="multiuser_mode"><b>' . __("Multiuser mode", NRTD) . ':</b></label></th>
-				<td>
-					<input type="checkbox" name="multiuser_mode" id="multiuser_mode"' . ( ($options['multiuserMode']) ? ' checked="checked"' : '' ) . ' />
-					<p>
-					' . __("If you have a multi-user blog, setting this option will enable you to specify which user is reading which book.", NRTD) . '
-					</p>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><b>' . __('Admin menu layout', NRTD) . ':</th>
-				<td>
-					<label for="menu_layout_single">' . __('Single', NRTD) . '</label>
-					<input type="radio" name="menu_layout" id="menu_layout_single" value="single"' . ( ( $options['menuLayout'] == NR_MENU_SINGLE ) ? ' checked="checked"' : '' ) . ' />
-					<br />
-					<label for="menu_layout_multiple">' . __('Multiple', NRTD) . '</label>
-					<input type="radio" name="menu_layout" id="menu_layout_multiple" value="multiple"' . ( ( $options['menuLayout'] == NR_MENU_MULTIPLE ) ? ' checked="checked"' : '' ) . ' />
-					<p>
-					' . __("When set to 'Single', Now Reading will add a top-level menu with submenus containing the 'Add a Book', 'Manage Books' and 'Options' screens.", NRTD) . '
-					</p>
-					<p>
-					' . __("When set to 'Multiple', Now Reading will insert those menus under 'Write', 'Manage' and 'Options' respectively.", NRTD) . '
-					</p>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="debug_mode"><b>' . __("Debug mode", NRTD) . ':</b></label></th>
-				<td>
-					<input type="checkbox" name="debug_mode" id="debug_mode"' . ( ($options['debugMode']) ? ' checked="checked"' : '' ) . ' />
-					<p>
-					' . __("With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs.", NRTD) . '
-					</p>
-				</td>
-			</tr>
-
-			<tr valign="top">
 				<th scope="row"> <h3>Manage Page Options</h3><hr /></th>
 			</tr>
 			<tr valign="top">
@@ -563,6 +525,45 @@ function nr_options()
 					</p>
 				</td>
 			</tr>
+
+			<tr valign="top">
+				<th scope="row"> <h3>Admin Options</h3><hr /></th>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="multiuser_mode"><b>' . __("Multiuser mode", NRTD) . ':</b></label></th>
+				<td>
+					<input type="checkbox" name="multiuser_mode" id="multiuser_mode"' . ( ($options['multiuserMode']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("If you have a multi-user blog, setting this option will enable you to specify which user is reading which book.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><b>' . __('Admin menu layout', NRTD) . ':</th>
+				<td>
+					<label for="menu_layout_single">' . __('Single', NRTD) . '</label>
+					<input type="radio" name="menu_layout" id="menu_layout_single" value="single"' . ( ( $options['menuLayout'] == NR_MENU_SINGLE ) ? ' checked="checked"' : '' ) . ' />
+					<br />
+					<label for="menu_layout_multiple">' . __('Multiple', NRTD) . '</label>
+					<input type="radio" name="menu_layout" id="menu_layout_multiple" value="multiple"' . ( ( $options['menuLayout'] == NR_MENU_MULTIPLE ) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("When set to 'Single', Now Reading will add a top-level menu with submenus containing the 'Add a Book', 'Manage Books' and 'Options' screens.", NRTD) . '
+					</p>
+					<p>
+					' . __("When set to 'Multiple', Now Reading will insert those menus under 'Write', 'Manage' and 'Options' respectively.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="debug_mode"><b>' . __("Debug mode", NRTD) . ':</b></label></th>
+				<td>
+					<input type="checkbox" name="debug_mode" id="debug_mode"' . ( ($options['debugMode']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+
 		</table>
 
 		<input type="hidden" name="update" value="yes" />
