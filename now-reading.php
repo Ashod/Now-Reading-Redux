@@ -170,6 +170,7 @@ $def_library_options = array(
 	'css'			=> DEFAULT_LIBRARY_CSS,
 	'renderStyle'	=> 'list',
     'itemsPerTableRow'	=> 4,
+	'showStats'		=> true
 );
 
 /**

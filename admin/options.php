@@ -22,6 +22,7 @@ if ( !empty($_POST['update']) ) {
     $options['libraryOptions']['css'] = trim($_POST['libraryCss']);
 	$options['libraryOptions']['renderStyle'] = trim($_POST['libraryRenderStyle']);
     $options['libraryOptions']['itemsPerTableRow'] = trim($_POST['libraryItemsPerTableRow']);
+    $options['libraryOptions']['showStats'] = trim($_POST['libraryShowStats']);
     $options['libraryOptions']['readingShelf']['viz'] = trim($_POST['libraryReadingShelfViz']);
     $options['libraryOptions']['readingShelf']['title'] = trim($_POST['libraryReadingShelfTitle']);
     $options['libraryOptions']['unreadShelf']['viz'] = trim($_POST['libraryUnreadShelfViz']);

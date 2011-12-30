@@ -23,7 +23,12 @@
 			<p>Admin: &raquo; <a href="<?php manage_library_url() ?>"><?php __('Manage Books', NRTD);?></a></p>
 		<?php endif; ?>
 
-		<p><?php print_book_stats() ?></p>
+		<p><?php
+			if ($library_options['showStats'])
+			{
+				print_book_stats();
+			}
+		?></p>
 
 		<?php library_search_form() ?>
 		

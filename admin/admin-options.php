@@ -167,6 +167,15 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="libraryShowStats">' . __("Show statistics", NRTD) . ':</label></th>
+				<td>
+					<input type="checkbox" name="libraryShowStats" id="libraryShowStats"' . ( ($options['libraryOptions']['showStats']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("With this option set, Now Reading will generate a graph showing the number of books read per month during the past year and a summary of the anual average.", NRTD) . '
+					</p>
+				</td>
+			</tr>			
+			<tr valign="top">
 				<th scope="row"><label for="use_mod_rewrite">' . __("Use <code>mod_rewrite</code> enhanced library", NRTD) . ':</label></th>
 				<td>
 					<input type="checkbox" name="use_mod_rewrite" id="use_mod_rewrite"' . ( ($options['useModRewrite']) ? ' checked="checked"' : '' ) . ' />
@@ -502,7 +511,7 @@ function nr_options()
 					' . __("With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs.", NRTD) . '
 					</p>
 				</td>
-			</tr>			
+			</tr>
 		</table>
 
 		<input type="hidden" name="update" value="yes" />
