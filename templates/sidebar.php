@@ -17,8 +17,8 @@
 	<div class="booklisting">
 	<?php
 		$shelf_name = 'reading';
-		$book_query = "status=reading&orderby=random";
 		$shelf_option = $library_options['readingShelf'];
+		$book_query = "status=reading&orderby=random&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
 	?>
 	</div>
@@ -26,8 +26,8 @@
 	<div class="booklisting">
 	<?php
 		$shelf_name = 'unread';
-		$book_query = "status=unread&orderby=random";
 		$shelf_option = $library_options['unreadShelf'];
+		$book_query = "status=unread&orderby=random&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
 	?>
 	</div>
@@ -35,8 +35,8 @@
 	<div class="booklisting">
 	<?php
 		$shelf_name = 'onhold';
-		$book_query = "status=onhold&orderby=random";
 		$shelf_option = $library_options['onholdShelf'];
+		$book_query = "status=onhold&orderby=random&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
 	?>
 	</div>
@@ -44,8 +44,8 @@
 	<div class="booklisting">
 	<?php
 		$shelf_name = 'read';
-		$book_query = "status=read&orderby=finished&order=desc";
 		$shelf_option = $library_options['readShelf'];
+		$book_query = "status=read&orderby=finished&order=desc&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
 	?>
 	</div>

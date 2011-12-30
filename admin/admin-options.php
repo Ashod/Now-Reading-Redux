@@ -162,7 +162,7 @@ function nr_options()
 				<td>
 					<input type="text" name="libraryItemsPerTableRow" id="libraryItemsPerTableRow" style="width:4em;" value="' . ( intval($options['libraryOptions']['itemsPerTableRow']) ) . '" />
 					<p>
-					' . __("Number of table columns used to render the library. Only meaningful when \"Render style\" is \"Table\".", NRTD) . '
+					' . __("Number of table columns used to render the sidebar. Only meaningful when \"Render style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
 					</p>
 				</td>
 			</tr>
@@ -210,6 +210,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="sidebarUnreadShelfMaxItems">' . __("Unread shelf items limit", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="sidebarUnreadShelfMaxItems" id="sidebarUnreadShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['unreadShelf']['maxItems']) ) . '" />
+					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="sidebarOnholdShelfTitle">' . __('On Hold shelf title', NRTD) . ':</label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="sidebarOnholdShelfTitle" id="sidebarOnholdShelfTitle" value="' . text_or_default($options['sidebarOptions']['onholdShelf']['title'], '') . '" />
@@ -225,6 +233,14 @@ function nr_options()
 						<option' . ( ($options['sidebarOptions']['onholdShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
 						<option' . ( ($options['sidebarOptions']['onholdShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
 					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarOnholdShelfMaxItems">' . __("On Hold shelf items limit", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="sidebarOnholdShelfMaxItems" id="sidebarOnholdShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['onholdShelf']['maxItems']) ) . '" />
+					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
+					</p>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -246,6 +262,14 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="sidebarReadingShelfMaxItems">' . __("Reading shelf items limit", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="sidebarReadingShelfMaxItems" id="sidebarReadingShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['readingShelf']['maxItems']) ) . '" />
+					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="sidebarReadShelfTitle">' . __('Finished shelf title', NRTD) . ':</label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="sidebarReadShelfTitle" id="sidebarReadShelfTitle" value="' . text_or_default($options['sidebarOptions']['readShelf']['title'], '') . '" />
@@ -261,6 +285,14 @@ function nr_options()
 						<option' . ( ($options['sidebarOptions']['readShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
 						<option' . ( ($options['sidebarOptions']['readShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
 					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarReadShelfMaxItems">' . __("Finished shelf items limit", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="sidebarReadShelfMaxItems" id="sidebarReadShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['readShelf']['maxItems']) ) . '" />
+					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
+					</p>
 				</td>
 			</tr>
 			<tr valign="top">
@@ -285,7 +317,7 @@ function nr_options()
 				<td>
 					<input type="text" name="sidebarItemsPerTableRow" id="sidebarItemsPerTableRow" style="width:4em;" value="' . ( intval($options['sidebarOptions']['itemsPerTableRow']) ) . '" />
 					<p>
-					' . __("Number of table columns used to render the sidebar. Only meaningful when \"Render style\" is \"Table\".", NRTD) . '
+					' . __("Number of table columns used to render the sidebar. Only meaningful when \"Render style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
 					</p>
 					<p>
 					' . __("Note: The sidebar width is limited and, depending on the image width (which can be controlled by the CSS,) a wide table may be problematic. Try 2 or 3.", NRTD) . '

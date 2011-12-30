@@ -26,26 +26,30 @@ if ( !empty($_POST['update']) ) {
     $options['libraryOptions']['css'] = trim($_POST['libraryCss']);
 	$options['libraryOptions']['renderStyle'] = trim($_POST['libraryRenderStyle']);
     $options['libraryOptions']['itemsPerTableRow'] = trim($_POST['libraryItemsPerTableRow']);
+    $options['libraryOptions']['readingShelf']['viz'] = trim($_POST['libraryReadingShelfViz']);
+    $options['libraryOptions']['readingShelf']['title'] = trim($_POST['libraryReadingShelfTitle']);
     $options['libraryOptions']['unreadShelf']['viz'] = trim($_POST['libraryUnreadShelfViz']);
     $options['libraryOptions']['unreadShelf']['title'] = trim($_POST['libraryUnreadShelfTitle']);
     $options['libraryOptions']['onholdShelf']['viz'] = trim($_POST['libraryOnholdShelfViz']);
     $options['libraryOptions']['onholdShelf']['title'] = trim($_POST['libraryOnholdShelfTitle']);
-    $options['libraryOptions']['readingShelf']['viz'] = trim($_POST['libraryReadingShelfViz']);
-    $options['libraryOptions']['readingShelf']['title'] = trim($_POST['libraryReadingShelfTitle']);
     $options['libraryOptions']['readShelf']['viz'] = trim($_POST['libraryReadShelfViz']);
     $options['libraryOptions']['readShelf']['title'] = trim($_POST['libraryReadShelfTitle']);
 
     $options['sidebarOptions']['css'] = trim($_POST['sidebarCss']);
 	$options['sidebarOptions']['renderStyle'] = trim($_POST['sidebarRenderStyle']);
     $options['sidebarOptions']['itemsPerTableRow'] = trim($_POST['sidebarItemsPerTableRow']);
-    $options['sidebarOptions']['unreadShelf']['viz'] = trim($_POST['sidebarUnreadShelfViz']);
-    $options['sidebarOptions']['unreadShelf']['title'] = trim($_POST['sidebarUnreadShelfTitle']);
-    $options['sidebarOptions']['onholdShelf']['viz'] = trim($_POST['sidebarOnholdShelfViz']);
-    $options['sidebarOptions']['onholdShelf']['title'] = trim($_POST['sidebarOnholdShelfTitle']);
     $options['sidebarOptions']['readingShelf']['viz'] = trim($_POST['sidebarReadingShelfViz']);
     $options['sidebarOptions']['readingShelf']['title'] = trim($_POST['sidebarReadingShelfTitle']);
+    $options['sidebarOptions']['readingShelf']['maxItems'] = trim($_POST['sidebarReadingShelfMaxItems']);
+    $options['sidebarOptions']['unreadShelf']['viz'] = trim($_POST['sidebarUnreadShelfViz']);
+    $options['sidebarOptions']['unreadShelf']['title'] = trim($_POST['sidebarUnreadShelfTitle']);
+    $options['sidebarOptions']['unreadShelf']['maxItems'] = trim($_POST['sidebarUnreadShelfMaxItems']);
+    $options['sidebarOptions']['onholdShelf']['viz'] = trim($_POST['sidebarOnholdShelfViz']);
+    $options['sidebarOptions']['onholdShelf']['title'] = trim($_POST['sidebarOnholdShelfTitle']);
+    $options['sidebarOptions']['onholdShelf']['maxItems'] = trim($_POST['sidebarOnholdShelfMaxItems']);
     $options['sidebarOptions']['readShelf']['viz'] = trim($_POST['sidebarReadShelfViz']);
     $options['sidebarOptions']['readShelf']['title'] = trim($_POST['sidebarReadShelfTitle']);
+    $options['sidebarOptions']['readShelf']['maxItems'] = trim($_POST['sidebarReadShelfMaxItems']);
 
     $options['wishlistUrl']		= trim($_POST['wishlist_url']);
     $options['associate']		= trim($_POST['associate']);

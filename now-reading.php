@@ -90,6 +90,9 @@ define('DEFAULT_LIBRARY_CSS',
 * + html .nr_library li {
     display: inline;
 }
+.nr_library {
+margin: 0 280px 0 20px;
+}
 ');
 /*
  .nr_widget li > * {
@@ -155,36 +158,14 @@ $nr_domains = array(
 );
 
 /**
- * Array of the shelf visualization options.
- * @global array $GLOBALS['nr_shelf_viz_options']
- * @name $nr_shelf_viz_options
- */
-$nr_shelf_viz_options = apply_filters('nr_shelf_viz_options', array(
-    'hide'			=> __('Hide', NRTD),
-    'show_image'	=> __('Show image only', NRTD),
-    'show_text'		=> __('Show text only', NRTD),
-    'show_image_text' => __('Show both image and text', NRTD)
-));
-
-/**
- * Array of the shelf options.
- * @global array $GLOBALS['nr_shelf_options']
- * @name $nr_shelf_options
- */
-$nr_shelf_options = apply_filters('nr_shelf_options', array(
-    'viz'		=> 'show_image',
-	'title'		=> ''
-));
-
-/**
  * Array of the default library options.
  * @global array $GLOBALS['def_library_options']
  * @name $def_library_options
  */
 $def_library_options = array(
+    'readingShelf'	=> array('viz' => 'show_image_text', 'title' => DEFAULT_READING_TITLE),
     'unreadShelf'	=> array('viz' => 'show_image_text', 'title' => DEFAULT_UNREAD_TITLE),
     'onholdShelf'	=> array('viz' => 'hide', 'title' => DEFAULT_ONHOLD_TITLE),
-    'readingShelf'	=> array('viz' => 'show_image_text', 'title' => DEFAULT_READING_TITLE),
     'readShelf'		=> array('viz' => 'show_image_text', 'title' => DEFAULT_READ_TITLE),
 	'css'			=> DEFAULT_LIBRARY_CSS,
 	'renderStyle'	=> 'list',
@@ -197,10 +178,10 @@ $def_library_options = array(
  * @name $def_sidebar_options
  */
 $def_sidebar_options = array(
-    'unreadShelf'	=> array('viz' => 'show_image', 'title' => DEFAULT_UNREAD_TITLE),
-    'onholdShelf'	=> array('viz' => 'hide', 'title' => DEFAULT_ONHOLD_TITLE),
-    'readingShelf'	=> array('viz' => 'show_image', 'title' => DEFAULT_READING_TITLE),
-    'readShelf'		=> array('viz' => 'show_image', 'title' => DEFAULT_READ_TITLE),
+    'readingShelf'	=> array('viz' => 'show_image', 'title' => DEFAULT_READING_TITLE, 'maxItems' => 3),
+    'unreadShelf'	=> array('viz' => 'show_image', 'title' => DEFAULT_UNREAD_TITLE, 'maxItems' => 3),
+    'onholdShelf'	=> array('viz' => 'hide', 'title' => DEFAULT_ONHOLD_TITLE, 'maxItems' => 3),
+    'readShelf'		=> array('viz' => 'show_image', 'title' => DEFAULT_READ_TITLE, 'maxItems' => 3),
 	'css'			=> DEFAULT_SIDEBAR_CSS,
 	'renderStyle'	=> 'list',
     'itemsPerTableRow'	=> 3,
