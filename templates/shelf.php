@@ -32,6 +32,7 @@
 			else
 			{
 				// Table
+				//TODO: Control image/text visibility via options.
 ?>
 				<table class='nr-shelf'>
 				<?php

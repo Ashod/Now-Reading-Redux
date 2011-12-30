@@ -19,10 +19,6 @@ if ( !empty($_POST['update']) ) {
 
     $append = '';
 
-    $options['libraryOptions']['css'] = trim($_POST['libraryCss']);
-	$options['libraryOptions']['renderStyle'] = trim($_POST['libraryRenderStyle']);
-    $options['libraryOptions']['itemsPerTableRow'] = trim($_POST['libraryItemsPerTableRow']);
-    $options['libraryOptions']['showStats'] = trim($_POST['libraryShowStats']);
     $options['libraryOptions']['readingShelf']['viz'] = trim($_POST['libraryReadingShelfViz']);
     $options['libraryOptions']['readingShelf']['title'] = trim($_POST['libraryReadingShelfTitle']);
     $options['libraryOptions']['unreadShelf']['viz'] = trim($_POST['libraryUnreadShelfViz']);
@@ -31,10 +27,11 @@ if ( !empty($_POST['update']) ) {
     $options['libraryOptions']['onholdShelf']['title'] = trim($_POST['libraryOnholdShelfTitle']);
     $options['libraryOptions']['readShelf']['viz'] = trim($_POST['libraryReadShelfViz']);
     $options['libraryOptions']['readShelf']['title'] = trim($_POST['libraryReadShelfTitle']);
+    $options['libraryOptions']['css'] = trim($_POST['libraryCss']);
+	$options['libraryOptions']['renderStyle'] = trim($_POST['libraryRenderStyle']);
+    $options['libraryOptions']['itemsPerTableRow'] = trim($_POST['libraryItemsPerTableRow']);
+    $options['libraryOptions']['showStats'] = trim($_POST['libraryShowStats']);
 
-    $options['sidebarOptions']['css'] = trim($_POST['sidebarCss']);
-	$options['sidebarOptions']['renderStyle'] = trim($_POST['sidebarRenderStyle']);
-    $options['sidebarOptions']['itemsPerTableRow'] = trim($_POST['sidebarItemsPerTableRow']);
     $options['sidebarOptions']['readingShelf']['viz'] = trim($_POST['sidebarReadingShelfViz']);
     $options['sidebarOptions']['readingShelf']['title'] = trim($_POST['sidebarReadingShelfTitle']);
     $options['sidebarOptions']['readingShelf']['maxItems'] = trim($_POST['sidebarReadingShelfMaxItems']);
@@ -47,6 +44,9 @@ if ( !empty($_POST['update']) ) {
     $options['sidebarOptions']['readShelf']['viz'] = trim($_POST['sidebarReadShelfViz']);
     $options['sidebarOptions']['readShelf']['title'] = trim($_POST['sidebarReadShelfTitle']);
     $options['sidebarOptions']['readShelf']['maxItems'] = trim($_POST['sidebarReadShelfMaxItems']);
+    $options['sidebarOptions']['css'] = trim($_POST['sidebarCss']);
+	$options['sidebarOptions']['renderStyle'] = trim($_POST['sidebarRenderStyle']);
+    $options['sidebarOptions']['itemsPerTableRow'] = trim($_POST['sidebarItemsPerTableRow']);
 
 	$options['AWSAccessKeyId']  = trim($_POST['AWSAccessKeyId']);
     $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
