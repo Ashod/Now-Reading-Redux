@@ -81,12 +81,6 @@ function get_books($query, $show_private = false) {
             break;
     }
 
-    if (empty($num))
-    {
-		// The default number of books if unspecified. Return all.
-		$num = -1;
-	}
-
     if ( $num > -1 && $offset >= 0 ) {
         $offset	= intval($offset);
         $num 	= intval($num);
