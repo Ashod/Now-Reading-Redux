@@ -90,8 +90,25 @@ define('DEFAULT_LIBRARY_CSS',
 * + html .nr_library li {
     display: inline;
 }
-.nr_library {
-margin: 0 280px 0 20px;
+.nr_library table {
+	width: 100%; border-collapse: collapse;
+}
+.nr_library th {
+	text-align: left; padding: 6px;  border-bottom: 1px dotted #ccc;
+}
+.nr_library td {
+	padding: 6px; border-bottom: 1px dotted #ccc;
+}
+.nr_library #content table {
+	border: 0px;
+	margin: 0 -1px 24px 0;
+	text-align: left;
+	width: 100%;
+}
+.nr_library h2 {
+	margin-top: 20px;
+	padding: 5px;
+	border: 1px solid #ccc;
 }
 ');
 /*
