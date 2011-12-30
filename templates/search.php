@@ -1,9 +1,16 @@
+<?php
+	global $book_query, $library_options, $shelf_title, $shelf_option;
+	global $empty_shelf_message;
+	$options = get_option(NOW_READING_OPTIONS);
+	$library_options = $options['libraryOptions'];
+?>
+
 <?php get_header(); ?>
 
 <div id="container">
 
 	<style type="text/css">
-	<?php echo library_css() ?>
+		<?php echo $library_options['css'] ?>
 	</style>
 
 	<div id="content" class="now-reading nr_library primary narrowcolumn">
@@ -18,23 +25,17 @@
 
 		<?php library_search_form() ?>
 
-		<p>Search results for <?php search_query(); ?>:</p>
+		<p>Search results for <i><?php search_query(); ?></i>:</p>
 		
-		<?php if( have_books("status=all&num=-1&search={$GLOBALS['query']}") ) : ?>
-			<ul>
-			<?php while( have_books("status=all&num=-1&search={$GLOBALS['query']}") ) : the_book(); ?>
-				<li>
-					<a href="<?php book_permalink() ?>">
-						<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
-						<br /><strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
-				</li>
-			<?php endwhile; ?>
-			</ul>
-		<?php else : ?>
-			<p>Sorry, but there were no search results for your query.</p>
-		<?php endif; ?>
-
-		<?php do_action('nr_footer'); ?>
+		<?php
+			$shelf_title = "<h3>" . __("Search Results") . "</h3>";
+			$shelf_option = $library_options['readingShelf'];
+			$book_query = "status=all&num=-1&search={$GLOBALS['query']}";
+			$empty_shelf_message = __("Sorry, but there were no search results for your query.");
+			nr_load_template('shelf.php', false);
+		
+			do_action('nr_footer');
+		?>
 
 	</div>
 	</div>

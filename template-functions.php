@@ -944,26 +944,6 @@ function library_page_url( $page, $echo = true ) {
 }
 
 /**
- * Returns true if Library images-only is enabled.
- */
-function library_images_only()
-{
-    $options = get_option(NOW_READING_OPTIONS);
-
-    return $options['libraryImagesOnly'];
-}
-
-/**
- * Returns the Library CSS code.
- */
-function library_css()
-{
-    $options = get_option(NOW_READING_OPTIONS);
-
-    return $options['libraryCss'];
-}
-
-/**
  * Returns the Wishlist URL if any.
  * @param bool $echo Whether or not to echo the results.
  */

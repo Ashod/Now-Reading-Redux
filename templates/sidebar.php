@@ -1,5 +1,5 @@
 <?php
-	global $book_query, $library_options, $shelf_name, $shelf_option;
+	global $book_query, $library_options, $shelf_title, $shelf_option;
 	$options = get_option(NOW_READING_OPTIONS);
 	$library_options = $options['sidebarOptions'];
 ?>
@@ -14,40 +14,32 @@
 		<br /><b><a href="<?php library_url() ?>">View Full Library</a></b>
 	</div>
 
-	<div class="booklisting">
 	<?php
-		$shelf_name = 'reading';
+		// Reading.
 		$shelf_option = $library_options['readingShelf'];
+		$shelf_title = "<h4>" . $shelf_option['title'] . " (" . total_books('reading', 0) . ")</h4>";
 		$book_query = "status=reading&orderby=random&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
-	?>
-	</div>
 
-	<div class="booklisting">
-	<?php
-		$shelf_name = 'unread';
+		// Unread.
 		$shelf_option = $library_options['unreadShelf'];
+		$shelf_title = "<h4>" . $shelf_option['title'] . " (" . total_books('unread', 0) . ")</h4>";
 		$book_query = "status=unread&orderby=random&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
-	?>
-	</div>
 
-	<div class="booklisting">
-	<?php
-		$shelf_name = 'onhold';
+		// On Hold.
 		$shelf_option = $library_options['onholdShelf'];
+		$shelf_title = "<h4>" . $shelf_option['title'] . " (" . total_books('onhold', 0) . ")</h4>";
 		$book_query = "status=onhold&orderby=random&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
-	?>
-	</div>
 
-	<div class="booklisting">
-	<?php
-		$shelf_name = 'read';
+		// Read.
 		$shelf_option = $library_options['readShelf'];
+		$shelf_title = "<h4>" . $shelf_option['title'] . " (" . total_books('read', 0) . ")</h4>";
 		$book_query = "status=read&orderby=finished&order=desc&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
 	?>
+
 	</div>
     
 	<?php if (have_wishlist_url()) : ?>
