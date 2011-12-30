@@ -7,40 +7,47 @@
 
 <?php get_header(); ?>
 
-<div id="container">
+<style type="text/css">
+	<?php echo $library_options['css'] ?>
+</style>
 
-	<style type="text/css">
-		<?php echo $library_options['css'] ?>
-	</style>
+<div id="main-col">
+	<div id="container" class="now-reading nr_library">
+		<div id="content" role="main">
+			<div class="post fix nr-post">
+				<h1 class="post-title entry-title">Library</h1>
+			
+				<div class="bookdata fix">
+					
+					<?php if (can_now_reading_admin()) : ?>
+						<div class="manage">
+							<span class="icon">&nbsp;</span>
+							<p>Admin: &raquo; <a href="<?php manage_library_url() ?>">Manage Books</a></p>
+						</div>
+					<?php endif; ?>
+					
+					<p><a href="<?php library_url() ?>">&larr; Back to library</a></p>
+				</div>
 
-	<div id="content" class="now-reading nr_library primary narrowcolumn">
+				<div class="entry-content">
+				<?php
+					library_search_form();
 
-	<div class="post">
-
-		<?php if (can_now_reading_admin()) : ?>
-			<p>Admin: &raquo; <a href="<?php manage_library_url() ?>"><?php __('Manage Books', NRTD);?></a></p>
-		<?php endif; ?>
-
-		<p><a href="<?php library_url() ?>">&larr; Back to library</a></p>
-
-		<?php library_search_form() ?>
-
-		<p>Search results for <i><?php search_query(); ?></i>:</p>
+					$shelf_title = "<h2>" . __("Search results for ") . "<i>" . search_query(false) . "</i></h2>";
+					$shelf_option = $library_options['readingShelf'];
+					$book_query = "status=all&num=-1&search={$GLOBALS['query']}";
+					$empty_shelf_message = __("Sorry, but there were no search results for your query.");
+					nr_load_template('shelf.php', false);
 		
-		<?php
-			$shelf_title = "<h3>" . __("Search Results") . "</h3>";
-			$shelf_option = $library_options['readingShelf'];
-			$book_query = "status=all&num=-1&search={$GLOBALS['query']}";
-			$empty_shelf_message = __("Sorry, but there were no search results for your query.");
-			nr_load_template('shelf.php', false);
-		
-			do_action('nr_footer');
-		?>
+					do_action('nr_footer');
+				?>
+				</div><!-- .entry-content -->
+			</div><!-- .post -->
+		</div><!-- #content -->
+	</div><!-- #container -->
 
-	</div>
-	</div>
+	<?php get_sidebar() ?>
+
 </div>
 
-<?php get_sidebar() ?>
-
-<?php get_footer() ?>
+<?php get_footer(); ?>
