@@ -27,8 +27,8 @@ define('DEFAULT_SIDEBAR_CSS',
 	height: 100px;  /* Jacket image height. */
 }
 .nr_widget h4 {
-	border: 1px solid #c0c0c0;
-	padding: 5px 5px 5px 5px;
+	padding: 5px;
+	border: 1px solid #ccc;
 	font: bold 100%/100% Arial, Helvetica, sans-serif;
 	margin: 20px 0 5px 0;
 	clear: both;
@@ -54,6 +54,18 @@ define('DEFAULT_SIDEBAR_CSS',
 * + html .nr_widget li {
     display: inline;
 }
+.nr_widget #content td {
+	padding: 6px;
+	border-top: 0px;
+	border-bottom: 1px dotted #ccc;
+}
+.nr_widget #content table {
+	border: 0px;
+	border-collapse: collapse;
+	margin: 0 -1px 24px 0;
+	text-align: center;
+	width: 100%;
+}
 ');
 
 define('DEFAULT_LIBRARY_CSS',
@@ -62,9 +74,9 @@ define('DEFAULT_LIBRARY_CSS',
 	width: 100px;    /* Jacket image width. */
 	height: 155px;  /* Jacket image height. */
 }
-.nr_library h4 {
-	border: 1px solid #c0c0c0;
-	padding: 5px 5px 5px 5px;
+.nr_library h3 {
+	padding: 5px;
+	border: 1px solid #ccc;
 	font: bold 100%/100% Arial, Helvetica, sans-serif;
 	margin: 20px 0 5px 0;
 	clear: both;
@@ -90,25 +102,17 @@ define('DEFAULT_LIBRARY_CSS',
 * + html .nr_library li {
     display: inline;
 }
-.nr_library table {
-	width: 100%; border-collapse: collapse;
-}
-.nr_library th {
-	text-align: left; padding: 6px;  border-bottom: 1px dotted #ccc;
-}
-.nr_library td {
-	padding: 6px; border-bottom: 1px dotted #ccc;
+.nr_library #content td {
+	padding: 6px;
+	border-top: 0px;
+	border-bottom: 1px dotted #ccc;
 }
 .nr_library #content table {
 	border: 0px;
+	border-collapse: collapse;
 	margin: 0 -1px 24px 0;
-	text-align: left;
+	text-align: center;
 	width: 100%;
-}
-.nr_library h2 {
-	margin-top: 20px;
-	padding: 5px;
-	border: 1px solid #ccc;
 }
 ');
 /*
