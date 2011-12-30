@@ -3,7 +3,6 @@
 * Show the library by year/month.
 * Show library by category/tag.
 * Replace book page by post.
-* Choose what to show in the Widget.
 * Rate.
 * Icons for Book status.
 * Use calendar UI for dates.
@@ -18,8 +17,9 @@
 * Update translations.
 * Remove all explicit includes.
 * Replace options with automatic handling.
-* Library search broken and unlike manage-books search.
 
+- Library search broken and unlike manage-books search.
+- Choose what to show in the Widget.
 - Show statistics in Library.
 - Public/Private visibility.
 - Hide added dates.

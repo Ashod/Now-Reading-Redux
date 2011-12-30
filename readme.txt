@@ -3,8 +3,8 @@
 Contributors: ashodnakashian
 Donate link:
 Tags: wordpress, books, widget, amazon
-Requires at least: 2.7.0
-Tested up to: 3.2.1
+Requires at least: 2.8.0
+Tested up to: 3.3.0
 Stable tag: trunk
 
 Track and share books you read, are reading and plan to read, with Amazon integration and cover art and graphs reading statistics.
@@ -36,8 +36,9 @@ Please backup your database before installing/upgrading. I try hard to make sure
 1. Install `now-reading-redux` as described below.
 1. Activate `now-reading-redux`.
 1. Your database will be updated and library restored as was previously.
+1. Go to the options page and set every option as necessary.
 
-Note: After upgrading the widget, if any, may get removed. This may happen in some themes but not most. If it is, simply drag it where you'd like to see it.
+Note: After upgrading the widget, if used, may get removed. This may happen in some themes but not most. If it disappears, simply drag it where you'd like to see it.
 
 == Frequently Asked Questions ==
 
@@ -49,9 +50,36 @@ Please read the Upgrade section under Installation.
 
 Please find the original Now Reading Relaoded readme with the changelog in the readme.old file.
 
+= Why does NRR on your website (blog.ashodnakashian.com) look different from mine? =
+
+What the plugin ends up looking like is controlled mainly by two things: templates and CSS.
+
+The templates folder contain a single php file for each page or element on the screen, with the exception of 'shelf.php' which renders the actual book shelves (starting with v6.5).
+With a little PHP and HTML knowledge it's relatively easy to customize these files to fit your needs. However, before doing that I urge you to look into the CSS and make the most of it, failing that, consider making a suggestion on the plugin homepage and everyone may benefit from your suggestion in an upcoming version.
+
+The second method to control the look and style of NRR is via the CSS script. Starting with version 6.5 library, search and sidebar allow you to write a custom CSS script in the options page. The plugin is highly customizable if you know your CSS. For example, lists are rendered in a table-style (images only) using CSS.
+
+= I just updated to the latest version and some stuff got messed up. What's up with that? =
+
+With new versions new options are added for ease of use and flexibility. Every effort is done to keep backwards compatibility, however, in some cases this isn't possible. It's also desirable to cleanup and refactor old options.
+
+To avoid problems and surprises, please revisit the NRR options page after every update. Check your old options and learn about the new ones. Sometimes default values aren't set correctly and therefore PHP defaults are effective. This sets some values to false and texts to blank.
+
 = Is searching for books broken? =
 
 If you get a warning such as "URL file-access is disabled in the server configuration" then you need to edit your PHP.ini file. Searching relies on PHP's file_get_contents() function. This function is subject to security permissions. Specifically, allow_url_fopen must be set to 'on' in PHP.ini (which is the default). More information [here](http://phpsec.org/projects/phpsecinfo/tests/allow_url_fopen.html), [file_get_contents's reference](http://www.php.net/manual/en/function.file-get-contents.php) and [allow_url_fopen's reference](http://php.net/manual/en/filesystem.configuration.php).
+
+= How can I change the number of items shown in the sidebar? =
+
+Starting with version 6.5 there is an option that controls the maximum number of books shown for each shelf.
+
+To customize older version, you'll have to change the query string in the section in question.
+Under the section heading in question, find the following line (exact values may be different):
+	<?php if (have_books('status=unread&orderby=random&num=3')) : ?>
+
+This is a PHP function call (named have_books) and the string between the quotes is the query string. To change the number of items returned by this call simply add "&num=4" (without the double quotes.) Here I chose to return 4 items, but you can set it to any number. If you set it to -1 you'll get all!
+
+Here is how you may set it to return 7 finished books: have_books('status=read&orderby=finished&order=desc&num=7')
 
 == Screenshots ==
 
@@ -68,9 +96,15 @@ If you get a warning such as "URL file-access is disabled in the server configur
 
 == Changelog ==
 
-= 6.1.5.0 =
+= 6.5.0.0 =
+* Wordpress 3.3 support.
 * Romanian translation courtesy of Alexander Ovsov [Web Geek Sciense](http://webhostinggeeks.com/science/).
+* New option: Wishlist link. An optional link to a wishlist page shown in the sidebar.
+* New options: Per shelf library, search and sidebar options to control appearence and style and more.
+* Restructured and reorganized the Options page and grouped options.
 * Changed the default Amazon Associates ID to thevoid0f-20. This can be changed from the options.
+* Redesigned sidebar, library and search templates.
+* Updated many outdated, depricated and unrecommended codes.
 
 = 6.1.0.0 =
 * New feature: Reading statistics and graph shown in the library page by calling print_book_stats(). Uses TafteGraph/Raphaël.
