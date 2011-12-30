@@ -115,6 +115,8 @@ define('DEFAULT_LIBRARY_CSS',
 	width: 100%;
 }
 ');
+
+define('DEFAULT_SEARCH_CSS', DEFAULT_LIBRARY_CSS);
 /*
  .nr_widget li > * {
     display: table;
@@ -140,6 +142,7 @@ define('DEFAULT_UNREAD_TITLE', 'Planned');
 define('DEFAULT_ONHOLD_TITLE', 'On Hold');
 define('DEFAULT_READING_TITLE', 'Reading');
 define('DEFAULT_READ_TITLE', 'Finished');
+define('DEFAULT_SEARCH_TITLE', 'Search Results');
 
 /**
  * Array of the statuses that books can be.
@@ -195,7 +198,7 @@ $def_library_options = array(
 );
 
 /**
- * Array of the default sideb options.
+ * Array of the default sidebar options.
  * @global array $GLOBALS['def_sidebar_options']
  * @name $def_sidebar_options
  */
@@ -207,6 +210,20 @@ $def_sidebar_options = array(
 	'css'			=> DEFAULT_SIDEBAR_CSS,
 	'renderStyle'	=> 'list',
     'itemsPerTableRow'	=> 3,
+);
+
+/**
+ * Array of the default search options.
+ * @global array $GLOBALS['def_sidebar_options']
+ * @name $def_sidebar_options
+ */
+$def_sidebar_options = array(
+	'viz' 			=> 'show_image_text',
+	'title' 		=> DEFAULT_SEARCH_TITLE,
+	'maxItems' 		=> 25,
+	'css'			=> DEFAULT_SEARCH_CSS,
+	'renderStyle'	=> 'list',
+    'itemsPerTableRow'	=> 4,
 );
 
 // Include other functionality

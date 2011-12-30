@@ -2,13 +2,13 @@
 	global $book_query, $library_options, $shelf_title, $shelf_option;
 	global $empty_shelf_message;
 	$options = get_option(NOW_READING_OPTIONS);
-	$library_options = $options['libraryOptions'];
+	$search_options = $options['searchOptions'];
 ?>
 
 <?php get_header(); ?>
 
 <style type="text/css">
-	<?php echo $library_options['css'] ?>
+	<?php echo $search_options['css'] ?>
 </style>
 
 <div id="main-col">
@@ -34,8 +34,8 @@
 					library_search_form();
 
 					$shelf_title = "<h2>" . __("Search results for ") . "<i>" . search_query(false) . "</i></h2>";
-					$shelf_option = $library_options['readingShelf'];
-					$book_query = "status=all&num=-1&search={$GLOBALS['query']}";
+					$shelf_option = $search_options;
+					$book_query = "status=all&search={$GLOBALS['query']}&num=" . $shelf_option['maxItems'];
 					$empty_shelf_message = __("Sorry, but there were no search results for your query.");
 					nr_load_template('shelf.php', false);
 		

@@ -347,6 +347,61 @@ function nr_options()
 			</tr>
 
 			<tr valign="top">
+				<th scope="row"> <h4>Search Options</h4><hr /></th>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="searchTitle">' . __('Search page title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="searchTitle" id="searchTitle" value="' . text_or_default($options['searchOptions']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'searchTitle\').value=\'' . DEFAULT_SEARCH_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="searchViz">' . __('Search page visual', NRTD) . ':</label></th>
+				<td>
+					<select name="searchViz" id="searchViz">
+						<option' . ( ($options['searchOptions']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['searchOptions']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['searchOptions']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="searchMaxItems">' . __("Search items limit", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="searchMaxItems" id="searchMaxItems" style="width:4em;" value="' . ( intval($options['searchOptions']['maxItems']) ) . '" />
+					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="searchCss">' . __("search CSS code", NRTD) . ':</label></th>
+				<td>
+					<textarea name="searchCss" id="searchCss" rows="6" cols="75">' . $options['searchOptions']['css'] . '</textarea>
+					<br />
+					<button type="button" onclick="document.getElementById(\'searchCss\').value=\'' . str_replace("\r", "", str_replace("\n", "", DEFAULT_SEARCH_CSS)) . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="searchRenderStyle">' . __('Render style', NRTD) . ':</label></th>
+				<td>
+					<select name="searchRenderStyle" id="searchRenderStyle">
+						<option' . ( ($options['searchOptions']['renderStyle'] == 'list') ? ' selected="selected"' : '' ) . ' value="list">' . __("List", NRTD) . '</option>
+						<option' . ( ($options['searchOptions']['renderStyle'] == 'table') ? ' selected="selected"' : '' ) . ' value="table">' . __("Table", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="searchItemsPerTableRow">' . __("Items per table row", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="searchItemsPerTableRow" id="searchItemsPerTableRow" style="width:4em;" value="' . ( intval($options['searchOptions']['itemsPerTableRow']) ) . '" />
+					<p>
+					' . __("Number of table columns used to render the search. Only meaningful when \"Render style\" is \"Table\". For \"List\" this is 1 by default but automatically rearanged via CSS.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+
+			<tr valign="top">
 				<th scope="row"> <h4>Admin Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
@@ -371,6 +426,15 @@ function nr_options()
 					</p>
 					<p>
 					' . __("When set to 'Multiple', Now Reading will insert those menus under 'Write', 'Manage' and 'Options' respectively.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="debug_mode">' . __("Debug mode", NRTD) . ':</label></th>
+				<td>
+					<input type="checkbox" name="debug_mode" id="debug_mode"' . ( ($options['debugMode']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs.", NRTD) . '
 					</p>
 				</td>
 			</tr>
@@ -465,10 +529,6 @@ function nr_options()
 					</p>
 				</td>
 			</tr>
-
-			<tr valign="top">
-				<th scope="row"> <h4>Search Options</h4><hr /></th>
-			</tr>
 			<tr valign="top">
 				<th scope="row"><label for="image_size">' . __('Image size to use', NRTD) . ':</label></th>
 				<td>
@@ -500,15 +560,6 @@ function nr_options()
 					<input type="text" name="proxy_host" id="proxy_host" size="50" value="' . $options['proxyHost'] . '" />:<input type="text" name="proxy_port" id="proxy_port" style="width:4em;" value="' . $options['proxyPort'] . '" />
 					<p>
 					' . __("Don't worry if you don't understand this; unless you're having problems searching for books, the default setting will be fine.", NRTD) . '
-					</p>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="debug_mode">' . __("Debug mode", NRTD) . ':</label></th>
-				<td>
-					<input type="checkbox" name="debug_mode" id="debug_mode"' . ( ($options['debugMode']) ? ' checked="checked"' : '' ) . ' />
-					<p>
-					' . __("With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs.", NRTD) . '
 					</p>
 				</td>
 			</tr>

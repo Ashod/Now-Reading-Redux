@@ -48,6 +48,13 @@ if ( !empty($_POST['update']) ) {
 	$options['sidebarOptions']['renderStyle'] = trim($_POST['sidebarRenderStyle']);
     $options['sidebarOptions']['itemsPerTableRow'] = trim($_POST['sidebarItemsPerTableRow']);
 
+	$options['searchOptions']['viz'] = trim($_POST['searchViz']);
+	$options['searchOptions']['title'] = trim($_POST['searchTitle']);
+	$options['searchOptions']['maxItems'] = trim($_POST['searchMaxItems']);
+	$options['searchOptions']['css'] = trim($_POST['searchCss']);
+	$options['searchOptions']['renderStyle'] = trim($_POST['searchRenderStyle']);
+	$options['searchOptions']['itemsPerTableRow'] = trim($_POST['searchItemsPerTableRow']);
+
 	$options['AWSAccessKeyId']  = trim($_POST['AWSAccessKeyId']);
     $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
     $options['formatDate']		= trim($_POST['format_date']);
