@@ -327,7 +327,6 @@ function nr_install()
         'debugMode'		=> false,
         'menuLayout'	=> NR_MENU_SINGLE,
         'booksPerPage'  => 15,
-        'defBookCount'  => 3,
         'permalinkBase' => 'library/'
     );
     add_option(NOW_READING_OPTIONS, $defaultOptions);

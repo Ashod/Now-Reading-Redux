@@ -19,10 +19,6 @@ if ( !empty($_POST['update']) ) {
 
     $append = '';
 
-	$options['AWSAccessKeyId']  = trim($_POST['AWSAccessKeyId']);
-    $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
-    $options['formatDate']		= trim($_POST['format_date']);
-	
     $options['libraryOptions']['css'] = trim($_POST['libraryCss']);
 	$options['libraryOptions']['renderStyle'] = trim($_POST['libraryRenderStyle']);
     $options['libraryOptions']['itemsPerTableRow'] = trim($_POST['libraryItemsPerTableRow']);
@@ -51,6 +47,9 @@ if ( !empty($_POST['update']) ) {
     $options['sidebarOptions']['readShelf']['title'] = trim($_POST['sidebarReadShelfTitle']);
     $options['sidebarOptions']['readShelf']['maxItems'] = trim($_POST['sidebarReadShelfMaxItems']);
 
+	$options['AWSAccessKeyId']  = trim($_POST['AWSAccessKeyId']);
+    $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
+    $options['formatDate']		= trim($_POST['format_date']);
     $options['wishlistUrl']		= trim($_POST['wishlist_url']);
     $options['associate']		= trim($_POST['associate']);
     $options['ignoreTime']		= trim($_POST['ignore_time']);
@@ -62,7 +61,6 @@ if ( !empty($_POST['update']) ) {
     $options['proxyHost']		= trim($_POST['proxy_host']);
     $options['proxyPort']		= trim($_POST['proxy_port']);
     $options['booksPerPage']    = trim($_POST['books_per_page']);
-    $options['defBookCount']    = trim($_POST['def_book_count']);
     $options['permalinkBase']   = trim($_POST['permalink_base']);
     $options['multiuserMode']   = trim($_POST['multiuser_mode']);
 

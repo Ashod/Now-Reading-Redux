@@ -69,6 +69,24 @@ function nr_options()
 				<th scope="row"> <h4>Library Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="libraryReadingShelfTitle">' . __('Reading shelf title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="libraryReadingShelfTitle" id="libraryReadingShelfTitle" value="' . text_or_default($options['libraryOptions']['readingShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryReadingShelfTitle\').value=\'' . DEFAULT_READING_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="libraryReadingShelfViz">' . __('Reading shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="libraryReadingShelfViz" id="libraryReadingShelfViz">
+						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="libraryUnreadShelfTitle">' . __('Unread shelf title', NRTD) . ':</label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="libraryUnreadShelfTitle" id="libraryUnreadShelfTitle" value="' . text_or_default($options['libraryOptions']['unreadShelf']['title'], '') . '" />
@@ -101,24 +119,6 @@ function nr_options()
 						<option' . ( ($options['libraryOptions']['onholdShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
 						<option' . ( ($options['libraryOptions']['onholdShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
 						<option' . ( ($options['libraryOptions']['onholdShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
-					</select>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="libraryReadingShelfTitle">' . __('Reading shelf title', NRTD) . ':</label></th>
-				<td>
-					<input type="text" size="30" style="vertical-align:middle;" name="libraryReadingShelfTitle" id="libraryReadingShelfTitle" value="' . text_or_default($options['libraryOptions']['readingShelf']['title'], '') . '" />
-					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryReadingShelfTitle\').value=\'' . DEFAULT_READING_TITLE . '\'">' . __("Default", NRTD) . '</button>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="libraryReadingShelfViz">' . __('Reading shelf visual', NRTD) . ':</label></th>
-				<td>
-					<select name="libraryReadingShelfViz" id="libraryReadingShelfViz">
-						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
-						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
-						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
-						<option' . ( ($options['libraryOptions']['readingShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
 					</select>
 				</td>
 			</tr>
@@ -192,6 +192,32 @@ function nr_options()
 				<th scope="row"> <h4>Sidebar Widget Options</h4><hr /></th>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="sidebarReadingShelfTitle">' . __('Reading shelf title', NRTD) . ':</label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="sidebarReadingShelfTitle" id="sidebarReadingShelfTitle" value="' . text_or_default($options['sidebarOptions']['readingShelf']['title'], '') . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarReadingShelfTitle\').value=\'' . DEFAULT_READING_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarReadingShelfViz">' . __('Reading shelf visual', NRTD) . ':</label></th>
+				<td>
+					<select name="sidebarReadingShelfViz" id="sidebarReadingShelfViz">
+						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
+						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="sidebarReadingShelfMaxItems">' . __("Reading shelf items limit", NRTD) . ':</label></th>
+				<td>
+					<input type="text" name="sidebarReadingShelfMaxItems" id="sidebarReadingShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['readingShelf']['maxItems']) ) . '" />
+					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="sidebarUnreadShelfTitle">' . __('Unread shelf title', NRTD) . ':</label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="sidebarUnreadShelfTitle" id="sidebarUnreadShelfTitle" value="' . text_or_default($options['sidebarOptions']['unreadShelf']['title'], '') . '" />
@@ -239,32 +265,6 @@ function nr_options()
 				<th scope="row"><label for="sidebarOnholdShelfMaxItems">' . __("On Hold shelf items limit", NRTD) . ':</label></th>
 				<td>
 					<input type="text" name="sidebarOnholdShelfMaxItems" id="sidebarOnholdShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['onholdShelf']['maxItems']) ) . '" />
-					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
-					</p>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="sidebarReadingShelfTitle">' . __('Reading shelf title', NRTD) . ':</label></th>
-				<td>
-					<input type="text" size="30" style="vertical-align:middle;" name="sidebarReadingShelfTitle" id="sidebarReadingShelfTitle" value="' . text_or_default($options['sidebarOptions']['readingShelf']['title'], '') . '" />
-					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'sidebarReadingShelfTitle\').value=\'' . DEFAULT_READING_TITLE . '\'">' . __("Default", NRTD) . '</button>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="sidebarReadingShelfViz">' . __('Reading shelf visual', NRTD) . ':</label></th>
-				<td>
-					<select name="sidebarReadingShelfViz" id="sidebarReadingShelfViz">
-						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'hide') ? ' selected="selected"' : '' ) . ' value="hide">' . __("Hide", NRTD) . '</option>
-						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_image') ? ' selected="selected"' : '' ) . ' value="show_image">' . __("Show image only", NRTD) . '</option>
-						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
-						<option' . ( ($options['sidebarOptions']['readingShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
-					</select>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="sidebarReadingShelfMaxItems">' . __("Reading shelf items limit", NRTD) . ':</label></th>
-				<td>
-					<input type="text" name="sidebarReadingShelfMaxItems" id="sidebarReadingShelfMaxItems" style="width:4em;" value="' . ( intval($options['sidebarOptions']['readingShelf']['maxItems']) ) . '" />
 					<p>' . __("This controls the maximum number of items shown on this shelf. Negative value (-1, for example) to show all.") . '
 					</p>
 				</td>
@@ -334,12 +334,6 @@ function nr_options()
 					<p>
 					' . __("Add 'http://' to make the URL absolute and not relative to the current page.", NRTD) . '
 					</p>
-				</td>
-			</tr>
-			<tr valign="top">
-				<th scope="row"><label for="def_book_count">' . __("Number of books shown", NRTD) . ':</label></th>
-				<td>
-					<input type="text" name="def_book_count" id="def_book_count" style="width:4em;" value="' . ( intval($options['defBookCount']) ) . '" />
 				</td>
 			</tr>
 
