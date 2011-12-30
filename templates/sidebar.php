@@ -18,7 +18,7 @@
 	<?php
 		$shelf_name = 'reading';
 		$book_query = "status=reading&orderby=random";
-		$shelf_option = $options['sidebarOptions']['readingShelf'];
+		$shelf_option = $library_options['readingShelf'];
 		nr_load_template('shelf.php', false);
 	?>
 	</div>
@@ -27,7 +27,7 @@
 	<?php
 		$shelf_name = 'unread';
 		$book_query = "status=unread&orderby=random";
-		$shelf_option = $options['sidebarOptions']['unreadShelf'];
+		$shelf_option = $library_options['unreadShelf'];
 		nr_load_template('shelf.php', false);
 	?>
 	</div>
@@ -36,7 +36,7 @@
 	<?php
 		$shelf_name = 'onhold';
 		$book_query = "status=onhold&orderby=random";
-		$shelf_option = $options['sidebarOptions']['onholdShelf'];
+		$shelf_option = $library_options['onholdShelf'];
 		nr_load_template('shelf.php', false);
 	?>
 	</div>
@@ -45,7 +45,7 @@
 	<?php
 		$shelf_name = 'read';
 		$book_query = "status=read&orderby=finished&order=desc";
-		$shelf_option = $options['sidebarOptions']['readShelf'];
+		$shelf_option = $library_options['readShelf'];
 		nr_load_template('shelf.php', false);
 	?>
 	</div>
