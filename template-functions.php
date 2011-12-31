@@ -808,7 +808,7 @@ function library_search_form($echo = true)
     }
 
     $html .= '
-		<div align=center>
+		<div style="text-align:center">
 		<input type="text" name="q" />
 		<input type="submit" value="' . __("Search Library", NRTD) . '" />
 		</div>

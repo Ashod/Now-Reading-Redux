@@ -25,7 +25,7 @@ $liburl = rtrim($liburl, '/');
 if ($cururl != $liburl)
 {
 ?>
-	<div align=center><b><a href="<?php echo $liburl ?>">View Full Library</a></b></div>
+	<div style="text-align:center"><b><a href="<?php echo $liburl ?>">View Full Library</a></b></div>
 <?php
 }
 ?>

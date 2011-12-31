@@ -21,10 +21,15 @@ define('NR_MENU_SINGLE', 2);
 define('NR_MENU_MULTIPLE', 4);
 
 define('DEFAULT_SIDEBAR_CSS',
-'.nr_widget img {
-	padding: 5px 5px 5px 5px;
-	width: 65px;    /* Jacket image width. */
+'div.booklisting img {
+	border: 1px solid #c0c0c0;
+	padding: 3px 3px 3px 3px;
+	margin: 0 5px 5px 5px;
+	width: 67px;    /* Jacket image width. */
 	height: 100px;  /* Jacket image height. */
+}
+.nr_widget {
+	padding-bottom: 20px;
 }
 .nr_widget h4 {
 	padding: 5px;
@@ -32,6 +37,16 @@ define('DEFAULT_SIDEBAR_CSS',
 	font: bold 100%/100% Arial, Helvetica, sans-serif;
 	margin: 20px 0 5px 0;
 	clear: both;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.nr_widget input {
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 .nr_widget ul {
     list-style-type: none;
@@ -66,13 +81,23 @@ define('DEFAULT_SIDEBAR_CSS',
 	text-align: center;
 	width: 100%;
 }
+.nr_widget:hover .nr_ads {
+	display: block !important;
+}
+.nr_wishlist {
+	text-align: center;
+	padding: 3px;
+	padding-bottom: 5px;
+}
 ');
 
 define('DEFAULT_LIBRARY_CSS',
-'.nr_library img {
+'.nr_library div.booklisting img {
+	border: 1px solid #c0c0c0;
 	padding: 5px 5px 5px 5px;
-	width: 100px;    /* Jacket image width. */
-	height: 155px;  /* Jacket image height. */
+	margin: 0 12px 12px 12px;
+	width: 108px;	/* Jacket image width. */
+	height: 160px;	/* Jacket image height. */
 }
 .nr_library h3 {
 	padding: 5px;
@@ -80,6 +105,16 @@ define('DEFAULT_LIBRARY_CSS',
 	font: bold 100%/100% Arial, Helvetica, sans-serif;
 	margin: 20px 0 5px 0;
 	clear: both;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.nr_library input {
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 .nr_library ul {
     list-style-type: none;
@@ -117,7 +152,20 @@ define('DEFAULT_LIBRARY_CSS',
 ');
 
 define('DEFAULT_SEARCH_CSS', DEFAULT_LIBRARY_CSS);
+
 /*
+ div.booklisting {
+	list-style: none;
+}
+div.booklisting,
+div.bookentry {
+	margin:  10px 0;
+}
+
+div.bookentry {
+	display: inline-block;
+}
+
  .nr_widget li > * {
     display: table;
     table-layout: fixed;

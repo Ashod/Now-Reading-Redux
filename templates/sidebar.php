@@ -10,7 +10,7 @@
 
 <div class="now-reading nr_widget">
 
-	<div align=center>
+	<div style="text-align:center">
 		<br /><b><a href="<?php library_url() ?>">View Full Library</a></b>
 	</div>
 
@@ -43,8 +43,16 @@
 	</div>
     
 	<?php if (have_wishlist_url()) : ?>
-		<div align=center><b><a href="<?php wishlist_url() ?>">Buy me a gift!</a></b></div>
+		<div class="nr_wishlist"><b><a href="<?php wishlist_url() ?>">Buy me a gift!</a></b></div>
 	<?php endif; ?>
 	
-	<div align=center><?php library_search_form(); ?></div>	
+	<div style="text-align:center"><?php library_search_form(); ?></div>
+	
+	<div style="display:none; text-align:center; font-size:120%; padding: 4px; text-shadow: 0 0 0.1em grey;" class="nr_ads">
+		<a href="http://wordpress.org/extend/plugins/now-reading-redux/" target="_blank" style="text-decoration: none">
+		<i>Now Reading</i>
+		<div style="font-weight:bold; font-family: arial; position:relative; top:-7px; left:42px; font-size:140%; color:#999; text-shadow: 0 0 0.1em #FFFFCC;">Redux</div>
+		</a>
+	</div>
+
 </div>
