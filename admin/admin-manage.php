@@ -487,6 +487,7 @@ function nr_manage()
 				<div class="wrap">
 
 					<h2>Now Reading Redux</h2>
+					<i>Version: ' . NOW_READING_VERSION . '</i>
 
 						<form method="get" action="" onsubmit="location.href += \'&q=\' + document.getElementById(\'q\').value; return false;">
 							<p class="search-box"><label class="hidden" for="q">' . __("Search Books", NRTD) . ':</label> <input type="text" name="q" id="q" value="' . htmlentities($_GET['q']) . '" /> <input class="button" type="submit" value="' . __('Search Books', NRTD) . '" /></p>
