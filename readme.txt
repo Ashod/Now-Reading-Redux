@@ -3,7 +3,7 @@
 Contributors: ashodnakashian
 Donate link:
 Tags: wordpress, books, widget, amazon
-Requires at least: 2.8.0
+Requires at least: 2.9.0
 Tested up to: 3.3.0
 Stable tag: trunk
 
@@ -101,9 +101,10 @@ Here is how you may set it to return 7 finished books: have_books('status=read&o
 * Romanian translation courtesy of Alexander Ovsov [Web Geek Sciense](http://webhostinggeeks.com/science/).
 * New option: Wishlist link. An optional link to a wishlist page shown in the sidebar.
 * New options: Per shelf library, search and sidebar options to control appearence and style and more.
+* Redesigned sidebar, library and search templates.
 * Restructured and reorganized the Options page and grouped options.
 * Changed the default Amazon Associates ID to thevoid0f-20. This can be changed from the options.
-* Redesigned sidebar, library and search templates.
+* Fixed: Library search was broken.
 * Updated many outdated, depricated and unrecommended codes.
 
 = 6.1.0.0 =
