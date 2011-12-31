@@ -14,7 +14,8 @@ if ( !current_user_can('publish_posts') )
 $action = $_POST['action'];
 nr_reset_vars(array('action'));
 
-switch ( $action ) {
+switch ($action)
+{
     case 'delete':
         $id = intval($_GET['id']);
 

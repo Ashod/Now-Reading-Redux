@@ -7,8 +7,8 @@
 /**
  * Creates the manage admin page, and deals with the creation and editing of reviews.
  */
-function nr_manage() {
-
+function nr_manage()
+{
     global $wpdb, $nr_statuses, $nr_post_options, $userdata;
 
     get_currentuserinfo();
@@ -277,8 +277,9 @@ function nr_manage() {
 						<small>' . __("If you wish, you can link this book to a blog entry by entering that entry's ID here. The entry will be linked to from the book's library page.", NRTD) . '</small>
 					</td>
 				</tr>';
-
+				
 				// Post Option.
+				/*
 				echo '
 				<tr class="form-field">
 					<th valign="top" scope="row">
@@ -304,7 +305,8 @@ function nr_manage() {
 						</select>
 					</td>
 				</tr>';
-
+				*/
+				
 				// Meta Data.
 				echo '
 				<tr class="form-field">
