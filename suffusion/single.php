@@ -7,10 +7,7 @@
  */
 
 get_header();
-global $nr_id, $suffusion_unified_options;
-foreach ($suffusion_unified_options as $id => $value) {
-	$$id = $value;
-}
+global $nr_id, $suf_nr_single_added_show, $suf_nr_single_added_text, $suf_nr_single_started_show, $suf_nr_single_started_text, $suf_nr_single_finished_show, $suf_nr_single_finished_text, $suf_nr_single_meta_show;
 ?>
 
 <div id="main-col">

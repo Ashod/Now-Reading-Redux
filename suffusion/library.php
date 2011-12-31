@@ -7,13 +7,18 @@
  */
 
 get_header();
-global $nr_book_query, $suffusion_unified_options;
-foreach ($suffusion_unified_options as $id => $value) {
-	$$id = $value;
-}
+global $nr_book_query, $suf_nr_lib_order, $suf_nr_lib_title, $suf_nr_lib_curr_show, $suf_nr_lib_curr_title, $suf_nr_lib_curr_text, $suf_nr_lib_unread_show, $suf_nr_lib_unread_title;
+global $suf_nr_lib_unread_text, $suf_nr_lib_completed_show, $suf_nr_lib_completed_title, $suf_nr_lib_completed_text;
+
 $lib_order = suffusion_get_entity_order($suf_nr_lib_order, 'nr');
 $lib_order = explode(',', $lib_order);
+
+	global $book_query, $library_options, $shelf_title, $shelf_option;
+	$options = get_option(NOW_READING_OPTIONS);
+	$library_options = $options['libraryOptions'];
 ?>
+
+<?php wp_enqueue_script("jquery"); ?>
 
 <div id="main-col">
 <?php suffusion_before_begin_content(); ?>
@@ -32,9 +37,14 @@ $lib_order = explode(',', $lib_order);
 <?php
 		}
 ?>
+
+		<?php if ($library_options['showStats']) : ?>
+			<h3>Statistics</h3>
+			<p><?php print_book_stats() ?></p>
+		<?php endif; ?>
+
 			</div>
 			<div class="entry">
-<?php print_book_stats() ?>
 <?php
 		foreach ($lib_order as $entity) {
 			if ($entity == 'current' && $suf_nr_lib_curr_show == 'show') {

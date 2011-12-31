@@ -49,7 +49,7 @@
 	<div style="text-align:center"><?php library_search_form(); ?></div>
 	
 	<div style="display:none; text-align:center; font-size:120%; padding: 4px; text-shadow: 0 0 0.1em grey;" class="nr_ads">
-		<a href="http://wordpress.org/extend/plugins/now-reading-redux/" target="_blank" style="text-decoration: none">
+		<a href="http://blog.ashodnakashian.com/projects/now-reading-redux" target="_blank" style="text-decoration: none">
 		<i>Now Reading</i>
 		<div style="font-weight:bold; font-family: arial; position:relative; top:-7px; left:42px; font-size:140%; color:#999; text-shadow: 0 0 0.1em #FFFFCC;">Redux</div>
 		</a>

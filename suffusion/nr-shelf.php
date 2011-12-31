@@ -1,9 +1,6 @@
 <?php
 
-global $nr_book_query, $suffusion_unified_options;
-foreach ($suffusion_unified_options as $id => $value) {
-	$$id = $value;
-}
+global $nr_book_query,$suf_nr_books_per_row, $suf_nr_no_books_text;
 
 $books_per_row = (int)$suf_nr_books_per_row;
 $col_ctr = 0;
