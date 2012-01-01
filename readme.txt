@@ -84,15 +84,18 @@ Here is how you may set it to return 7 finished books: have_books('status=read&o
 == Screenshots ==
 
 1. The book manager where all the books are visible, sorted by any of the columns, in both ascending and descending orders. Searching for -partial- book titles is supported. Author names are shortcuts to filter by that author only.
+
 2. The options page showing some of the new options available in Redux.
 
 3. The book search/add page is unchanged, but...
 
 4. The search results may return more editions than older versions of the plugin. Clicking "Use This Result" adds the book in question to the library.
 
-5. The library page showing statistics graph.
+5. The library page showing statistics graph, which may be disabled from the options page.
 
-6. The side-bar widget showing read, current and up-next books, link to the library and search box.
+6. The side-bar widget showing read, current, on-hold and up-next books, link to the library and search box. The shelves visible, their titles and appearence styles are all controllable from the options page.
+
+7. The library page showing Planned books with the new option of showing both book images and text.
 
 == Changelog ==
 
