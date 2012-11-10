@@ -1,18 +1,32 @@
 <?php
 /**
  * Handles the adding of new books.
- * @package now-reading
+ * @package now-reading-redux
  */
 
-require '../../../../wp-config.php';
+// Load wp_config.php needed for current_user_can().
+$wp_config = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-config.php';
+if (file_exists($wp_config))
+{
+	// The config file is in its default folder.
+	require($wp_config);
+}
+elseif (file_exists(dirname($wp_config) . '/wp-config.php') &&
+		!file_exists(dirname($wp_config) . '/wp-settings.php'))
+{
+	// The config file is one level above its default folder but isn't part of another install.
+	require(dirname($wp_config) . '/wp-config.php');
+}
+
+if (!current_user_can('publish_posts'))
+{
+	die (__('Cheatin&#8217; uh?'));
+}
 
 $_POST = stripslashes_deep($_POST);
 
-if ( !empty($_POST['amazon_data']) ) {
-
-    if ( !current_user_can('publish_posts') )
-        die ( __('Cheating, huh?') );
-
+if (!empty($_POST['amazon_data']))
+{
     $data = unserialize(stripslashes($_POST['amazon_data']));
 
     $b_author = $data['author'];
