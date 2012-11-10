@@ -8,19 +8,19 @@
 $wp_config = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-config.php';
 if (file_exists($wp_config))
 {
-	// The config file is in its default folder.
-	require($wp_config);
+    // The config file is in its default folder.
+    require($wp_config);
 }
 elseif (file_exists(dirname($wp_config) . '/wp-config.php') &&
-		!file_exists(dirname($wp_config) . '/wp-settings.php'))
+        !file_exists(dirname($wp_config) . '/wp-settings.php'))
 {
-	// The config file is one level above its default folder but isn't part of another install.
-	require(dirname($wp_config) . '/wp-config.php');
+    // The config file is one level above its default folder but isn't part of another install.
+    require(dirname($wp_config) . '/wp-config.php');
 }
 
 if (!current_user_can('manage_options'))
 {
-	die (__('Cheatin&#8217; uh?'));
+    die (__('Cheatin&#8217; uh?'));
 }
 
 check_admin_referer('now-reading-update-options');
@@ -40,7 +40,7 @@ if (!empty($_POST['update']))
     $options['libraryOptions']['readShelf']['viz'] = trim($_POST['libraryReadShelfViz']);
     $options['libraryOptions']['readShelf']['title'] = trim($_POST['libraryReadShelfTitle']);
     $options['libraryOptions']['css'] = trim($_POST['libraryCss']);
-	$options['libraryOptions']['renderStyle'] = trim($_POST['libraryRenderStyle']);
+    $options['libraryOptions']['renderStyle'] = trim($_POST['libraryRenderStyle']);
     $options['libraryOptions']['itemsPerTableRow'] = trim($_POST['libraryItemsPerTableRow']);
     $options['libraryOptions']['showStats'] = trim($_POST['libraryShowStats']);
 
@@ -57,32 +57,32 @@ if (!empty($_POST['update']))
     $options['sidebarOptions']['readShelf']['title'] = trim($_POST['sidebarReadShelfTitle']);
     $options['sidebarOptions']['readShelf']['maxItems'] = trim($_POST['sidebarReadShelfMaxItems']);
     $options['sidebarOptions']['css'] = trim($_POST['sidebarCss']);
-	$options['sidebarOptions']['renderStyle'] = trim($_POST['sidebarRenderStyle']);
+    $options['sidebarOptions']['renderStyle'] = trim($_POST['sidebarRenderStyle']);
     $options['sidebarOptions']['itemsPerTableRow'] = trim($_POST['sidebarItemsPerTableRow']);
 
-	$options['searchOptions']['viz'] = trim($_POST['searchViz']);
-	$options['searchOptions']['title'] = trim($_POST['searchTitle']);
-	$options['searchOptions']['maxItems'] = trim($_POST['searchMaxItems']);
-	$options['searchOptions']['css'] = trim($_POST['searchCss']);
-	$options['searchOptions']['renderStyle'] = trim($_POST['searchRenderStyle']);
-	$options['searchOptions']['itemsPerTableRow'] = trim($_POST['searchItemsPerTableRow']);
+    $options['searchOptions']['viz'] = trim($_POST['searchViz']);
+    $options['searchOptions']['title'] = trim($_POST['searchTitle']);
+    $options['searchOptions']['maxItems'] = trim($_POST['searchMaxItems']);
+    $options['searchOptions']['css'] = trim($_POST['searchCss']);
+    $options['searchOptions']['renderStyle'] = trim($_POST['searchRenderStyle']);
+    $options['searchOptions']['itemsPerTableRow'] = trim($_POST['searchItemsPerTableRow']);
 
-	$options['AWSAccessKeyId']  = trim($_POST['AWSAccessKeyId']);
+    $options['AWSAccessKeyId'] = trim($_POST['AWSAccessKeyId']);
     $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
-    $options['formatDate']		= trim($_POST['format_date']);
-    $options['wishlistUrl']		= trim($_POST['wishlist_url']);
-    $options['associate']		= trim($_POST['associate']);
-    $options['ignoreTime']		= trim($_POST['ignore_time']);
-    $options['hideAddedDate']	= trim($_POST['hide_added_date']);
-    $options['domain']			= trim($_POST['domain']);
-    $options['debugMode']		= trim($_POST['debug_mode']);
-    $options['useModRewrite']   = trim($_POST['use_mod_rewrite']);
-    $options['menuLayout']		= ( trim($_POST['menu_layout']) == 'single' ) ? NR_MENU_SINGLE : NR_MENU_MULTIPLE;
-    $options['proxyHost']		= trim($_POST['proxy_host']);
-    $options['proxyPort']		= trim($_POST['proxy_port']);
-    $options['booksPerPage']    = trim($_POST['books_per_page']);
-    $options['permalinkBase']   = trim($_POST['permalink_base']);
-    $options['multiuserMode']   = trim($_POST['multiuser_mode']);
+    $options['formatDate'] = trim($_POST['format_date']);
+    $options['wishlistUrl'] = trim($_POST['wishlist_url']);
+    $options['associate'] = trim($_POST['associate']);
+    $options['ignoreTime'] = trim($_POST['ignore_time']);
+    $options['hideAddedDate'] = trim($_POST['hide_added_date']);
+    $options['domain'] = trim($_POST['domain']);
+    $options['debugMode'] = trim($_POST['debug_mode']); 
+    $options['useModRewrite'] = trim($_POST['use_mod_rewrite']);
+    $options['menuLayout'] = ( trim($_POST['menu_layout']) == 'single' ) ? NR_MENU_SINGLE : NR_MENU_MULTIPLE;
+    $options['proxyHost'] = trim($_POST['proxy_host']);
+    $options['proxyPort'] = trim($_POST['proxy_port']);
+    $options['booksPerPage'] = trim($_POST['books_per_page']);
+    $options['permalinkBase'] = trim($_POST['permalink_base']);
+    $options['multiuserMode'] = trim($_POST['multiuser_mode']);
 
     $nr_url->load_scheme($options['menuLayout']);
 

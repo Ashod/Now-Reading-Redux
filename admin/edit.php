@@ -8,14 +8,14 @@
 $wp_config = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/wp-config.php';
 if (file_exists($wp_config))
 {
-	// The config file is in its default folder.
-	require($wp_config);
+    // The config file is in its default folder.
+    require($wp_config);
 }
 elseif (file_exists(dirname($wp_config) . '/wp-config.php') &&
-		!file_exists(dirname($wp_config) . '/wp-settings.php'))
+        !file_exists(dirname($wp_config) . '/wp-settings.php'))
 {
-	// The config file is one level above its default folder but isn't part of another install.
-	require(dirname($wp_config) . '/wp-config.php');
+    // The config file is one level above its default folder but isn't part of another install.
+    require(dirname($wp_config) . '/wp-config.php');
 }
 
 if (!current_user_can('publish_posts'))
@@ -36,8 +36,8 @@ switch ($action)
         check_admin_referer('now-reading-delete-book_' . $id);
 
         $wpdb->query("
-		DELETE FROM {$wpdb->prefix}now_reading
-		WHERE b_id = $id
+        DELETE FROM {$wpdb->prefix}now_reading
+        WHERE b_id = $id
             ");
 
         wp_redirect($nr_url->urls['manage'] . '&deleted=1');
@@ -60,46 +60,46 @@ switch ($action)
             if ( $id == 0 )
                 continue;
 
-            $author			= $wpdb->escape($_POST['author'][$i]);
-            $title			= $wpdb->escape($_POST['title'][$i]);
+            $author = $wpdb->escape($_POST['author'][$i]);
+            $title = $wpdb->escape($_POST['title'][$i]);
             $asin = $wpdb->escape($_POST['asin'][$i]);
 
-            $nice_author	= $wpdb->escape(sanitize_title($_POST['author'][$i]));
-            $nice_title		= $wpdb->escape(sanitize_title($_POST['title'][$i]));
+            $nice_author = $wpdb->escape(sanitize_title($_POST['author'][$i]));
+            $nice_title = $wpdb->escape(sanitize_title($_POST['title'][$i]));
 
-            $status			= $wpdb->escape($_POST['status'][$i]);
+            $status = $wpdb->escape($_POST['status'][$i]);
 
-            $added			= ( nr_empty_date($_POST['added'][$i]) )	? '' : $wpdb->escape(date('Y-m-d H:i:s', strtotime($_POST['added'][$i])));
-            $started		= ( nr_empty_date($_POST['started'][$i]) )	? '' : $wpdb->escape(date('Y-m-d H:i:s', strtotime($_POST['started'][$i])));
-            $finished		= ( nr_empty_date($_POST['finished'][$i]) )	? '' : $wpdb->escape(date('Y-m-d H:i:s', strtotime($_POST['finished'][$i])));
+            $added = ( nr_empty_date($_POST['added'][$i]) )    ? '' : $wpdb->escape(date('Y-m-d H:i:s', strtotime($_POST['added'][$i])));
+            $started = ( nr_empty_date($_POST['started'][$i]) )    ? '' : $wpdb->escape(date('Y-m-d H:i:s', strtotime($_POST['started'][$i])));
+            $finished = ( nr_empty_date($_POST['finished'][$i]) )    ? '' : $wpdb->escape(date('Y-m-d H:i:s', strtotime($_POST['finished'][$i])));
 
             if (!empty($_POST['posts'][$i]))
             {
                 $post = 'b_post = "' . intval($_POST["posts"][$i]) . '",';
-			}
+            }
 
             if (!empty($_POST['post_op'][$i]))
             {
                 $post_op = 'b_post_op = "' . intval($_POST["post_op"][$i]) . '",';
-			}
+            }
 
             if (!empty($_POST['visibility'][$i]))
             {
                 $visibility = 'b_visibility = "' . intval($_POST["visibility"][$i]) . '",';
-			}
-			else
-			{
-				// By default, Private.
+            }
+            else
+            {
+                // By default, Private.
                 $visibility = 'b_visibility = "0",';
-			}
+            }
 
             if (!empty($_POST['rating'][$i]))
             {
-				$rating	= 'b_rating = "' . intval($_POST["rating"][$i]) . '",';
-			}
+                $rating    = 'b_rating = "' . intval($_POST["rating"][$i]) . '",';
+            }
 
             if ( !empty($_POST['review'][$i]) )
-                $review	= 'b_review = "' . $wpdb->escape($_POST["review"][$i]) . '",';
+                $review    = 'b_review = "' . $wpdb->escape($_POST["review"][$i]) . '",';
 
             if ( !empty($_POST['image'][$i]) )
                 $image = 'b_image = "' . $wpdb->escape($_POST['image'][$i]) . '",';
@@ -109,9 +109,9 @@ switch ($action)
             }
 
             $current_status = $wpdb->get_var("
-			SELECT b_status
-			FROM {$wpdb->prefix}now_reading
-			WHERE b_id = $id
+            SELECT b_status
+            FROM {$wpdb->prefix}now_reading
+            WHERE b_id = $id
                 ");
 
             // If the book is currently "unread" but is being changed to "reading", and the user didn't set a started date, we need to add a b_started value.
@@ -126,28 +126,28 @@ switch ($action)
             else
                 $finished = "b_finished = '$finished',";
 
-			$query = "
-			UPDATE {$wpdb->prefix}now_reading
-			SET
+            $query = "
+            UPDATE {$wpdb->prefix}now_reading
+            SET
                 $started
                 $finished
                 $rating
                 $review
                 $image
                 $post
-				$post_op
-				$visibility
-				b_author = '$author',
-				b_asin = '$asin',
-				b_title = '$title',
-				b_nice_author = '$nice_author',
-				b_nice_title = '$nice_title',
-				b_status = '$status',
-				b_added = '$added'
-			WHERE
-				b_id = $id
+                $post_op
+                $visibility
+                b_author = '$author',
+                b_asin = '$asin',
+                b_title = '$title',
+                b_nice_author = '$nice_author',
+                b_nice_title = '$nice_title',
+                b_status = '$status',
+                b_added = '$added'
+            WHERE
+                b_id = $id
                 ";
-			//echo $query;
+            //echo $query;
             $result = $wpdb->query($query);
             if ( $wpdb->rows_affected > 0 )
                 $updated++;
