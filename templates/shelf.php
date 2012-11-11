@@ -17,12 +17,12 @@
 				<ul>
 				<?php while(have_books($book_query)) : the_book(); ?>
 					<li>
-						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
+						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a href="<?php book_permalink() ?>">
 								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
                                 <br />
 						<?php endif; ?>
-						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
+						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 					</li>
@@ -38,12 +38,12 @@
 				<ol>
 				<?php while(have_books($book_query)) : the_book(); ?>
 					<li>
-						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
+						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a href="<?php book_permalink() ?>">
 								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
                                 <br />
 						<?php endif; ?>
-						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
+						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 					</li>
@@ -86,12 +86,12 @@
 						}
 				?>
 						<td>
-						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
+						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a href="<?php book_permalink() ?>">
 								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
                                 <br />
 						<?php endif; ?>
-						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
+						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 						</td>
