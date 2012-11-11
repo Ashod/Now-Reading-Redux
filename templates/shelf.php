@@ -1,7 +1,7 @@
 <?php
 	global $book_query, $library_options, $shelf_title, $shelf_option;
 	global $empty_shelf_message;
-	
+
 	//$book_count = total_books($book_status, false);
 	if ($shelf_option['viz'] != 'hide')
 	{
@@ -10,19 +10,20 @@
 		if (have_books($book_query))
 		{
 			echo '<div class="booklisting">';
-			if ($library_options['renderStyle'] != 'table')
+			if ($library_options['renderStyle'] == 'list')
 			{
-				// List
+				// Unordered List:
 ?>
 				<ul>
 				<?php while(have_books($book_query)) : the_book(); ?>
 					<li>
-						<?php if ($shelf_option['viz'] != 'show_text') : ?>
+						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a href="<?php book_permalink() ?>">
 								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
+                                <br />
 						<?php endif; ?>
-						<?php if ($shelf_option['viz'] != 'show_image') : ?>
-							<br /><strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
+							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 					</li>
 				<?php endwhile; ?>
@@ -30,8 +31,29 @@
 <?php
 			}
 			else
+			if ($library_options['renderStyle'] == 'numbered')
 			{
-				// Table
+				// Ordered List:
+?>
+				<ol>
+				<?php while(have_books($book_query)) : the_book(); ?>
+					<li>
+						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
+							<a href="<?php book_permalink() ?>">
+								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
+                                <br />
+						<?php endif; ?>
+						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
+							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+						<?php endif; ?>
+					</li>
+				<?php endwhile; ?>
+				</ol>
+<?php
+			}
+			else
+			{
+				// Table:
 				//TODO: Control image/text visibility via options.
 ?>
 				<table class='nr-shelf'>
@@ -64,12 +86,13 @@
 						}
 				?>
 						<td>
-						<?php if ($shelf_option['viz'] != 'show_text') : ?>
+						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a href="<?php book_permalink() ?>">
 								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
+                                <br />
 						<?php endif; ?>
-						<?php if ($shelf_option['viz'] != 'show_image') : ?>
-							<br /><strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
+							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 						</td>
 				<?php
