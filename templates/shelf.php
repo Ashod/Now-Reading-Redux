@@ -23,7 +23,7 @@
                                 <br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
-							<a class="booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+							<a class="nr_booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="nr_bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 					</li>
 				<?php endwhile; ?>
@@ -44,7 +44,7 @@
                                 <br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
-							<a class="booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+							<a class="nr_booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="nr_bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 					</li>
 				<?php endwhile; ?>
@@ -92,7 +92,7 @@
                                 <br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
-							<a class="booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+							<a class="nr_booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="nr_bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 						</td>
 				<?php
@@ -116,7 +116,7 @@
 		else
 		{
 			// No books.
-			echo '<p><b>' .isset($empty_shelf_message) ? $empty_shelf_message : 'None' . '</b></p>';
+			echo '<p class="nr_nobooks">' .isset($empty_shelf_message) ? $empty_shelf_message : 'None' . '</p>';
 		}
 	}
 ?>

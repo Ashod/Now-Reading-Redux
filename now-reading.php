@@ -28,10 +28,10 @@ define('DEFAULT_SIDEBAR_CSS',
 	width: 67px;    /* Jacket image width. */
 	height: 100px;  /* Jacket image height. */
 }
-a.booktitle {
+a.nr_booktitle, .nr_viewlibrary, .nr_nobooks, .nr_wishlist {
     font-weight: bold;
 }
-a.bookauthor {
+a.nr_bookauthor {
     font-style: italic;
 }
 .nr_widget {
@@ -89,6 +89,15 @@ a.bookauthor {
 }
 .nr_widget:hover .nr_ads {
 	display: block !important;
+}
+.nr_ads {
+    display:none; text-align:center; font-size:120%; padding: 4px; text-shadow: 0 0 0.1em grey;
+}
+.nr_ads .nr_now_reading {
+    font-style: italic;
+}
+.nr_ads .nr_redux {
+    font-weight:bold; font-family: arial; position:relative; top:-7px; left:42px; font-size:140%; color:#999; text-shadow: 0 0 0.1em #FFFFCC;
 }
 .nr_wishlist {
 	text-align: center;
