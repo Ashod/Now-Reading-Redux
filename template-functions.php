@@ -277,7 +277,7 @@ function print_book_stats($duration_months = 12, $bar_width = 40, $graph_height 
 		WHERE b_started > 0
 		AND b_finished > DATE_SUB(CURDATE(), INTERVAL {$duration_months} MONTH)
 		AND b_status != 'onhold'
-		GROUP BY  YEAR(b_finished), MONTH(b_finished)
+		GROUP BY YEAR(b_finished), MONTH(b_finished)
 		ORDER BY YEAR(b_finished), MONTH(b_finished)
         ";
 	$statistics = $wpdb->get_results($query);
