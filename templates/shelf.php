@@ -23,7 +23,7 @@
                                 <br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
-							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+							<a class="booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 					</li>
 				<?php endwhile; ?>
@@ -44,7 +44,7 @@
                                 <br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
-							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+							<a class="booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 					</li>
 				<?php endwhile; ?>
@@ -92,7 +92,7 @@
                                 <br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
-							<strong><a href="<?php book_permalink() ?>"><?php book_title() ?></a></strong> by <a href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
+							<a class="booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
 						<?php endif; ?>
 						</td>
 				<?php

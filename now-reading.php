@@ -28,6 +28,12 @@ define('DEFAULT_SIDEBAR_CSS',
 	width: 67px;    /* Jacket image width. */
 	height: 100px;  /* Jacket image height. */
 }
+a.booktitle {
+    font-weight: bold;
+}
+a.bookauthor {
+    font-style: italic;
+}
 .nr_widget {
 	padding-bottom: 20px;
 }
