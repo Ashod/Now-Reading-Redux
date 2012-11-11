@@ -99,6 +99,11 @@ Here is how you may set it to return 7 finished books: have_books('status=read&o
 
 ### Changelog ###
 
+#### 6.7.0.0 ####
+* Wordpress 3.4 support.
+* The wp-config.php file may be either in its default folder or a folder above it. See [Hardening WordPress](http://codex.wordpress.org/Hardening_WordPress#Securing_wp-config.php). (Thanks to Alex for this request.)
+* NRR shortcode added. Supports all rendering styles and filtering options. Example: [nrr style="numbered" viz="show_text" status="all" num="-1" order="asc" finished_year="2011"]
+
 #### 6.5.0.0 ####
 * Wordpress 3.3 support.
 * Romanian translation courtesy of Alexander Ovsov [Web Geek Sciense](http://webhostinggeeks.com/science/).

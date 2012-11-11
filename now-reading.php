@@ -608,21 +608,21 @@ function nr_load_template($filename, $require_once = true)
     $filename = basename($filename);
     $template = TEMPLATEPATH ."/now-reading-redux/$filename";
 
-	/*  check `now-reading` for backwards compatibility */
+    //  check `now-reading` for backwards compatibility.
     if (!file_exists($template))
     {
-		$template = TEMPLATEPATH ."/now-reading/$filename";
-	}
+        $template = TEMPLATEPATH . "/now-reading/$filename";
+    }
 
     if (!file_exists($template))
     {
-		$template = dirname(__FILE__)."/templates/$filename";
-	}
+        $template = dirname(__FILE__) . "/templates/$filename";
+    }
 
     if (!file_exists($template))
     {
-		return new WP_Error('template-missing', sprintf(__("Oops! The template file %s could not be found in either the Now Reading template directory or your theme's Now Reading directory.", NRTD), "<code>$filename</code>"));
-	}
+        return new WP_Error('template-missing', sprintf(__("Oops! The template file %s could not be found in either the Now Reading template directory or your theme's Now Reading directory.", NRTD), "<code>$filename</code>"));
+    }
 
     load_template($template, $require_once);
 }
@@ -691,5 +691,47 @@ if ( !function_exists('robm_dump') ) {
         echo '</pre>';
     }
 }
+
+function renderPhpToString($file, $vars=null)
+{
+    if (is_array($vars) && !empty($vars))
+    {
+        extract($vars);
+    }
+
+    ob_start();
+    nr_load_template($file, true);
+    return ob_get_clean();
+}
+
+// [nrr style="numbered" viz="show_text" status="all" num="-1" order="asc" finished_year="2011"]
+function nrr_shortcode_func($atts)
+{
+    extract( shortcode_atts( array(
+        'style' => 'list',  // list, numbered, table
+        'status' => 'all',  // unread,  reading, onhold, read, all
+        'orderby' => 'finished', // reading, read, onhold, finished
+        'order' => 'desc',  // asc, desc
+        'search' => '',
+        'author' => '',
+        'title' => '',
+        'reader' => '',
+        'started_year' => '',
+        'started_month' => '',
+        'finished_year' => '',
+        'finished_month' => '',
+        'num' => '-1',  // The maximum number of items to show. -1 for all.
+        'viz' => 'show_text', //hide, show_text, show_image, show_image_text
+        'items_per_row' => '1',
+    ), $atts ) );
+
+    global $book_query, $library_options, $shelf_title, $shelf_option;
+    $shelf_option = array('viz' => $viz);
+    $library_options = array('renderStyle' => $style, 'itemsPerTableRow' => $items_per_row);
+    $book_query = "status={$status}&orderby={$orderby}&order={$order}&search={$search}&author={$author}&title={$title}&reader={$reader}&num={$num}&started_year={$started_year}&started_month={$started_month}&finished_year={$finished_year}&finished_month={$finished_month}";
+
+    return renderPhpToString('shelf.php');
+}
+add_shortcode('nrr', 'nrr_shortcode_func');
 
 ?>
