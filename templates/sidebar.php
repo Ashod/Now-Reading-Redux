@@ -1,4 +1,7 @@
 <?php
+/**
+ * Widget template for the Now Reading Redux plugin.
+ */
 	global $book_query, $library_options, $shelf_title, $shelf_option;
 	$options = get_option(NOW_READING_OPTIONS);
 	$library_options = $options['sidebarOptions'];
@@ -11,7 +14,12 @@
 <div class="now-reading nr_widget">
 
 	<div style="text-align:center">
-		<br /><a class="nr_viewlibrary" href="<?php library_url() ?>">View Full Library</a>
+		<br />
+		<div class="library">
+			<span class="icon">&nbsp;</span>
+			<a href="<?php library_url(); ?>"><?php _e('View Full Library', 'now-reading-redux');?></a>
+		</div>
+
 	</div>
 
 	<?php

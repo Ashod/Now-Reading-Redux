@@ -1,7 +1,10 @@
 <?php
-	global $book_query, $library_options, $shelf_title, $shelf_option;
-	$options = get_option(NOW_READING_OPTIONS);
-	$library_options = $options['libraryOptions'];
+/**
+ * Library template for the Now Reading plugin.
+ */
+global $book_query, $library_options, $shelf_title, $shelf_option;
+$options = get_option(NOW_READING_OPTIONS);
+$library_options = $options['libraryOptions'];
 ?>
 
 <?php wp_enqueue_script("jquery"); ?>

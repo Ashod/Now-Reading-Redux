@@ -41,16 +41,17 @@ if( have_books(intval($nr_id)) ) {
 				<span class="icon">&nbsp;</span>
 				<a href="<?php manage_library_url(); ?>"><?php _e('Manage Books', 'now-reading-redux');?></a>
 			</div>
-			
+
+<?php
+		}
+?>
 			<div class="library">
 				<span class="icon">&nbsp;</span>
 				<a href="<?php library_url(); ?>"><?php _e('Back to library', 'now-reading-redux');?></a>
 			</div>
-<?php
-		}
-?>
 		</div>
 	</header>
+
 		<div class="bookentry fix">
 			<div class="stats">
 				<a href="<?php book_url(); ?>" title="<?php if (!is_custom_book()) { ?>Buy <?php echo esc_attr(book_title(false));?> from Amazon<?php }?>"><img src="<?php book_image(); ?>" alt="<?php echo esc_attr(book_title(false)); ?>" /></a>
@@ -115,7 +116,8 @@ if( have_books(intval($nr_id)) ) {
 <?php
 	}
 }
-else {
+else
+{
 ?>
 		<header class="post-header">
 			<h2 class="posttitle"><?php _e('Not Found', 'now-reading-redux'); ?></h2>
@@ -126,8 +128,8 @@ else {
 <?php
 }
 ?>
-
 		</article><!-- post -->
+
 	</div><!-- content -->
 </div><!-- main-col -->
 

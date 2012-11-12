@@ -28,7 +28,7 @@ define('DEFAULT_SIDEBAR_CSS',
 	width: 67px;    /* Jacket image width. */
 	height: 100px;  /* Jacket image height. */
 }
-a.nr_booktitle, .nr_viewlibrary, .nr_nobooks, .nr_wishlist {
+a.nr_booktitle, .library, .nr_nobooks, .nr_wishlist {
     font-weight: bold;
 }
 a.nr_bookauthor {
