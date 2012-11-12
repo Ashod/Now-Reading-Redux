@@ -138,6 +138,9 @@ function nr_options()
 						<option' . ( ($options['libraryOptions']['readShelf']['viz'] == 'show_text') ? ' selected="selected"' : '' ) . ' value="show_text">' . __("Show text only", NRTD) . '</option>
 						<option' . ( ($options['libraryOptions']['readShelf']['viz'] == 'show_image_text') ? ' selected="selected"' : '' ) . ' value="show_image_text">' . __("Show both image and text", NRTD) . '</option>
 					</select>
+					<p>
+					' . __('Also used for Tag and Author pages.', NRTD) . '
+					</p>
 				</td>
 			</tr>
 			<tr valign="top">

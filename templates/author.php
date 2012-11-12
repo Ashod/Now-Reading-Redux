@@ -1,50 +1,52 @@
-<?php get_header() ?>
+<?php
+/**
+ * Book author template for the Now Reading Redux plugin.
+ */
 
-<div class="content">
-	
-	<div id="content" class="now-reading primary narrowcolumn">
-	
-	<div class="post">
-		
-		<?php if( can_now_reading_admin() ) : ?>
-			
-			<p>Admin: &raquo; <a href="<?php manage_library_url() ?>">Manage Books</a></p>
-			
-		<?php endif; ?>
-		
-		<?php library_search_form() ?>
-		
-		<p><a href="<?php library_url() ?>">&larr; Back to library</a></p>
-		
-		<h2>Books by <?php the_book_author() ?></h2>
-		
-		<?php if( have_books("author={$GLOBALS['nr_author']}&num=-1") ) : ?>
-			
-			<ul>
-			
-			<?php while( have_books("author={$GLOBALS['nr_author']}&num=-1") ) : the_book(); ?>
-				
-				<li>
-					<p><a href="<?php book_permalink() ?>"><img src="<?php book_image() ?>" alt="<?php book_title() ?>" /></a></p>
-					<p><?php book_title() ?></p>
-				</li>
-				
-			<?php endwhile; ?>
-			
-			</ul>
-			
-		<?php else : ?>
-			
-			<p>There are no books by this author!</p>
-			
-		<?php endif; ?>
+global $book_query, $library_options, $shelf_title, $shelf_option;
+$options = get_option(NOW_READING_OPTIONS);
+$library_options = $options['libraryOptions'];
+$shelf_option = $library_options['readShelf'];
+get_header();
+?>
 
-	</div>
-	
-	</div>
-	
-</div>
+<div id="primary">
+	<div id="content" role="main" class="narrowcolumn primary now-reading">
 
-<?php get_sidebar() ?>
+		<article <?php post_class('post nr-post'); ?>>
+			<header class="post-header">
+				<h1 class="posttitle"><?php echo the_book_author(false); ?></h1>
 
-<?php get_footer() ?>
+				<div class="bookdata fix">
+<?php
+if( can_now_reading_admin() ) {
+?>
+					<div class="manage">
+						<span class="icon">&nbsp;</span>
+						<a href="<?php manage_library_url(); ?>"><?php _e('Manage Books', 'now-reading-redux');?></a>
+					</div>
+<?php
+}
+?>
+					<div class="library">
+    					<span class="icon">&nbsp;</span>
+						<a href="<?php library_url(); ?>"><?php _e('Back to library', 'now-reading-redux');?></a>
+    				</div>
+				</div>
+			</header>
+			<div class="booklisting">
+<?php
+		$shelf_title = "<h4></h4>";
+		$book_query = "author={$GLOBALS['nr_author']}&num=-1";
+		nr_load_template('shelf.php', false);
+?>
+			</div><!-- /.booklisting -->
+		</article><!-- /.nr-post -->
+	</div><!-- /#content -->
+</div><!-- /#main-col -->
+
+<?php get_sidebar(); ?>
+
+<?php
+get_footer();
+?>
