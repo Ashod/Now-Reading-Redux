@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Tag template for the Now Reading Redux plugin.
+ */
+
+get_header();
+?>
 
 <div class="content">
 	
@@ -35,14 +41,11 @@
 		<p>Sorry, but there were no search results for your query.</p>
 		
 	<?php endif; ?>
-	
-	<?php do_action('nr_footer'); ?>
-	
+
 	</div>
 		
-	</div>
-	
-</div>
+	</div><!-- /#content -->
+</div><!-- /#main-col -->
 
 <?php get_sidebar() ?>
 

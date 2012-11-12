@@ -38,9 +38,7 @@
 			<p>There are no books by this author!</p>
 			
 		<?php endif; ?>
-		
-		<?php do_action('nr_footer'); ?>
-		
+
 	</div>
 	
 	</div>

@@ -40,8 +40,6 @@
 		nr_load_template('shelf.php', false);
 	?>
 
-	</div>
-    
 	<?php if (have_wishlist_url()) : ?>
 		<div class="nr_wishlist"><a href="<?php wishlist_url() ?>">Buy me a gift!</a></div>
 	<?php endif; ?>

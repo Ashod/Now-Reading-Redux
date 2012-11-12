@@ -15,7 +15,7 @@
 <div id="main-col">
 	<div id="container" class="now-reading nr_library">
 		<div id="content" role="main">
-			<div class="post fix nr-post">
+			<article <?php post_class('post nr-post'); ?>>
 				<h1 class="post-title entry-title">Library</h1>
 			
 				<div class="bookdata fix">
@@ -62,10 +62,9 @@
 					$book_query = "status=read&orderby=finished&order=desc";
 					nr_load_template('shelf.php', false);
 
-					do_action('nr_footer');
 				?>
 				</div><!-- .entry-content -->
-			</div><!-- .post -->
+			</article><!-- .post -->
 		</div><!-- #content -->
 	</div><!-- #container -->
 

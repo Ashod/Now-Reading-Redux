@@ -39,7 +39,6 @@
 					$empty_shelf_message = __("Sorry, but there were no search results for your query.");
 					nr_load_template('shelf.php', false);
 		
-					do_action('nr_footer');
 				?>
 				</div><!-- .entry-content -->
 			</div><!-- .post -->

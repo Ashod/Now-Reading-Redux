@@ -20,7 +20,7 @@
 						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a href="<?php book_permalink() ?>">
 								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
-                                <br />
+								<br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a class="nr_booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="nr_bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
@@ -41,7 +41,7 @@
 						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a href="<?php book_permalink() ?>">
 								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
-                                <br />
+								<br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a class="nr_booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="nr_bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
@@ -89,7 +89,7 @@
 						<?php if ($shelf_option['viz'] == 'show_image' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a href="<?php book_permalink() ?>">
 								<img src="<?php book_image() ?>" alt="<?php echo esc_attr(book_title(false)); ?>" title="<?php echo esc_attr(book_title(false)); ?> by <?php echo esc_attr(book_author(false)); ?>"/></a>
-                                <br />
+								<br />
 						<?php endif; ?>
 						<?php if ($shelf_option['viz'] == 'show_text' || $shelf_option['viz'] == 'show_image_text') : ?>
 							<a class="nr_booktitle" href="<?php book_permalink() ?>"><?php book_title() ?></a> by <a class="nr_bookauthor" href="<?php book_author_permalink() ?>"><?php book_author() ?></a>
