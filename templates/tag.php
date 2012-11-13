@@ -19,25 +19,27 @@ get_header();
 
 				<div class="bookdata fix">
 <?php
-if( can_now_reading_admin() ) {
+				if (can_now_reading_admin())
+				{
 ?>
 					<div class="manage">
 						<span class="icon">&nbsp;</span>
 						<a href="<?php manage_library_url(); ?>"><?php _e('Manage Books', 'now-reading-redux');?></a>
 					</div>
 <?php
-}
+				}
 ?>
 					<div class="library">
-    					<span class="icon">&nbsp;</span>
+						<span class="icon">&nbsp;</span>
 						<a href="<?php library_url(); ?>"><?php _e('Back to library', 'now-reading-redux');?></a>
-    				</div>
+					</div>
 				</div>
 			</header>
+
 			<div class="booklisting">
 <?php
 		$shelf_title = "<h4></h4>";
-		$book_query = "tag={$GLOBALS['nr_tag']}&num=-1";
+		$book_query = "tag=" . the_tag(false) . "&num=-1";
 		nr_load_template('shelf.php', false);
 ?>
 			</div><!-- /.booklisting -->

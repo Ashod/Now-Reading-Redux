@@ -15,29 +15,31 @@ get_header();
 
 		<article <?php post_class('post nr-post'); ?>>
 			<header class="post-header">
-				<h1 class="posttitle"><?php echo the_book_author(false); ?></h1>
+				<h1 class="posttitle"><?php the_book_author(); ?></h1>
 
 				<div class="bookdata fix">
 <?php
-if( can_now_reading_admin() ) {
+				if (can_now_reading_admin())
+				{
 ?>
 					<div class="manage">
 						<span class="icon">&nbsp;</span>
 						<a href="<?php manage_library_url(); ?>"><?php _e('Manage Books', 'now-reading-redux');?></a>
 					</div>
 <?php
-}
+				}
 ?>
 					<div class="library">
-    					<span class="icon">&nbsp;</span>
+						<span class="icon">&nbsp;</span>
 						<a href="<?php library_url(); ?>"><?php _e('Back to library', 'now-reading-redux');?></a>
-    				</div>
+					</div>
 				</div>
 			</header>
+
 			<div class="booklisting">
 <?php
 		$shelf_title = "<h4></h4>";
-		$book_query = "author={$GLOBALS['nr_author']}&num=-1";
+		$book_query = "author=" . the_book_author(false) . "&num=-1";
 		nr_load_template('shelf.php', false);
 ?>
 			</div><!-- /.booklisting -->
