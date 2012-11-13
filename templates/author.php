@@ -15,7 +15,7 @@ get_header();
 
 		<article <?php post_class('post nr-post'); ?>>
 			<header class="post-header">
-				<h1 class="posttitle"><?php the_book_author(); ?></h1>
+				<h1 class="posttitle"><?php _e('Books by', 'now-reading-redux');?> <i><?php the_book_author(); ?></i>:</h1>
 
 				<div class="bookdata fix">
 <?php
@@ -38,9 +38,9 @@ get_header();
 
 			<div class="booklisting">
 <?php
-		$shelf_title = "<h4></h4>";
-		$book_query = "author=" . the_book_author(false) . "&num=-1";
-		nr_load_template('shelf.php', false);
+				$shelf_title = "<h4></h4>";
+				$book_query = "author=" . the_book_author(false) . "&num=-1";
+				nr_load_template('shelf.php', false);
 ?>
 			</div><!-- /.booklisting -->
 		</article><!-- /.nr-post -->
