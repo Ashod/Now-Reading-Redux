@@ -12,7 +12,6 @@ get_header();
 
 <div id="primary">
 	<div id="content" role="main" class="narrowcolumn primary now-reading">
-
 		<article <?php post_class('post nr-post'); ?>>
 			<header class="post-header">
 				<h1 class="posttitle"><?php _e('Books by', 'now-reading-redux');?> <i><?php the_book_author(); ?></i>:</h1>

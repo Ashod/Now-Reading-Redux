@@ -27,7 +27,7 @@ if( can_now_reading_admin() ) {
 ?>
 					<div class="manage">
 						<span class="icon">&nbsp;</span>
-						<a href="<?php manage_library_url(); ?>"><?php _e('Manage Books', 'suffusion');?></a>
+						<a href="<?php manage_library_url(); ?>"><?php _e('Manage Books', 'now-reading-redux');?></a>
 					</div>
 <?php
 }
@@ -39,7 +39,7 @@ if( can_now_reading_admin() ) {
 				</div>
 			</header>
 
-			<div class="entry-content">
+			<div class="booklisting">
 <?php
 				library_search_form();
 
