@@ -32,14 +32,13 @@ get_header();
 <?php
 				}
 ?>
-
-					<?php if ($library_options['showStats']) : ?>
-						<h3>Statistics</h3>
-						<p><?php print_book_stats() ?></p>
-					<?php endif; ?>
-
 				</div>
 			</header>
+
+			<?php if ($library_options['showStats']) : ?>
+				<h3>Statistics</h3>
+				<p><?php print_book_stats() ?></p>
+			<?php endif; ?>
 
 			<div class="booklisting">
 <?php
@@ -77,4 +76,6 @@ get_header();
 
 <?php get_sidebar(); ?>
 
-<?php get_footer(); ?>
+<?php
+get_footer();
+?>

@@ -48,12 +48,15 @@
 		nr_load_template('shelf.php', false);
 	?>
 
-	<?php if (have_wishlist_url()) : ?>
-		<div class="nr_wishlist"><a href="<?php wishlist_url() ?>">Buy me a gift!</a></div>
-	<?php endif; ?>
-	
+if (have_wishlist_url())
+{
+?>
+	<div class="nr_wishlist"><a href="<?php wishlist_url() ?>">Buy me a gift!</a></div>
+<?php
+}
+
 	<div style="text-align:center"><?php library_search_form(); ?></div>
-	
+
 	<div class="nr_ads">
 		<a href="http://blog.ashodnakashian.com/projects/now-reading-redux" target="_blank" style="text-decoration: none">
 		<div class="nr_now_reading">Now Reading</div>
