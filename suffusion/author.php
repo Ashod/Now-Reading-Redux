@@ -14,28 +14,36 @@ get_header();
 <?php suffusion_before_begin_content(); ?>
 	<div id="content">
 <?php suffusion_after_begin_content(); ?>
-		<div class="post fix nr-post">
-			<h1 class="posttitle"><?php echo the_book_author(false); ?></h1>
+		<article <?php post_class('post nr-post'); ?>>
+			<header class="post-header">
+				<h1 class="posttitle"><?php echo the_book_author(false); ?></h1>
 
-			<div class="bookdata fix">
+				<div class="bookdata fix">
 <?php
 if( can_now_reading_admin() ) {
 ?>
-				<div class="manage">
-					<span class="icon">&nbsp;</span>
-					<a href="<?php manage_library_url(); ?>"><?php _e('Manage Books', 'suffusion');?></a>
-				</div>
+					<div class="manage">
+						<span class="icon">&nbsp;</span>
+						<a href="<?php manage_library_url(); ?>"><?php _e('Manage Books', 'suffusion');?></a>
+					</div>
+
 <?php
 }
 ?>
-			</div>
+					<div class="library">
+    					<span class="icon">&nbsp;</span>
+						<a href="<?php library_url(); ?>"><?php _e('Back to library', 'suffusion');?></a>
+    				</div>
+				</div>
+			</header>
+
 			<div class="booklisting">
 <?php
 $nr_book_query = "author={$GLOBALS['nr_author']}&num=-1";
 get_template_part('now-reading/nr-shelf');
 ?>
 			</div><!-- /.booklisting -->
-		</div><!-- /.nr-post -->
+		</article><!-- /.nr-post -->
 	</div><!-- /#content -->
 </div><!-- /#main-col -->
 
