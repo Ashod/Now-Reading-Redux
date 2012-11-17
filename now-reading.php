@@ -512,7 +512,8 @@ register_activation_hook('now-reading-redux/now-reading.php', 'nr_install');
 /**
  * Checks to see if the library/book permalink query vars are set and, if so, loads the appropriate templates.
  */
-function library_init() {
+function library_init()
+{
     global $wp, $wpdb, $q, $query, $wp_query;
 
     $wp->parse_request();
@@ -522,9 +523,11 @@ function library_init() {
     else
         return;
 
-    if ( get_query_var('now_reading_library') ) {
+    if (get_query_var('now_reading_library'))
+	{
     //filter by reader ?
-        if (get_query_var('now_reading_reader')) {
+        if (get_query_var('now_reading_reader'))
+		{
             $GLOBALS['nr_reader'] = intval(get_query_var('now_reading_reader'));
         }
         // Library page:
@@ -532,7 +535,8 @@ function library_init() {
         die;
     }
 
-    if ( get_query_var('now_reading_id') ) {
+    if (get_query_var('now_reading_id'))
+	{
     // Book permalink:
         $GLOBALS['nr_id'] = intval(get_query_var('now_reading_id'));
 
@@ -543,7 +547,8 @@ function library_init() {
         die;
     }
 
-    if ( get_query_var('now_reading_tag') ) {
+    if (get_query_var('now_reading_tag'))
+	{
     // Tag permalink:
         $GLOBALS['nr_tag'] = get_query_var('now_reading_tag');
 
@@ -554,7 +559,8 @@ function library_init() {
         die;
     }
 
-    if ( get_query_var('now_reading_page') ) {
+    if (get_query_var('now_reading_page'))
+	{
     // get page name from query string:
         $nrr_page = get_query_var('now_reading_page');
 
@@ -565,7 +571,8 @@ function library_init() {
         die;
     }
 
-    if ( get_query_var('now_reading_search') ) {
+    if (get_query_var('now_reading_search'))
+	{
     // Search page:
         $GLOBALS['query'] = $_GET['q'];
         unset($_GET['q']); // Just in case
@@ -577,7 +584,8 @@ function library_init() {
         die;
     }
 
-    if ( get_query_var('now_reading_author') && get_query_var('now_reading_title') ) {
+    if (get_query_var('now_reading_author') && get_query_var('now_reading_title'))
+	{
     // Book permalink with title and author.
         $author				= $wpdb->escape(urldecode(get_query_var('now_reading_author')));
         $title				= $wpdb->escape(urldecode(get_query_var('now_reading_title')));
@@ -599,7 +607,8 @@ function library_init() {
         die;
     }
 
-    if ( get_query_var('now_reading_author') ) {
+    if (get_query_var('now_reading_author'))
+	{
     // Author permalink.
         $author = $wpdb->escape(urldecode(get_query_var('now_reading_author')));
         $GLOBALS['nr_author'] = $wpdb->get_var("SELECT b_author FROM {$wpdb->prefix}now_reading WHERE b_nice_author = '$author'");
@@ -614,20 +623,21 @@ function library_init() {
         die;
     }
 
-	if ( get_query_var('now_reading_reader') ) {
-               // Reader permalink.
-               $reader = $wpdb->escape(urldecode(get_query_var('now_reading_reader')));
-               $GLOBALS['nr_reader'] = $wpdb->get_var("SELECT b_reader FROM {$wpdb->prefix}now_reading WHERE b_reader = '$reader'");
+	if (get_query_var('now_reading_reader'))
+	{
+	   // Reader permalink.
+	   $reader = $wpdb->escape(urldecode(get_query_var('now_reading_reader')));
+	   $GLOBALS['nr_reader'] = $wpdb->get_var("SELECT b_reader FROM {$wpdb->prefix}now_reading WHERE b_reader = '$reader'");
 
-               if ( empty($GLOBALS['nr_reader']) )
-                       die("Invalid reader");
+	   if ( empty($GLOBALS['nr_reader']) )
+			   die("Invalid reader");
 
-               $load = nr_load_template('reader.php');
-               if ( is_wp_error($load) )
-                       echo $load->get_error_message();
+	   $load = nr_load_template('reader.php');
+	   if ( is_wp_error($load) )
+			   echo $load->get_error_message();
 
-               die;
-       }
+	   die;
+   }
 }
 add_action('template_redirect', 'library_init');
 
@@ -681,32 +691,54 @@ function nr_display() {
 /**
  * Adds our details to the title of the page - book title/author, "Library" etc.
  */
-function nr_page_title( $title ) {
+function nr_page_title($title)
+{
     global $wp, $wp_query;
     $wp->parse_request();
 
-    $title = '';
+    $subtitle = '';
 
-    if ( get_query_var('now_reading_library') )
-        $title = 'Library';
-
-    if ( get_query_var('now_reading_id') ) {
+    if (get_query_var('now_reading_library'))
+    {
+		$subtitle = __('Library', NRTD);
+	}
+	else
+    if (get_query_var('now_reading_id'))
+	{
         $book = get_book(intval(get_query_var('now_reading_id')));
-        $title = $book->title . ' by ' . $book->author;
+        $subtitle = $book->title . ' ' . __('by', NRTD) . ' ' . $book->author;
     }
+	else
+    if (get_query_var('now_reading_tag'))
+    {
+		$subtitle = __('Books tagged with', NRTD) . ' &ldquo;' . htmlentities(get_query_var('now_reading_tag'), ENT_QUOTES, 'UTF-8') . '&rdquo;';
+	}
+	else
+    if (get_query_var('now_reading_search'))
+    {
+		$subtitle = __('Library Search for', NRTD)  . ' &ldquo;' . htmlentities(search_query(false), ENT_QUOTES, 'UTF-8') . '&rdquo;';
+	}
+	else
+	if (get_query_var('now_reading_author'))
+	{
+		if (get_query_var('now_reading_title'))
+		{
+			$subtitle = urldecode(get_query_var('now_reading_title')) . ' ' . __('by', NRTD) . ' ' . urldecode(get_query_var('now_reading_author'));
+		}
+		else
+		{
+			$subtitle = __('Books by', NRTD) . ' &ldquo;' . urldecode(get_query_var('now_reading_author')) . '&rdquo;';
+		}
+	}
 
-    if ( get_query_var('now_reading_tag') )
-        $title = 'Books tagged with &ldquo;' . htmlentities(get_query_var('now_reading_tag'), ENT_QUOTES, 'UTF-8') . '&rdquo;';
-
-    if ( get_query_var('now_reading_search') )
-        $title = 'Library Search';
-
-    if ( !empty($title) ) {
-        $title = apply_filters('now_reading_page_title', $title);
+    if (!empty($subtitle))
+	{
+        $subtitle = apply_filters('now_reading_page_title', $subtitle);
         $separator = apply_filters('now_reading_page_title_separator', ' - ');
-        return $separator.$title;
+        return $subtitle . $separator . $title;
     }
-    return '';
+
+    return $title;
 }
 
 /**
