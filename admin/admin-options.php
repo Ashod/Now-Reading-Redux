@@ -181,7 +181,7 @@ function nr_options()
 				<td>
 					<input type="checkbox" name="libraryShowStats" id="libraryShowStats"' . ( ($options['libraryOptions']['showStats']) ? ' checked="checked"' : '' ) . ' />
 					<p>
-					' . __("With this option set, Now Reading will generate a graph showing the number of books read per month during the past year and a summary of the anual average.", NRTD) . '
+					' . __("With this option set, Now Reading Redux will generate a graph showing the number of books read per month during the past year and a summary of the anual average.", NRTD) . '
 					</p>
 				</td>
 			</tr>			
@@ -504,7 +504,7 @@ function nr_options()
 			echo '
 					</select>
 					<p>
-					' . __("If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag, you can specify which country-specific Amazon site to link to. Now Reading will also use this domain when searching.", NRTD) . '
+					' . __("If you choose to link to your book's product page on Amazon.com using the <code>book_url()</code> template tag, you can specify which country-specific Amazon site to link to. Now Reading Redux will also use this domain when searching.", NRTD) . '
 					</p>
 					<p>
 					' . __("NB: If you have country-specific books in your catalogue and then change your domain setting, some old links might stop working.", NRTD) . '
@@ -567,10 +567,10 @@ function nr_options()
 					<label for="menu_layout_multiple">' . __('Multiple', NRTD) . '</label>
 					<input type="radio" name="menu_layout" id="menu_layout_multiple" value="multiple"' . ( ( $options['menuLayout'] == NR_MENU_MULTIPLE ) ? ' checked="checked"' : '' ) . ' />
 					<p>
-					' . __("When set to 'Single', Now Reading will add a top-level menu with submenus containing the 'Add a Book', 'Manage Books' and 'Options' screens.", NRTD) . '
+					' . __("When set to 'Single', Now Reading Redux will add a top-level menu with submenus containing the 'Add a Book', 'Manage Books' and 'Options' screens.", NRTD) . '
 					</p>
 					<p>
-					' . __("When set to 'Multiple', Now Reading will insert those menus under 'Write', 'Manage' and 'Options' respectively.", NRTD) . '
+					' . __("When set to 'Multiple', Now Reading Redux will insert those menus under 'Write', 'Manage' and 'Options' respectively.", NRTD) . '
 					</p>
 				</td>
 			</tr>
@@ -579,7 +579,16 @@ function nr_options()
 				<td>
 					<input type="checkbox" name="debug_mode" id="debug_mode"' . ( ($options['debugMode']) ? ' checked="checked"' : '' ) . ' />
 					<p>
-					' . __("With this option set, Now Reading will produce debugging output that might help you solve problems or at least report bugs.", NRTD) . '
+					' . __("With this option set, Now Reading Redux will produce debugging output that might help you solve problems or at least report bugs.", NRTD) . '
+					</p>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="userThemeTemplates"><b>' . __("Use Theme templatates", NRTD) . ':</b></label></th>
+				<td>
+					<input type="checkbox" name="userThemeTemplates" id="userThemeTemplates"' . ( ($options['userThemeTemplates']) ? ' checked="checked"' : '' ) . ' />
+					<p>
+					' . __("With this option set, Now Reading Redux will try to load the templates from Theme or Child Theme folders before falling back to its defaults.", NRTD) . '
 					</p>
 				</td>
 			</tr>

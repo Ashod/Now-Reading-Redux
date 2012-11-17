@@ -623,12 +623,24 @@ add_action('template_redirect', 'library_init');
 function nr_load_template($filename, $require_once = true)
 {
     $filename = basename($filename);
-    $template = TEMPLATEPATH ."/now-reading-redux/$filename";
+    $template = "";
 
-    //  check `now-reading` for backwards compatibility.
-    if (!file_exists($template))
+    $options = get_option(NOW_READING_OPTIONS);
+    if ($options['userThemeTemplates'])
     {
-        $template = TEMPLATEPATH . "/now-reading/$filename";
+        // Unfortunately, some of our template filenames are too generic
+        // and conflict with theme and other template filenames.
+        //$template = locate_template($filename, false, $require_once);
+        if (!file_exists($template))
+        {
+            $template = TEMPLATEPATH ."/now-reading-redux/$filename";
+        }
+
+        //  check `now-reading` for backwards compatibility.
+        if (!file_exists($template))
+        {
+            $template = TEMPLATEPATH . "/now-reading/$filename";
+        }
     }
 
     if (!file_exists($template))

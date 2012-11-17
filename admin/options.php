@@ -85,6 +85,7 @@ if (!empty($_POST['update']))
     $options['booksPerPage'] = trim($_POST['books_per_page']);
     $options['permalinkBase'] = trim($_POST['permalink_base']);
     $options['multiuserMode'] = trim($_POST['multiuser_mode']);
+    $options['userThemeTemplates'] = trim($_POST['userThemeTemplates']);
 
     $nr_url->load_scheme($options['menuLayout']);
 
