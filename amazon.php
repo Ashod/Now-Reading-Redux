@@ -270,7 +270,7 @@ function query_amazon($query)
             $title = get_attribute_cdata($edition->ItemAttributes->Title);
             if (empty($title))
             {
-                continue;
+                $title = __('Untitled', NRTD);
             }
 
 			$author = get_attribute_cdata($edition->ItemAttributes->Author);
