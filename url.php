@@ -34,14 +34,14 @@ class nr_url {
      */
     function nr_url() {
         $this->multiple = array(
-            'add'		=> '',
-            'manage'	=> get_option('siteurl') . '/wp-admin/admin.php?page=manage_books',
-            'options'	=> get_option('siteurl') . '/wp-admin/options-general.php?page=nr_options'
+            'add'        => '',
+            'manage'    => get_option('siteurl') . '/wp-admin/admin.php?page=manage_books',
+            'options'    => get_option('siteurl') . '/wp-admin/options-general.php?page=nr_options'
         );
         $this->single = array(
-            'add'		=> get_option('siteurl') . '/wp-admin/admin.php?page=add_book',
-            'manage'	=> get_option('siteurl') . '/wp-admin/admin.php?page=manage_books',
-            'options'	=> get_option('siteurl') . '/wp-admin/admin.php?page=nr_options'
+            'add'        => get_option('siteurl') . '/wp-admin/admin.php?page=add_book',
+            'manage'    => get_option('siteurl') . '/wp-admin/admin.php?page=manage_books',
+            'options'    => get_option('siteurl') . '/wp-admin/admin.php?page=nr_options'
         );
     }
 
@@ -66,8 +66,8 @@ class nr_url {
  * @global nr_url $GLOBALS['nr_url']
  * @name $nr_url
  */
-$nr_url		= new nr_url();
-$options	= get_option(NOW_READING_OPTIONS);
+$nr_url        = new nr_url();
+$options    = get_option(NOW_READING_OPTIONS);
 $nr_url->load_scheme($options['menuLayout']);
 
 /**
@@ -75,7 +75,8 @@ $nr_url->load_scheme($options['menuLayout']);
  * @param array $vars The existing array of query vars
  * @return array The modified array of query vars with our additions.
  */
-function nr_query_vars( $vars ) {
+function nr_query_vars($vars)
+{
     $vars[] = 'now_reading_library';
     $vars[] = 'now_reading_id';
     $vars[] = 'now_reading_tag';
@@ -109,20 +110,21 @@ add_action('init', 'nr_mod_rewrite');
 /**
  * Returns true if we're on a Now Reading page.
  */
-function is_now_reading_page() {
+function is_now_reading_page()
+{
     global $wp;
     $wp->parse_request();
 
     return (
-    get_query_var('now_reading_library') ||
+        get_query_var('now_reading_library') ||
         get_query_var('now_reading_search')  ||
         get_query_var('now_reading_id')      ||
         get_query_var('now_reading_tag')     ||
         get_query_var('now_reading_page')    ||        
         get_query_var('now_reading_title')   ||
         get_query_var('now_reading_author')  ||
-		get_query_var('now_reading_reader')
-	);  
+        get_query_var('now_reading_reader')
+    );  
 }
 
 ?>
