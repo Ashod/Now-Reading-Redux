@@ -12,13 +12,65 @@
 function get_attribute_cdata($attribute)
 {
     $value = '';
-    if (isset($attribute))
+    if (isset($attribute) && is_object($attribute))
     {
         $value = $attribute->CDATA();
         $value = stripslashes($value);
     }
     
     return $value;
+}
+
+function url_get_contents($request)
+{
+    // Fetch the data using either Snoopy or cURL, depending on our options.
+    if ($options['httpLib'] == 'curl')
+	{
+        if (!function_exists('curl_init'))
+		{
+            return new WP_Error('curl-not-installed', __('cURL is not installed correctly.', NRTD));
+        }
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $request);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Now Reading Redux ' . NOW_READING_VERSION);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+
+		if (!empty($options['proxyHost']))
+		{
+			$proxy = $options['proxyHost'];
+			if (!empty($options['proxyPort']))
+			{
+				$proxy .= ":{$options['proxyPort']}";
+			}
+
+			curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
+
+		$response = curl_exec($ch);
+		curl_close($ch);
+		return $response;
+    }
+	else
+	{
+        require_once ABSPATH . WPINC . '/class-snoopy.php';
+
+        $snoopy = new snoopy;
+        $snoopy->agent = 'Now Reading Redux ' . NOW_READING_VERSION;
+
+        if (!empty($options['proxyHost']))
+        {
+			$snoopy->proxy_host = $options['proxyHost'];
+			if (!empty($options['proxyPort']))
+			{
+				$snoopy->proxy_port = $options['proxyPort'];
+			}
+		}
+
+        $snoopy->fetch($request);
+        return $snoopy->results;
+    }
 }
 
 /**
@@ -108,52 +160,15 @@ function query_amazon($query)
     
     $request = implode("&", $request);
     
-    $signatureString = $method . chr(10) . $host . chr(10) . $uri . chr(10) . $request;
-    
+    $signatureString = $method . chr(10) . $host . chr(10) . $uri . chr(10) . $request;  
     $signature = urlencode(base64_encode(hmac($SecretAccessKey, $signatureString)));
-    
     $request = "http://" . $host . $uri . "?" . $request . "&Signature=" . $signature;
 
-    // Fetch the XML using either Snoopy or cURL, depending on our options.
-    if ( $options['httpLib'] == 'curl' ) {
-        if ( !function_exists('curl_init') ) {
-            return new WP_Error('curl-not-installed', __('cURL is not installed correctly.', NRTD));
-        } else {
-            $ch = curl_init();
-
-            curl_setopt($ch, CURLOPT_URL, $request);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_USERAGENT, 'Now Reading ' . NOW_READING_VERSION);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-
-            if ( !empty($options['proxyHost']) ) {
-                $proxy = $options['proxyHost'];
-
-                if ( !empty($options['proxyPort']) ) {
-                    $proxy .= ":{$options['proxyPort']}";
-                }
-
-                curl_setopt($ch, CURLOPT_PROXY, $proxy);
-            }
-
-            $xmlString = curl_exec($ch);
-
-            curl_close($ch);
-        }
-    } else {
-        require_once ABSPATH . WPINC . '/class-snoopy.php';
-
-        $snoopy = new snoopy;
-        $snoopy->agent = 'Now Reading Redux' . NOW_READING_VERSION;
-
-        if ( !empty($options['proxyHost']) )
-            $snoopy->proxy_host = $options['proxyHost'];
-        if ( !empty($options['proxyHost']) && !empty($options['proxyPort']) )
-            $snoopy->proxy_port = $options['proxyPort'];
-
-        $snoopy->fetch($request);
-
-        $xmlString = $snoopy->results;
+    // Fetch the XML.
+	$xmlString = url_get_contents($request);
+    if ($options['debugMode'])
+    {
+        robm_dump("Amazon Search XML:", htmlentities(str_replace(">", ">\n", $xmlString)));
     }
 
     if (empty($xmlString))
@@ -163,12 +178,8 @@ function query_amazon($query)
         <div id="message" class="error fade">
             <p><strong>' . __("Oops!") . '</strong></p>
             <p>' . sprintf(__("For some reason, I couldn't search for your book on amazon%s.", NRTD), $options['domain']) . '</p>
-            <p>' . __("Amazon's Web Services may be down, or there may be a problem with your server configuration.") . '</p>
-
-                    ';
-        if ( $options['httpLib'] )
-            echo '<p>' . __("Try changing your HTTP Library setting to <strong>cURL</strong>.", NRTD) . '</p>';
-        echo '
+            <p>' . __("Amazon's Web Services may be down, or your Amazon Web Services Keys may be invalid.") . '</p>
+			<p>' . __("Try changing the HTTP Library setting and try again.", NRTD) . '</p>
         </div>
         ';
         return false;
@@ -178,13 +189,7 @@ function query_amazon($query)
 
     $impl = new IsterXmlSimpleXMLImpl;
     $xml = $impl->load_string($xmlString);
-
-    if ($options['debugMode'])
-    {
-        robm_dump("Amazon Search XML:", htmlentities(str_replace(">", ">\n", $xmlString)));
-    }
-
-    if (!isset($xml->ItemSearchResponse->Items))
+    if (!isset($xml->ItemSearchResponse) || !isset($xml->ItemSearchResponse->Items))
     {
         do_action('nr_search_error', $query);
         echo '
@@ -192,11 +197,11 @@ function query_amazon($query)
             <p><strong>' . __("Oops!") . '</strong></p>
         ';
         
-        if (isset($xml->ItemSearchResponse->Error) &&
-            isset($xml->ItemSearchResponse->Error->Message))
+        if (isset($xml->ItemSearchResponse) &&
+            isset($xml->ItemSearchResponse->Error))
         {
             echo '
-            <p>Amazon error: <b>' . $xml->ItemSearchResponse->Error->Message->CDATA() . '</b></p>
+            <p>Amazon error: <b>' . get_attribute_cdata($xml->ItemSearchResponse->Error->Message) . '</b></p>
             ';
         }
         else
@@ -221,13 +226,12 @@ function query_amazon($query)
     $results = array();
     foreach ($items as $item)
     {
-        $attr = $item->ItemAttributes;
-        if (!$attr)
+        if (!isset($item->ItemAttributes))
         {
             continue;
         }
 
-        $asin = $item->ASIN->CDATA();
+        $asin = get_attribute_cdata($item->ASIN);
         if (empty($asin))
         {
             continue;
@@ -242,10 +246,10 @@ function query_amazon($query)
 
         $metaDataParser = new IsterXmlSimpleXMLImpl;
         $metaDataXml = $metaDataParser->load_string($metaData);
-
-        if (isset($metadata->ItemLookupResponse->Items->Request->Errors))
+        if (!isset($metaDataXml->ItemLookupResponse->Items) ||
+			isset($metaDataXml->ItemLookupResponse->Items->Request->Errors))
         {
-            continue;//$metadata->ItemLookupResponse->Items->Request->Errors;
+            continue;
         }
 
         $editions = $metaDataXml->ItemLookupResponse->Items->children();
@@ -257,43 +261,27 @@ function query_amazon($query)
         // For each edition, add an entry.
         foreach ($editions as $edition)
         {
-			if (!isset($edition->ASIN))
-			{
-			    continue;
-			}
-
-            $asin = $edition->ASIN->CDATA();
+            $asin = get_attribute_cdata($edition->ASIN);
             if (empty($asin))
             {
                 continue;
             }
 
-            $title = $edition->ItemAttributes->Title->CDATA();
-            $title = stripslashes($title);
+            $title = get_attribute_cdata($edition->ItemAttributes->Title);
             if (empty($title))
             {
                 continue;
             }
 
-            $author = '';
+			$author = get_attribute_cdata($edition->ItemAttributes->Author);
             if (is_array($edition->ItemAttributes->Author))
             {
                 foreach ($edition->ItemAttributes->Author as $a)
                 {
-                    if (is_object($a))
-                    {
-                        $author .= $a->CDATA() . ', ';
-                    }
+					$author .= get_attribute_cdata($a) . ', ';
                 }
 
                 $author = substr($author, 0, -2);
-            }
-            else
-            {
-                if (is_object($edition->ItemAttributes->Author))
-                {
-                    $author = $edition->ItemAttributes->Author->CDATA();
-                }
             }
 
             if (empty($author))
@@ -307,7 +295,7 @@ function query_amazon($query)
                 continue;
             }
 
-            $image = $item->$size->URL->CDATA();
+            $image = get_attribute_cdata($item->$size->URL);
             if (empty($image))
             {
                 $image = plugin_dir_url(__FILE__) . "no-image.png";
@@ -331,6 +319,11 @@ function query_amazon($query)
     }
 
     $results = apply_filters('returned_books', $results);
+	if ($options['debugMode'])
+	{
+		robm_dump("Results: ", $results);
+	}
+
     return $results;
 }
 
@@ -374,7 +367,7 @@ function getMetadataFromIsbn($isbn, $awsAccessKeyID, $awsSecretKey, $awsAssociat
 
     // Construct the URL
     $url = 'http://' . $host . $path . '?' . implode("&", $parts) . "&Signature=" . $signature;
-    $rawData = file_get_contents($url);
+    $rawData = url_get_contents($url);
 
     if ($options['debugMode'])
     {
