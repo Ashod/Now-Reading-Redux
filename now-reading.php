@@ -301,6 +301,21 @@ require_once dirname(__FILE__) . '/default-filters.php';
 require_once dirname(__FILE__) . '/template-functions.php';
 require_once dirname(__FILE__) . '/widget.php';
 
+function nr_admin_notice()
+{
+    $options = get_option(NOW_READING_OPTIONS);
+    if ($options['httpLib'] == 'curl' && !function_exists('curl_init'))
+    {
+        $options['httpLib'] = 'snoopy';
+        update_option(NOW_READING_OPTIONS, $options);
+
+        echo '<div class="error">
+            <p>' . __('cURL is not available. Reverting to Snoopy.', NRTD) . '</p>
+            </div>';
+    }
+}
+add_action('admin_notices', 'nr_admin_notice');
+
 /**
  * Checks if the install needs to be run by checking the NOW_READING_VERSIONS option,
  * which stores the current installed database, options and rewrite versions.
