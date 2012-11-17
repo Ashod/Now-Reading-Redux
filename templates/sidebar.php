@@ -47,14 +47,15 @@
 		$book_query = "status=read&orderby=finished&order=desc&num=" . $shelf_option['maxItems'];
 		nr_load_template('shelf.php', false);
 	?>
+<?php
 
 if (have_wishlist_url())
 {
 ?>
-	<div class="nr_wishlist"><a href="<?php wishlist_url() ?>">Buy me a gift!</a></div>
+	<div class="nr_wishlist"><a href="<?php wishlist_url() ?>"><?php echo stripslashes($options['wishlistTitle']) ?></a></div>
 <?php
 }
-
+?>
 	<div style="text-align:center"><?php library_search_form(); ?></div>
 
 	<div class="nr_ads">

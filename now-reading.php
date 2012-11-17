@@ -201,6 +201,8 @@ $locale = get_locale();
 $path = "wp-content/plugins/now-reading-redux/translations/$locale";
 load_plugin_textdomain(NRTD, $path);
 
+define('DEFAULT_LIBRARY_TITLE', 'Library');
+define('DEFAULT_WISHLIST_TITLE', 'Buy me a gift!');
 define('DEFAULT_UNREAD_TITLE', 'Planned');
 define('DEFAULT_ONHOLD_TITLE', 'On Hold');
 define('DEFAULT_READING_TITLE', 'Reading');

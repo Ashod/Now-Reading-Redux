@@ -31,6 +31,7 @@ if (!empty($_POST['update']))
 {
     $append = '';
 
+    $options['libraryOptions']['title'] = trim($_POST['libraryTitle']);
     $options['libraryOptions']['readingShelf']['viz'] = trim($_POST['libraryReadingShelfViz']);
     $options['libraryOptions']['readingShelf']['title'] = trim($_POST['libraryReadingShelfTitle']);
     $options['libraryOptions']['unreadShelf']['viz'] = trim($_POST['libraryUnreadShelfViz']);
@@ -70,7 +71,8 @@ if (!empty($_POST['update']))
     $options['AWSAccessKeyId'] = trim($_POST['AWSAccessKeyId']);
     $options['SecretAccessKey'] = trim($_POST['SecretAccessKey']);
     $options['formatDate'] = trim($_POST['format_date']);
-    $options['wishlistUrl'] = trim($_POST['wishlist_url']);
+    $options['wishlistUrl'] = trim($_POST['wishlistUrl']);
+    $options['wishlistTitle'] = trim($_POST['wishlistTitle']);
     $options['associate'] = trim($_POST['associate']);
     $options['ignoreTime'] = trim($_POST['ignore_time']);
     $options['hideAddedDate'] = trim($_POST['hide_added_date']);

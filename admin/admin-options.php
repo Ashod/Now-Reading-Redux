@@ -69,6 +69,13 @@ function nr_options()
 				<th scope="row"> <h3>Library Options</h3><hr /></th>
 			</tr>
 			<tr valign="top">
+				<th scope="row"><label for="libraryTitle"><b>' . __('Library title', NRTD) . ':</b></label></th>
+				<td>
+					<input type="text" size="30" style="vertical-align:middle;" name="libraryTitle" id="libraryTitle" value="' . text_or_default($options['libraryOptions']['title'], DEFAULT_LIBRARY_TITLE) . '" />
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'libraryTitle\').value=\'' . DEFAULT_LIBRARY_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
 				<th scope="row"><label for="libraryReadingShelfTitle"><b>' . __('Reading shelf title', NRTD) . ':</b></label></th>
 				<td>
 					<input type="text" size="30" style="vertical-align:middle;" name="libraryReadingShelfTitle" id="libraryReadingShelfTitle" value="' . text_or_default($options['libraryOptions']['readingShelf']['title'], '') . '" />
@@ -337,11 +344,21 @@ function nr_options()
 				</td>
 			</tr>
 			<tr valign="top">
-				<th scope="row"><label for="wishlist_url"><b>' . __('Wishlist URL', NRTD) . ':</b></label></th>
+				<th scope="row"><label for="wishlistTitle"><b>' . __('Wishlist Title', NRTD) . ':</b></label></th>
 				<td>
-					<input type="text" name="wishlist_url" id="wishlist_url" size="75" value="' . htmlentities($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" name="wishlistTitle" id="wishlistTitle" size="75" value="' . text_or_default($options['wishlistTitle'], DEFAULT_WISHLIST_TITLE) . '" />
 					<p>
-					' . __("An optional link shown at the bottom of the side bar as \"Buy me a gift!\" It is typically used to link to an Amazon wishlist page, but can be any page.", NRTD) . '
+					' . __("The link title to a wishlist page. Will not show unless Wishlist URL exists.", NRTD) . '
+					</p>
+					<button type="button" style="vertical-align:middle; height: 25px; width: 100px" onclick="document.getElementById(\'wishlistTitle\').value=\'' . DEFAULT_WISHLIST_TITLE . '\'">' . __("Default", NRTD) . '</button>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row"><label for="wishlistUrl"><b>' . __('Wishlist URL', NRTD) . ':</b></label></th>
+				<td>
+					<input type="text" name="wishlistUrl" id="wishlistUrl" size="75" value="' . text_or_default($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
+					<p>
+					' . __("An optional link shown as <i>Wishlist Title</i>. Typically used to link to an Amazon wishlist page, but can be any page.", NRTD) . '
 					</p>
 					<p>
 					' . __("Add 'http://' to make the URL absolute and not relative to the current page.", NRTD) . '

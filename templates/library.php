@@ -18,7 +18,7 @@ get_header();
 	<div id="content" role="main" class="narrowcolumn primary now-reading">
 		<article <?php post_class('post nr-post'); ?>>
 			<header class="post-header">
-				<h1 class="posttitle">Library</h1>
+				<h1 class="posttitle"><?php echo stripslashes($library_options['title']) ?></h1>
 
 				<div class="bookdata fix">
 <?php

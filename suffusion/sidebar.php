@@ -124,7 +124,7 @@ foreach ($lib_order as $entity) {
 if (have_wishlist_url())
 {
 ?>
-	<div class="nr_wishlist"><a href="<?php wishlist_url() ?>">Buy me a gift!</a></div>
+	<div class="nr_wishlist"><a href="<?php wishlist_url() ?>"><?php echo stripslashes($options['wishlistTitle']) ?></a></div>
 <?php
 }
 
