@@ -6,6 +6,8 @@
 
 function edit_book()
 {
+    global $nr_statuses, $nr_post_options;
+
 	$options = get_option(NOW_READING_OPTIONS);
 	$dateTimeFormat = 'Y-m-d H:i:s';
 	if ($options['ignoreTime'])
@@ -91,7 +93,8 @@ function edit_book()
 			<td>
 				<select name="status[]" id="status-0">
 					';
-		foreach ( (array) $nr_statuses as $status => $name ) {
+		foreach ( (array) $nr_statuses as $status => $name )
+		{
 			$selected = '';
 			if ( $existing->status == $status )
 				$selected = ' selected="selected"';
@@ -347,7 +350,16 @@ function edit_book()
 
 function manage_books()
 {
+    global $userdata;
+
 	$options = get_option(NOW_READING_OPTIONS);
+
+    if (!$nr_url)
+	{
+        $nr_url = new nr_url();
+        $nr_url->load_scheme($options['menuLayout']);
+    }
+
 	$dateTimeFormat = 'Y-m-d H:i:s';
 	if ($options['ignoreTime'])
 	{
@@ -360,7 +372,6 @@ function manage_books()
 	} else {
 		$count = total_books(0, 0); //counting all books
 	}
-
 
 	if ( $count ) {
 		if ( !empty($_GET['q']) )
@@ -540,7 +551,8 @@ function manage_books()
 						<strong>' . stripslashes($book->title) . '</strong>
 						<div class="row-actions">
 							<a href="' . book_permalink(0, $book->id) . '">' . __('View', NRTD) . '</a> |
-								<a href="' . $nr_url->urls['manage'] . '&amp;action=editsingle&amp;id=' . $book->id . '">' . __('Edit', NRTD) . '</a> | <a href="' . $delete . '" onclick="return confirm(\'' . __("Are you sure you wish to delete this book permanently?", NRTD) . '\')">' . __("Delete", NRTD) . '</a>
+							<a href="' . $nr_url->urls['manage'] . '&amp;action=editsingle&amp;id=' . $book->id . '">' . __('Edit', NRTD) . '</a> |
+							<a href="' . $delete . '" onclick="return confirm(\'' . __("Are you sure you wish to delete this book permanently?", NRTD) . '\')">' . __("Delete", NRTD) . '</a>
 						</div>
 					</td>
 
@@ -602,19 +614,6 @@ function manage_books()
  */
 function nr_manage()
 {
-    global $wpdb, $nr_statuses, $nr_post_options, $userdata;
-
-    get_currentuserinfo();
-
-    $_POST = stripslashes_deep($_POST);
-    $options = get_option(NOW_READING_OPTIONS);
-
-    if (!$nr_url)
-	{
-        $nr_url = new nr_url();
-        $nr_url->load_scheme($options['menuLayout']);
-    }
-
     if (!empty($_GET['updated']))
 	{
         $updated = intval($_GET['updated']);
