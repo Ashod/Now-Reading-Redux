@@ -229,7 +229,7 @@ $nr_statuses = apply_filters('nr_statuses', array(
 $nr_post_options = apply_filters('nr_post_options', array(
     'link'	=> __('Add Link to Post', NRTD),
     'trans'	=> __('Transclude Post Content', NRTD),
-    'redirect'	=> __('Redirect to Post', NRTD)
+    'redir'	=> __('Redirect to Post', NRTD)
 ));
 
 /**
@@ -780,8 +780,8 @@ function renderPhpToString($file, $vars=null)
     return ob_get_clean();
 }
 
-// [nrr style="numbered" viz="show_text" status="all" num="-1" order="asc" finished_year="2011"]
-function nrr_shortcode_func($atts)
+// [nrr_shelf style="numbered" viz="show_text" status="all" num="-1" order="asc" finished_year="2011"]
+function nrr_shelf_shortcode_func($atts)
 {
     extract( shortcode_atts( array(
         'style' => 'list',  // list, numbered, table
@@ -808,6 +808,6 @@ function nrr_shortcode_func($atts)
 
     return renderPhpToString('shelf.php');
 }
-add_shortcode('nrr', 'nrr_shortcode_func');
+add_shortcode('nrr_shelf', 'nrr_shelf_shortcode_func');
 
 ?>

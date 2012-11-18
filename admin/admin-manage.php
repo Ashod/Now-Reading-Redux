@@ -223,9 +223,9 @@ function edit_book()
 				<small>' . __("If you wish, you can link this book to a blog entry by entering that entry's ID here. The entry will be linked to from the book's library page.", NRTD) . '</small>
 			</td>
 		</tr>';
-		
-		// Post Option.
+
 		/*
+		// Post Option.
 		echo '
 		<tr class="form-field">
 			<th valign="top" scope="row">
@@ -235,7 +235,8 @@ function edit_book()
 				<select name="post_op[]" id="post_op">
 					';
 		$post_op_idx = 0;
-		foreach ( (array) $nr_post_options as $post_op => $name ) {
+		foreach ( (array) $nr_post_options as $post_op => $name )
+		{
 			$selected = '';
 			if ($existing->post_op == $post_op_idx)
 			{
@@ -252,7 +253,7 @@ function edit_book()
 			</td>
 		</tr>';
 		*/
-		
+
 		// Meta Data.
 		echo '
 		<tr class="form-field">
