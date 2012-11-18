@@ -784,21 +784,21 @@ function renderPhpToString($file, $vars=null)
 function nrr_shelf_shortcode_func($atts)
 {
     extract( shortcode_atts( array(
-        'style' => 'list',  // list, numbered, table
-        'status' => 'all',  // unread,  reading, onhold, read, all
-        'orderby' => 'finished', // reading, read, onhold, finished
-        'order' => 'desc',  // asc, desc
-        'search' => '',
-        'author' => '',
-        'title' => '',
-        'reader' => '',
-        'started_year' => '',
-        'started_month' => '',
-        'finished_year' => '',
-        'finished_month' => '',
-        'num' => '-1',  // The maximum number of items to show. -1 for all.
-        'viz' => 'show_text', //hide, show_text, show_image, show_image_text
-        'items_per_row' => '1',
+        'style' => 'list',  	// list, numbered, table.
+        'status' => 'all',  	// unread, reading, onhold, read, all.
+        'orderby' => 'finished',// reading, read, onhold, finished.
+        'order' => 'desc',  	// asc, desc.
+        'search' => '',			// A substring to match author, title.
+        'author' => '',			// The author to show books by.
+        'title' => '',			// The book title to show.
+        'reader' => '',			// The user's ID who added the book.
+        'started_year' => '',	// The started year in decimal.
+        'started_month' => '',	// The started month in decimal.
+        'finished_year' => '', 	// The finished year in decimal.
+        'finished_month' => '', // The finished month in decimal.
+        'num' => '-1',  		// The maximum number of items to show. -1 for all.
+        'viz' => 'show_text', 	// hide, show_text, show_image, show_image_text.
+        'items_per_row' => '1', // Number of books per row. Only for style=table.
     ), $atts ) );
 
     global $book_query, $library_options, $shelf_title, $shelf_option;
