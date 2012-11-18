@@ -187,10 +187,9 @@ function get_books($query, $show_private = false) {
  * Fetches a single book with the given ID.
  * @param int $id The b_id of the book you want to fetch.
  */
-function get_book($id) {
+function get_book($id)
+{
     global $wpdb;
-
-    $options = get_option(NOW_READING_OPTIONS);
 
     $id = intval($id);
 
@@ -206,9 +205,9 @@ function get_book($id) {
 	GROUP BY b_id
         "));
 
-    $book->added = ( nr_empty_date($book->added) )	? '' : $book->added;
-    $book->started = ( nr_empty_date($book->started) )	? '' : $book->started;
-    $book->finished = ( nr_empty_date($book->finished) )	? '' : $book->finished;
+    $book->added = (nr_empty_date($book->added) ? '' : $book->added);
+    $book->started = (nr_empty_date($book->started) ? '' : $book->started);
+    $book->finished = (nr_empty_date($book->finished) ? '' : $book->finished);
 
     return $book;
 }

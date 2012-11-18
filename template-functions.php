@@ -593,43 +593,52 @@ function book_url( $echo = true, $domain = null ) {
 /**
  * Returns true if the current book is linked to a post, false if it isn't.
  */
-function book_has_post() {
+function book_has_post()
+{
     global $book;
-
-    return ( $book->post > 0 );
+    return ($book->post > 0);
 }
 
 /**
  * Returns or prints the permalink of the post linked to the current book.
  * @param bool $echo Whether or not to echo the results.
  */
-function book_post_url( $echo = true ) {
+function book_post_url($echo = true)
+{
     global $book;
-
-    if ( !book_has_post() )
-        return;
+    if (!book_has_post())
+    {
+		return;
+	}
 
     $permalink = get_permalink($book->post);
+    if ($echo)
+    {
+		echo $permalink;
+	}
 
-    if ( $echo )
-        echo $permalink;
-    return $permalink;
+	return $permalink;
 }
 
 /**
  * Returns or prints the title of the post linked to the current book.
  * @param bool $echo Whether or not to echo the results.
  */
-function book_post_title( $echo = true ) {
+function book_post_title($echo = true)
+{
     global $book;
 
-    if ( !book_has_post() )
-        return;
+    if (!book_has_post())
+    {
+		return;
+	}
 
     $post = get_post($book->post);
+    if ($echo)
+    {
+		echo $post->post_title;
+	}
 
-    if ( $echo )
-        echo $post->post_title;
     return $post->post_title;
 }
 
@@ -637,17 +646,22 @@ function book_post_title( $echo = true ) {
  * If the current book is linked to a post, prints an HTML link to said post.
  * @param bool $echo Whether or not to echo the results.
  */
-function book_post_link( $echo = true ) {
+function book_post_link($echo = true)
+{
     global $book;
 
-    if ( !book_has_post() )
-        return;
+    if (!book_has_post())
+    {
+		return;
+	}
 
     $link = '<a href="' . book_post_url(0) . '">' . book_post_title(0) . '</a>';
-
-    if ( $echo )
-        echo $link;
-    return $link;
+    if ($echo)
+    {
+		echo $link;
+	}
+    
+	return $link;
 }
 
 /**
@@ -882,7 +896,8 @@ function book_meta( $key, $echo = true ) {
  * Prints a comma-separated list of tags for the current book.
  * @param bool $echo Whether or not to echo the results.
  */
-function print_book_tags( $echo = true ) {
+function print_book_tags($echo = true)
+{
     global $book;
 
     $tags = get_book_tags($book->id);

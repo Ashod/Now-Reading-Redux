@@ -124,7 +124,7 @@ function is_now_reading_page()
         get_query_var('now_reading_title')   ||
         get_query_var('now_reading_author')  ||
         get_query_var('now_reading_reader')
-    );  
+    );
 }
 
 ?>

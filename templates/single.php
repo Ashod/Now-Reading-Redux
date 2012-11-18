@@ -9,10 +9,9 @@ global $nr_id, $nr_single_added_show, $nr_single_added_text, $nr_single_started_
 
 <div id="primary">
 	<div id="content" role="main" class="narrowcolumn primary now-reading">
-
 		<article <?php post_class('post nr-post'); ?>>
 <?php
-	if(have_books(intval($nr_id)))
+	if (have_books(intval($nr_id)))
 	{
 		while (have_books(intval($nr_id)))
 		{
@@ -90,24 +89,24 @@ global $nr_id, $nr_single_added_show, $nr_single_added_text, $nr_single_started_
 			if ($nr_single_meta_show == 'show')
 			{
 ?>
-						<?php print_book_meta(0); ?>
+					<?php print_book_meta(0); ?>
 <?php
 			}
 ?>
 					</p>
 				</div>
 
-				<div class="review">
+			<div class="review">
 <?php
-					book_review();
-					if (book_has_post())
-					{
+				book_review();
+				if (book_has_post())
+				{
 ?>
-						<p>This book is linked with the post <a href="<?php book_post_url() ?>">&ldquo;<?php book_post_title() ?>&rdquo;</a>.</p>
+					<p>This book is linked with the post <a href="<?php book_post_url() ?>">&ldquo;<?php book_post_title() ?>&rdquo;</a>.</p>
 <?php
-					}
+				}
 ?>
-				</div><!--/.review -->
+			</div><!--/.review -->
 
 <?php
 			$tags = print_book_tags(false);
@@ -115,7 +114,7 @@ global $nr_id, $nr_single_added_show, $nr_single_added_text, $nr_single_started_
 			{
 ?>
 				<div class="post-footer postdata fix">
-					<span class="tags"><?php _e('Tagged with: ', 'suffusion'); print_book_tags(1); ?></span>
+					<span class="tags"><?php _e('Tagged with: ', 'now-reading-redux'); print_book_tags(); ?></span>
 				</div><!--/.post-footer -->
 <?php
 			}
