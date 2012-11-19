@@ -12,7 +12,7 @@
  * $books = get_books('status=reading&orderby=started&order=asc&num=-1&reader=user');
  * </code>
  * @param string $query Query string containing restrictions on what to fetch.
- * 		 	Valid variables: $num, $status, $orderby, $order, $search, $author, $title, $reader, $started_year, $started_month, $finished_year, $finished_month.
+ * 		 	Valid variables: $num, $status, $orderby, $order, $search, $author, $title, $rating, $reader, $started_year, $started_month, $finished_year, $finished_month.
  * @param bool show_private If true, will show all readers' private books!
  * @return array Returns a numerically indexed array in which each element corresponds to a book.
  */
@@ -115,23 +115,28 @@ function get_books($query, $show_private = false) {
 
     if (!empty($started_year))
     {
-        $started_year = "AND YEAR(b_started) = $started_year";
+        $started_year = "AND YEAR(b_started) " . (is_numeric($started_year) ? "=" : "") . " $started_year";
     }
 
     if (!empty($started_month))
     {
-        $started_month = "AND MONTH(b_started) = $started_month";
+        $started_month = "AND MONTH(b_started) " . (is_numeric($started_month) ? "=" : "") . " $started_month";
     }
 
     if (!empty($finished_year))
     {
-        $finished_year = "AND YEAR(b_finished) = $finished_year";
+        $finished_year = "AND YEAR(b_finished) " . (is_numeric($finished_year) ? "=" : "") . " $finished_year";
     }
 
     if (!empty($finished_month))
     {
-        $finished_month = "AND MONTH(b_finished) = $finished_month";
+        $finished_month = "AND MONTH(b_finished) " . (is_numeric($finished_month) ? "=" : "") . " $finished_month";
     }
+
+	if (!empty($rating))
+	{
+		$rating = "AND b_rating " . (is_numeric($rating) ? "=" : "") . " $rating";
+	}
 
 	$reader = get_reader_visibility_filter($reader, $show_private);
 
@@ -162,6 +167,7 @@ function get_books($query, $show_private = false) {
         $started_month
         $finished_year
         $finished_month
+		$rating
 	AND
         $reader
 	GROUP BY
