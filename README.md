@@ -149,7 +149,7 @@ Example: Lists titles and authors of books started reading on or after April 201
 
 \[nrr_shelf style="numbered" viz="show_text" status="all" num="-1" order="asc" rating=">=8" started_year="2011" started_month=">3" finished_year="<=2011" finished_month="<=11"\]
 
-== Screenshots ==
+## Screenshots ##
 
 1. The book manager where all the books are visible, sorted by any of the columns, in both ascending and descending orders. Searching for -partial- book titles is supported. Author names are shortcuts to filter by that author only.
 

@@ -167,7 +167,7 @@ Example: Lists titles and authors of books started reading on or after April 201
 
 == Changelog ==
 
-= 6.7.5.0 =
+= 6.7.0.0 =
 * Wordpress 3.4 support.
 * Fixed: The wp-config.php file may be either in its default folder or a folder above it. See [Hardening WordPress](http://codex.wordpress.org/Hardening_WordPress#Securing_wp-config.php). (Thanks to Alex for this request.)
 * Fixed: Replaced file_get_contents() with url_get_contents() which is based on cURL/Snoopy and doesn't suffer PHP settings. file_get_contents() required enabling allow_url_fopen in php.ini which some servers disallowed. (Thanks to Tom Saunders, TechnoMom, unsicherheitsserver, inktails and others for reporting).
