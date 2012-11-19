@@ -356,7 +356,7 @@ function nr_options()
 			<tr valign="top">
 				<th scope="row"><label for="wishlistUrl"><b>' . __('Wishlist URL', NRTD) . ':</b></label></th>
 				<td>
-					<input type="text" name="wishlistUrl" id="wishlistUrl" size="75" value="' . text_or_default($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
+					<input type="text" name="wishlistUrl" id="wishlistUrl" size="75" value="' . htmlentities($options['wishlistUrl'], ENT_QUOTES, "UTF-8") . '" />
 					<p>
 					' . __("An optional link shown as <i>Wishlist Title</i>. Typically used to link to an Amazon wishlist page, but can be any page.", NRTD) . '
 					</p>
