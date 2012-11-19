@@ -30,3 +30,10 @@
 Performance:
 
 * Delayed/background image loading.
+
+Progress:
+
+<div style="border-style:solid;border-width:1px;border-color:#c0c0c0;background-color:#f0f0f0;width:100px;height:1.5em;">
+<div style="position: absolute; background-color: #008000;width:50px;height:1.5em;"></div>
+<div style="position: absolute; font-weight:bold;width:100px;height:1.5em;text-align:center;z-index: 10;">5&nbsp;/&nbsp;128</div>
+</div>
