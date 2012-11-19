@@ -94,35 +94,20 @@ Here is how you may set it to return 7 finished books: have_books('status=read&o
 Any number of attributes can be used. Leaving out an attribute gives it the default value. 
 
 style	=>	\[list\*, numbered, table\].
-
 status	=> 	\[unread, reading, onhold, read, all\*\].
-
 orderby	=> 	\[reading, read, onhold, finished\*\].
-
 order	=> 	\[asc, desc\*\].
-
 search	=> 	A substring to match author, title.
-
 author	=> 	The author to show books by.
-
 title	=> 	The book title to show.
-
 rating	=> 	Book rating Between 1 and 10 inclusive.
-
 reader	=> 	The user's ID who added the book.
-
 started_year	=> 	The started year in decimal.
-
 started_month	=> 	The started month in decimal.
-
 finished_year	=> 	The finished year in decimal.
-
 finished_month	=> 	The finished month in decimal.
-
 num		=>	The maximum number of items to show. -1 for all (default).
-
 viz		=> 	hide, show_text\*, show_image, show_image_text.
-
 items_per_row	=> 	Number of books per row. Only for style=table. 1 by default.
 
 Example: Default everything. Lists all titles and authors of books sorted by last-finished first.
