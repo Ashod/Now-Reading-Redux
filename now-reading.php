@@ -791,11 +791,12 @@ function nrr_shelf_shortcode_func($atts)
         'search' => '',			// A substring to match author, title.
         'author' => '',			// The author to show books by.
         'title' => '',			// The book title to show.
+		'rating' => '',			// Book rating Between 1 and 10 inclusive. May use '<', '<=', '=', '>', '>=' before number.
         'reader' => '',			// The user's ID who added the book.
-        'started_year' => '',	// The started year in decimal.
-        'started_month' => '',	// The started month in decimal.
-        'finished_year' => '', 	// The finished year in decimal.
-        'finished_month' => '', // The finished month in decimal.
+        'started_year' => '',	// The started year in decimal. May use '<', '<=', '=', '>', '>=' before number.
+        'started_month' => '',	// The started month in decimal. May use '<', '<=', '=', '>', '>=' before number.
+        'finished_year' => '', 	// The finished year in decimal. May use '<', '<=', '=', '>', '>=' before number.
+        'finished_month' => '', // The finished month in decimal. May use '<', '<=', '=', '>', '>=' before number.
         'num' => '-1',  		// The maximum number of items to show. -1 for all.
         'viz' => 'show_text', 	// hide, show_text, show_image, show_image_text.
         'items_per_row' => '1', // Number of books per row. Only for style=table.
@@ -804,7 +805,7 @@ function nrr_shelf_shortcode_func($atts)
     global $book_query, $library_options, $shelf_title, $shelf_option;
     $shelf_option = array('viz' => $viz);
     $library_options = array('renderStyle' => $style, 'itemsPerTableRow' => $items_per_row);
-    $book_query = "status={$status}&orderby={$orderby}&order={$order}&search={$search}&author={$author}&title={$title}&reader={$reader}&num={$num}&started_year={$started_year}&started_month={$started_month}&finished_year={$finished_year}&finished_month={$finished_month}";
+    $book_query = "status={$status}&orderby={$orderby}&order={$order}&search={$search}&author={$author}&title={$title}&rating={$rating}&reader={$reader}&num={$num}&started_year={$started_year}&started_month={$started_month}&finished_year={$finished_year}&finished_month={$finished_month}";
 
     return renderPhpToString('shelf.php');
 }
