@@ -218,7 +218,8 @@ function book_status( $echo = true, $unread = '', $reading = '', $read = '', $on
  * @param string $interval The time interval, eg  "1 year", "3 month"
  * @param bool $echo Whether or not to echo the results.
  */
-function books_read_since( $interval, $echo = true ) {
+function books_read_since($interval, $echo = true)
+{
     global $wpdb;
 
     $interval = $wpdb->escape($interval);
@@ -228,11 +229,14 @@ function books_read_since( $interval, $echo = true ) {
 	FROM
         {$wpdb->prefix}now_reading
 	WHERE
-		DATE_SUB(CURDATE(), INTERVAL $interval) <= b_finished
+		b_finished >= DATE_SUB(CURDATE(), INTERVAL {$interval})
         ");
 
-    if ( $echo )
-        echo "$num book".($num != 1 ? 's' : '');
+    if ($echo)
+    {
+		echo "$num book" . ($num != 1 ? 's' : '');
+	}
+
     return $num;
 }
 
@@ -240,15 +244,15 @@ function books_read_since( $interval, $echo = true ) {
  * Prints book reading statistics.
  * @param string $time_period The period to measure average over, eg "year", "month".
  */
-function print_book_average($time_period = 'year')
+function print_book_average($duration_months = 12, $time_period = 'year')
 {
-	echo "There are ";
+	echo __("There are ");
 	total_books(0);
-	echo " listed, of which ";
-	books_read_since('1 year');
-	echo " have been read in the last year, ";
-	books_read_since('1 month');
-	echo " read in the last month. That's ";
+	echo __(" listed, of which ");
+	books_read_since("{$duration_months} MONTH");
+	echo __(" have been read in the last year, ");
+	books_read_since('1 MONTH');
+	echo __(" read in the last month. That's ");
 	average_books($time_period, true, false);
 	echo ".";
 }
@@ -260,8 +264,9 @@ function print_book_average($time_period = 'year')
  * @param int $graph_height The height of the graph in pixels.
  * @param int $graph_width The width of the graph in pixels. <0 to calculate based on duration_months * default bar width.
  * @param bool $print_average Whether or not to print average books read per year.
+ * @param bool $only_finished True to calculate the finished books per month, otherwise, the number of being read during the month.
  */
-function print_book_stats($duration_months = 12, $bar_width = 40, $graph_height = 150, $graph_width = -1, $div_id = 'book_stats_graph', $print_average = true)
+function print_book_stats($duration_months = 12, $bar_width = 40, $graph_height = 150, $graph_width = -1, $div_id = 'book_stats_graph', $print_average = true, $only_finished = true)
 {
     global $wpdb;
 
@@ -271,18 +276,6 @@ function print_book_stats($duration_months = 12, $bar_width = 40, $graph_height 
 	}
 
 	// Print the statistics per month.
-	$query = "
-		SELECT YEAR(b_finished) AS Year, MONTH(b_finished) AS Month, COUNT(*) AS Count
-		FROM wp_now_reading
-		WHERE b_started > 0
-		AND b_finished > DATE_SUB(CURDATE(), INTERVAL {$duration_months} MONTH)
-		AND b_status != 'onhold'
-		GROUP BY YEAR(b_finished), MONTH(b_finished)
-		ORDER BY YEAR(b_finished), MONTH(b_finished)
-        ";
-	$statistics = $wpdb->get_results($query);
-    $statistics = apply_filters('get_books', $statistics);
-
 	echo "
 	<div class='graph-caption' style='margin: auto; text-align: center'><i>";
 	printf(__("Number of Books read during the past %d months.", NRTD), $duration_months);
@@ -300,13 +293,56 @@ function print_book_stats($duration_months = 12, $bar_width = 40, $graph_height 
 		jQuery('#{$div_id}').tufteBar({
 		data: [";
 
-	// For each year/month, create an entry of the total finished count.
-	// Entry format: [0, {label: '2005'}, {barLabel: '0 Books'}],
-	foreach ((array)$statistics as $stat)
+	if ($only_finished)
 	{
-		$label = date("M", mktime(0, 0, 0, $stat->Month, 1, 2000)) . ' ' . $stat->Year;
-		echo "
-			[{$stat->Count}, {label: '" . $label . "'}, {barLabel: '{$stat->Count}'}],";
+		// Calculate number of books finished per month for $duration_months.
+		// Query the number of books finished during each month during the past {$duration_months} months.
+		$query = "
+			SELECT YEAR(b_finished) AS Year, MONTH(b_finished) AS Month, COUNT(*) AS Count
+			FROM {$wpdb->prefix}now_reading
+			WHERE b_started > 0
+			AND b_finished > DATE_SUB(CURDATE(), INTERVAL {$duration_months} MONTH)
+			AND b_status != 'onhold'
+			GROUP BY YEAR(b_finished), MONTH(b_finished)
+			ORDER BY YEAR(b_finished), MONTH(b_finished)
+			";
+		$statistics = $wpdb->get_results($query);
+		$statistics = apply_filters('get_books', $statistics);
+			
+		// For each year/month, create an entry of the total finished count.
+		// Entry format: [0, {label: '2005'}, {barLabel: '0 Books'}],
+		foreach ((array)$statistics as $stat)
+		{
+			$label = date("M", mktime(0, 0, 0, $stat->Month, 1, 2000)) . ' ' . $stat->Year;
+			echo "
+				[{$stat->Count}, {label: '" . $label . "'}, {barLabel: '{$stat->Count}'}],";
+		}
+	}
+	else
+	{
+		// Calculate number of books being read per month for $duration_months.
+		// For each year/month, create an entry of the total books being read during it.
+		// Entry format: [0, {label: '2005'}, {barLabel: '0 Books'}],
+		for ($i = $duration_months; $i >= 0; --$i)
+		{
+			$query = "
+				SELECT YEAR(DATE_SUB(CURDATE(), INTERVAL {$i} MONTH)) AS Year, MONTH(DATE_SUB(CURDATE(), INTERVAL {$i} MONTH)) AS Month, COUNT(*) AS Count
+				FROM {$wpdb->prefix}now_reading
+				WHERE
+						b_started <= DATE_SUB(CURDATE(), INTERVAL {$i} MONTH)
+				AND 	(b_finished >= DATE_SUB(CURDATE(), INTERVAL {$i} MONTH) OR b_status = 'reading')
+				AND 	b_status != 'onhold'
+				";
+			$statistics = $wpdb->get_results($query);
+			$statistics = apply_filters('get_books', $statistics);
+
+			foreach ((array)$statistics as $stat)
+			{
+				$label = date("M", mktime(0, 0, 0, $stat->Month, 1, 2000)) . ' ' . $stat->Year;
+				echo "
+					[{$stat->Count}, {label: '" . $label . "'}, {barLabel: '{$stat->Count}'}],";
+			}
+		}
 	}
 
 	echo "
@@ -325,7 +361,7 @@ function print_book_stats($duration_months = 12, $bar_width = 40, $graph_height 
 	{
 		echo "
 		<div class='graph-caption' style='margin: auto; text-align: center; padding: 10px;'>";
-		print_book_average();
+		print_book_average($duration_months);
 		echo "</div>
 		";
 	}
@@ -337,7 +373,8 @@ function print_book_stats($duration_months = 12, $bar_width = 40, $graph_height 
  * @param bool $echo Whether or not to echo the results.
  * @param int $userID Counting only userID's books.
  */
-function total_books($status = '', $echo = true , $userID = 0) {
+function total_books($status = '', $echo = true , $userID = 0)
+{
     global $wpdb;
 
 	$reader = get_reader_visibility_filter($userID, false);
@@ -416,17 +453,18 @@ function average_books($time_period = 'week', $echo = true, $absolute = true)
 	{
 		$books_per_day_in_year = $wpdb->get_var("
 		SELECT
-			( COUNT(*) / ( TO_DAYS(CURDATE()) - TO_DAYS(MIN(b_finished)) ) ) AS books_per_day_in_year
+			( COUNT(*) / 365.0 ) AS books_per_day_in_year
 		FROM
 			{$wpdb->prefix}now_reading
 		WHERE
 			b_status = 'read'
 		AND TO_DAYS(b_finished) >= (TO_DAYS(CURDATE()) - 365)
+		AND TO_DAYS(b_started) >= (TO_DAYS(CURDATE()) - 365)
 			");
 
 		$books_per_day_in_month = $wpdb->get_var("
 		SELECT
-			( COUNT(*) / ( TO_DAYS(CURDATE()) - TO_DAYS(MIN(b_finished)) ) ) AS books_per_day_in_month
+			( COUNT(*) / 30.0 ) AS books_per_day_in_month
 		FROM
 			{$wpdb->prefix}now_reading
 		WHERE
@@ -434,12 +472,13 @@ function average_books($time_period = 'week', $echo = true, $absolute = true)
 		AND TO_DAYS(b_finished) >= (TO_DAYS(CURDATE()) - 30)
 			");
 
-		// Give twice the weight for the last month's average than the total of last year's.
-		$books_per_day = ((2.0 * $books_per_day_in_month) + $books_per_day_in_year) / 3.0;
+		// Give more weight for the last month's average than last year's.
+		$books_per_day = ((3.0 * $books_per_day_in_month) + (2.0 * $books_per_day_in_year)) / 5.0;
 	}
 
     $average = 0;
-    switch ( $time_period ) {
+    switch ($time_period)
+	{
         case 'year':
             $average = round($books_per_day * 365);
             break;
@@ -471,7 +510,7 @@ function average_books($time_period = 'week', $echo = true, $absolute = true)
 			$type = __("a current");
 		}
 
-		printf(__("%s average of %s book%s per %s", NRTD), $type, $average, ($average != 1 ? 's' : ''), $time_period);
+		printf(__("%s average of %s book(s) per %s", NRTD), $type, $average, $time_period);
 	}
 
     return $average;
