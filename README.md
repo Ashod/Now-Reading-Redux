@@ -4,7 +4,7 @@ Contributors: ashodnakashian
 Donate link:
 Tags: wordpress, books, widget, amazon
 Requires at least: 2.9.0
-Tested up to: 3.3.0
+Tested up to: 3.4.2
 Stable tag: trunk
 
 Track and share books you read, are reading and plan to read, with Amazon integration and cover art and graphs reading statistics.
