@@ -19,7 +19,9 @@ NRR depends on jQuery and assumes it already loaded by WP or your theme. Please 
 
 The home of Now Reading Redux is [blog.ashodnakashian.com/projects/now-reading-redux/](http://blog.ashodnakashian.com/projects/now-reading-redux/ "Now Reading Redux"). You may find news and leave comments and requests there.
 
-For issues and complaints and for development source code, please go to [github.com/Ashod/Now-Reading-Redux](https://github.com/Ashod/Now-Reading-Redux "Git repository").
+For issues, complaints and bugs as well as for development source code, please go to [github.com/Ashod/Now-Reading-Redux](https://github.com/Ashod/Now-Reading-Redux "Git repository").
+
+For comments and suggestions and even bugs, you may leave a comment on the [blog.ashodnakashian.com/projects/now-reading-redux/](http://blog.ashodnakashian.com/projects/now-reading-redux/ "project home page").
 
 ## Installation ##
 
@@ -46,6 +48,10 @@ Note: After upgrading the widget, if used, may get removed. This may happen in s
 
 Please read the Upgrade section under Installation.
 
+### I found a bug, what should I do? (or, this plugin is broken!) ###
+
+Please leave a note on the [blog.ashodnakashian.com/projects/now-reading-redux/](http://blog.ashodnakashian.com/projects/now-reading-redux/ "project home page"). That is probably the easiest way. However, you may also log bugs on [github.com/Ashod/Now-Reading-Redux](https://github.com/Ashod/Now-Reading-Redux "GitHub") or on [http://wordpress.org/extend/plugins/now-reading-redux/](http://wordpress.org/extend/plugins/now-reading-redux/ "wordpress").
+
 ### Where is the old changelog? ###
 
 Please find the original Now Reading Relaoded readme with the changelog in the readme.old file.
@@ -69,6 +75,8 @@ To avoid problems and surprises, please revisit the NRR options page after every
 
 If you get a warning such as "URL file-access is disabled in the server configuration" then you need to edit your PHP.ini file. Searching relies on PHP's file_get_contents() function. This function is subject to security permissions. Specifically, allow_url_fopen must be set to 'on' in PHP.ini (which is the default). More information [here](http://phpsec.org/projects/phpsecinfo/tests/allow_url_fopen.html), [file_get_contents's reference](http://www.php.net/manual/en/function.file-get-contents.php) and [allow_url_fopen's reference](http://php.net/manual/en/filesystem.configuration.php).
 
+Note: Starting from v6.7.0 file_get_contents has been replaced by Snoopy/cURL controlled from the Options page.
+
 ### How can I change the number of items shown in the sidebar? ###
 
 Starting with version 6.5 there is an option that controls the maximum number of books shown for each shelf.
@@ -80,6 +88,45 @@ Under the section heading in question, find the following line (exact values may
 This is a PHP function call (named have_books) and the string between the quotes is the query string. To change the number of items returned by this call simply add "&num=4" (without the double quotes.) Here I chose to return 4 items, but you can set it to any number. If you set it to -1 you'll get all!
 
 Here is how you may set it to return 7 finished books: have_books('status=read&orderby=finished&order=desc&num=7')
+
+### What are the attributes of nrr_shelf and what are the defaults? ###
+
+Any number of attributes can be used. Leaving out an attribute gives it the default value. 
+
+style	=>	\[list\*, numbered, table\].
+status	=> 	\[unread, reading, onhold, read, all\*\].
+orderby	=> 	\[reading, read, onhold, finished\*\].
+order	=> 	\[asc, desc\*\].
+search	=> 	A substring to match author, title.
+author	=> 	The author to show books by.
+title	=> 	The book title to show.
+rating	=> 	Book rating Between 1 and 10 inclusive.
+reader	=> 	The user's ID who added the book.
+started_year	=> 	The started year in decimal.
+started_month	=> 	The started month in decimal.
+finished_year	=> 	The finished year in decimal.
+finished_month	=> 	The finished month in decimal.
+num		=>	The maximum number of items to show. -1 for all (default).
+viz		=> 	hide, show_text\*, show_image, show_image_text.
+items_per_row	=> 	Number of books per row. Only for style=table. 1 by default.
+
+Example: Default everything. Lists all titles and authors of books sorted by last-finished first.
+[nrr_shelf]
+
+Example: Lists titles and authors of books finished in the year 2011.
+\[nrr_shelf style="numbered" viz="show_text" status="all" num="-1" order="asc" finished_year="2011"\]
+
+Example: Lists titles and authors of books finished reading with a rating of 9.
+\[nrr_shelf style="numbered" viz="show_text" status="all" num="-1" order="asc" rating="9"\]
+
+Example: Covers of all books currently reading.
+\[nrr_shelf style="table" viz="show_image" status="reading" num="-1" order="asc" items_per_row="3"\]
+
+Example: Covers, titles and authors of all books in the library sorted by last-finished first.
+\[nrr_shelf style="list" viz="show_image_text" status="all" num="-1" order="desc"\]
+
+Example: Lists titles and authors of books started reading on or after April 2011, finished before or during November 2011 and has a rating of at least 8.
+\[nrr_shelf style="numbered" viz="show_text" status="all" num="-1" order="asc" rating=">=8" started_year="2011" started_month=">3" finished_year="<=2011" finished_month="<=11"\]
 
 == Screenshots ==
 
@@ -101,10 +148,16 @@ Here is how you may set it to return 7 finished books: have_books('status=read&o
 
 #### 6.7.0.0 ####
 * Wordpress 3.4 support.
-* The wp-config.php file may be either in its default folder or a folder above it. See [Hardening WordPress](http://codex.wordpress.org/Hardening_WordPress#Securing_wp-config.php). (Thanks to Alex for this request.)
-* NRR shortcode added. Supports all rendering styles and filtering options. Example: [nrr style="numbered" viz="show_text" status="all" num="-1" order="asc" finished_year="2011"]
-* Removed hard-coding from shelf and using class nr_booktitle and nr_bookauthor for the title and author respectively. Also, new classes include nr_viewlibrary, nr_wishlist, nr_nobooks.
-
+* Fixed: The wp-config.php file may be either in its default folder or a folder above it. See [Hardening WordPress](http://codex.wordpress.org/Hardening_WordPress#Securing_wp-config.php). (Thanks to Alex for this request.)
+* Fixed: Replaced file_get_contents() with url_get_contents() which is based on cURL/Snoopy and doesn't suffer PHP settings. file_get_contents() required enabling allow_url_fopen in php.ini which some servers disallowed. (Thanks to Tom Saunders, TechnoMom, unsicherheitsserver, inktails and others for reporting).
+* Improved the robustness of Amazon searches, debugging and error-reporting. Also, untitled books are now show with the title "Untitled" (previously they were skipped).
+* Fixed: Removed hard-coding of styles from shelf and using CSS class nr_booktitle and nr_bookauthor for the title and author respectively. Also, new classes include nr_viewlibrary, nr_wishlist, nr_nobooks. Apply default CSS styles in NRR options page to get new default styles.
+* Fixed: Redesigned templates to use correct and up-to-date styles and better WordPress integration.
+* New options: Library Title and Wishlist Title options added.
+* New option: "Use Theme templatates" to control whether or not to load theme-specific templates or defaults. Themes can have 'now-reading' or 'now-reading-redux' folders added to the TEMPLATEPATH and by enabling this option the templates will be loaded from there. Suffusion makes use of this approach as it has heavily customized templates and the defaults don't render so well (although latest templates are much better in this regard.) For Suffusion you're advised to copy the templates from NRR's suffusion subfolder into Suffusion's now-reading subfolder and enable "Use Theme templates". Don't forget to repeat this every time you update Suffusion!
+* Added: NRR shortcode nrr_shelf added. Supports all rendering styles and filtering options supported in the Library page. See FAQ for doc and sample.
+* Improved book statistics and average reading rate calculation. Statistics may be calculated by books being read per-month as well as books finished per-month (no external option, just internal function implementation).
+* Improved nrr-generated page-titles shown in the browser caption-bar.
 
 #### 6.5.0.0 ####
 * Wordpress 3.3 support.
